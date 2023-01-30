@@ -1,6 +1,15 @@
 package fr.eni.eneDW2M147.dal;
 
-public class EnchereDAO {
+
+
+public interface EnchereDAO {
 	
+	
+	
+	public void VeriUtilisateur();
+
+	
+
+
 
 }
