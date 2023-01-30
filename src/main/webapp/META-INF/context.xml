@@ -7,7 +7,7 @@
 		type="javax.sql.DataSource"
 		
 		
-		url="jdbc:sqlserver://localhost;databasename=BDD_SUIVI_REPAS;IntegratedSecurity=false;encrypt=false;trustServerCertificates=false"
+		url="jdbc:sqlserver://localhost;databasename=ENCHERES_BDD;IntegratedSecurity=false;encrypt=false;trustServerCertificates=false"
 		username="utilisateurBDD"
 		password="Pa$$w0rd"
 		
