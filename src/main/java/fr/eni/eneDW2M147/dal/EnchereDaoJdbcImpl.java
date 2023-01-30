@@ -44,5 +44,6 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 		}
 
-		return utilisateur;}}
-
+		return utilisateur;
+	}
+}
