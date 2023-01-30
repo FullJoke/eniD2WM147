@@ -8,20 +8,28 @@
 
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="/CSS/Style.css" rel="stylesheet">
+<link href="CSS/Style.css" rel="stylesheet">
 
 
 </head>
 <body>
 
-	<div class="container">
-		<h2>ENI - Enchères</h2>
+	<header>
+		<%@ include file="Entete.html"%>
+	</header>
 
-		<form action="<%=request.getContextPath()%>/login" method="post">
-			<label>identifiant : </label> <input type="text" name="email"> <br>
-			<label>Mot de Passe : </label> <input type="password" name="password">
-			<br> <input type="submit" value="Valider">
-		</form>
+
+	<div class="container">
+		<div class="corps">
+			<h2>Login</h2>
+
+			<form action="<%=request.getContextPath()%>/login" method="post">
+				<label>Identifiant : </label> <input type="text" name="email">
+				<br> <label>Mot de Passe : </label> <input type="password"
+					name="password"> <br> <input type="submit"
+					value="Valider">
+			</form>
+		</div>
 	</div>
 
 </body>
