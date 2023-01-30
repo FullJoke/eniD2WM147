@@ -13,11 +13,9 @@ public class EnchereManager {
 	}
 	
 	public Utilisateur getUserByEmailAndPassword(String email,String mdp) throws BusinessException {
-		try {
+		
 			return enchereDAO.getUserByEmailAndPassword(email, mdp);
-		}catch (BusinessException e ) {
-			throw new BusinessException();
-		}
+		
 		
 		
 	}
