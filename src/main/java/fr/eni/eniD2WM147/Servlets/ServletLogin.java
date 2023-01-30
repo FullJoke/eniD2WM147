@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.eneDW2M147.businessException.BusinessException;
+import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bo.Utilisateur;
+
 /**
  * Servlet implementation class ServletLogin
  */
@@ -36,7 +40,20 @@ public class ServletLogin extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		System.out.println(id);
 		System.out.println(mdp);
-		
+		Utilisateur u;
+
+		EnchereManager em = new EnchereManager();
+		try {
+			u = em.getUserByEmailAndPassword(id, mdp);
+			if (u == null) {
+				System.out.println("NOPE");
+			}else {
+				System.out.println("YEAH");
+			}
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+
 		doGet(request, response);
 	}
 
