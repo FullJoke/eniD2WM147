@@ -4,6 +4,5 @@ import fr.eni.eneDW2M147.dal.EnchereDAO;
 
 public class EnchereManager {
 	private EnchereDAO enchereDAO;
-	
-	
+
 }

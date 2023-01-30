@@ -9,27 +9,22 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <link href="CSS/Style.css" rel="stylesheet">
-
-
-</head>
 <body>
 
 	<header>
 		<%@ include file="Entete.html"%>
+
+		<div class="entete">
+			<a href="http://www.google.fr">S'inscrire</a> / <a
+				href="<%=request.getContextPath()%>/login">Se Connecter</a>
+		</div>
+
+
+
 	</header>
 
-
 	<div class="container">
-		<div class="corps">
-			<h2>Login</h2>
-
-			<form action="<%=request.getContextPath()%>/login" method="post">
-				<label>Identifiant : </label> <input type="text" name="email">
-				<br> <label>Mot de Passe : </label> <input type="password"
-					name="password"> <br> <input type="submit"
-					value="Valider">
-			</form>
-		</div>
+		<h2>Liste des enchères</h2>
 	</div>
 
 </body>

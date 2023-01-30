@@ -1,5 +1,7 @@
 package fr.eni.eniD2WM147.bo;
 
+import java.util.List;
+
 public class Utilisateur {
 	private int idUtilisateur;
 	private String pseudo;
@@ -11,7 +13,12 @@ public class Utilisateur {
 	private String codePostal;
 	private String ville;
 	private int credit;
+
 	private boolean administrateur;
+
+	private List<ArticleVendu> listeArticle;
+	private List<Enchere> listeEnchere;
+
 
 	// Constructeurs
 	public Utilisateur(int idUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
@@ -130,8 +137,24 @@ public class Utilisateur {
 		return administrateur;
 	}
 
-	public void setAdmiistrateur(boolean admiistrateur) {
-		this.administrateur = admiistrateur;
+	public void setAdmiistrateur(boolean administrateur) {
+		this.administrateur = administrateur;
+	}
+
+	public List<ArticleVendu> getListeArticles() {
+		return listeArticle;
+	}
+
+	public void setListeArticles(List<ArticleVendu> listeArticles) {
+		this.listeArticle = listeArticles;
+	}
+
+	public List<Enchere> getListeEnchere() {
+		return listeEnchere;
+	}
+
+	public void setListeEnchere(List<Enchere> listeEnchere) {
+		this.listeEnchere = listeEnchere;
 	}
 
 	// Methodes
