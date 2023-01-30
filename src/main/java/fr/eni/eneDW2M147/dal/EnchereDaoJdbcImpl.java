@@ -1,6 +1,5 @@
 package fr.eni.eneDW2M147.dal;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,11 +39,13 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException bException = new BusinessException();
-			bException.addMessage("une erreur est survenu");
+			bException.addMessage("une erreur est survenue");
 			throw bException;
-			
+
 		}
+
 		return utilisateur;
 
 }
 }
+

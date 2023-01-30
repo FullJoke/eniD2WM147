@@ -32,6 +32,11 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String id = request.getParameter("id");
+		String mdp = request.getParameter("mdp");
+		System.out.println(id);
+		System.out.println(mdp);
+		
 		doGet(request, response);
 	}
 
