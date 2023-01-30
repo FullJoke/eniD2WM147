@@ -10,7 +10,7 @@ import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereDaoJdbcImpl implements EnchereDAO {
 
-	public void getUserByEmailAndPassword(String mail, String mdp) throws BusinessException {
+	public Utilisateur getUserByEmailAndPassword(String mail, String mdp) throws BusinessException {
 		PreparedStatement pstmt = null;
 		Utilisateur utilisateur = null;
 
@@ -39,10 +39,10 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException bException = new BusinessException();
-			bException.addMessage("une erreur est survenu");
+			bException.addMessage("une erreur est survenue");
 			throw bException;
 
 		}
 
-	}
-}
+		return utilisateur;}}
+
