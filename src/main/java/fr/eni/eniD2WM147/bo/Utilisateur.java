@@ -27,7 +27,7 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.credit = credit;
-		this.admiistrateur = admiistrateur;
+		this.administrateur = admiistrateur;
 	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
@@ -42,7 +42,7 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.credit = credit;
-		this.admiistrateur = admiistrateur;
+		this.administrateur = admiistrateur;
 	}
 
 	// Getters & Setters
@@ -127,11 +127,11 @@ public class Utilisateur {
 	}
 
 	public boolean isAdmiistrateur() {
-		return admiistrateur;
+		return administrateur;
 	}
 
 	public void setAdmiistrateur(boolean admiistrateur) {
-		this.admiistrateur = admiistrateur;
+		this.administrateur = admiistrateur;
 	}
 
 	// Methodes
@@ -139,7 +139,7 @@ public class Utilisateur {
 	public String toString() {
 		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
-				+ codePostal + ", ville=" + ville + ", credit=" + credit + ", admiistrateur=" + admiistrateur + "]";
+				+ codePostal + ", ville=" + ville + ", credit=" + credit + ", administrateur=" + administrateur + "]";
 	}
 
 }
