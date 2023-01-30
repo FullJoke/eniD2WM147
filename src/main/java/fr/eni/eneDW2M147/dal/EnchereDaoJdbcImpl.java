@@ -9,6 +9,7 @@ import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereDaoJdbcImpl implements EnchereDAO {
+	
 
 	public Utilisateur getUserByEmailAndPassword(String mail, String mdp) throws BusinessException {
 		PreparedStatement pstmt = null;
