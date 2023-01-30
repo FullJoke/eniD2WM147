@@ -9,8 +9,10 @@ import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereDaoJdbcImpl implements EnchereDAO {
+
 	private static final String SELECT_BY_EMAIL_MDP=  "Select * from UTILISATEURS where email =? and mot_de_passe =?";
 	
+
 	public Utilisateur getUserByEmailAndPassword(String mail, String mdp) throws BusinessException {
 		PreparedStatement pstmt = null;
 		Utilisateur utilisateur = null;
