@@ -11,7 +11,7 @@ import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereDaoJdbcImpl implements EnchereDAO {
 
-	public void getUserByEmailAndPassword(String mail, String mdp) throws BusinessException {
+	public Utilisateur getUserByEmailAndPassword(String mail, String mdp) throws BusinessException {
 		PreparedStatement pstmt = null;
 		Utilisateur utilisateur = null;
 
@@ -44,6 +44,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 			throw bException;
 			
 		}
+		return utilisateur;
 
 }
 }
