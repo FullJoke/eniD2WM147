@@ -21,7 +21,7 @@ public class ArticleVendu {
 	// etat vente est un char en SQL, utilisation du parse ?
 	private String etatVente;
 	
-	
+	// Constructeurs
 	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
 			LocalDateTime finEnchere, int prixInitial, int prixVente, int numCategorie, String etatVente,
 			String image) {
@@ -51,7 +51,8 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 		this.image = image;
 	}
-
+	
+	// Getters & Setters
 	public int getIdArticle() {
 		return idArticle;
 	}
@@ -148,7 +149,6 @@ public class ArticleVendu {
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
-	
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
@@ -166,6 +166,7 @@ public class ArticleVendu {
 		this.retrait = retrait;
 	}
 
+	// Méthodes
 	@Override
 	public String toString() {
 		return "ArticleVendu [idArticle=" + idArticle + ", nom=" + nom + ", description=" + description

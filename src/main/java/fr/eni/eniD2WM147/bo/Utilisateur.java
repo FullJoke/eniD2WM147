@@ -13,12 +13,9 @@ public class Utilisateur {
 	private String codePostal;
 	private String ville;
 	private int credit;
-
 	private boolean administrateur;
-
 	private List<ArticleVendu> listeArticle;
 	private List<Enchere> listeEnchere;
-
 
 	// Constructeurs
 	public Utilisateur(int idUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,

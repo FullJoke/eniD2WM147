@@ -20,13 +20,13 @@
 
 
 	<div class="container">
-		<div class="corps">
+		<div class="justify-content center">
 			<h2>Login</h2>
 
 			<form action="<%=request.getContextPath()%>/login" method="post">
-				<label>Identifiant : </label> <input type="text" name="email">
+				<label>Identifiant : </label> <input type="text" name="id">
 				<br> <label>Mot de Passe : </label> <input type="password"
-					name="password"> <br> <input type="submit"
+					name="mdp"> <br> <input type="submit"
 					value="Valider">
 			</form>
 		</div>
