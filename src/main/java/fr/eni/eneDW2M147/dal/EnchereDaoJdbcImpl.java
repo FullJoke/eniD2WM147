@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.Utilisateur;
@@ -13,7 +15,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where email =? and mot_de_passe =? OR pseudo=? and mot_de_passe =?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit,administrateur)VALUES(?,?,?,?,?,?,?,?,?,?)";
-
+    private static final String SELECT_ALL_USER = "SELECT * FROM UTILISATEURS";
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		PreparedStatement pstmt = null;
 		Utilisateur utilisateur = null;
@@ -103,5 +105,20 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 		return utilisateurs;
 
+	}
+	
+	public List<String> selectAllUtilisateurByPseudoEmail() {
+		
+		List<String> list = new ArrayList();
+		
+		
+		
+		
+		
+		
+		return list;
+		
+		
+		
 	}
 }
