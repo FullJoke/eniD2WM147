@@ -49,12 +49,14 @@ public class ServletLogin extends HttpServlet {
 		try {
 			u = em.getUserByEmailAndPassword(id, mdp);
 			if (u == null) {
+
 				System.out.println("LOGIN - FAIL");
-				
-			}else {
-				System.out.println("LOGIN - SUCESS");
+
+			} else {
+				System.out.println("LOGIN - SUCCESS");
+
 				session.setAttribute("idUtilisateur", id);
-				response.sendRedirect(request.getContextPath()+"/accueil");
+				response.sendRedirect(request.getContextPath() + "/accueil");
 			}
 		} catch (BusinessException e) {
 			e.printStackTrace();

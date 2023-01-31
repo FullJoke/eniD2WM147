@@ -13,8 +13,12 @@ public class Utilisateur {
 	private String codePostal;
 	private String ville;
 	private int credit;
-	private boolean administrateur;
-	private List<ArticleVendu> listeArticle;
+
+    private boolean administrateur;
+    private List<ArticleVendu> listeArticle;
+
+	
+
 	private List<Enchere> listeEnchere;
 
 	// Constructeurs
