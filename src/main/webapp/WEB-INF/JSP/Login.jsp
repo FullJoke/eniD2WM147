@@ -17,17 +17,27 @@
 
 	<header>
 		<%@ include file="Entete.html"%>
+		<div class="d-flex flex-row-reverse">
+			<div class="p-2">
+				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire </a>
+			</div>
+		</div>
 	</header>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a
+				href="<%=request.getContextPath()%>/accueil">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Login</li>
+		</ol>
+	</nav>
 
 
 	<div class="container">
 
-		<div class="row justify-content-md-center">
-			<div class="col col-lg-2">
-				<h2>Login</h2>
-			</div>
+		<div class="row justify-content-center">
+			<h2>Login</h2>
 		</div>
-		<div class="row justify-content-lg-center">
+		<div class="row justify-content-center">
 			<form action="<%=request.getContextPath()%>/login" method="post">
 				<label id="loginIdLabel">Identifiant : </label> <input id="loginId"
 					type="text" name="id"> <br> <label>Mot de

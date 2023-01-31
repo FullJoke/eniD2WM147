@@ -25,10 +25,10 @@
 		%>
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
-				<a href="http://www.google.fr">S'inscrire </a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire </a>
 			</div>
 			<div class="p-2">
-				<a href="<%=request.getContextPath()%>/login"> Se Connecter</a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/login"> Se Connecter</a>
 			</div>
 		</div>
 		<%
@@ -36,28 +36,31 @@
 		%>
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
-				<a href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
-			</div>
+				<a id="topMenu" href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
+			</div>.
 			<div class="p-2">
-				<a href="http://www.google.fr">Mon Profil</a>
-			</div>
+				<a id="topMenu" href="http://www.google.fr">Mon Profil</a>
+			</div>.
 			<div class="p-2">
-				<a href="http://www.google.fr">Vendre un article</a>
-			</div>
+				<a id="topMenu" href="http://www.google.fr">Vendre un article</a>
+			</div>.
 			<div class="p-2">
-				<a href="http://www.google.fr">Enchères</a>
+				<a id="topMenu" href="http://www.google.fr">Enchères</a>
 			</div>
 		</div>
 		<%
 		}
 		%>
 	</header>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item active" aria-current="page">Home</li>
+		</ol>
+	</nav>
 
 
 	<div class="container">
-		<div class="row justify-content-lg-right">
-			<h2>Liste des enchères</h2>
-		</div>
+		<h2>Liste des enchères</h2>
 	</div>
 
 </body>
