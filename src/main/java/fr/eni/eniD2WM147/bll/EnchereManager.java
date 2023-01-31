@@ -17,8 +17,8 @@ public class EnchereManager {
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		BusinessException bE = new BusinessException();
 
-		validerID(id, bE);
-		validerMDP(mdp, bE);
+//		validerID(id, bE);
+//		validerMDP(mdp, bE);
 		
 		if(!bE.getListeMessage().isEmpty()) {
 			throw bE;
@@ -28,19 +28,19 @@ public class EnchereManager {
 
 	}
 
-	private void validerID(String id, BusinessException businessException) throws BusinessException {
-		enchereDAO.selectAllUtilisateurByPseudoEmail();
-		if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(id)) {
-			businessException.addMessage("L'identifiant n'est pas valide");
-		}
-
-	}
-
-	private void validerMDP(String mdp, BusinessException businessException) throws BusinessException {
-		enchereDAO.selectAllUtilisateurByPseudoEmail();
-		if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(mdp)) {
-			businessException.addMessage("Le mot de passe n'est pas valide");
-		}
-	}
+//	private void validerID(String id, BusinessException businessException) throws BusinessException {
+//		enchereDAO.selectAllUtilisateurByPseudoEmail();
+//		if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(id)) {
+//			businessException.addMessage("L'identifiant n'est pas valide");
+//		}
+//
+//	}
+//
+//	private void validerMDP(String mdp, BusinessException businessException) throws BusinessException {
+//		enchereDAO.selectAllUtilisateurByPseudoEmail();
+//		if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(mdp)) {
+//			businessException.addMessage("Le mot de passe n'est pas valide");
+//		}
+//	}
 
 }
