@@ -10,12 +10,15 @@ import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereDaoJdbcImpl implements EnchereDAO {
 
+
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS (where email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
+
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit,administrateur)VALUES(?,?,?,?,?,?,?,?,?,?)";
-	
+
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
+
 		PreparedStatement pstmt = null;
 		Utilisateur utilisateur = null;
 

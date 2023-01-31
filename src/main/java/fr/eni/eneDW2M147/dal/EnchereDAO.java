@@ -1,7 +1,5 @@
 package fr.eni.eneDW2M147.dal;
 
-import java.util.List;
-
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
@@ -13,5 +11,6 @@ public interface EnchereDAO {
 			String rue, String code_postal, String ville, int credit, boolean administrateur) throws BusinessException;
 
 	
+
 
 }
