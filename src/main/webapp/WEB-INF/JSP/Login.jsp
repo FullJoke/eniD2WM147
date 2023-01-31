@@ -32,9 +32,11 @@
 				<label id="loginIdLabel">Identifiant : </label> <input id="loginId"
 					type="text" name="id"> <br> <label>Mot de
 					Passe : </label> <input id="loginPassword" type="password" name="mdp">
-				<br> <input id="loginOK" type="submit" value="Valider">
+				<br> <input id="loginOKButton" type="submit" value="Valider">
 			</form>
 		</div>
+
+		<div id="logErrorMessages">
 			<!-- Gestion des erreurs -->
 			<%
 			List<String> listeErreur = (List<String>) request.getAttribute("listeErreur");
@@ -43,7 +45,9 @@
 			<%
 			for (String erreur : listeErreur) {
 			%>
-			<p style="color: red"><%=erreur%></p>
+			<div class="d-flex justify-content-center">
+				<p style="color: red"><%=erreur%></p>
+			</div>
 
 			<%
 			}
@@ -51,6 +55,10 @@
 			<%
 			}
 			%>
+		</div>
+
+
+
 
 	</div>
 
