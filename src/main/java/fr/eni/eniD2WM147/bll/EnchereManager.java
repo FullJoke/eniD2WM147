@@ -17,7 +17,6 @@ public class EnchereManager {
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		BusinessException bE = new BusinessException();
 
-
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
@@ -25,7 +24,6 @@ public class EnchereManager {
 		return enchereDAO.getUserByEmailAndPassword(id, mdp);
 
 	}
-
 
 	public Utilisateur insertUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, int credit, boolean administrateur) throws BusinessException {
@@ -42,7 +40,4 @@ public class EnchereManager {
 
 	}
 
-
-
-		}
-
+}
