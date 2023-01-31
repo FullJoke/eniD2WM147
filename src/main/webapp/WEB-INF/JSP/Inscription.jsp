@@ -1,3 +1,4 @@
+<%@page import="org.graalvm.compiler.asm.sparc.SPARCAssembler.Br"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -75,6 +76,7 @@
 				<!-- Gestion des erreurs -->
 				<%
 				List<String> listeErreur = (List<String>) request.getAttribute("listeErreur");
+				
 				if (listeErreur != null) {
 				%>
 				<%
@@ -93,5 +95,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

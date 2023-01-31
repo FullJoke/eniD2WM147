@@ -20,6 +20,10 @@ public class Categorie {
 		this.articles = articles;
 	}
 
+	public Categorie() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getNumCategorie() {
 		return numCategorie;
 	}

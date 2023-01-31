@@ -50,11 +50,9 @@ public class ServletLogin extends HttpServlet {
 			BusinessException beLog = new BusinessException();
 			if (id.isBlank()) {
 				beLog.addMessage("Un Identifiant est obligatoire");
-				throw beLog;
 			}
 			if (mdp.isBlank()) {
 				beLog.addMessage("Un mot de passe est obligatoire");
-				throw beLog;
 			}
 
 			if (!beLog.getListeMessage().isEmpty()) {
@@ -63,8 +61,9 @@ public class ServletLogin extends HttpServlet {
 
 			u = em.getUserByEmailAndPassword(id, mdp);
 			if (u == null) {
+
 				System.out.println("LOGIN - FAIL");
-				beLog.addMessage("identifiant ou mot de passe incorrect. Veuillez réessayer.");
+				beLog.addMessage("email ou mot de passe incorrect. Veuillez réessayer.");
 				throw beLog;
 
 			} else {
