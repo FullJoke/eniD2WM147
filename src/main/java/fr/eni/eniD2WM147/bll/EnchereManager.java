@@ -18,7 +18,7 @@ public class EnchereManager {
 		BusinessException bE = new BusinessException();
 
 
-		validerID(id, bE);
+		//validerID(id, bE);
 		//validerMDP(mdp, bE);
 
 //		validerID(id, bE);
@@ -50,7 +50,7 @@ public class EnchereManager {
 	//private void validerMDP(String mdp, BusinessException businessException) throws BusinessException {
 		//enchereDAO.selectAllUtilisateurByPseudoEmail();
 		//if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(mdp)) {
-			businessException.addMessage("Le mot de passe n'est pas valide");
+			//businessException.addMessage("Le mot de passe n'est pas valide");
 		//}
 	//}
 
