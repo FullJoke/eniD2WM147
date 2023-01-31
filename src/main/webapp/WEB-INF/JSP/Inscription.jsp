@@ -40,33 +40,10 @@
 
 		<div class="row justify-content-md-center">
 
-			<form action="<%=request.getContextPath()%>/inscription"
-				method="post">
-
-				<div id="logErrorMessages">
-					<!-- Gestion des erreurs -->
-					<%
-					List<String> listeErreur = (List<String>) request.getAttribute("listeErreur");
-
-					if (listeErreur != null) {
-					%>
-					<%
-					for (String erreur : listeErreur) {
-					%>
-					<div class="d-flex justify-content-center">
-						<p style="color: red"><%=erreur%></p>
-					</div>
-					<%
-					}
-					%>
-					<%
-					}
-					%>
-				</div>
-
+			<form action="" method="post">
 				<label id="signUpPseudoLabel">Pseudo : </label> <input
-					id="signUpPseudo" type="text" name="pseudo"
-					placeholder="Invite01"> <br> <label
+					id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}" type="text"
+					name="pseudo" placeholder="Invite01"> <br> <label
 					id="signUpNomLabel">Nom : </label> <input id="signUpNom"
 					type="text" name="nom" placeholder="Martin"> <br> <label
 					id="signUpPrenomLabel">Prenom : </label> <input id="signUpPrenom"
@@ -83,19 +60,21 @@
 					id="signUpCodePostal" type="text" name="codePostal"
 					placeholder="11111"> <br> <label id="signUpVilleLabel">Ville
 					: </label> <input id="signUpVille" type="text" name="ville"
-					placeholder="Fausseville"> <br> <label
-					id="signUpMdpLabel">Mot de passe : </label> <input id="signUpMdp"
-					type="password" name="mdp" placeholder="********"> <br>
-				<label id="signUpConfirmationLabel">Confirmation : </label> <input
-					id="signUpConfirmation" type="password" name="confirmation"
+					placeholder="Fausseville"> <br>
+
+<!-- 				<h6>Le mot de passe doit avoir au moins 8 caractères (max15),
+					un chiffre, une lettre majuscule et une minuscule</h6> -->
+				<label id="signUpMdpLabel">Mot de passe : </label> <input
+					id="signUpMdp" type="password" name="mdp" placeholder="********"
+					required
+					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
+				<br> <label id="signUpConfirmationLabel">Confirmation :
+				</label> <input id="signUpConfirmation" type="password" name="confirmation"
 					placeholder="********"> <br> <input
 					class="btn btn-primary" id="signUpOKButton" type="submit"
-					value="Valider"> <a class="btn btn-primary"
-					href="<%=request.getContextPath()%>/accueil">Annuler</a>
-
+					value="Valider"> <input class="btn btn-primary"
+					id="loginWithdrawButton" type="submit" value="Annuler">
 			</form>
-
-
 		</div>
 	</div>
 

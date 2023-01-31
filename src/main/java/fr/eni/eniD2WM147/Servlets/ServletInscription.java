@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bll.EnchereManager;
@@ -19,7 +18,7 @@ import fr.eni.eniD2WM147.bo.Utilisateur;
  */
 @WebServlet("/inscription")
 public class ServletInscription extends HttpServlet {
-	private static final String MOTIF = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$";
+	//private static final String MOTIF = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$";
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -71,10 +70,11 @@ public class ServletInscription extends HttpServlet {
 				bE.addMessage("Le prenom est obligatoire et ne peut contenir que des lettres.");
 				throw bE;
 			}
-			if (email.isBlank() || !email.contains(MOTIF)) {
+			if (email.isBlank() ) {
 				bE.addMessage("Adresse mail non valide.");
 				throw bE;
 			}
+			//|| !email.contains(MOTIF)
 			// mettre limitation en chiffre et 10
 			if (tel.isBlank() || !tel.chars().allMatch(Character::isDigit)) {
 				bE.addMessage("Le numéro de téléphone doit contenir 10 chiffres.");
