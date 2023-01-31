@@ -15,7 +15,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where email =? and mot_de_passe =? OR pseudo=? and mot_de_passe =?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit,administrateur)VALUES(?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT_ALL_USER = "SELECT * FROM UTILISATEURS WHERE pseudo =? and email=?";
+	private static final String SELECT_ALL_USER = "SELECT email, pseudo FROM UTILISATEURS";
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		PreparedStatement pstmt = null;
@@ -111,37 +111,45 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 	public List<String> selectAllUtilisateurByPseudoEmail() throws BusinessException {
 
 		PreparedStatement pstmt = null;
-        List<String> list = new ArrayList();
-		Connection cnx;
+		List<String> listIds = new ArrayList();
+		String email;
+		String pseudo;
 
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection();) {
+
 			pstmt = cnx.prepareStatement(SELECT_ALL_USER);
-			for (String pseudo : list) {
-				list.add(pseudo);
+			ResultSet rs = pstmt.executeQuery();
 
-				ResultSet rs = pstmt.executeQuery();
-
-				if (rs.next()) {
-					rs.getString("pseudo");
-				}
-				
-
-				cnx = ConnectionProvider.getConnection();
-				cnx.prepareStatement(SELECT_ALL_USER);
-				
-				for (String email : list) {
-					list.add(email);
-
-					pstmt.executeQuery();
-
-					if (rs.next()) {
-						rs.getString("email");
-					}
-
-				}
-
+			while (rs.next()) {
+				email = rs.getString("email");
+				listIds.add(email);
+				pseudo = rs.getString("pseudo");
+				listIds.add(pseudo);
 			}
+
+			System.out.println(listIds);
+
+//			for (String pseudo : listIds) {
+//				listIds.add(pseudo);
+//				if (rs.next()) {
+//					rs.getString("pseudo");
+//				}
+//
+//				cnx = ConnectionProvider.getConnection();
+//				cnx.prepareStatement(SELECT_ALL_USER);
+//
+//				for (String email : list) {
+//					list.add(email);
+//
+//					pstmt.executeQuery();
+//
+//					if (rs.next()) {
+//						rs.getString("email");
+//					}
+//
+//				}
+//
+//			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -150,7 +158,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 			throw bException;
 		}
 
-		return list;
+		return listIds;
 
 	}
 }
