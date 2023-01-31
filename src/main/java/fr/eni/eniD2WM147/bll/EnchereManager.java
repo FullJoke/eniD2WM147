@@ -1,9 +1,14 @@
 package fr.eni.eniD2WM147.bll;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eneDW2M147.dal.EnchereDAO;
 import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
-
+import fr.eni.eniD2WM147.bo.ArticleVendu;
+import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereManager {
@@ -26,6 +31,28 @@ public class EnchereManager {
 		
 		return enchereDAO.getUserByEmailAndPassword(id, mdp);
 
+	}
+	
+	public List<Categorie> selectAllArticles(){
+		List<Categorie> articles = new ArrayList<>();
+		List<ArticleVendu> arts = new ArrayList<>();
+		
+		Categorie cat = new Categorie(1, "informatique");
+		cat.setArticles(arts);
+		Categorie catt = new Categorie(1, "numérique");
+		catt.setArticles(arts);
+		Categorie cattt = new Categorie(1, "sport");
+		cattt.setArticles(arts);
+		Categorie catttt = new Categorie(1, "loisir");
+		catttt.setArticles(arts);
+		articles.add(cat);
+		articles.add(catt);
+		articles.add(cattt);
+		articles.add(catttt);
+		
+		
+		
+		return articles;
 	}
 
 	private void validerID(String id, BusinessException businessException) throws BusinessException {

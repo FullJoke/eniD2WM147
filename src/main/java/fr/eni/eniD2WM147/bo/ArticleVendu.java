@@ -11,12 +11,12 @@ public class ArticleVendu {
 	LocalDateTime finEnchere;
 	private int prixInitial;
 	private int prixVente;
-	private int numCategorie;
+	//private int numCategorie;
 	private String image;
 	private List<Enchere> listeEnchere;
-	private Categorie categorie;
-	private Utilisateur utilisateur;
-	private Retrait retrait;
+	//private Categorie categorie;
+	//private Utilisateur utilisateur;
+	//private Retrait retrait;
 
 	// etat vente est un char en SQL, utilisation du parse ?
 	private String etatVente;
@@ -33,7 +33,7 @@ public class ArticleVendu {
 		this.finEnchere = finEnchere;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.numCategorie = numCategorie;
+		//this.numCategorie = numCategorie;
 		this.etatVente = etatVente;
 		this.image = image;
 	}
@@ -47,7 +47,7 @@ public class ArticleVendu {
 		this.finEnchere = finEnchere;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.numCategorie = numCategorie;
+		//this.numCategorie = numCategorie;
 		this.etatVente = etatVente;
 		this.image = image;
 	}
@@ -109,13 +109,13 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 	}
 
-	public int getNumCategorie() {
-		return numCategorie;
-	}
-
-	public void setNumCategorie(int numCategorie) {
-		this.numCategorie = numCategorie;
-	}
+//	public int getNumCategorie() {
+//		return numCategorie;
+//	}
+//
+//	public void setNumCategorie(int numCategorie) {
+//		this.numCategorie = numCategorie;
+//	}
 
 	public String getEtatVente() {
 		return etatVente;
@@ -142,36 +142,36 @@ public class ArticleVendu {
 	}
 	
 
-	public Categorie getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
-
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	public Retrait getRetrait() {
-		return retrait;
-	}
-
-	public void setRetrait(Retrait retrait) {
-		this.retrait = retrait;
-	}
+//	public Categorie getCategorie() {
+//		return categorie;
+//	}
+//
+//	public void setCategorie(Categorie categorie) {
+//		this.categorie = categorie;
+//	}
+//
+//	public Utilisateur getUtilisateur() {
+//		return utilisateur;
+//	}
+//
+//	public void setUtilisateur(Utilisateur utilisateur) {
+//		this.utilisateur = utilisateur;
+//	}
+//
+//	public Retrait getRetrait() {
+//		return retrait;
+//	}
+//
+//	public void setRetrait(Retrait retrait) {
+//		this.retrait = retrait;
+//	}
 
 	// Méthodes
 	@Override
 	public String toString() {
 		return "ArticleVendu [idArticle=" + idArticle + ", nom=" + nom + ", description=" + description
 				+ ", debutEnchere=" + debutEnchere + ", finEnchere=" + finEnchere + ", prixInitial=" + prixInitial
-				+ ", prixVente=" + prixVente + ", numCategorie=" + numCategorie + ", etatVente=" + etatVente
+				+ ", prixVente=" + prixVente + /*", numCategorie=" + numCategorie + */", etatVente=" + etatVente
 				+ ", image=" + image + "]";
 	}
 

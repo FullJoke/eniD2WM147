@@ -61,9 +61,8 @@ public class ServletLogin extends HttpServlet {
 
 			u = em.getUserByEmailAndPassword(id, mdp);
 			if (u == null) {
-
 				System.out.println("LOGIN - FAIL");
-				beLog.addMessage("email ou mot de passe incorrect. Veuillez réessayer.");
+				beLog.addMessage("identifiant ou mot de passe incorrect. Veuillez réessayer.");
 				throw beLog;
 
 			} else {
