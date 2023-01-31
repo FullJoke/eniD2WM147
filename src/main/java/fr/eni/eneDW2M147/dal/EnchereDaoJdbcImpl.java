@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.Utilisateur;

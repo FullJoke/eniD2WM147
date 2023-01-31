@@ -19,7 +19,8 @@
 		<%@ include file="Entete.html"%>
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire </a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire
+				</a>
 			</div>
 		</div>
 	</header>
@@ -39,10 +40,11 @@
 		</div>
 		<div class="row justify-content-center">
 			<form action="<%=request.getContextPath()%>/login" method="post">
+
 				<label id="loginIdLabel">Identifiant : </label> <input id="loginId"
 					type="text" name="id"> <br> <label>Mot de
 					Passe : </label> <input id="loginPassword" type="password" name="mdp">
-				<br> <input  class="btn btn-primary" id="loginOKButton" type="submit" value="Valider">
+				<br> <input id="loginOKButton" type="submit" value="Valider">
 			</form>
 		</div>
 

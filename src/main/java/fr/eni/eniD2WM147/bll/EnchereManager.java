@@ -55,6 +55,7 @@ public class EnchereManager {
 		return articles;
 	}
 
+
 	private void validerID(String id, BusinessException businessException) throws BusinessException {
 //		enchereDAO.selectAllUtilisateurByPseudoEmail();
 //		if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(id)) {
@@ -69,5 +70,6 @@ public class EnchereManager {
 //			businessException.addMessage("Le mot de passe n'est pas valide");
 		}
 	}
+
 
 
