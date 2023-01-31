@@ -18,18 +18,21 @@
 		<%@ include file="Entete.html"%>
 	</header>
 
-
 	<div class="container">
-		<div class="justify-content center">
-			<h2>Login</h2>
-
+		<div class="row justify-content-md-center">
+			<div class="col col-lg-2">
+				<h2>Login</h2>
+			</div>
+		</div>
+		<div class="row justify-content-lg-center">
 			<form action="<%=request.getContextPath()%>/login" method="post">
-				<label>Identifiant : </label> <input type="text" name="id">
-				<br> <label>Mot de Passe : </label> <input type="password"
-					name="mdp"> <br> <input type="submit"
-					value="Valider">
+				<label id="loginIdLabel">Identifiant : </label> <input id="loginId"
+					type="text" name="id"> <br> <label>Mot de Passe : </label>
+					<input id="loginPassword" type="password" name="mdp">
+				<br> <input id="loginOK" type="submit" value="Valider">
 			</form>
 		</div>
+
 	</div>
 
 </body>

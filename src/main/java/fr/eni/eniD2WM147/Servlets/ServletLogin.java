@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bll.EnchereManager;
@@ -36,25 +38,26 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		EnchereManager em = new EnchereManager();
+
 		String id = request.getParameter("id");
 		String mdp = request.getParameter("mdp");
-		System.out.println(id);
-		System.out.println(mdp);
-		Utilisateur u;
 
-		EnchereManager em = new EnchereManager();
+		Utilisateur u = null;
+
 		try {
 			u = em.getUserByEmailAndPassword(id, mdp);
 			if (u == null) {
-				System.out.println("NOPE");
+				System.out.println("LOGIN - FAIL");
 			}else {
-				System.out.println("YEAH");
+				System.out.println("LOGIN - SUCESS");
+				session.setAttribute("idUtilisateur", id);
+				response.sendRedirect(request.getContextPath()+"/accueil");
 			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
-
-		doGet(request, response);
 	}
 
 }
