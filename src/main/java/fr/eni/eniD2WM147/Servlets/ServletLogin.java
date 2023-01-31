@@ -50,6 +50,7 @@ public class ServletLogin extends HttpServlet {
 			u = em.getUserByEmailAndPassword(id, mdp);
 			if (u == null) {
 				System.out.println("LOGIN - FAIL");
+				
 			}else {
 				System.out.println("LOGIN - SUCESS");
 				session.setAttribute("idUtilisateur", id);
@@ -57,6 +58,8 @@ public class ServletLogin extends HttpServlet {
 			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
+			request.setAttribute("listeErreur", e.getListeMessage());
+			doGet(request, response);
 		}
 	}
 

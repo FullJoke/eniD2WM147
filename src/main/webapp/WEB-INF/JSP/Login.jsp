@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +14,19 @@
 
 </head>
 <body>
+	<%List<String> listeErreur=(List<String>)request.getAttribute("listeErreur");
+	if(listeErreur != null){
+		
+	
+	%>
+		<p style="color :red"> Erreur lors de la connexion</p>
+		<%for (String erreur : listeErreur){ %>
+			<p><%=erreur %></p>
+		
+		<%} %>	
+	<%
+		}
+	%>
 
 	<header>
 		<%@ include file="Entete.html"%>
