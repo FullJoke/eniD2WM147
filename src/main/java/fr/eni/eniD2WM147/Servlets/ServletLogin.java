@@ -47,6 +47,15 @@ public class ServletLogin extends HttpServlet {
 		Utilisateur u = null;
 
 		try {
+			
+			BusinessException beLog = new BusinessException();
+			if(!id.isBlank()) {
+				beLog.addMessage("Un Identifiant est obligatoire");
+			}
+			if(!mdp.isBlank()) {
+				beLog.addMessage("Un mot de passe est obligatoire");
+			}
+		
 			u = em.getUserByEmailAndPassword(id, mdp);
 			if (u == null) {
 
@@ -58,6 +67,8 @@ public class ServletLogin extends HttpServlet {
 				session.setAttribute("idUtilisateur", id);
 				response.sendRedirect(request.getContextPath() + "/accueil");
 			}
+			
+			
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			request.setAttribute("listeErreur", e.getListeMessage());
