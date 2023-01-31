@@ -1,11 +1,10 @@
 package fr.eni.eniD2WM147.bll;
 
-
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eneDW2M147.dal.EnchereDAO;
 import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
-import fr.eni.eniD2WM147.bo.Utilisateur;
 
+import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereManager {
 
@@ -20,30 +19,26 @@ public class EnchereManager {
 
 		validerID(id, bE);
 		validerMDP(mdp, bE);
-
-		if (id.equals(null)) {
-			bE.addMessage("L'email ou le pseudo n'est pas valide");
-		}
-		if (mdp.equals(null)) {
-			bE.addMessage("Le mot de passe n'est pas valide");
-		}
-
 		
-		if(bE.getListeMessage().isEmpty()) {
-			
+		if(!bE.getListeMessage().isEmpty()) {
+			throw bE;
 		}
+		
 		return enchereDAO.getUserByEmailAndPassword(id, mdp);
 
 	}
-	
-	private void validerID(String id, BusinessException businessException ) {
-		if(id==null ) {
-			businessException.addMessage("L'email n'est pas valide");
+
+	private void validerID(String id, BusinessException businessException) throws BusinessException {
+		enchereDAO.selectAllUtilisateurByPseudoEmail();
+		if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(id)) {
+			businessException.addMessage("L'identifiant n'est pas valide");
 		}
+
 	}
-	
-	private void validerMDP(String mdp, BusinessException businessException) {
-		if(mdp==null) {
+
+	private void validerMDP(String mdp, BusinessException businessException) throws BusinessException {
+		enchereDAO.selectAllUtilisateurByPseudoEmail();
+		if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(mdp)) {
 			businessException.addMessage("Le mot de passe n'est pas valide");
 		}
 	}

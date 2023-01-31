@@ -16,7 +16,8 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit,administrateur)VALUES(?,?,?,?,?,?,?,?,?,?)";
     private static final String SELECT_ALL_USER = "SELECT * FROM UTILISATEURS";
-	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
+	
+    public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		PreparedStatement pstmt = null;
 		Utilisateur utilisateur = null;
 
@@ -107,7 +108,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 	}
 	
-	public List<String> selectAllUtilisateurByPseudoEmail() {
+	public List<String> selectAllUtilisateurByPseudoEmail() throws BusinessException {
 		
 		List<String> list = new ArrayList();
 		

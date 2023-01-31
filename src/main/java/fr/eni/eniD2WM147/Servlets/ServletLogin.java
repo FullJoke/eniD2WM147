@@ -63,6 +63,8 @@ public class ServletLogin extends HttpServlet {
 			if (u == null) {
 
 				System.out.println("LOGIN - FAIL");
+				
+				throw beLog;
 
 			} else {
 				System.out.println(u.getNom() + " " + u.getPrenom());
@@ -76,6 +78,7 @@ public class ServletLogin extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("listeErreur", e.getListeMessage());
 			doGet(request, response);
+			System.out.println(e.getMessage());
 		}
 	}
 
