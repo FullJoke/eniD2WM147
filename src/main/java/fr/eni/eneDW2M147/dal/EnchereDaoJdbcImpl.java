@@ -18,21 +18,21 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		Utilisateur utilisateur = null;
 
 		try (Connection cnx = ConnectionProvider.getConnection();) {
-			pstmt = cnx.prepareStatement("SELECT_BY_EMAIL_MDP");
+			pstmt = cnx.prepareStatement(SELECT_BY_EMAIL_MDP);
 			pstmt.setString(1, mail);
 			pstmt.setString(2, mdp);
 
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				int id = rs.getInt("idUtilisateur");
+				int id = rs.getInt("no_utilisateur");
 				String pseudo = rs.getString("pseudo");
 				String nom = rs.getString("nom");
 				String prenom = rs.getString("prenom");
 				String email = rs.getString("email");
 				String telephone = rs.getString("telephone");
 				String rue = rs.getString("rue");
-				String codePostal = rs.getString("codePostal");
+				String codePostal = rs.getString("code_postal");
 				String ville = rs.getString("ville");
 				int credit = rs.getInt("credit");
 				boolean administrateur = rs.getBoolean("administrateur");

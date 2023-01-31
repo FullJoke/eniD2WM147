@@ -24,7 +24,9 @@
 	</header>
 
 	<div class="container">
-		<h2>Liste des enchères</h2>
+		<div class="row justify-content-lg-right">
+			<h2>Liste des enchères</h2>
+		</div>
 	</div>
 
 </body>
