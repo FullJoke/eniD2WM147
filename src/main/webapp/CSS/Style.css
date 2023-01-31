@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
-*{
+* {
 	font-size: 1.1rem;
 }
 
-a{
+a {
 	font-size: 1.1rem;
 }
 
@@ -36,6 +36,7 @@ header {
 
 label {
 	margin-right: 50px;
+	margin-bottom: 1rem;
 }
 
 #loginIdLabel {
@@ -54,4 +55,44 @@ label {
 
 #logErrorMessages {
 	margin-top: 20px;
+}
+
+.card {
+	margin: 0.5rem;;
+}
+
+#signUpNomLabel {
+	padding-left: 20px;
+}
+
+#signUpPrenomLabel{
+	margin-left: -4px;
+}
+
+#signUpEmailLabel{
+	margin-left: 16px;
+}
+
+#signUpTelephoneLabel{
+	margin-left: -26px;
+}
+
+#signUpRueLabel{
+	margin-left: 30px;
+}
+
+#signUpCodePostalLabel{
+	margin-left: -38px;
+}
+
+#signUpVilleLabel{
+	margin-left: 27px;
+}
+
+#signUpMdpLabel{
+	margin-left: -52px;
+}
+
+#signUpConfirmationLabel{
+	margin-left: -49px;
 }
