@@ -152,4 +152,5 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		return listecat;
 
 	}
+
 }
