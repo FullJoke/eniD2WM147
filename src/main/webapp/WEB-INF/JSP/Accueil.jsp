@@ -26,7 +26,7 @@
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
 				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire </a>
-			</div>
+			</div>.
 			<div class="p-2">
 				<a id="topMenu" href="<%=request.getContextPath()%>/login"> Se Connecter</a>
 			</div>

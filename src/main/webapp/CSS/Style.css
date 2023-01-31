@@ -43,13 +43,13 @@ label {
 }
 
 #loginId {
-	margin-left: 2px;
+	margin-left: 6px;
 	margin-bottom: 15px;
 }
 
 #loginOKButton {
 	margin-top: 22px;
-	margin-left: 137px;
+	margin-left: 140px;
 }
 
 #logErrorMessages {
