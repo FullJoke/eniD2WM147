@@ -10,23 +10,25 @@ import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereDaoJdbcImpl implements EnchereDAO {
 
-	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where email =? and mot_de_passe =?";
+	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where email =? and mot_de_passe =? OR pseudo=? and mot_de_passe =?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit,administrateur)VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-	public Utilisateur getUserByEmailAndPassword(String mail, String mdp) throws BusinessException {
+	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		PreparedStatement pstmt = null;
 		Utilisateur utilisateur = null;
 
 		try (Connection cnx = ConnectionProvider.getConnection();) {
 			pstmt = cnx.prepareStatement(SELECT_BY_EMAIL_MDP);
-			pstmt.setString(1, mail);
+			pstmt.setString(1, id);
 			pstmt.setString(2, mdp);
+			pstmt.setString(3, id);
+			pstmt.setString(4, mdp);
 
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				int id = rs.getInt("no_utilisateur");
+				int idUtilisateur = rs.getInt("no_utilisateur");
 				String pseudo = rs.getString("pseudo");
 				String nom = rs.getString("nom");
 				String prenom = rs.getString("prenom");
@@ -37,7 +39,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 				String ville = rs.getString("ville");
 				int credit = rs.getInt("credit");
 				boolean administrateur = rs.getBoolean("administrateur");
-				utilisateur = new Utilisateur(id, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, credit,
+				utilisateur = new Utilisateur(idUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, credit,
 						administrateur);
 			}
 		} catch (SQLException e) {

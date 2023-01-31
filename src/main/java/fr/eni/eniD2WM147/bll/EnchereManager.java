@@ -15,20 +15,29 @@ public class EnchereManager {
 		this.enchereDAO = EnchereDAOFactory.getEnchereDao();
 	}
 
-	public Utilisateur getUserByEmailAndPassword(String email, String mdp) throws BusinessException {
+	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		BusinessException bE = new BusinessException();
-		validerEmail(email, bE);
+
+		validerID(id, bE);
 		validerMDP(mdp, bE);
+
+		if (id.equals(null)) {
+			bE.addMessage("L'email ou le pseudo n'est pas valide");
+		}
+		if (mdp.equals(null)) {
+			bE.addMessage("Le mot de passe n'est pas valide");
+		}
+
 		
 		if(bE.getListeMessage().isEmpty()) {
 			
 		}
-		return enchereDAO.getUserByEmailAndPassword(email, mdp);
+		return enchereDAO.getUserByEmailAndPassword(id, mdp);
 
 	}
 	
-	private void validerEmail(String email, BusinessException businessException ) {
-		if(email==null ) {
+	private void validerID(String id, BusinessException businessException ) {
+		if(id==null ) {
 			businessException.addMessage("L'email n'est pas valide");
 		}
 	}
