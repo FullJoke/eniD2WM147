@@ -72,3 +72,27 @@ label {
 #signUpEmailLabel{
 	margin-left: 16px;
 }
+
+#signUpTelephoneLabel{
+	margin-left: -26px;
+}
+
+#signUpRueLabel{
+	margin-left: 30px;
+}
+
+#signUpCodePostalLabel{
+	margin-left: -38px;
+}
+
+#signUpVilleLabel{
+	margin-left: 27px;
+}
+
+#signUpMdpLabel{
+	margin-left: -52px;
+}
+
+#signUpConfirmationLabel{
+	margin-left: -49px;
+}

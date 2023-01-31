@@ -1,4 +1,3 @@
-<%@page import="org.graalvm.compiler.asm.sparc.SPARCAssembler.Br"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -41,34 +40,45 @@
 
 		<div class="row justify-content-md-center">
 
-			<form action="" methode="post">
-				<label id="signUpPseudoLabel">Pseudo : </label> <input
-					id="signUpPseudo" pattern="[A-z0-9]" type="text" name="pseudo"
-					placeholder="Invite01"> <br> <label
-					id="signUpNomLabel">Nom : </label> <input id="signUpNom"
-					type="text" name="nom" placeholder="Martin"> <br> <label
-					id="signUpPrenomLabel">Prenom : </label> <input id="signUpPrenom"
-					type="text" name="prenom" placeholder="Camille"> <br>
-				<label id="signUpEmailLabel">Email : </label> <input
-					id="signUpEmail" type="text" name="email"
-					placeholder="martin.camille@fakemail.com"> <br> <label
-					id="signUpTelephoneLabel">Telephone : </label> <input
-					id="signUpTelephone" pattern="^0[0-9]{9}" type="text" name="tel"
-					placeholder="01 02 03 04 05"> <br> <label
-					id="signUpRueLabel">Rue : </label> <input id="signUpRue"
-					type="text" name="rue" placeholder="rue de bidule"> <br>
-				<label id="signUpCodePostalLabel">Code Postal : </label> <input
-					id="signUpCodePostal" type="text" name="codePostal"
-					placeholder="11111"> <br> <label id="signUpVilleLabel">Ville
-					: </label> <input id="signUpVille" type="text" name="ville"
-					placeholder="Fausseville"> <br> <label
-					id="signUpMdpLabel">Mot de passe : </label> <input id="signUpMdp"
-					type="password" name="mdp" placeholder="********"> <br>
-
-				<label id="signUpConfirmationLabel">Confirmation : </label> <input
-					id="signUpConfirmation" type="password" name="confirmation"
-					placeholder="********"> <br> <input class="btn btn-primary" id="signUpOKButton"
-					type="submit" value="Valider"> <input class="btn btn-primary" id="loginWithdrawButton"
+			<form action="" method="post">
+				<label id="signUpPseudoLabel">Pseudo : </label>
+				<input id="signUpPseudo" pattern="[A-z0-9]" type="text" name="pseudo"
+					placeholder="Invite01">
+					<br>
+				<label id="signUpNomLabel">Nom : </label>
+				<input id="signUpNom" type="text" name="nom" placeholder="Martin">
+				<br>
+				<label id="signUpPrenomLabel">Prenom : </label>
+				<input id="signUpPrenom" type="text" name="prenom" placeholder="Camille">
+				<br>
+				<label id="signUpEmailLabel">Email : </label>
+				<input id="signUpEmail" type="text" name="email"
+					placeholder="martin.camille@fakemail.com">
+				<br>
+				<label id="signUpTelephoneLabel">Telephone : </label>
+				<input id="signUpTelephone" pattern="^0[0-9]{9}" type="text" name="tel"
+					placeholder="01 02 03 04 05">
+				<br>
+				<label id="signUpRueLabel">Rue : </label>
+				<input id="signUpRue" type="text" name="rue" placeholder="rue de bidule">
+				<br>
+				<label id="signUpCodePostalLabel">Code Postal : </label>
+				<input id="signUpCodePostal" type="text" name="codePostal"
+					placeholder="11111">
+				<br>
+				<label id="signUpVilleLabel">Ville : </label>
+				<input id="signUpVille" type="text" name="ville" placeholder="Fausseville">
+				<br>
+				<label id="signUpMdpLabel">Mot de passe : </label>
+				<input id="signUpMdp"
+					type="password" name="mdp" placeholder="********">
+					<br>
+				<label id="signUpConfirmationLabel">Confirmation : </label>
+				<input id="signUpConfirmation" type="password" name="confirmation"
+					placeholder="********">
+				<br>
+				<input class="btn btn-primary" id="signUpOKButton" type="submit" value="Valider">
+				<input class="btn btn-primary" id="loginWithdrawButton"
 					type="submit" value="Annuler">
 			</form>
 
@@ -80,14 +90,13 @@
 				if (listeErreur != null) {
 				%>
 				<%
-				for (String erreur : listeErreur) {
-				%>
-				<div class="d-flex justify-content-center">
-					<p style="color: red"><%=erreur%></p>
-				</div>
-
-				<%
-				}
+					for (String erreur : listeErreur) {
+					%>
+					<div class="d-flex justify-content-center">
+						<p style="color: red"><%=erreur%></p>
+					</div>
+					<%
+					}
 				%>
 				<%
 				}
