@@ -26,6 +26,7 @@ public class EnchereManager {
 
 	public Utilisateur insertUtilisateur(String pseudo, String nom, String prenom, String email, String tel, String rue,
 			String codePostal, String ville, int i, boolean b) throws BusinessException {
+
 		BusinessException bE = new BusinessException();
 
 		if (bE.getListeMessage().isEmpty()) {

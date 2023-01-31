@@ -42,7 +42,7 @@
 
 			<form action="" method="post">
 				<label id="signUpPseudoLabel">Pseudo : </label>
-				<input id="signUpPseudo" pattern="[A-z0-9]" type="text" name="pseudo"
+				<input id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}" type="text" name="pseudo"
 					placeholder="Invite01">
 					<br>
 				<label id="signUpNomLabel">Nom : </label>
@@ -69,10 +69,13 @@
 				<label id="signUpVilleLabel">Ville : </label>
 				<input id="signUpVille" type="text" name="ville" placeholder="Fausseville">
 				<br>
+				
+				<h6>Le mot de passe doit avoir au moins 8 caractères (max15), un chiffre, une lettre majuscule et une minuscule</h6>
 				<label id="signUpMdpLabel">Mot de passe : </label>
-				<input id="signUpMdp"
-					type="password" name="mdp" placeholder="********">
-					<br>
+				<input id="signUpMdp" 
+					type="password" name="mdp" placeholder="********" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
+				<br>
+				
 				<label id="signUpConfirmationLabel">Confirmation : </label>
 				<input id="signUpConfirmation" type="password" name="confirmation"
 					placeholder="********">
