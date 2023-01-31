@@ -14,6 +14,8 @@
 	<header>
 		<%@ include file="Entete.html"%>
 
+
+
 		<%
 		String idUtilisateur = (String) session.getAttribute("idUtilisateur");
 		%>
@@ -21,25 +23,36 @@
 		<%
 		if (idUtilisateur == null) {
 		%>
-		<div class="container">
-			<div class="row col-offset 5">
-				<a href="http://www.google.fr">S'inscrire </a> / <a
-					href="<%=request.getContextPath()%>/login"> Se Connecter</a>
+		<div class="d-flex flex-row-reverse">
+			<div class="p-2">
+				<a href="http://www.google.fr">S'inscrire </a>
+			</div>
+			<div class="p-2">
+				<a href="<%=request.getContextPath()%>/login"> Se Connecter</a>
 			</div>
 		</div>
 		<%
 		} else {
 		%>
-		<div class="container">
-			<a href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
+		<div class="d-flex flex-row-reverse">
+			<div class="p-2">
+				<a href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
+			</div>
+			<div class="p-2">
+				<a href="http://www.google.fr">Mon Profil</a>
+			</div>
+			<div class="p-2">
+				<a href="http://www.google.fr">Vendre un article</a>
+			</div>
+			<div class="p-2">
+				<a href="http://www.google.fr">Enchères</a>
+			</div>
 		</div>
 		<%
 		}
 		%>
-
-
-
 	</header>
+
 
 	<div class="container">
 		<div class="row justify-content-lg-right">
