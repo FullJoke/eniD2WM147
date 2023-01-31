@@ -28,19 +28,21 @@ public class EnchereManager {
 
 	}
 
-//	private void validerID(String id, BusinessException businessException) throws BusinessException {
+
+	private void validerID(String id, BusinessException businessException) throws BusinessException {
 //		enchereDAO.selectAllUtilisateurByPseudoEmail();
 //		if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(id)) {
 //			businessException.addMessage("L'identifiant n'est pas valide");
 //		}
-//
-//	}
-//
-//	private void validerMDP(String mdp, BusinessException businessException) throws BusinessException {
+
+	}
+
+	private void validerMDP(String mdp, BusinessException businessException) throws BusinessException {
 //		enchereDAO.selectAllUtilisateurByPseudoEmail();
 //		if (enchereDAO.selectAllUtilisateurByPseudoEmail().isEmpty() || enchereDAO.selectAllUtilisateurByPseudoEmail().contains(mdp)) {
 //			businessException.addMessage("Le mot de passe n'est pas valide");
-//		}
-//	}
+		}
+	}
 
-}
+
+
