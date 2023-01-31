@@ -50,9 +50,11 @@ public class ServletLogin extends HttpServlet {
 			BusinessException beLog = new BusinessException();
 			if (id.isBlank()) {
 				beLog.addMessage("Un Identifiant est obligatoire");
+				throw beLog;
 			}
 			if (mdp.isBlank()) {
 				beLog.addMessage("Un mot de passe est obligatoire");
+				throw beLog;
 			}
 
 			if (!beLog.getListeMessage().isEmpty()) {
