@@ -14,10 +14,28 @@
 	<header>
 		<%@ include file="Entete.html"%>
 
-		<div class="entete">
-			<a href="http://www.google.fr">S'inscrire</a> / <a
-				href="<%=request.getContextPath()%>/login">Se Connecter</a>
+		<%
+		String idUtilisateur = (String) session.getAttribute("idUtilisateur");
+		%>
+
+		<%
+		if (idUtilisateur == null) {
+		%>
+		<div class="container">
+			<div class="row col-offset 5">
+				<a href="http://www.google.fr">S'inscrire </a> / <a
+					href="<%=request.getContextPath()%>/login"> Se Connecter</a>
+			</div>
 		</div>
+		<%
+		} else {
+		%>
+		<div class="container">
+			<a href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
+		</div>
+		<%
+		}
+		%>
 
 
 
