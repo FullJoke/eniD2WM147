@@ -28,6 +28,7 @@ public class ServletInscription extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("doGet");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/Inscription.jsp");
 		rd.forward(request, response);
 	}
@@ -38,6 +39,9 @@ public class ServletInscription extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("doPost");
+		
+		
 		// une fois connecté redirigé vers l'ecran d'accueil en mode connecté
 		// annuler n'enregistre pas l'utilisateur et envoie directement sur la page
 		// d'accueil
@@ -106,13 +110,14 @@ public class ServletInscription extends HttpServlet {
 			if (!bE.getListeMessage().isEmpty()) {
 				throw bE;
 			}
+			em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false);
 			response.sendRedirect(request.getContextPath() + "/accueil");
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			request.setAttribute("listeErreur", e.getListeMessage());
 			doGet(request, response);
 		}
-//
+
 	}
 
 }
