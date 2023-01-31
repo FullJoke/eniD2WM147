@@ -63,7 +63,7 @@ public class ServletLogin extends HttpServlet {
 			if (u == null) {
 
 				System.out.println("LOGIN - FAIL");
-				
+				beLog.addMessage("email ou mot de passe incorrect. Veuillez réessayer.");
 				throw beLog;
 
 			} else {
