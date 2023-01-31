@@ -46,28 +46,32 @@ public class ServletLogin extends HttpServlet {
 		Utilisateur u = null;
 
 		try {
-			
+
 			BusinessException beLog = new BusinessException();
-			if(!id.isBlank()) {
+			if (id.isBlank()) {
 				beLog.addMessage("Un Identifiant est obligatoire");
 			}
-			if(!mdp.isBlank()) {
+			if (mdp.isBlank()) {
 				beLog.addMessage("Un mot de passe est obligatoire");
 			}
-		
+
+			if (!beLog.getListeMessage().isEmpty()) {
+				throw beLog;
+			}
+
 			u = em.getUserByEmailAndPassword(id, mdp);
 			if (u == null) {
 
 				System.out.println("LOGIN - FAIL");
 
 			} else {
+				System.out.println(u.getNom() + " " + u.getPrenom());
 				System.out.println("LOGIN - SUCCESS");
 
 				session.setAttribute("idUtilisateur", id);
 				response.sendRedirect(request.getContextPath() + "/accueil");
 			}
-			
-			
+
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			request.setAttribute("listeErreur", e.getListeMessage());

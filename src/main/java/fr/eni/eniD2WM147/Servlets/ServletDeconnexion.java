@@ -23,6 +23,7 @@ public class ServletDeconnexion extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.setAttribute("idUtilisateur", null);
+		System.out.println("DECO - SUCCESS");
 
 		response.sendRedirect(request.getContextPath() + "/accueil");
 	}
