@@ -39,13 +39,10 @@
 		</div>
 		<div class="row justify-content-center">
 			<form action="<%=request.getContextPath()%>/login" method="post">
-				<label id="loginIdLabel">Identifiant : </label> 
-				<input id="loginId"	type="text" name="id" > <br> 
-					
-						<label>Mot de Passe : </label> 
-					<input id="loginPassword" type="password" name="mdp" >
-				<br> 
-				<input id="loginOKButton" type="submit" value="Valider">
+				<label id="loginIdLabel">Identifiant : </label> <input id="loginId"
+					type="text" name="id"> <br> <label>Mot de
+					Passe : </label> <input id="loginPassword" type="password" name="mdp">
+				<br> <input id="loginOKButton" type="submit" value="Valider">
 			</form>
 		</div>
 

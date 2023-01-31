@@ -11,34 +11,16 @@ public class ArticleVendu {
 	LocalDateTime finEnchere;
 	private int prixInitial;
 	private int prixVente;
-	private int numCategorie;
 	private String image;
 	private List<Enchere> listeEnchere;
-	private Categorie categorie;
 	private Utilisateur utilisateur;
 	private Retrait retrait;
 
 	// etat vente est un char en SQL, utilisation du parse ?
 	private String etatVente;
-	
-	// Constructeurs
-	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, int prixVente, int numCategorie, String etatVente,
-			String image) {
-		super();
-		this.idArticle = idArticle;
-		this.nom = nom;
-		this.description = description;
-		this.debutEnchere = debutEnchere;
-		this.finEnchere = finEnchere;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-		this.numCategorie = numCategorie;
-		this.etatVente = etatVente;
-		this.image = image;
-	}
 
-	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
+	// Constructeurs
+	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere, int i,
 			int prixInitial, int prixVente, int numCategorie, String etatVente, String image) {
 		super();
 		this.nom = nom;
@@ -47,11 +29,23 @@ public class ArticleVendu {
 		this.finEnchere = finEnchere;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.numCategorie = numCategorie;
 		this.etatVente = etatVente;
 		this.image = image;
 	}
-	
+
+	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
+			int prixInitial, int prixVente, String etatVente, String image) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.debutEnchere = debutEnchere;
+		this.finEnchere = finEnchere;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.image = image;
+	}
+
 	// Getters & Setters
 	public int getIdArticle() {
 		return idArticle;
@@ -109,14 +103,6 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 	}
 
-	public int getNumCategorie() {
-		return numCategorie;
-	}
-
-	public void setNumCategorie(int numCategorie) {
-		this.numCategorie = numCategorie;
-	}
-
 	public String getEtatVente() {
 		return etatVente;
 	}
@@ -140,15 +126,6 @@ public class ArticleVendu {
 	public void setListeEnchere(List<Enchere> listeEnchere) {
 		this.listeEnchere = listeEnchere;
 	}
-	
-
-	public Categorie getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
 
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
@@ -171,8 +148,7 @@ public class ArticleVendu {
 	public String toString() {
 		return "ArticleVendu [idArticle=" + idArticle + ", nom=" + nom + ", description=" + description
 				+ ", debutEnchere=" + debutEnchere + ", finEnchere=" + finEnchere + ", prixInitial=" + prixInitial
-				+ ", prixVente=" + prixVente + ", numCategorie=" + numCategorie + ", etatVente=" + etatVente
-				+ ", image=" + image + "]";
+				+ ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", image=" + image + "]";
 	}
 
 }

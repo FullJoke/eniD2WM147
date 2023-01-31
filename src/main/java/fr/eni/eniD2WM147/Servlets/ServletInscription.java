@@ -19,7 +19,7 @@ import fr.eni.eniD2WM147.bo.Utilisateur;
  */
 @WebServlet("/inscription")
 public class ServletInscription extends HttpServlet {
-	private final String MOTIF ="^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$";
+	private static final String MOTIF ="^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$"; 
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -39,6 +39,7 @@ public class ServletInscription extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		System.out.println("doPost");
 		
 		
