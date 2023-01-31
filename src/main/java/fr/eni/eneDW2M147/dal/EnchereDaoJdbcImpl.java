@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.Utilisateur;
@@ -13,6 +15,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where email =? and mot_de_passe =? OR pseudo=? and mot_de_passe =?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit,administrateur)VALUES(?,?,?,?,?,?,?,?,?,?)";
+	private static final String SELECT_ALL_USER = "SELECT * FROM UTILISATEURS WHERE pseudo =? and email=?";
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		PreparedStatement pstmt = null;
@@ -39,8 +42,8 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 				String ville = rs.getString("ville");
 				int credit = rs.getInt("credit");
 				boolean administrateur = rs.getBoolean("administrateur");
-				utilisateur = new Utilisateur(idUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, credit,
-						administrateur);
+				utilisateur = new Utilisateur(idUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal,
+						ville, credit, administrateur);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,6 +105,52 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		}
 
 		return utilisateurs;
+
+	}
+
+	public List<String> selectAllUtilisateurByPseudoEmail() throws BusinessException {
+
+		PreparedStatement pstmt = null;
+        List<String> list = new ArrayList();
+		Connection cnx;
+
+		try {
+			cnx = ConnectionProvider.getConnection();
+			pstmt = cnx.prepareStatement(SELECT_ALL_USER);
+			for (String pseudo : list) {
+				list.add(pseudo);
+
+				ResultSet rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					rs.getString("pseudo");
+				}
+				
+
+				cnx = ConnectionProvider.getConnection();
+				cnx.prepareStatement(SELECT_ALL_USER);
+				
+				for (String email : list) {
+					list.add(email);
+
+					pstmt.executeQuery();
+
+					if (rs.next()) {
+						rs.getString("email");
+					}
+
+				}
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
+		}
+
+		return list;
 
 	}
 }
