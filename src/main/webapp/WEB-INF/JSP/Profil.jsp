@@ -63,7 +63,9 @@
 			<label id="profilVilleLabel">Ville : </label>
 			<span><%=user.getVille() %></span>
 			<br>
-			<!--<input class="btn btn-primary" id="profilModifButton" type="submit" value="Modifier">  -->
+			
+			<button class="btn btn-primary" id="profilModifButton" onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
+			
 			</div>
 			
 		</div>
