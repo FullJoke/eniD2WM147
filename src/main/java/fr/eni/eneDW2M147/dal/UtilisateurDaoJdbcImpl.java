@@ -13,10 +13,14 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?,"
 			+ "prenom=?, email=?, telephone=?, rue=?,"
 			+ "code_postal=?, ville=?, mot_de_passe=?, credit=? WHERE no_utilisateur = ?;";
+	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 
@@ -136,9 +140,30 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 
 		return user;
 
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
+
+		return user;
+
+	}
+
+	public void deleteUser(int idUtilisateur) {
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_USER);
+			pstmt.setInt(1, idUtilisateur);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }

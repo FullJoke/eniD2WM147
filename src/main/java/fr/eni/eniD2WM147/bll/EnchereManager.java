@@ -1,5 +1,6 @@
 package fr.eni.eniD2WM147.bll;
 
+
 import java.util.List;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
@@ -46,6 +47,10 @@ public class EnchereManager {
 				b, mdp);
 
 		return user;
+	}
+
+	public void deleteUser(int idUtilisateur) {
+		utilisateurDAO.deleteUser(idUtilisateur);
 	}
 
 	// Articles
