@@ -1,27 +1,25 @@
 package fr.eni.eniD2WM147.bll;
 
-
 import java.util.List;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eneDW2M147.dal.ArticleDAO;
 import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
 import fr.eni.eneDW2M147.dal.UtilisateurDAO;
-import fr.eni.eneDW2M147.dal.UtlisateurDAO;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereManager {
 
-
-	private UtlisateurDAO enchereDAO;
-
 	private UtilisateurDAO utilisateurDAO;
+
 	private ArticleDAO articleDAO;
 
 	public EnchereManager() {
 		this.utilisateurDAO = EnchereDAOFactory.getEnchereDao();
+
 		this.articleDAO = EnchereDAOFactory.getArticleDAO();
+
 	}
 
 	// Utilisateurs
@@ -43,8 +41,10 @@ public class EnchereManager {
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
+
 		Utilisateur user = utilisateurDAO.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, i,
 				b, mdp);
+
 		return user;
 	}
 

@@ -41,8 +41,8 @@
 		<div class="row justify-content-md-center">
 
 			<form action="" method="post">
-				<label id="signUpPseudoLabel">Pseudo : </label>
-				<input id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}" type="text" name="pseudo"
+				 
+				<input id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}"  
 					placeholder="Invite01">
 					<br>
 				<label id="signUpNomLabel">Nom : </label>

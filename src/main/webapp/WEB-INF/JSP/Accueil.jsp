@@ -40,7 +40,7 @@
 				<a id="topMenu" href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
 			</div>.
 			<div class="p-2">
-				<a id="topMenu" href="http://www.google.fr">Mon Profil</a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/Profil">Mon Profil</a>
 			</div>.
 			<div class="p-2">
 				<a id="topMenu" href="http://www.google.fr">Vendre un article</a>
