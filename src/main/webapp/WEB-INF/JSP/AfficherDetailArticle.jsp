@@ -68,6 +68,8 @@
 			<li class="breadcrumb-item active" aria-current="page">Home</li>
 		</ol>
 	</nav>
+	
+	<div class="row justify-content-md-center"></div>
 
 	<h1 style="text-align: center;">Détail Vente</h1>
 
@@ -105,6 +107,7 @@
 	<input type="number" min="1" max="1000">
 	<input class="btn btn-primary" type="submit" name="encherirAff"
 		value="Encherir">
+		
 
 </body>
 </html>

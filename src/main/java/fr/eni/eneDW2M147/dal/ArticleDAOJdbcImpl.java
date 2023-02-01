@@ -17,6 +17,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SELECT_ALL_ARTICLES = "SELECT * FROM ARTICLES_VENDUS";
 	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS WHERE no_categorie=?";
+	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLE(nom,description,debutEnchere,"
+			+ "finEnchere,prixInitial,prixVente,etatVente,image)VALUES(?,?,?,?,?,?,?,?)";
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -90,5 +92,50 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 		return categories;
 	}
+
+	public void insertArticle(String nom, String description, LocalDateTime debutEnchere,
+			LocalDateTime finEnchere, int prixInitial, int prixVente, String etatVente, String image) throws BusinessException {
+		ArticleVendu arti;
+		Connection cnx;
+		try {
+			cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(INSERT_NEW_ART);
+
+			pstmt.setString(1, nom);
+			pstmt.setString(2, description);
+			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(debutEnchere));
+			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(finEnchere));
+			pstmt.setInt(5, prixInitial);
+			pstmt.setInt(6, prixVente);
+			pstmt.setString(7, String.valueOf(etatVente));
+			pstmt.setString(8, image);
+			
+		    pstmt.executeUpdate();
+
+//			if (rs.next()) {
+//
+//				String nom1 = rs.getString("nom");
+//				String description1 = rs.getString("description");
+//				LocalDateTime debutEnchere1 = LocalDateTime.of((rs.getDate("debutEnchere")
+//						.toLocalDate()), rs.getTime("debutEnchere").toLocalTime());
+//				LocalDateTime finEnchere1 = LocalDateTime.of((rs.getDate("finEnchere")
+//						.toLocalDate()), rs.getTime("finEnchere").toLocalTime());
+//				String prixInitial1 = rs.getString("prixInitial");
+//				String prixVente1 = rs.getString("prixVente");
+//				String etatVente1 = rs.getString("etatVente");
+//				String image1 = rs.getString("nom");
+//				}
+//			 arti = new ArticleVendu(nom,description, debutEnchere,
+//					finEnchere, prixInitial,prixVente,etatVente, image);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
+		}
+
+	}
+	
 
 }

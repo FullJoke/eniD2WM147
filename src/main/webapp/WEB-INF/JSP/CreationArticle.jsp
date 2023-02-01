@@ -46,11 +46,10 @@
 		</ol>
 	</nav>
 	<div class="container">
-	
 		<div class="row justify-content-md-center">
 			<h2 id="profilTitle">Création de vente</h2>
 		</div>
-	
+
 		<div class="row justify-content-md-center">
 			<form method="Post" action="">
 				<label>Article :</label> <input type="text" name="article">
@@ -115,7 +114,5 @@
 			</form>
 		</div>
 	</div>
-
-
 </body>
 </html>
