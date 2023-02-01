@@ -39,10 +39,10 @@
 
 
 		<div class="row justify-content-md-center">
+			<form action="<%=request.getContextPath()%>/Inscription"
+				method="post">
 
-			<form action="<%=request.getContextPath()%>/inscription" method="post">
-				<label id="signPseudoLabel">Pseudo : </label> <input
-					id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}"
+				<input id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}"
 					placeholder="Invite01"> <br> <label
 					id="signUpNomLabel">Nom : </label> <input id="signUpNom"
 					type="text" name="nom" placeholder="Martin"> <br> <label
@@ -62,25 +62,21 @@
 					: </label> <input id="signUpVille" type="text" name="ville"
 					placeholder="Fausseville"> <br>
 
-				<h6 class="mdpCom">
-					Le mot de passe doit avoir au moins 8 caractères (max15),<br>
-					un chiffre, une lettre majuscule et une minuscule
-				</h6>
+				<h6>Le mot de passe doit avoir au moins 8 caractères (max15),
+					un chiffre, une lettre majuscule et une minuscule</h6>
 				<label id="signUpMdpLabel">Mot de passe : </label> <input
 					id="signUpMdp" type="password" name="mdp" placeholder="********"
 					required
 					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
 				<br> <label id="signUpConfirmationLabel">Confirmation :
 				</label> <input id="signUpConfirmation" type="password" name="confirmation"
-					placeholder="********"> <br>
-				<div class="inscriptionButtons">
-					<input id="inscriptionButton" class="btn btn-primary" id="signUpOKButton" type="submit"
-						value="Valider">
-						<a id="inscriptionButton" href="<%=request.getContextPath()%>/accueil"
-						class="btn btn-primary">Annuler</a>
-			
-				</div>
+					placeholder="********"> <br> <input
+					class="btn btn-primary" id="signUpOKButton" type="submit"
+					value="Valider"> <input class="btn btn-primary"
+					id="loginWithdrawButton" type="submit" value="Annuler">
 			</form>
+
+
 		</div>
 	</div>
 
