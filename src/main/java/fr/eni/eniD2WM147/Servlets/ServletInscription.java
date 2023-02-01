@@ -1,8 +1,6 @@
 package fr.eni.eniD2WM147.Servlets;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,12 +19,15 @@ import fr.eni.eniD2WM147.bo.Utilisateur;
  */
 @WebServlet("/inscription")
 public class ServletInscription extends HttpServlet {
-	//private static final String MOTIF = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$";
-	//private static final String MOTIF="(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))";
-	//private static String regex ="(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))";
-	//private static Pattern pattern =Pattern.compile(regex);
-	//private static Matcher matcher;
-	
+	// private static final String MOTIF =
+	// "^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$";
+	// private static final String
+	// MOTIF="(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))";
+	// private static String regex
+	// ="(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))";
+	// private static Pattern pattern =Pattern.compile(regex);
+	// private static Matcher matcher;
+
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -48,7 +49,7 @@ public class ServletInscription extends HttpServlet {
 			throws ServletException, IOException {
 		// une fois connecté redirigé vers l'ecran d'accueil en mode connecté // annuler
 		// n'enregistre pas l'utilisateur et envoie directement sur la page // d'accueil
-		// HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 
 		EnchereManager em = new EnchereManager();
 		Utilisateur u = null;
@@ -62,8 +63,8 @@ public class ServletInscription extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String mdp = request.getParameter("mdp");
 		String confirmation = request.getParameter("confirmation");
-		
-		System.out.println(pseudo+nom+prenom+email+tel+rue+codePostal+ville+mdp+confirmation);
+
+		System.out.println(pseudo + nom + prenom + email + tel + rue + codePostal + ville + mdp + confirmation);
 
 		try {
 
@@ -77,10 +78,10 @@ public class ServletInscription extends HttpServlet {
 			if (prenom.isBlank() || !prenom.chars().allMatch(Character::isLetter)) {
 				bE.addMessage("Le prenom est obligatoire et ne peut contenir que des lettres.");
 			}
-			if (email.isBlank() ) {
+			if (email.isBlank()) {
 				bE.addMessage("Adresse mail non valide.");
 			}
-			//|| !email.contains(MOTIF)
+			// || !email.contains(MOTIF)
 			// mettre limitation en chiffre et 10
 			if (tel.isBlank() || !tel.chars().allMatch(Character::isDigit)) {
 				bE.addMessage("Le numéro de téléphone doit contenir 10 chiffres.");
@@ -105,13 +106,13 @@ public class ServletInscription extends HttpServlet {
 				throw bE;
 			}
 
-			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
-			
-			HttpSession session = request.getSession();
+			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false,
+					mdp);
+
 			session.setAttribute("Utilisateur", ut);
 			System.out.println("INSCRIPTION - SUCCESS");
-			response.sendRedirect(request.getContextPath()+"/accueil");
-			
+			response.sendRedirect(request.getContextPath() + "/accueil");
+
 		} catch (
 
 		BusinessException e) {

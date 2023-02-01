@@ -63,6 +63,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Home</li>
 		</ol>
 	</nav>
+	<div class="row justify-content-md-center"></div>
      <form method ="Post" action="">
 	<img class="card-img-top" src="..." alt="PC GAMER">
 	<label>Article :</label>
@@ -72,7 +73,7 @@
 	<textarea id="story" name="story" rows="5" cols="33"></textarea>
 	<br>
 	<label>Catégories :</label>
-	<select name="listcate"><option value="...">"toutes"</select>
+	<select name="listcate"><option value="..."></option></select>
 	<br>
 	<label>Photo de l'article :</label>
 	<input type="image" name="photoArticle">
@@ -97,6 +98,9 @@
 	<input class="btn btn-primary" type="submit" name="saveNewArt" value="Enregistrer">
 	<input  class="btn btn-primary" type="submit" name="annulerNewArt" value="Annuler">
 	</form>
+	
+
+	
 
 
 </body>
