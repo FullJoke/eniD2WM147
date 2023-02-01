@@ -84,7 +84,10 @@
 				<input class="btn btn-primary" id="loginWithdrawButton"
 					type="submit" value="Annuler">
 			</form>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 		</div>
 	</div>
 
