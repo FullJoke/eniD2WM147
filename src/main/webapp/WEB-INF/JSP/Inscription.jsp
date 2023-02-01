@@ -84,19 +84,7 @@
 				<input class="btn btn-primary" id="loginWithdrawButton"
 					type="submit" value="Annuler">
 			</form>
-<!-- 				<h6>Le mot de passe doit avoir au moins 8 caractères (max15),
-					un chiffre, une lettre majuscule et une minuscule</h6> -->
-				<label id="signUpMdpLabel">Mot de passe : </label> <input
-					id="signUpMdp" type="password" name="mdp" placeholder="********"
-					required
-					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
-				<br> <label id="signUpConfirmationLabel">Confirmation :
-				</label> <input id="signUpConfirmation" type="password" name="confirmation"
-					placeholder="********"> <br> <input
-					class="btn btn-primary" id="signUpOKButton" type="submit"
-					value="Valider"> <input class="btn btn-primary"
-					id="loginWithdrawButton" type="submit" value="Annuler">
-			</form>
+
 		</div>
 	</div>
 

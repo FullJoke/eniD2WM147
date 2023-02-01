@@ -13,7 +13,7 @@ import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
-public class EnchereDaoJdbcImpl implements EnchereDAO {
+public class UtilisateurDaoJdbcImpl implements UtlisateurDAO {
 
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
