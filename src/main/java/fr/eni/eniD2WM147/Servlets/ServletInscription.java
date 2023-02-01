@@ -48,7 +48,7 @@ public class ServletInscription extends HttpServlet {
 			throws ServletException, IOException {
 		// une fois connecté redirigé vers l'ecran d'accueil en mode connecté // annuler
 		// n'enregistre pas l'utilisateur et envoie directement sur la page // d'accueil
-		// HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 
 		EnchereManager em = new EnchereManager();
 		Utilisateur u = null;
@@ -66,7 +66,6 @@ public class ServletInscription extends HttpServlet {
 		System.out.println(pseudo+nom+prenom+email+tel+rue+codePostal+ville+mdp+confirmation);
 
 		try {
-
 			BusinessException bE = new BusinessException();
 			if (pseudo.isBlank() || !pseudo.chars().allMatch(Character::isLetterOrDigit)) {
 				bE.addMessage("Le pseudo ne peut contenir que des chiffres et des lettres");
@@ -107,7 +106,6 @@ public class ServletInscription extends HttpServlet {
 
 			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
 			
-			HttpSession session = request.getSession();
 			session.setAttribute("Utilisateur", ut);
 			System.out.println("INSCRIPTION - SUCCESS");
 			response.sendRedirect(request.getContextPath()+"/accueil");
