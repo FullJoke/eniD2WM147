@@ -13,10 +13,6 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?,"
 			+ "prenom=?, email=?, telephone=?, rue=?,"
 			+ "code_postal=?, ville=?, mot_de_passe=?, credit=? WHERE no_utilisateur = ?;";
@@ -140,13 +136,6 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-
-		return user;
-
-	}
-=======
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 
 		return user;
 
@@ -164,6 +153,5 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			e.printStackTrace();
 		}
 	}
-
 
 }
