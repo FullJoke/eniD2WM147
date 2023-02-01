@@ -14,23 +14,17 @@ import fr.eni.eniD2WM147.bo.Categorie;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
-	private static final String SELECT_ALL_ARTICLE = "SELECT c.libelle, art.nom_article , art.description, art.date_debut_enchere, art.date_fin_enchere, art.prix_initial, art.prix_vente, art.no_utilisateur, art.etat_vente, art.image\r\n"
-			+ "FROM CATEGORIES c INNER JOIN ARTICLES_VENDUS as art ON c.no_categorie = art.no_categorie";
+	private static final String SELECT_ALL_ARTICLES = "SELECT * FROM ARTICLES_VENDUS";
+	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
+	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS WHERE no_categorie=?";
 
-	public List<Categorie> selectAllArticles() throws BusinessException {
-		List<Categorie> categories = new ArrayList<>();
-		List<ArticleVendu> articles = new ArrayList<ArticleVendu>();
-
+	public List<ArticleVendu> selectAllArticles() throws BusinessException {
+		List<ArticleVendu> articles = new ArrayList<>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLE);
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLES);
 			ResultSet rs = pstmt.executeQuery();
-			Categorie catCourante = new Categorie();
 
 			while (rs.next()) {
-				if (rs.getInt("no_categorie") != catCourante.getNumCategorie()) {
-					catCourante = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
-					categories.add(catCourante);
-				}
 				ArticleVendu arti = new ArticleVendu(rs.getString("nom_article"), rs.getString("description"),
 						LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
 								rs.getTime("date_debut_enchere").toLocalTime()),
@@ -38,15 +32,63 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 								rs.getTime("date_debut_enchere").toLocalTime()),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
 						rs.getInt("no_categorie"), rs.getString("etat_vente"), rs.getString("image"));
+				System.out.println(arti);
+				articles.add(arti);
 
-				catCourante.getArticles().add(arti);
 			}
 
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		return categories;
+		return articles;
 
+	}
+
+	@Override
+	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
+		List<ArticleVendu> articles = new ArrayList<>();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ART_BY_CAT);
+			pstmt.setInt(1, noCategorie);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ArticleVendu arti = new ArticleVendu(rs.getString("nom_article"), rs.getString("description"),
+						LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
+								rs.getTime("date_debut_enchere").toLocalTime()),
+						LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
+								rs.getTime("date_debut_enchere").toLocalTime()),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
+						rs.getInt("no_categorie"), rs.getString("etat_vente"), rs.getString("image"));
+				System.out.println(arti);
+				articles.add(arti);
+
+			}
+
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return articles;
+	}
+
+	public List<Categorie> selectAllCategories() {
+		List<Categorie> categories = new ArrayList<>();
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_CATEGORIES);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Categorie cat = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				System.out.println(cat);
+				categories.add(cat);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return categories;
 	}
 
 }

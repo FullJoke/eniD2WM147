@@ -1,12 +1,12 @@
 package fr.eni.eniD2WM147.bll;
 
-
 import java.util.List;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eneDW2M147.dal.ArticleDAO;
 import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
 import fr.eni.eneDW2M147.dal.UtilisateurDAO;
+import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
@@ -54,7 +54,7 @@ public class EnchereManager {
 	}
 
 	// Articles
-	public List<Categorie> selectAllArticles() throws BusinessException {
+	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		BusinessException bE = new BusinessException();
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
@@ -62,5 +62,17 @@ public class EnchereManager {
 
 		return articleDAO.selectAllArticles();
 	}
+
+ 	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
+		return articleDAO.selectArticlesByCat(noCategorie);
+	}
+ 	
+ 	public List<Categorie> selectAllCat() throws BusinessException{
+ 		BusinessException bE = new BusinessException();
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+		return articleDAO.selectAllCategories();
+ 	}
 
 }
