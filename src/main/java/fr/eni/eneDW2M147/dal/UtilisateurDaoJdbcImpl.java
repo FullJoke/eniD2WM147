@@ -18,8 +18,10 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT_ALL_ARTICLE = "SELECT c.libelle, art.nom_article , art.description, art.date_debut_enchere, art.date_fin_enchere, art.prix_initial, art.prix_vente, art.no_utilisateur, art.etat_vente, art.image\r\n"
-			+ "FROM CATEGORIES c INNER JOIN ARTICLES_VENDUS as art ON c.no_categorie = art.no_categorie";
+
+	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?,"
+			+ "prenom=?, email=?, telephone=?, rue=?,"
+			+ "code_postal=?, ville=?, mot_de_passe=?, credit=? WHERE no_utilisateur = ?;";
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 
@@ -104,44 +106,44 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 		return utilisateur;
 
 	}
-
-	public List<Categorie> selectCategorie() throws BusinessException {
-
-		List<Categorie> listecat = new ArrayList<Categorie>();
-		List<ArticleVendu> art = new ArrayList<ArticleVendu>();
-
-		try (Connection cnx = ConnectionProvider.getConnection()) {
-			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLE);
-			ResultSet rs = pstmt.executeQuery();
-			Categorie catcourante = new Categorie();
-
-			while (rs.next()) {
-				if (rs.getInt("no_categorie") != catcourante.getNumCategorie()) {
-
-					catcourante = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
-					listecat.add(catcourante);
-				}
-				ArticleVendu arti = new ArticleVendu(rs.getString("nom_article"), rs.getString("description"),
-						LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
-								rs.getTime("date_debut_enchere").toLocalTime()),
-						LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
-								rs.getTime("date_debut_enchere").toLocalTime()),
-						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
-						rs.getInt("no_categorie"), rs.getString("etat_vente"), rs.getString("image"));
-
-				catcourante.getArticles().add(arti);
-
-			}
+	
+	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel,
+			String rue, String codePostal, String ville, String mdp, int credit, int idUtilisateur) {
+		Utilisateur user = new Utilisateur();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_USER);
+			pstmt.setString(1, pseudo);
+			pstmt.setString(2, nom);
+			pstmt.setString(3, prenom);
+			pstmt.setString(4, email);
+			pstmt.setString(5, tel);;
+			pstmt.setString(6, rue);
+			pstmt.setString(7, codePostal);
+			pstmt.setString(8, ville);
+			pstmt.setString(9, mdp);
+			pstmt.setInt(10, credit);
+			pstmt.setInt(11, idUtilisateur);
+			
+			pstmt.executeUpdate();
+			
+			user.setPseudo(pseudo);
+			user.setNom(prenom);
+			user.setPrenom(prenom);
+			user.setEmail(email);
+			user.setTelephone(tel);
+			user.setRue(rue);
+			user.setCodePostal(codePostal);
+			user.setVille(ville);
+			user.setCredit(credit);
+			
 		} catch (SQLException e) {
-
 			e.printStackTrace();
-			BusinessException be = new BusinessException();
-			be.addMessage("erreur");
-			throw be;
 		}
-
-		return listecat;
-
+		
+		return user;
+		
 	}
+
 
 }

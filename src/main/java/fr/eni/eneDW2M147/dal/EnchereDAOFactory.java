@@ -7,4 +7,8 @@ public class EnchereDAOFactory {
 		return new UtilisateurDaoJdbcImpl();
 
 	}
+
+	public static ArticleDAO getArticleDAO() {
+		return new ArticleDAOJdbcImpl();
+	}
 }

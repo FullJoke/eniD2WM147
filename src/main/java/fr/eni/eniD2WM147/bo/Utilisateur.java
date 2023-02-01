@@ -14,10 +14,8 @@ public class Utilisateur {
 	private String ville;
 	private int credit;
 
-    private boolean administrateur;
-    private List<ArticleVendu> listeArticle;
-
-	
+	private boolean administrateur;
+	private List<ArticleVendu> listeArticle;
 
 	private List<Enchere> listeEnchere;
 
@@ -51,6 +49,10 @@ public class Utilisateur {
 		this.ville = ville;
 		this.credit = credit;
 		this.administrateur = admiistrateur;
+	}
+
+	public Utilisateur() {
+
 	}
 
 	// Getters & Setters
