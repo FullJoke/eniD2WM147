@@ -1,6 +1,7 @@
 package fr.eni.eniD2WM147.Servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 
 /**
@@ -27,11 +29,13 @@ public class ServletAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		EnchereManager em = new EnchereManager();
 		try {
-			List<Categorie> categories = em.selectAllArticles();
-			request.setAttribute("categories", categories);
+			List<ArticleVendu> articles = em.selectAllArticles();
+			for (ArticleVendu a : articles) {
+				System.out.println(a.getNom());
+			}
+			request.setAttribute("articles", articles);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}

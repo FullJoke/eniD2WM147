@@ -1,3 +1,5 @@
+<%@page import="fr.eni.eniD2WM147.bo.ArticleVendu"%>
+<%@page import="java.util.List"%>
 <%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -26,10 +28,13 @@
 		%>
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire </a>
-			</div>.
+				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire
+				</a>
+			</div>
+			.
 			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/login"> Se Connecter</a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/login"> Se
+					Connecter</a>
 			</div>
 		</div>
 		<%
@@ -38,13 +43,17 @@
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
 				<a id="topMenu" href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
-			</div>.
+			</div>
+			.
 			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/Profil">Mon Profil</a>
-			</div>.
+				<a id="topMenu" href="<%=request.getContextPath()%>/Profil">Mon
+					Profil</a>
+			</div>
+			.
 			<div class="p-2">
 				<a id="topMenu" href="http://www.google.fr">Vendre un article</a>
-			</div>.
+			</div>
+			.
 			<div class="p-2">
 				<a id="topMenu" href="http://www.google.fr">Enchères</a>
 			</div>
@@ -62,26 +71,38 @@
 
 	<div class="container">
 		<h2>Liste des enchères</h2>
+		<%
+		List<ArticleVendu> articles = (List<ArticleVendu>) request.getAttribute("articles");
+		%>
+
+
+		<label id="selectArticle">Filtres :</label> <input type="text"
+			name="selectArt" placeholder="Le nom de l'article contient">
+
+		<input class="btn btn-primary" id="Search" type="submit"
+			name="buttonSearch" value="Rechercher"><br> <label>Categories
+			:</label> <select name="listD" id="Catego">
+
+			<option value=" ">"Toutes"</option>
+		</select>
+		<div class="row">
+			<%
+			for (ArticleVendu a : articles) {
+			%>
+			<div class="card" style="width: 15rem;">
+				<img class="card-img-left" src="..." alt="PC GAMER">
+				<div class="card-body">
+					<h5 class="card-title"><%=a.getNom()%></h5>
+					<p class="card-text">"Prix : <%=a.getPrixVente()%> crédits"</p>
+					<p class="card-text">"Fin de l'enchère : <%=a.getFinEnchere()%>"</p>
+					<%-- <p class="card-text">"Vendeur : <%=a.getUtilisateur().getIdUtilisateur()%>"</p> --%>
+				</div>
+			</div>
+			<%
+			}
+			%>
+
+		</div>
 	</div>
-	
-	<label id="selectArticle">Filtres :</label>
-	<input type="text" name ="selectArt" placeholder="Le nom de l'article contient">
-	
-	<input class="btn btn-primary" id="Search" 
-	type="submit" name="buttonSearch" value ="Rechercher"><br>
-	
-	
-	<label>Categories :</label>
-	<select name="listD" id="Catego">
-	   
-	   <option value=" ">"Toutes"</option>
-	</select>
-	
-	<div class="card" style="width: 40rem;">  
-	<img class="card-img-left" src="..." alt="PC GAMER">  
-	<div class="card-body"><h5 class="card-title">Enchère en cours</h5>    
-	<p class="card-text">"Pc gamer our travailler"</p>    
-	  </div></div>
-	
-	</body>
+</body>
 </html>

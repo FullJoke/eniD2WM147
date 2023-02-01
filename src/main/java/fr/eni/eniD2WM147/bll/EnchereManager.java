@@ -7,6 +7,7 @@ import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eneDW2M147.dal.ArticleDAO;
 import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
 import fr.eni.eneDW2M147.dal.UtilisateurDAO;
+import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
@@ -54,7 +55,7 @@ public class EnchereManager {
 	}
 
 	// Articles
-	public List<Categorie> selectAllArticles() throws BusinessException {
+	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		BusinessException bE = new BusinessException();
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
