@@ -20,6 +20,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
 				href="<%=request.getContextPath()%>/accueil">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Profil</li>
 		</ol>
 	</nav>
 	<div class="container">
@@ -30,42 +31,45 @@
 		<div class="row justify-content-md-center">
 			<div>
 		<%Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur"); %>
+		
 			<label id="profilPseudoLabel">Pseudo : </label>
-			<input type="text" value="<%=user.getPseudo() %>">
+			<span><%=user.getPseudo() %></span>
 			<br>
 			
 			<label id="profilNomLabel">Nom : </label>
-			<input type="text" value="<%=user.getNom() %>">
+			<span><%=user.getNom() %></span>
 			<br>
 			
 			<label id="profilPrenomLabel">Prenom : </label>
-			<input type="text" value="<%=user.getPrenom() %>">
+			<span><%=user.getPrenom() %></span>
 			<br>
 			
 			<label id="profilEmailLabel">Email : </label>
-			<input type="text" value="<%=user.getEmail() %>">
+			<span><%=user.getEmail() %></span>
 			<br>
 			
 			<label id="profilTelephoneLabel">Telephone : </label>
-			<input type="text" value="<%=user.getTelephone() %>">
+			<span><%=user.getTelephone() %></span>
 			<br>
 			
 			<label id="profilRueLabel">Rue : </label>
-			<input type="text" value="<%=user.getRue() %>">
+			<span><%=user.getRue() %></span>
 			<br>
 			
 			<label id="profilCodePostalLabel">Code Postal : </label>
-			<input type="text" value="<%=user.getCodePostal() %>">
+			<span><%=user.getCodePostal() %></span>
 			<br>
 			
 			<label id="profilVilleLabel">Ville : </label>
-			<input type="text" value="<%=user.getVille() %>">
+			<span><%=user.getVille() %></span>
 			<br>
-			
+			<!--<input class="btn btn-primary" id="profilModifButton" type="submit" value="Modifier">  -->
 			</div>
 			
 		</div>
-		<input class="btn btn-primary" id="signModifButton" type="submit" value="Modifier">
+		
+		
+		
 	</div>
 	
 	

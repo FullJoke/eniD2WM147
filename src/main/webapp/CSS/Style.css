@@ -65,34 +65,89 @@ label {
 	padding-left: 20px;
 }
 
-#signUpPrenomLabel{
+#signUpPrenomLabel {
 	margin-left: -4px;
 }
 
-#signUpEmailLabel{
+#signUpEmailLabel {
 	margin-left: 16px;
 }
 
-#signUpTelephoneLabel{
+#signUpTelephoneLabel {
 	margin-left: -26px;
 }
 
-#signUpRueLabel{
+#signUpRueLabel {
 	margin-left: 30px;
 }
 
-#signUpCodePostalLabel{
+#signUpCodePostalLabel {
 	margin-left: -38px;
 }
 
-#signUpVilleLabel{
+#signUpVilleLabel {
 	margin-left: 27px;
 }
 
-#signUpMdpLabel{
+#signUpMdpLabel {
 	margin-left: -52px;
 }
 
-#signUpConfirmationLabel{
+#signUpConfirmationLabel {
 	margin-left: -49px;
 }
+
+#profilPseudoLabel{
+	text-decoration: underline	
+}
+
+#profilNomLabel {
+	margin-right: 70px;
+	text-decoration: underline
+}
+
+#profilPrenomLabel{
+	margin-right: 45px;
+	text-decoration: underline
+}
+
+#profilEmailLabel{
+	margin-right: 67px;
+	text-decoration: underline
+}
+
+#profilTelephoneLabel{
+	margin-right: 25px;
+	text-decoration: underline
+}
+
+#profilRueLabel{
+	margin-right: 82px;
+	text-decoration: underline
+}
+
+#profilCodePostalLabel{
+	margin-right: 15px;
+	text-decoration: underline
+}
+
+#profilVilleLabel{
+	margin-right: 82px;
+	text-decoration: underline
+}
+
+#profilModifButton{
+	margin-left: 100px;
+	margin-top: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
