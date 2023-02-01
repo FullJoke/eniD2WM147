@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Affichage de l'article</title>
+<title>Creation de l'article</title>
 
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -63,7 +63,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Home</li>
 		</ol>
 	</nav>
-
+     <form method ="Post" action="">
 	<img class="card-img-top" src="..." alt="PC GAMER">
 	<label>Article :</label>
 	<input type="text" name="article">
@@ -74,14 +74,18 @@
 	<label>Catégories :</label>
 	<select name="listcate"><option value="...">"toutes"</select>
 	<br>
+	<label>Photo de l'article :</label>
+	<input type="image" name="photoArticle">
+	<br>
 	<label>Mise à prix</label>
-	<input type="checkbox" name="miseAprix">
+	<input type="number" name="miseAprix" min="1" max="1000">
 	<br>
 	<label>Début de lenchère</label>
-	<input type="datetime" name="debutEnchere">
+	<input type="datetime-local" name="debutEnchere">
 	<br>
 	<label>Fin de lenchère</label>
-	<input type="datetime" name="finEnchere">
+	<input type="datetime-local" name="finEnchere">
+	<br>
 	<fieldset>
 		<legend>Retrait</legend>
 		<label>Rue :</label> <input type="text" name="rue"> <br>
@@ -89,7 +93,7 @@
 		<br> <label>Ville :</label> <input type="text" name="ville">
 	</fieldset>
 	
-	<form action="<%=request.getContextPath()%>/WEB-INF/JSP/Accueil.jsp">
+	
 	<input class="btn btn-primary" type="submit" name="saveNewArt" value="Enregistrer">
 	<input  class="btn btn-primary" type="submit" name="annulerNewArt" value="Annuler">
 	</form>
