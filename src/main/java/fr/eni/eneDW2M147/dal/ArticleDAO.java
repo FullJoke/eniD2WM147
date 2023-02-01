@@ -9,4 +9,9 @@ import fr.eni.eniD2WM147.bo.Categorie;
 public interface ArticleDAO {
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException;
+	
+	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException;
+	
+	public List<Categorie> selectAllCategories();
+ 
 }

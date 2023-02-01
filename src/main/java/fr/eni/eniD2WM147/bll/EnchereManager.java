@@ -1,6 +1,5 @@
 package fr.eni.eniD2WM147.bll;
 
-
 import java.util.List;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
@@ -63,5 +62,17 @@ public class EnchereManager {
 
 		return articleDAO.selectAllArticles();
 	}
+
+ 	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
+		return articleDAO.selectArticlesByCat(noCategorie);
+	}
+ 	
+ 	public List<Categorie> selectAllCat() throws BusinessException{
+ 		BusinessException bE = new BusinessException();
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+		return articleDAO.selectAllCategories();
+ 	}
 
 }

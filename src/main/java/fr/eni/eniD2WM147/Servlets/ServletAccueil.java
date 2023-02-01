@@ -30,12 +30,33 @@ public class ServletAccueil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		EnchereManager em = new EnchereManager();
+		List<ArticleVendu> articles = new ArrayList<>();
+		List<Categorie> categories = new ArrayList<>();
+		int catChoisie;
+
 		try {
-			List<ArticleVendu> articles = em.selectAllArticles();
+			categories = em.selectAllCat();
+			request.setAttribute("categories", categories);
+
+			String catChoisieTemp = request.getParameter("categorieChoisie");
+			if (catChoisieTemp == null) {
+				catChoisieTemp = "0";
+			}
+			catChoisie = Integer.parseInt(catChoisieTemp);
+
+			if (catChoisie == 0) {
+				System.out.println("0");
+				articles = em.selectAllArticles();
+			} else {
+				articles = em.selectArticlesByCat(catChoisie);
+				System.out.println(articles);
+			}
+
 			for (ArticleVendu a : articles) {
 				System.out.println(a.getNom());
+
+				request.setAttribute("articles", articles);
 			}
-			request.setAttribute("articles", articles);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
