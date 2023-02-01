@@ -67,7 +67,6 @@ public class ServletInscription extends HttpServlet {
 		System.out.println(pseudo + nom + prenom + email + tel + rue + codePostal + ville + mdp + confirmation);
 
 		try {
-
 			BusinessException bE = new BusinessException();
 			if (pseudo.isBlank() || !pseudo.chars().allMatch(Character::isLetterOrDigit)) {
 				bE.addMessage("Le pseudo ne peut contenir que des chiffres et des lettres");
