@@ -1,6 +1,5 @@
 package fr.eni.eniD2WM147.bll;
 
-
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eneDW2M147.dal.UtilisateurDAO;
 import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
@@ -17,7 +16,6 @@ public class EnchereManager {
 	private UtilisateurDAO utilisateurDAO;
 
 	private ArticleDAO articleDAO;
-
 
 	public EnchereManager() {
 		this.utilisateurDAO = EnchereDAOFactory.getEnchereDao();
@@ -46,9 +44,14 @@ public class EnchereManager {
 			throw bE;
 		}
 
-		Utilisateur user = utilisateurDAO.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, i, b, mdp);
+		Utilisateur user = utilisateurDAO.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, i,
+				b, mdp);
 
 		return user;
+	}
+
+	public void deleteUser(int idUtilisateur) {
+		utilisateurDAO.deleteUser(idUtilisateur);
 	}
 
 	// Articles
