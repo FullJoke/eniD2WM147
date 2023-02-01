@@ -1,6 +1,7 @@
 package fr.eni.eniD2WM147.Servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 
 /**
@@ -27,11 +29,34 @@ public class ServletAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		EnchereManager em = new EnchereManager();
+		List<ArticleVendu> articles = new ArrayList<>();
+		List<Categorie> categories = new ArrayList<>();
+		int catChoisie;
+
 		try {
-			List<Categorie> categories = em.selectAllArticles();
+			categories = em.selectAllCat();
 			request.setAttribute("categories", categories);
+
+			String catChoisieTemp = request.getParameter("categorieChoisie");
+			if (catChoisieTemp == null) {
+				catChoisieTemp = "0";
+			}
+			catChoisie = Integer.parseInt(catChoisieTemp);
+
+			if (catChoisie == 0) {
+				System.out.println("0");
+				articles = em.selectAllArticles();
+			} else {
+				articles = em.selectArticlesByCat(catChoisie);
+				System.out.println(articles);
+			}
+
+			for (ArticleVendu a : articles) {
+				System.out.println(a.getNom());
+
+				request.setAttribute("articles", articles);
+			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}

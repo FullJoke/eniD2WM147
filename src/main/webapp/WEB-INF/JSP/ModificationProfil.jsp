@@ -40,7 +40,7 @@
 
 		<div class="row justify-content-md-center">
 
-			<form action="" method="post">
+			<form action="<%=request.getContextPath()%>/ModificationProfil" method="post">
 			<%Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur"); %>
 				<label id="ModifPseudoLabel">Pseudo : </label>
 				<input id="ModifPseudo" pattern="[a-zA-Z0-9]{3,20}" value="<%=user.getPseudo()%>">

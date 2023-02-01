@@ -23,7 +23,7 @@
 	</header>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a
+			<li id="bread" class="breadcrumb-item"><a
 				href="<%=request.getContextPath()%>/accueil">Home</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Inscription</li>
 		</ol>
@@ -40,7 +40,8 @@
 
 		<div class="row justify-content-md-center">
 
-			<form action="" method="post">
+			<form action="<%=request.getContextPath()%>/Inscription" method="post">
+
 				 
 				<input id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}"  
 					placeholder="Invite01">
