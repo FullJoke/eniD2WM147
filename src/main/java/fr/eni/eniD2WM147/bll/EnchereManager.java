@@ -1,26 +1,32 @@
 package fr.eni.eniD2WM147.bll;
 
-import fr.eni.eneDW2M147.businessException.BusinessException;
-import fr.eni.eneDW2M147.dal.EnchereDAO;
-import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
+import java.util.List;
 
+import fr.eni.eneDW2M147.businessException.BusinessException;
+import fr.eni.eneDW2M147.dal.UtilisateurDAO;
+import fr.eni.eneDW2M147.dal.ArticleDAO;
+import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
+import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class EnchereManager {
 
-	private EnchereDAO enchereDAO;
+	private UtilisateurDAO utilisateurDAO;
+	private ArticleDAO articleDAO;
 
 	public EnchereManager() {
-		this.enchereDAO = EnchereDAOFactory.getEnchereDao();
+		this.utilisateurDAO = EnchereDAOFactory.getEnchereDao();
+		this.articleDAO = EnchereDAOFactory.getArticleDAO();
 	}
 
+	// Utilisateurs
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		BusinessException bE = new BusinessException();
 
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
-		return enchereDAO.getUserByEmailAndPassword(id, mdp);
+		return utilisateurDAO.getUserByEmailAndPassword(id, mdp);
 
 	}
 
@@ -32,8 +38,19 @@ public class EnchereManager {
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
-		Utilisateur user = enchereDAO.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, i, b, mdp);
+		Utilisateur user = utilisateurDAO.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, i,
+				b, mdp);
 		return user;
+	}
+
+	// Articles
+	public List<Categorie> selectAllArticles() throws BusinessException {
+		BusinessException bE = new BusinessException();
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+
+		return articleDAO.selectAllArticles();
 	}
 
 }
