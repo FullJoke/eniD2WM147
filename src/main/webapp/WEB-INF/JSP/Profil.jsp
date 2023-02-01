@@ -20,6 +20,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
 				href="<%=request.getContextPath()%>/accueil">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Profil</li>
 		</ol>
 	</nav>
 	<div class="container">
@@ -30,6 +31,7 @@
 		<div class="row justify-content-md-center">
 			<div>
 		<%Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur"); %>
+		
 			<label id="profilPseudoLabel">Pseudo : </label>
 			<input type="text" value="<%=user.getPseudo() %>">
 			<br>
@@ -65,7 +67,9 @@
 			</div>
 			
 		</div>
+		
 		<input class="btn btn-primary" id="signModifButton" type="submit" value="Modifier">
+		
 	</div>
 	
 	

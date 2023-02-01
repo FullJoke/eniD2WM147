@@ -27,7 +27,6 @@ public class ServletProfil extends HttpServlet {
 		HttpSession session = request.getSession();
 		System.out.println("doGet");
 		EnchereManager em = new EnchereManager();
-		System.out.println(session.getAttribute("Utilisateur").getClass());
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/Profil.jsp");
 		rd.forward(request, response);
 		
