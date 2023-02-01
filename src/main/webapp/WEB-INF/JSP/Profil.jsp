@@ -15,27 +15,6 @@
 	<header>
 		<%@ include file="Entete.html"%>
 
-		<%
-		Utilisateur Utilisateur = (Utilisateur) session.getAttribute("Utilisateur");
-		%>
-
-		<%
-		if (Utilisateur == null) {
-		%>
-		<div class="d-flex flex-row-reverse">
-			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire
-				</a>
-			</div>
-			.
-			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/login"> Se
-					Connecter</a>
-			</div>
-		</div>
-		<%
-		} else {
-		%>
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
 				<a id="topMenu" href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
@@ -47,16 +26,14 @@
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu" href="http://www.google.fr">Vendre un article</a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/CreationArticle">Vendre un article</a>
 			</div>
 			.
 			<div class="p-2">
 				<a id="topMenu" href="<%=request.getContextPath()%>/accueil">Enchères</a>
 			</div>
 		</div>
-		<%
-		}
-		%>
+
 	</header>
 
 	<nav aria-label="breadcrumb">

@@ -53,11 +53,13 @@
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu" href="http://www.google.fr">Vendre un article</a>
+				<a id="topMenu"
+					href="<%=request.getContextPath()%>/CreationArticle">Vendre
+					un article</a>
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/accueil">Enchères</a>
+				<p id="topMenuUnusable">Enchères</p>
 			</div>
 		</div>
 		<%
@@ -88,7 +90,8 @@
 
 
 		<form action="<%=request.getContextPath()%>/accueil" method="get">
-			<label>Categories :</label> <select id="categorieSelect"
+			<label>Categories :</label>
+			<select id="categorieSelect"
 				name="categorieChoisie">
 				<option value="0">Toutes</option>
 				<%
@@ -98,8 +101,9 @@
 				<%
 				}
 				%>
-			</select> <input class="btn btn-primary" id="Search" type="submit"
-				name="categorieSelectButton" value="Filtre">
+			</select>
+			<input class="btn btn-primary" id="categorieSelectButton"
+				type="submit" name="categorieSelectButton" value="Filtre">
 		</form>
 
 

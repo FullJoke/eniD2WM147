@@ -79,6 +79,7 @@
 				<input id="signUpConfirmation" type="password" name="confirmation"
 					placeholder="********">
 					<br>
+					
 					<div class="inscriptionButtons">
 					<input id="inscriptionButton" class="btn btn-primary" id="signUpOKButton" type="submit"
 					value="Valider">

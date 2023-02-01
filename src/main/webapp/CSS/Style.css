@@ -16,7 +16,9 @@ a:hover {
 	text-decoration: none;
 }
 
-h1 {
+#Title {
+	font-size: 3.5rem;
+	color: white;
 	margin-top: 2rem;
 }
 
@@ -69,6 +71,10 @@ label {
 	margin: 0.5rem;;
 }
 
+#categorieSelectButton {
+	margin-bottom: 8px;
+}
+
 #signUpNomLabel {
 	padding-left: 20px;
 }
@@ -99,6 +105,14 @@ label {
 
 #signUpMdpLabel {
 	margin-left: -52px;
+}
+
+#signUpMdpNLabel {
+	margin-left: -115px;
+}
+
+#signUpMdpNewLabel{
+	margin-left: -135px;
 }
 
 #signUpConfirmationLabel {
@@ -145,8 +159,9 @@ label {
 }
 
 #profilModifButton {
-	margin-left: 100px;
-	margin-top: 50px;
+	margin-left: 49px;
+	margin-top: 25px;
+	margin-bottom: 100px;
 }
 
 .mdpCom {
@@ -229,4 +244,3 @@ label {
 #ModifDeleteButton {
 	
 }
-
