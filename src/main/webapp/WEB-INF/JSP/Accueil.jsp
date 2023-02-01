@@ -13,6 +13,7 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <link href="CSS/Style.css" rel="stylesheet">
+</head>
 <body>
 
 	<header>
