@@ -55,7 +55,7 @@
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu" href="http://www.google.fr">Enchères</a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/accueil">Enchères</a>
 			</div>
 		</div>
 		<%
@@ -64,7 +64,7 @@
 	</header>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active" aria-current="page">Home</li>
+			<li id="bread" class="breadcrumb-item active" aria-current="page">Home</li>
 		</ol>
 	</nav>
 
@@ -81,11 +81,12 @@
 
 		<input class="btn btn-primary" id="Search" type="submit"
 			name="buttonSearch" value="Rechercher"><br> <label>Categories
-			:</label> <select name="listD" id="Catego">
-
-			<option value=" ">"Toutes"</option>
+			:</label>
+			
+		<select id="categorieSelect" name="listD" id="Catego">
+			<option value=" ">Toutes</option>
 		</select>
-		<div class="row">
+		<div id="articlesListe" class="row">
 			<%
 			for (ArticleVendu a : articles) {
 			%>
@@ -93,8 +94,8 @@
 				<img class="card-img-left" src="..." alt="PC GAMER">
 				<div class="card-body">
 					<h5 class="card-title"><%=a.getNom()%></h5>
-					<p class="card-text">"Prix : <%=a.getPrixVente()%> crédits"</p>
-					<p class="card-text">"Fin de l'enchère : <%=a.getFinEnchere()%>"</p>
+					<p class="card-text">Prix : <%=a.getPrixVente()%> crédits</p>
+					<p class="card-text">Fin de l'enchère : <%=a.getFinEnchere()%></p>
 					<%-- <p class="card-text">"Vendeur : <%=a.getUtilisateur().getIdUtilisateur()%>"</p> --%>
 				</div>
 			</div>

@@ -4,6 +4,10 @@
 	font-size: 1.1rem;
 }
 
+p{
+	margin-bottom: 0;
+}
+
 a {
 	font-size: 1.1rem;
 }
@@ -23,6 +27,10 @@ h2 {
 
 #topMenu {
 	color: white;
+}
+
+#topMenuUnusable {
+	color: grey;
 }
 
 header {
@@ -97,57 +105,79 @@ label {
 	margin-left: -49px;
 }
 
-#profilPseudoLabel{
-	text-decoration: underline	
+#profilPseudoLabel {
+	text-decoration: underline;
 }
 
 #profilNomLabel {
-	margin-right: 70px;
+	margin-left: 20px;
 	text-decoration: underline
 }
 
-#profilPrenomLabel{
-	margin-right: 45px;
+#profilPrenomLabel {
+	margin-left: -5px;
 	text-decoration: underline
 }
 
-#profilEmailLabel{
-	margin-right: 67px;
+#profilEmailLabel {
+	margin-left: 16px;
 	text-decoration: underline
 }
 
-#profilTelephoneLabel{
-	margin-right: 25px;
+#profilTelephoneLabel {
+	margin-left: -26px;
 	text-decoration: underline
 }
 
-#profilRueLabel{
-	margin-right: 82px;
+#profilRueLabel {
+	margin-left: 29px;
 	text-decoration: underline
 }
 
-#profilCodePostalLabel{
-	margin-right: 15px;
+#profilCodePostalLabel {
+	margin-left: -39px;
 	text-decoration: underline
 }
 
-#profilVilleLabel{
-	margin-right: 82px;
+#profilVilleLabel {
+	margin-left: 26px;
 	text-decoration: underline
 }
 
-#profilModifButton{
+#profilModifButton {
 	margin-left: 100px;
 	margin-top: 50px;
 }
 
+.mdpCom {
+	margin-top: 5px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 0.9rem;
+}
 
+.inscriptionButtons {
+	margin-top: 20px;
+	margin-left: 70px;
+	margin-bottom: 100px;
+}
 
+#inscriptionButton {
+	margin-right: 47px;
+}
 
+#categorieSelect {
+	margin-top: 22px;
+}
 
+#articlesListe {
+	margin-top: 30px;
+}
 
+#bread{
+	margin-left: 22px;
+}
 
-
-
-
-
+#profilTitle{
+	margin-left: -91px;
+}
