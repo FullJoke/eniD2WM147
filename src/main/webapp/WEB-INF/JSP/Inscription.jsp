@@ -103,12 +103,11 @@
 					<br>
 					
 					<div class="inscriptionButtons">
-					<input id="inscriptionButton" class="btn btn-primary" id="signUpOKButton" type="submit"
-					value="Valider">
 					<input id="inscriptionButton" class="btn btn-primary"
-						id="signUpOKButton" type="submit" value="Valider"> <input
-						id="inscriptionButton" class="btn btn-primary"
-						id="loginWithdrawButton" type="submit" value="Annuler">
+						   id="signUpOKButton" type="submit" value="Valider">
+					<a id="inscriptionButton" class="btn btn-primary"
+					href="<%=request.getContextPath()%>/accueil">Annuler</a>
+
 					</div>
 				</form>
 			</div>
