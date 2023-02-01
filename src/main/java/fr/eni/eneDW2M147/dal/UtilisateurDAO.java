@@ -6,7 +6,7 @@ import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
-public interface EnchereDAO {
+public interface UtilisateurDAO {
 
 	public Utilisateur getUserByEmailAndPassword(String mail, String mdp) throws BusinessException;
 
