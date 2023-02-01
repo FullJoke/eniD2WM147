@@ -63,6 +63,25 @@
 	<div class="container">
 		<h2>Liste des enchères</h2>
 	</div>
-
-</body>
+	
+	<label id="selectArticle">Filtres :</label>
+	<input type="text" name ="selectArt" placeholder="Le nom de l'article contient">
+	
+	<input class="btn btn-primary" id="Search" 
+	type="submit" name="buttonSearch" value ="Rechercher"><br>
+	
+	
+	<label>Categories :</label>
+	<select name="listD" id="Catego">
+	   
+	   <option value=" ">"Toutes"</option>
+	</select>
+	
+	<div class="card" style="width: 40rem;">  
+	<img class="card-img-left" src="..." alt="PC GAMER">  
+	<div class="card-body"><h5 class="card-title">Enchère en cours</h5>    
+	<p class="card-text">"Pc gamer our travailler"</p>    
+	  </div></div>
+	
+	</body>
 </html>

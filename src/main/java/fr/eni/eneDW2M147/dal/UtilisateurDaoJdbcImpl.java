@@ -4,13 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
-import fr.eni.eniD2WM147.bo.ArticleVendu;
-import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
@@ -18,10 +13,10 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
 			+ "rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-
 	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?,"
 			+ "prenom=?, email=?, telephone=?, rue=?,"
 			+ "code_postal=?, ville=?, mot_de_passe=?, credit=? WHERE no_utilisateur = ?;";
+	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 
@@ -106,27 +101,28 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 		return utilisateur;
 
 	}
-	
-	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel,
-			String rue, String codePostal, String ville, String mdp, int credit, int idUtilisateur) {
+
+	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel, String rue,
+			String codePostal, String ville, String mdp, int credit, int idUtilisateur) {
 		Utilisateur user = new Utilisateur();
-		
-		try (Connection cnx = ConnectionProvider.getConnection()){
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_USER);
 			pstmt.setString(1, pseudo);
 			pstmt.setString(2, nom);
 			pstmt.setString(3, prenom);
 			pstmt.setString(4, email);
-			pstmt.setString(5, tel);;
+			pstmt.setString(5, tel);
+			;
 			pstmt.setString(6, rue);
 			pstmt.setString(7, codePostal);
 			pstmt.setString(8, ville);
 			pstmt.setString(9, mdp);
 			pstmt.setInt(10, credit);
 			pstmt.setInt(11, idUtilisateur);
-			
+
 			pstmt.executeUpdate();
-			
+
 			user.setPseudo(pseudo);
 			user.setNom(prenom);
 			user.setPrenom(prenom);
@@ -136,14 +132,26 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			user.setCodePostal(codePostal);
 			user.setVille(ville);
 			user.setCredit(credit);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return user;
-		
+
 	}
 
+	public void deleteUser(int idUtilisateur) {
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_USER);
+			pstmt.setInt(1, idUtilisateur);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
