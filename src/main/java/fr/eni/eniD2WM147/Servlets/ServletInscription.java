@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bll.EnchereManager;
@@ -54,60 +55,56 @@ public class ServletInscription extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String mdp = request.getParameter("mdp");
 		String confirmation = request.getParameter("confirmation");
+		
+		System.out.println(pseudo+nom+prenom+email+tel+rue+codePostal+ville+mdp+confirmation);
 
 		try {
 
 			BusinessException bE = new BusinessException();
 			if (pseudo.isBlank() || !pseudo.chars().allMatch(Character::isLetterOrDigit)) {
 				bE.addMessage("Le pseudo ne peut contenir que des chiffres et des lettres");
-				throw bE;
 			}
 			if (nom.isBlank() || !nom.chars().allMatch(Character::isLetter)) {
 				bE.addMessage("Le nom est obligatoire et ne peut contenir que des lettres.");
-				throw bE;
 			}
 			if (prenom.isBlank() || !prenom.chars().allMatch(Character::isLetter)) {
 				bE.addMessage("Le prenom est obligatoire et ne peut contenir que des lettres.");
-				throw bE;
 			}
 			if (email.isBlank() ) {
 				bE.addMessage("Adresse mail non valide.");
-				throw bE;
 			}
 			//|| !email.contains(MOTIF)
 			// mettre limitation en chiffre et 10
 			if (tel.isBlank() || !tel.chars().allMatch(Character::isDigit)) {
 				bE.addMessage("Le numéro de téléphone doit contenir 10 chiffres.");
-				throw bE;
 			}
 
 			if (rue.isBlank()) {
 				bE.addMessage("La rue est obligatoire.");
-				throw bE;
 			}
 			if (codePostal.isBlank()) {
 				bE.addMessage("Le code postal est obligatoire.");
-				throw bE;
 			}
 			if (ville.isBlank()) {
 				bE.addMessage("La ville est obligatoire.");
-				throw bE;
 			}
 			if (mdp.isBlank()) {
 				bE.addMessage("Le mot de passe est obligatoire.");
-				throw bE;
 			}
 			if (confirmation.isBlank() & confirmation.equals(mdp)) {
 				bE.addMessage("Veuillez confirmer votre mot de passe");
-				throw bE;
 			}
 			if (!bE.getListeMessage().isEmpty()) {
 				throw bE;
-
 			}
 
-			em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false);
-			//response.sendRedirect(request.getContextPath() + "/accueil");
+			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("Utilisateur", ut);
+			System.out.println("INSCRIPTION - SUCCESS");
+			response.sendRedirect(request.getContextPath()+"/accueil");
+			
 		} catch (
 
 		BusinessException e) {

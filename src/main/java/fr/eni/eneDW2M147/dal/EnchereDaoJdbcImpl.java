@@ -17,7 +17,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
-			+ "rue,code_postal,ville,credit,administrateur)VALUES(?,?,?,?,?,?,?,?,?,?)";
+			+ "rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ALL_ARTICLE = "SELECT c.libelle, art.nom_article , art.description, art.date_debut_enchere, art.date_fin_enchere, art.prix_initial, art.prix_vente, art.no_utilisateur, art.etat_vente, art.image\r\n"
 			+ "FROM CATEGORIES c INNER JOIN ARTICLES_VENDUS as art ON c.no_categorie = art.no_categorie";
 
@@ -63,16 +63,14 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 	}
 
 	public Utilisateur insertUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String code_postal, String ville, int credit, boolean administrateur) throws BusinessException {
+			String rue, String code_postal, String ville, int credit, boolean administrateur, String mdp)
+			throws BusinessException {
 
-		PreparedStatement stmtp = null;
-		Utilisateur utilisateurs = null;
+		Utilisateur utilisateur = null;
 
-		Connection cnx;
-		try {
-			cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-			stmtp = cnx.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmtp = cnx.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 			stmtp.setString(1, pseudo);
 			stmtp.setString(2, nom);
 			stmtp.setString(3, prenom);
@@ -82,24 +80,18 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 			stmtp.setString(7, code_postal);
 			stmtp.setString(8, ville);
 			stmtp.setInt(9, credit);
-			stmtp.setBoolean(10, administrateur);
+			stmtp.setString(10, mdp);
+			stmtp.setBoolean(11, administrateur);
 
-			stmtp.executeQuery();
+			stmtp.executeUpdate();
 			ResultSet rs = stmtp.getGeneratedKeys();
 
 			if (rs.next()) {
-				String pseudo1 = rs.getString("pseudo");
-				String nom1 = rs.getString("nom");
-				String prenom1 = rs.getString("prenom");
-				String email1 = rs.getString("email");
-				String telephone1 = rs.getString("telephone");
-				String rue1 = rs.getString("rue");
-				String codePostal = rs.getString("code_postal");
-				String ville1 = rs.getString("ville");
-				int credit1 = rs.getInt("credit");
-				boolean administrateur1 = rs.getBoolean("administrateur");
-				utilisateurs = new Utilisateur(pseudo1, nom1, prenom1, email1, telephone1, rue1, codePostal, ville1,
-						credit1, administrateur1);
+				int idUtilisateur = rs.getInt(1);
+
+				utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit,
+						administrateur);
+				utilisateur.setIdUtilisateur(idUtilisateur);
 
 			}
 		} catch (SQLException e) {
@@ -109,7 +101,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 			throw bException;
 		}
 
-		return utilisateurs;
+		return utilisateur;
 
 	}
 
@@ -136,10 +128,9 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 								rs.getTime("date_debut_enchere").toLocalTime()),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
 						rs.getInt("no_categorie"), rs.getString("etat_vente"), rs.getString("image"));
-				
+
 				catcourante.getArticles().add(arti);
-				
-				
+
 			}
 		} catch (SQLException e) {
 
