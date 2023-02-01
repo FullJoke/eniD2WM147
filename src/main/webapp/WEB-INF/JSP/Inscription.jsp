@@ -52,11 +52,11 @@
 				<input id="signUpPrenom" type="text" name="prenom" placeholder="Camille">
 				<br>
 				<label id="signUpEmailLabel">Email : </label>
-				<input id="signUpEmail" type="text" name="email"
+				<input id="signUpEmail" type="email" name="email"
 					placeholder="martin.camille@fakemail.com">
 				<br>
 				<label id="signUpTelephoneLabel">Telephone : </label>
-				<input id="signUpTelephone" pattern="^0[0-9]{9}" type="text" name="tel"
+				<input id="signUpTelephone" pattern="^0[0-9]{9}" type="tel" name="tel"
 					placeholder="01 02 03 04 05">
 				<br>
 				<label id="signUpRueLabel">Rue : </label>
