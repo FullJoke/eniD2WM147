@@ -73,20 +73,43 @@
 
 		<div class="row justify-content-md-center">
 			<div>
-				<%
-				Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur");
-				%>
 
-				<label id="profilPseudoLabel">Pseudo : </label> <span><%=user.getPseudo()%></span>
-				<br> <label id="profilNomLabel">Nom : </label> <span><%=user.getNom()%></span>
-				<br> <label id="profilPrenomLabel">Prenom : </label> <span><%=user.getPrenom()%></span>
-				<br> <label id="profilEmailLabel">Email : </label> <span><%=user.getEmail()%></span>
-				<br> <label id="profilTelephoneLabel">Telephone : </label> <span><%=user.getTelephone()%></span>
-				<br> <label id="profilRueLabel">Rue : </label> <span><%=user.getRue()%></span>
-				<br> <label id="profilCodePostalLabel">Code Postal : </label> <span><%=user.getCodePostal()%></span>
-				<br> <label id="profilVilleLabel">Ville : </label> <span><%=user.getVille()%></span>
-				<br>
-				<!--<input class="btn btn-primary" id="profilModifButton" type="submit" value="Modifier">  -->
+		<%Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur"); %>
+		
+			<label id="profilPseudoLabel">Pseudo : </label>
+			<span><%=user.getPseudo() %></span>
+			<br>
+			
+			<label id="profilNomLabel">Nom : </label>
+			<span><%=user.getNom() %></span>
+			<br>
+			
+			<label id="profilPrenomLabel">Prenom : </label>
+			<span><%=user.getPrenom() %></span>
+			<br>
+			
+			<label id="profilEmailLabel">Email : </label>
+			<span><%=user.getEmail() %></span>
+			<br>
+			
+			<label id="profilTelephoneLabel">Telephone : </label>
+			<span><%=user.getTelephone() %></span>
+			<br>
+			
+			<label id="profilRueLabel">Rue : </label>
+			<span><%=user.getRue() %></span>
+			<br>
+			
+			<label id="profilCodePostalLabel">Code Postal : </label>
+			<span><%=user.getCodePostal() %></span>
+			<br>
+			
+			<label id="profilVilleLabel">Ville : </label>
+			<span><%=user.getVille() %></span>
+			<br>
+			
+			<button class="btn btn-primary" id="profilModifButton" onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
+			
 			</div>
 
 		</div>

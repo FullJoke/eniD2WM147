@@ -47,6 +47,7 @@ public class ServletInscription extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		// une fois connecté redirigé vers l'ecran d'accueil en mode connecté // annuler
 		// n'enregistre pas l'utilisateur et envoie directement sur la page // d'accueil
 		HttpSession session = request.getSession();
@@ -105,8 +106,8 @@ public class ServletInscription extends HttpServlet {
 				throw bE;
 			}
 
-			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false,
-					mdp);
+
+			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
 
 			session.setAttribute("Utilisateur", ut);
 			System.out.println("INSCRIPTION - SUCCESS");

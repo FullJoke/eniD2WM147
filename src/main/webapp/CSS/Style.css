@@ -4,7 +4,7 @@
 	font-size: 1.1rem;
 }
 
-p{
+p {
 	margin-bottom: 0;
 }
 
@@ -166,18 +166,67 @@ label {
 	margin-right: 47px;
 }
 
-#categorieSelect {
-	margin-top: 22px;
-}
-
 #articlesListe {
 	margin-top: 30px;
 }
 
-#bread{
+#bread {
 	margin-left: 22px;
 }
 
-#profilTitle{
+#profilTitle {
 	margin-left: -91px;
 }
+
+#ModifPseudoLabel {
+	
+}
+
+#ModifNomLabel {
+	
+}
+
+#ModifPrenomLabel {
+	
+}
+
+#ModifEmailLabel {
+	
+}
+
+#ModifTelephoneLabel {
+	
+}
+
+#ModifRueLabel {
+	
+}
+
+#ModifVilleLabel {
+	
+}
+
+#categorieSelect {
+	
+}
+
+#ModifMdpActuelLabel {
+	
+}
+
+#ModifNewMdpLabel {
+	
+}
+
+#ModifNewMdpLabel {
+	
+}
+
+#ModifSaveButton {
+	
+}
+
+#ModifDeleteButton {
+	
+}
+

@@ -40,9 +40,6 @@
 
 		<div class="row justify-content-md-center">
 
-
-
-
 			<form action="<%=request.getContextPath()%>/inscription"
 				method="post">
 				<label id="signUpPseudoLabel">Pseudo : </label> <input
@@ -84,7 +81,13 @@
 						id="loginWithdrawButton" type="submit" value="Annuler">
 				</div>
 
+
 			</form>
+
+
+
+
+
 		</div>
 	</div>
 
