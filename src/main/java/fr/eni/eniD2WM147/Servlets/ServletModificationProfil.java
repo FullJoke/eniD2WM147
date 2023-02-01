@@ -69,8 +69,7 @@ public class ServletModificationProfil extends HttpServlet {
 			if (email.isBlank()) {
 				bE.addMessage("Adresse mail non valide.");
 			}
-			// || !email.contains(MOTIF)
-			// mettre limitation en chiffre et 10
+
 			if (tel.isBlank() || !tel.chars().allMatch(Character::isDigit)) {
 				bE.addMessage("Le numéro de téléphone doit contenir 10 chiffres.");
 			}

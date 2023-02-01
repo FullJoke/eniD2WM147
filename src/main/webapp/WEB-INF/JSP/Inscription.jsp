@@ -42,16 +42,18 @@
 
 			<form action="<%=request.getContextPath()%>/Inscription" method="post">
 
-				 
-				<input id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}"  
-					placeholder="Invite01">
-					<br>
+				<label id="signUpNomLabel">Pseudo : </label>
+				<input id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}" placeholder="Invite01">
+				<br>
+				
 				<label id="signUpNomLabel">Nom : </label>
 				<input id="signUpNom" type="text" name="nom" placeholder="Martin">
 				<br>
+				
 				<label id="signUpPrenomLabel">Prenom : </label>
 				<input id="signUpPrenom" type="text" name="prenom" placeholder="Camille">
 				<br>
+				
 				<label id="signUpEmailLabel">Email : </label>
 				<input id="signUpEmail" type="email" name="email"
 					placeholder="martin.camille@fakemail.com">

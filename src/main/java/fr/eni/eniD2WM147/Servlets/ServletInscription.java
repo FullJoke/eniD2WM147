@@ -46,7 +46,7 @@ public class ServletInscription extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
 		EnchereManager em = new EnchereManager();
 		Utilisateur u = null;
 		String pseudo = request.getParameter("pseudo");
@@ -104,7 +104,7 @@ public class ServletInscription extends HttpServlet {
 
 			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
 			
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("Utilisateur", ut);
 			System.out.println("INSCRIPTION - SUCCESS");
 			response.sendRedirect(request.getContextPath()+"/accueil");
