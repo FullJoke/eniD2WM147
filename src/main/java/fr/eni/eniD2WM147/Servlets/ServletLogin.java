@@ -70,7 +70,7 @@ public class ServletLogin extends HttpServlet {
 				System.out.println(u.getNom() + " " + u.getPrenom());
 				System.out.println("LOGIN - SUCCESS");
 
-				session.setAttribute("idUtilisateur", id);
+				session.setAttribute("Utilisateur", u);
 				response.sendRedirect(request.getContextPath() + "/accueil");
 			}
 

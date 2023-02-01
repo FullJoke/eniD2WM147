@@ -1,3 +1,4 @@
+<%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,11 +18,11 @@
 
 
 		<%
-		String idUtilisateur = (String) session.getAttribute("idUtilisateur");
+		Utilisateur Utilisateur = (Utilisateur) session.getAttribute("Utilisateur");
 		%>
 
 		<%
-		if (idUtilisateur == null) {
+		if (Utilisateur == null) {
 		%>
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
