@@ -147,6 +147,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			if (rs.next()) {
 				 u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
 		        System.out.println(u.getPseudo());
+		        
 		        ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
 		        rs.getString("description"),
                 LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
@@ -164,7 +165,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			throw bException;
 		}
 
-		return null;
+		return article;
 
 	}
 
