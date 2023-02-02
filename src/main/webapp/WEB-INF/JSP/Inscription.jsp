@@ -1,17 +1,12 @@
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@page import="java.util.List"%><%@ page language="java"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>enchère</title>
-
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <link href="CSS/Style.css" rel="stylesheet">
 <body>
-
 	<header>
 		<%@ include file="Entete.html"%>
 		<div class="d-flex flex-row-reverse">
@@ -28,16 +23,10 @@
 			<li class="breadcrumb-item active" aria-current="page">Inscription</li>
 		</ol>
 	</nav>
-
 	<div class="container">
 		<div class="row justify-content-md-center">
-
 			<h2>Inscription</h2>
-
 		</div>
-
-
-
 		<div class="row justify-content-md-center">
 			<form action="<%=request.getContextPath()%>/inscription"
 				method="post">
@@ -81,7 +70,5 @@
 			</form>
 		</div>
 	</div>
-
-
 </body>
 </html>

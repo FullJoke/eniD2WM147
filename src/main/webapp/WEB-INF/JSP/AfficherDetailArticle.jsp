@@ -14,6 +14,9 @@
 <body>
 	<header>
 		<%@ include file="Entete.html"%>
+
+
+
 		<%
 		Utilisateur Utilisateur = (Utilisateur) session.getAttribute("Utilisateur");
 		%>
@@ -46,11 +49,14 @@
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu" href="http://www.google.fr">Vendre un article</a>
+				<p id="topMenuUnusable">Vendre un article</p>
+<%-- 				<a id="topMenu"
+					href="<%=request.getContextPath()%>/AfficherDetailArticle">Vendre
+					un article</a> --%>
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu" href="http://www.google.fr">Enchères</a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/accueil">Enchères</a>
 			</div>
 		</div>
 		<%
@@ -62,8 +68,10 @@
 			<li class="breadcrumb-item active" aria-current="page">Home</li>
 		</ol>
 	</nav>
+	
+	<div class="row justify-content-md-center"></div>
 
-	<h1 style="text-align:center;">Détail Vente</h1>
+	<h1 style="text-align: center;">Détail Vente</h1>
 
 	<h4 id="Pcgamer">Pc gamer pour travailler</h4>
 	<br>
@@ -99,6 +107,7 @@
 	<input type="number" min="1" max="1000">
 	<input class="btn btn-primary" type="submit" name="encherirAff"
 		value="Encherir">
+		
 
 </body>
 </html>

@@ -1,6 +1,8 @@
 package fr.eni.eniD2WM147.Servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,10 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.eneDW2M147.businessException.BusinessException;
+import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bo.ArticleVendu;
+import fr.eni.eniD2WM147.bo.Categorie;
+
 /**
  * Servlet implementation class ServletAfficherArticle
  */
-@WebServlet("/AfficherArticle")
+@WebServlet("/CreationArticle")
 public class ServletCreationArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -22,8 +29,17 @@ public class ServletCreationArticle extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doGet");
+		System.out.println("Creation Vente - doGet");
+		EnchereManager em = new EnchereManager();
 		
+		List<Categorie> categories = new ArrayList<>();
+		try {
+			categories = em.selectAllCat();
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("categories", categories);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/CreationArticle.jsp");
 		rd.forward(request, response);
