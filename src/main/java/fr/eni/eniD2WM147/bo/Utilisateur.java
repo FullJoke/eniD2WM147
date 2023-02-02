@@ -13,7 +13,8 @@ public class Utilisateur {
 	private String codePostal;
 	private String ville;
 	private int credit;
-
+	private String mdp;
+	
 	private boolean administrateur;
 	private List<ArticleVendu> listeArticle;
 
@@ -37,9 +38,9 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(int idUtilisateur, String pseudo) {
-		super();
-		this.idUtilisateur = idUtilisateur;
-		this.pseudo = pseudo;
+        super();
+        this.idUtilisateur = idUtilisateur;
+        this.pseudo = pseudo;
 	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
@@ -57,8 +58,14 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 
+
 	public Utilisateur() {
 
+	}
+
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
 	}
 
 	// Getters & Setters

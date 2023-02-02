@@ -49,8 +49,28 @@ public class EnchereManager {
 		return user;
 	}
 
-	public void deleteUser(int idUtilisateur) throws BusinessException {
-		utilisateurDAO.deleteUser(idUtilisateur);
+	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel, String rue,
+			String codePostal, String ville, String mdp, int credit, int idUtilisateur) throws BusinessException {
+		BusinessException bE = new BusinessException();
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+
+		Utilisateur user = utilisateurDAO.updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville, mdp,
+				credit, idUtilisateur);
+
+		return user;
+
+	}
+
+	public void deleteAll(int idUtilisateur) throws BusinessException {
+		BusinessException bE = new BusinessException();
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+		utilisateurDAO.deleteAll(idUtilisateur);
+		
+		
 	}
 	
 	/*
@@ -76,6 +96,10 @@ public class EnchereManager {
 	}
 
 	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
+		BusinessException bE = new BusinessException();
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
 		return articleDAO.selectArticlesByCat(noCategorie);
 	}
 	

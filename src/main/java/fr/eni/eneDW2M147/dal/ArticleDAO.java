@@ -19,8 +19,7 @@ public interface ArticleDAO {
 			int prixInitial, int prixVente, String etatVente, String image) throws BusinessException;
  
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException;
-	
-	
+
 	
 	
 }
