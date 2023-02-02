@@ -1,5 +1,6 @@
 package fr.eni.eneDW2M147.dal;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
@@ -12,6 +13,12 @@ public interface ArticleDAO {
 	
 	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException;
 	
-	public List<Categorie> selectAllCategories();
+	public List<Categorie> selectAllCategories() throws BusinessException;
+	
+	public void insertArticle(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
+			int prixInitial, int prixVente, String etatVente, String image) throws BusinessException;
  
+	public int selectArticleById(int idArticle) throws BusinessException;
+	
+	
 }

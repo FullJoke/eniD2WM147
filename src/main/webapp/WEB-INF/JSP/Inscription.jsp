@@ -39,9 +39,9 @@
 
 
 		<div class="row justify-content-md-center">
-
 			<form action="<%=request.getContextPath()%>/inscription"
 				method="post">
+
 				<label id="signUpPseudoLabel">Pseudo : </label>
 				<input id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}"
 					placeholder="Invite01" name="pseudo">
@@ -104,7 +104,7 @@
 					
 					<div class="inscriptionButtons">
 					<input id="inscriptionButton" class="btn btn-primary"
-						   id="signUpOKButton" type="submit" value="Valider">
+			   id="signUpOKButton" type="submit" value="Valider">
 					<a id="inscriptionButton" class="btn btn-secondary"
 					href="<%=request.getContextPath()%>/accueil">Annuler</a>
 					</div>

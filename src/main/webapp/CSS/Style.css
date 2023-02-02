@@ -1,205 +1,154 @@
 @charset "UTF-8";
-
 * {
-	font-size: 1.1rem;
+    font-size: 1.1rem;
 }
-
 p {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
-
 a {
-	font-size: 1.1rem;
+    font-size: 1.1rem;
 }
-
 a:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
-
 #Title {
-	font-size: 3.5rem;
-	color: white;
-	margin-top: 2rem;
+    font-size: 3.5rem;
+    color: white;
+    margin-top: 2rem;
 }
-
 h2 {
-	font-size: 3.5rem;
-	margin-bottom: 3rem;
+    font-size: 3.5rem;
+    margin-bottom: 3rem;
 }
-
 #topMenu {
-	color: white;
+    color: white;
 }
-
 #topMenuUnusable {
-	color: grey;
+    color: grey;
 }
-
 header {
-	color: white;
-	padding-top: 10px;
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-bottom: 5px;
-	background-color: rgb(39, 44, 61);
+    color: white;
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 5px;
+    background-color: rgb(39, 44, 61);
 }
-
 label {
-	margin-right: 50px;
-	margin-bottom: 1rem;
+    margin-right: 50px;
+    margin-bottom: 1rem;
 }
-
 #loginIdLabel {
-	padding-left: 21px;
+    padding-left: 21px;
 }
-
 #loginId {
-	margin-left: 6px;
-	margin-bottom: 15px;
+    margin-left: 6px;
+    margin-bottom: 15px;
 }
-
 #loginOKButton {
-	margin-top: 22px;
-	margin-left: 140px;
+    margin-top: 22px;
+    margin-left: 140px;
 }
-
 #logErrorMessages {
-	margin-top: 20px;
+    margin-top: 20px;
 }
-
 .card {
-	margin: 0.5rem;;
+    margin: 0.5rem;;
 }
-
 #categorieSelectButton {
-	margin-bottom: 8px;
+    margin-bottom: 8px;
 }
-
 #signUpNomLabel {
-	padding-left: 20px;
+    padding-left: 20px;
 }
-
 #signUpPrenomLabel {
-	margin-left: -4px;
+    margin-left: -4px;
 }
-
 #signUpEmailLabel {
-	margin-left: 16px;
+    margin-left: 16px;
 }
-
 #signUpTelephoneLabel {
-	margin-left: -26px;
+    margin-left: -26px;
 }
-
 #signUpRueLabel {
-	margin-left: 30px;
+    margin-left: 30px;
 }
-
 #signUpCodePostalLabel {
-	margin-left: -38px;
+    margin-left: -38px;
 }
-
 #signUpVilleLabel {
-	margin-left: 27px;
+    margin-left: 27px;
 }
-
 #signUpMdpLabel {
-	margin-left: -52px;
+    margin-left: -52px;
 }
-
 #signUpMdpNLabel {
-	margin-left: -115px;
+    margin-left: -115px;
 }
-
 #signUpMdpNewLabel {
-	margin-left: -135px;
+    margin-left: -135px;
 }
-
 #signUpConfirmationLabel {
-	margin-left: -49px;
+    margin-left: -49px;
 }
-
 #profilPseudoLabel {
-	text-decoration: underline;
+    text-decoration: underline;
 }
-
 #profilNomLabel {
-	margin-left: 20px;
-	text-decoration: underline
-}
-
+    margin-left: 20px;
+    text-decoration: underline}
 #profilPrenomLabel {
-	margin-left: -5px;
-	text-decoration: underline
-}
-
+    margin-left: -5px;
+    text-decoration: underline}
 #profilEmailLabel {
-	margin-left: 16px;
-	text-decoration: underline
-}
-
+    margin-left: 16px;
+    text-decoration: underline}
 #profilTelephoneLabel {
-	margin-left: -26px;
-	text-decoration: underline
-}
-
+    margin-left: -26px;
+    text-decoration: underline}
 #profilRueLabel {
-	margin-left: 29px;
-	text-decoration: underline
-}
-
+    margin-left: 29px;
+    text-decoration: underline}
 #profilCodePostalLabel {
-	margin-left: -39px;
-	text-decoration: underline
-}
-
+    margin-left: -39px;
+    text-decoration: underline}
 #profilVilleLabel {
-	margin-left: 26px;
-	text-decoration: underline
-}
-
+    margin-left: 26px;
+    text-decoration: underline}
 #profilModifButton {
-	margin-left: 49px;
-	margin-top: 25px;
-	margin-bottom: 100px;
+    margin-left: 49px;
+    margin-top: 25px;
+    margin-bottom: 100px;
 }
-
 .mdpCom {
-	margin-top: 5px;
-	margin-bottom: 20px;
-	text-align: center;
-	font-size: 0.9rem;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.9rem;
 }
-
 .inscriptionButtons {
-	margin-top: 20px;
-	margin-left: 70px;
-	margin-bottom: 100px;
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-bottom: 100px;
 }
-
 #inscriptionButton {
-	margin-right: 47px;
+    margin-right: 47px;
 }
-
 #articlesListe {
-	margin-top: 30px;
+    margin-top: 30px;
 }
-
 #bread {
-	margin-left: 22px;
+    margin-left: 22px;
 }
-
 #profilTitle {
-	margin-left: -91px;
+    margin-left: -91px;
 }
-
 .ModifProfilButtons {
-	margin-top: 20px;
-	margin-left: -24px;
-	margin-bottom: 100px;
+    margin-top: 20px;
+    margin-left: -24px;
+    margin-bottom: 100px;
 }
-
 #DetailArticleButton {
-	margin-top: 15px;
-	margin-left: 55px;
+    margin-top: 15px;
+    margin-left: 55px;
 }
