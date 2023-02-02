@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.eneDW2M147.businessException.BusinessException;
+import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bo.ArticleVendu;
+
 /**
  * Servlet implementation class ServletAfficherDetailArticle
  */
@@ -22,6 +26,21 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		EnchereManager em = new EnchereManager();
+		System.out.println("AfficherArticle - doGet");
+		String idArtTemp = request.getParameter("Article");
+		System.out.println(idArtTemp);
+
+		int idArt = Integer.parseInt(idArtTemp);
+		
+		try {
+			ArticleVendu av = em.selectArticleById(idArt);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/AfficherDetailArticle.jsp");
 		rd.forward(request, response);
 	}
@@ -33,6 +52,8 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("AfficherArticle - doPost");
+		
+				
 		doGet(request, response);
 	}
 

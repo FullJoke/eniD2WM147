@@ -118,6 +118,10 @@
 
 		</div>
 	</div>
+	
+	<footer id="footer">
+	<%@ include file="footer.html"%>
+	</footer>
 
 </body>
 </html>

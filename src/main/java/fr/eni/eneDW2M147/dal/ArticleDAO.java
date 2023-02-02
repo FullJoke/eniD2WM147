@@ -18,7 +18,9 @@ public interface ArticleDAO {
 	public void insertArticle(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
 			int prixInitial, int prixVente, String etatVente, String image) throws BusinessException;
  
-	public int selectArticleById(int idArticle) throws BusinessException;
+	public ArticleVendu selectArticleById(int idArticle) throws BusinessException;
+	
+	
 	
 	
 }

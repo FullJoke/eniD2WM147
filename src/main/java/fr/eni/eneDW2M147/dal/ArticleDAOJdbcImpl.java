@@ -33,7 +33,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			while (rs.next()) {
 
 				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
-				System.out.println(u.getPseudo());
 
 				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
 						rs.getString("description"),
@@ -64,7 +63,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			while (rs.next()) {
 				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
-				System.out.println(u.getPseudo());
 
 				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
 						rs.getString("description"),
@@ -151,7 +149,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	}
 
-	public int selectArticleById(int idArticle) throws BusinessException {
+	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
 		int article = 0;
 		PreparedStatement pstmt;
 		Connection cnx;
@@ -171,7 +169,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			throw bException;
 		}
 
-		return article;
+		return null;
 
 	}
 

@@ -49,10 +49,9 @@
 			</div>
 			.
 			<div class="p-2">
-				<p id="topMenuUnusable">Vendre un article</p>
-				<%-- 				<a id="topMenu"
-					href="<%=request.getContextPath()%>/AfficherDetailArticle">Vendre
-					un article</a> --%>
+				<a id="topMenu"
+					href="<%=request.getContextPath()%>/CreationArticle">Vendre
+					un article</a>
 			</div>
 			.
 			<div class="p-2">
@@ -67,31 +66,51 @@
 
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item active" aria-current="page">Home</li>
+			<li id="bread" class="breadcrumb-item"><a
+				href="<%=request.getContextPath()%>/accueil">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Détails Vente</li>
 		</ol>
 	</nav>
 
 
 	<div class="container">
-			<h2 style="text-align: center;">Détail Vente</h2>
+		<h2 style="text-align: center;">Détail Vente</h2>
 
-			<h4>Pc gamer pour travailler</h4>
+		<h4 style="text-align: center;">Pc gamer pour travailler</h4>
+		<br>
+		<div id="detailsArticle">
+			<label id="descriptionArt">Description : </label>
+			<textarea readonly style="vertical-align: top;"></textarea>
+			
 			<br>
-			<div class="row justify-content-md-center">
-			<label id="descripAff">Description : </label>
-			<textarea style="vertical-align: top;"></textarea>
-			<!-- <br> <label id="cateAff">Categorie : </label> <br> <label
-				id="bestOfferAff">Meilleure offre : </label> <br> <label
-				id="misePrixAff">Mise à prix : </label> <br> <label
-				id="finEncAff">Fin de l'enchère: </label> <br> <label
-				id="retraitAff">Retrait: </label> <br> <label id="vendeurAff">Vendeur
-				: </label> <br> <label id="vendeurAff">Ma proposition: </label> <input
-				type="number" min="1" max="1000"> <input
-				class="btn btn-primary" type="submit" name="encherirAff"
-				value="Encherir"> -->
+			<br>
+			
+			<label id="cateArt">Categorie : </label>
+			
+			<br>
+			
+			<label id="bestOfferArt">Meilleure offre : </label>
+			
+			<br>
+			
+			<label id="misePrixArt">Mise à prix : </label>
+			
+			<br> <label id="finEncArt">Fin de l'enchère : </label>
+			
+			<br> <label id="retraitArt">Retrait : </label>
+			
+			<br> <label id="vendeurArt">Vendeur : </label>
+			
+			<br> <label id="porpositionArt">Ma proposition : </label>
+			<input type="number" min="1" max="1000">
+			<input id="MakeAnEnchereButton" class="btn btn-primary" type="submit" name="encherirAff"
+				value="Encherir">
 		</div>
 	</div>
 
+	<footer id="footer">
+	<%@ include file="footer.html"%>
+	</footer>
 
 </body>
 </html>

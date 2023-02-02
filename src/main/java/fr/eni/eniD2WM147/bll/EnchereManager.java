@@ -78,6 +78,10 @@ public class EnchereManager {
 	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
 		return articleDAO.selectArticlesByCat(noCategorie);
 	}
+	
+	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
+		return articleDAO.selectArticleById(idArticle);
+	}
 
 	public List<Categorie> selectAllCat() throws BusinessException {
 		BusinessException bE = new BusinessException();

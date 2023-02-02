@@ -160,8 +160,8 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 		}
 	}
 
-	public int selectUserById(int idUtilisateur) throws BusinessException {
-		int user = 0;
+	public Utilisateur selectUserById(int idUtilisateur) throws BusinessException {
+		Utilisateur user = null;
 		PreparedStatement pstmt;
 		Connection cnx;
 		try {
@@ -170,8 +170,9 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 
 			pstmt.executeQuery();
 			ResultSet rs = pstmt.getGeneratedKeys();
-			rs.next();
-			user = rs.getInt(idUtilisateur);
+			if (rs.next()) {
+				idUtilisateur = rs.getInt("no_utilisateur");
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
