@@ -106,15 +106,11 @@ public class ServletInscription extends HttpServlet {
 				throw bE;
 			}
 
-<<<<<<< HEAD
+
 			user = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
 			session.setAttribute("Utilisateur", user);
-=======
 
-			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
 
-			session.setAttribute("Utilisateur", ut);
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 			System.out.println("INSCRIPTION - SUCCESS");
 			response.sendRedirect(request.getContextPath() + "/accueil");
 
