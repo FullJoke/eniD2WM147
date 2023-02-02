@@ -52,6 +52,18 @@ public class EnchereManager {
 	public void deleteUser(int idUtilisateur) {
 		utilisateurDAO.deleteUser(idUtilisateur);
 	}
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 
 	// Articles
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
@@ -63,16 +75,16 @@ public class EnchereManager {
 		return articleDAO.selectAllArticles();
 	}
 
- 	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
+	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
 		return articleDAO.selectArticlesByCat(noCategorie);
 	}
- 	
- 	public List<Categorie> selectAllCat() throws BusinessException{
- 		BusinessException bE = new BusinessException();
+
+	public List<Categorie> selectAllCat() throws BusinessException {
+		BusinessException bE = new BusinessException();
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
 		return articleDAO.selectAllCategories();
- 	}
+	}
 
 }

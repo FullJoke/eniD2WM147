@@ -111,31 +111,33 @@
 			<%
 			for (ArticleVendu a : articles) {
 			%>
-			<div class="card" style="width: 15rem;">
-				<img class="card-img-left" src="..." alt="PC GAMER">
-				<div class="card-body">
-					<h5 class="card-title"><%=a.getNom()%></h5>
-					<p class="card-text">
-						Prix :
-						<%=a.getPrixVente()%>
-						crédits
-					</p>
-					<p class="card-text">
-						Fin de l'enchère :
-						<%=a.getFinEnchere()%></p>
-					<%--<p class="card-text">"Vendeur : <%=a.getUtilisateur().getIdUtilisateur()%>"</p>
-	 --%>
-
-					<%
-					if (Utilisateur != null) {
-					%>
-					<a href="<%=request.getContextPath()%>/AfficherDetailArticle"
-					class="btn btn-primary" id="DetailArticleButton">Détails</a>
-					<%
-					}
-					%>
+			<form method="post" action="<%=request.getContextPath()%>/AfficherDetailArticle">
+				<div class="card" style="width: 15rem">
+					<img class="card-img-left" src="..." alt="PC GAMER">
+					<div class="card-body">
+						<h5 class="card-title"><%=a.getNom()%></h5>
+						<p class="card-text">
+							Prix :
+							<%=a.getPrixVente()%>
+							crédits
+						</p>
+						<p class="card-text">
+							Fin de l'enchère :
+							<%=a.getFinEnchere()%></p>
+						<p class="card-text">Vendeur : 
+						<%=a.getUtilisateur().getPseudo()%></p>
+	
+						<%
+						if (Utilisateur != null) {
+						%>
+						<input type="submit" value="Détails" class="btn btn-primary"
+						id="DetailArticleButton" name="">
+						<%
+						}
+						%>
+					</div>
 				</div>
-			</div>
+			</form>
 			<%
 			}
 			%>

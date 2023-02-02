@@ -50,7 +50,7 @@
 			.
 			<div class="p-2">
 				<p id="topMenuUnusable">Vendre un article</p>
-<%-- 				<a id="topMenu"
+				<%-- 				<a id="topMenu"
 					href="<%=request.getContextPath()%>/AfficherDetailArticle">Vendre
 					un article</a> --%>
 			</div>
@@ -63,51 +63,35 @@
 		}
 		%>
 	</header>
+
+
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item active" aria-current="page">Home</li>
 		</ol>
 	</nav>
-	
-	<div class="row justify-content-md-center"></div>
 
-	<h1 style="text-align: center;">Détail Vente</h1>
 
-	<h4 id="Pcgamer">Pc gamer pour travailler</h4>
-	<br>
+	<div class="container">
+			<h2 style="text-align: center;">Détail Vente</h2>
 
-	<label id="descripAff">Description : </label>
-	<textarea style="vertical-align: top;"></textarea>
-	<br>
+			<h4>Pc gamer pour travailler</h4>
+			<br>
+			<div class="row justify-content-md-center">
+			<label id="descripAff">Description : </label>
+			<textarea style="vertical-align: top;"></textarea>
+			<!-- <br> <label id="cateAff">Categorie : </label> <br> <label
+				id="bestOfferAff">Meilleure offre : </label> <br> <label
+				id="misePrixAff">Mise à prix : </label> <br> <label
+				id="finEncAff">Fin de l'enchère: </label> <br> <label
+				id="retraitAff">Retrait: </label> <br> <label id="vendeurAff">Vendeur
+				: </label> <br> <label id="vendeurAff">Ma proposition: </label> <input
+				type="number" min="1" max="1000"> <input
+				class="btn btn-primary" type="submit" name="encherirAff"
+				value="Encherir"> -->
+		</div>
+	</div>
 
-	<label id="cateAff">Categorie : </label>
-
-	<br>
-
-	<label id="bestOfferAff">Meilleure offre : </label>
-
-	<br>
-
-	<label id="misePrixAff">Mise à prix : </label>
-
-	<br>
-
-	<label id="finEncAff">Fin de l'enchère: </label>
-
-	<br>
-
-	<label id="retraitAff">Retrait: </label>
-
-	<br>
-
-	<label id="vendeurAff">Vendeur : </label>
-
-	<br>
-	<label id="vendeurAff">Ma proposition: </label>
-	<input type="number" min="1" max="1000">
-	<input class="btn btn-primary" type="submit" name="encherirAff"
-		value="Encherir">
-		
 
 </body>
 </html>

@@ -21,7 +21,8 @@ public class ArticleVendu {
 
 	// Constructeurs
 	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, int prixVente, String etatVente, String image) {
+			LocalDateTime finEnchere, int prixInitial, int prixVente, String etatVente, String image,
+			Utilisateur utilisateur) {
 		this.idArticle = idArticle;
 		this.nom = nom;
 		this.description = description;
@@ -31,9 +32,10 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
 		this.image = image;
+		this.utilisateur = utilisateur;
 	}
 	
-	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere, int i,
+	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
 			int prixInitial, int prixVente, int numCategorie, String etatVente, String image) {
 		super();
 		this.nom = nom;

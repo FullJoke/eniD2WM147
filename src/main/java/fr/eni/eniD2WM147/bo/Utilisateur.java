@@ -35,6 +35,12 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = admiistrateur;
 	}
+	
+	public Utilisateur(int idUtilisateur, String pseudo) {
+		super();
+		this.idUtilisateur = idUtilisateur;
+		this.pseudo = pseudo;
+	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, int credit, boolean admiistrateur) {
