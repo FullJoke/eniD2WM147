@@ -215,7 +215,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 		}
 	}
 
-	public int selectUserById(int idUtilisateur) throws BusinessException {
+	public Utilisateur selectUserById(int idUtilisateur) throws BusinessException {
 		int user = 0;
 		PreparedStatement pstmt;
 		Connection cnx;
@@ -235,7 +235,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			throw bException;
 		}
 
-		return user;
+		return null;
 
 	}
 
