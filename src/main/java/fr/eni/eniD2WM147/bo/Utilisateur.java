@@ -21,7 +21,7 @@ public class Utilisateur {
 
 	// Constructeurs
 	public Utilisateur(int idUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, int credit, boolean admiistrateur) {
+			String rue, String codePostal, String ville, int credit, boolean administrateur) {
 		super();
 		this.idUtilisateur = idUtilisateur;
 		this.pseudo = pseudo;
@@ -33,11 +33,17 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.credit = credit;
-		this.administrateur = admiistrateur;
+		this.administrateur = administrateur;
+	}
+	
+	public Utilisateur(int idUtilisateur, String pseudo) {
+        super();
+        this.idUtilisateur = idUtilisateur;
+        this.pseudo = pseudo;
 	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, int credit, boolean admiistrateur) {
+			String codePostal, String ville, int credit, boolean administrateur) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -48,7 +54,7 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.credit = credit;
-		this.administrateur = admiistrateur;
+		this.administrateur = administrateur;
 	}
 
 	public Utilisateur() {

@@ -12,7 +12,7 @@ public class ArticleVendu {
 	private int prixInitial;
 	private int prixVente;
 	private String image;
-	// etat vente est un char en SQL, utilisation du parse ?
+	
 	private String etatVente;
 	private List<Enchere> listeEnchere;
 	private Utilisateur utilisateur;
@@ -32,6 +32,8 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 		this.image = image;
 	}
+	
+	
 	
 	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere, int i,
 			int prixInitial, int prixVente, int numCategorie, String etatVente, String image) {
@@ -58,6 +60,25 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 		this.image = image;
 	}
+
+
+
+
+	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
+            LocalDateTime finEnchere, int prixInitial, int prixVente, String etatVente, String image,
+            Utilisateur utilisateur) {
+        this.idArticle = idArticle;
+        this.nom = nom;
+        this.description = description;
+        this.debutEnchere = debutEnchere;
+        this.finEnchere = finEnchere;
+        this.prixInitial = prixInitial;
+        this.prixVente = prixVente;
+        this.etatVente = etatVente;
+        this.image = image;
+        this.utilisateur = utilisateur;
+    }
+
 
 	// Getters & Setters
 	public int getIdArticle() {
