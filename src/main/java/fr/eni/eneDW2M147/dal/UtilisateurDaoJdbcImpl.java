@@ -113,7 +113,6 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(3, prenom);
 			pstmt.setString(4, email);
 			pstmt.setString(5, tel);
-			;
 			pstmt.setString(6, rue);
 			pstmt.setString(7, codePostal);
 			pstmt.setString(8, ville);

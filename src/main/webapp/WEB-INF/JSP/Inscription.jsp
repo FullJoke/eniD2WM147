@@ -39,7 +39,6 @@
 
 
 		<div class="row justify-content-md-center">
-
 			<form action="<%=request.getContextPath()%>/inscription"
 				method="post">
 				<label id="signUpPseudoLabel">Pseudo : </label> <input
@@ -62,7 +61,6 @@
 					placeholder="11111"> <br> <label id="signUpVilleLabel">Ville
 					: </label> <input id="signUpVille" type="text" name="ville"
 					placeholder="Fausseville"> <br>
-
 				<h6 class="mdpCom">
 					Le mot de passe doit avoir au moins 8 caractères (max15),<br>
 					un chiffre, une lettre majuscule et une minuscule
@@ -76,20 +74,14 @@
 					placeholder="********"> <br>
 				<div class="inscriptionButtons">
 					<input id="inscriptionButton" class="btn btn-primary"
-						id="signUpOKButton" type="submit" value="Valider"> <input
-						id="inscriptionButton" class="btn btn-primary"
-						id="loginWithdrawButton" type="submit" value="Annuler">
+						id="signUpOKButton" type="submit" value="Valider"> <a
+						id="inscriptionButton" class="btn btn-secondary"
+						href="<%=request.getContextPath()%>/accueil">Annuler</a>
 				</div>
-
-
 			</form>
-
-
-
-
-
 		</div>
 	</div>
+	
 
 
 </body>
