@@ -18,6 +18,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			
 			+ " WHERE no_utilisateur = ?;";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
+	private static final String SELECT_USER_BY_ID = "SELECT * FROM UTILISATEURS  Where no_utilisateur =?";
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 
@@ -139,13 +140,16 @@ System.out.println("id utilisateur" + idUtilisateur);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
 		}
 
 		return user;
 
 	}
 
-	public void deleteUser(int idUtilisateur) {
+	public void deleteUser(int idUtilisateur) throws BusinessException {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -155,13 +159,35 @@ System.out.println("id utilisateur" + idUtilisateur);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
 		}
 	}
 
 
+	public int selectUserById(int idUtilisateur) throws BusinessException {
+		int user = 0;
+		PreparedStatement pstmt;
+		Connection cnx;
+		try {
+			cnx = ConnectionProvider.getConnection();
+			pstmt = cnx.prepareStatement(SELECT_USER_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
 
+			pstmt.executeQuery();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			rs.next();
+			user = rs.getInt(idUtilisateur);
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
+		}
 
+		return user;
 
+	}
 
 }

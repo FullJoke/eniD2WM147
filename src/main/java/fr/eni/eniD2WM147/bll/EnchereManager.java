@@ -49,6 +49,7 @@ public class EnchereManager {
 		return user;
 	}
 
+
 	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel, String rue,
 			String codePostal, String ville, String mdp, int credit, int idUtilisateur) throws BusinessException {
 		BusinessException bE = new BusinessException();
@@ -67,7 +68,6 @@ public class EnchereManager {
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
-		utilisateurDAO.deleteUser(idUtilisateur);
 	}
 
 	// Articles
