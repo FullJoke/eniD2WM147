@@ -52,7 +52,7 @@ public class ServletInscription extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		EnchereManager em = new EnchereManager();
-		Utilisateur u = null;
+		Utilisateur user = null;
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -105,9 +105,8 @@ public class ServletInscription extends HttpServlet {
 				throw bE;
 			}
 
-			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
-
-			session.setAttribute("Utilisateur", ut);
+			user = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
+			session.setAttribute("Utilisateur", user);
 			System.out.println("INSCRIPTION - SUCCESS");
 			response.sendRedirect(request.getContextPath()+"/accueil");
 			

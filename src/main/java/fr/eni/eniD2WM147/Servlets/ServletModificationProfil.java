@@ -43,7 +43,7 @@ public class ServletModificationProfil extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		EnchereManager em = new EnchereManager();
-		Utilisateur u = null;
+		Utilisateur user = null;
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -92,8 +92,8 @@ public class ServletModificationProfil extends HttpServlet {
 			if (!bE.getListeMessage().isEmpty()) {
 				throw bE;
 			}
-			Utilisateur ut = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
-			session.setAttribute("Utilisateur", ut);
+			user = em.updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville, mdp, ((Utilisateur)session.getAttribute("Utilisateur")).getCredit(), ((Utilisateur)session.getAttribute("Utilisateur")).getIdUtilisateur());
+			session.setAttribute("Utilisateur", user);
 			System.out.println("MODIFICATION - SUCCESS");
 			response.sendRedirect(request.getContextPath()+"/Profil");
 		} catch (

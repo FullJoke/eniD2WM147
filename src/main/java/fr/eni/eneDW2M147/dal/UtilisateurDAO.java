@@ -10,7 +10,10 @@ public interface UtilisateurDAO {
 
 	public Utilisateur insertUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,String rue, String code_postal, String ville, int credit, boolean administrateur, String mdp) throws BusinessException;
 	
-	public void deleteUser(int idUtilisateur);
+	public void deleteUser(int idUtilisateur)throws BusinessException;;
 
+
+	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel, String rue,
+			String codePostal, String ville, String mdp, int credit, int idUtilisateur) throws BusinessException;
 
 }
