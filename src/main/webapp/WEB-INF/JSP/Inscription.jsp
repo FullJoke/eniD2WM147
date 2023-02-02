@@ -105,9 +105,8 @@
 					<div class="inscriptionButtons">
 					<input id="inscriptionButton" class="btn btn-primary"
 						   id="signUpOKButton" type="submit" value="Valider">
-					<a id="inscriptionButton" class="btn btn-primary"
+					<a id="inscriptionButton" class="btn btn-secondary"
 					href="<%=request.getContextPath()%>/accueil">Annuler</a>
-
 					</div>
 				</form>
 			</div>

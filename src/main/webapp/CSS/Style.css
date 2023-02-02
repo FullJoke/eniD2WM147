@@ -111,7 +111,7 @@ label {
 	margin-left: -115px;
 }
 
-#signUpMdpNewLabel{
+#signUpMdpNewLabel {
 	margin-left: -135px;
 }
 
@@ -193,54 +193,13 @@ label {
 	margin-left: -91px;
 }
 
-#ModifPseudoLabel {
-	
+.ModifProfilButtons {
+	margin-top: 20px;
+	margin-left: -24px;
+	margin-bottom: 100px;
 }
 
-#ModifNomLabel {
-	
-}
-
-#ModifPrenomLabel {
-	
-}
-
-#ModifEmailLabel {
-	
-}
-
-#ModifTelephoneLabel {
-	
-}
-
-#ModifRueLabel {
-	
-}
-
-#ModifVilleLabel {
-	
-}
-
-#categorieSelect {
-	
-}
-
-#ModifMdpActuelLabel {
-	
-}
-
-#ModifNewMdpLabel {
-	
-}
-
-#ModifNewMdpLabel {
-	
-}
-
-#ModifSaveButton {
-	
-}
-
-#ModifDeleteButton {
-	
+#DetailArticleButton {
+	margin-top: 15px;
+	margin-left: 55px;
 }

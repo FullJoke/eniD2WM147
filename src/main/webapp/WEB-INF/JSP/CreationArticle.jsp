@@ -109,8 +109,10 @@
 
 
 				<input class="btn btn-primary" type="submit" name="saveNewArt"
-					value="Enregistrer"> <input class="btn btn-primary"
-					type="submit" name="annulerNewArt" value="Annuler">
+					value="Enregistrer">
+				<a href="<%=request.getContextPath()%>/accueil" class="btn btn-secondary">
+				Annuler</a>
+
 			</form>
 		</div>
 	</div>

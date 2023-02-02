@@ -106,11 +106,13 @@
 				<label id="signUpConfirmationLabel">Confirmation : </label>
 				<input id="ModifConfirmation" type="password" name="confirmation" placeholder="********">
 				<br>
-				<div class="inscriptionButtons">
-				<input id="inscriptionButton"class="btn btn-primary" id="ModifSaveButton" type="submit" value="Enregistrer"
-				name="Udpate">
-				<input id="inscriptionButton" class="btn btn-danger" id="ModifDeleteButton" type="submit" value="Supprimer"
-				name="Delete">
+				<div class="ModifProfilButtons">
+				<input id="inscriptionButton"class="btn btn-primary" id="ModifSaveButton" type="submit"
+				value="Enregistrer">
+				<a id="inscriptionButton" class="btn btn-secondary"
+				href="<%=request.getContextPath()%>/Profil">Annuler</a>
+				<a id="inscriptionButton" class="btn btn-danger"
+				href="http://www.google.fr" >Supprimer</a>
 				</div>
 			</form>
 

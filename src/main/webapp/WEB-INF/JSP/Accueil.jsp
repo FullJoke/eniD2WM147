@@ -53,8 +53,7 @@
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu"
-					href="<%=request.getContextPath()%>/CreationArticle">Vendre
+				<a id="topMenu" href="<%=request.getContextPath()%>/CreationArticle">Vendre
 					un article</a>
 			</div>
 			.
@@ -90,8 +89,7 @@
 
 
 		<form action="<%=request.getContextPath()%>/accueil" method="get">
-			<label>Categories :</label>
-			<select id="categorieSelect"
+			<label>Categories :</label> <select id="categorieSelect"
 				name="categorieChoisie">
 				<option value="0">Toutes</option>
 				<%
@@ -101,13 +99,15 @@
 				<%
 				}
 				%>
-			</select>
-			<input class="btn btn-primary" id="categorieSelectButton"
-				type="submit" name="categorieSelectButton" value="Filtre">
+			</select> <input class="btn btn-primary" id="categorieSelectButton"
+				type="submit" name="categorieSelectButton" value="Filtrer">
 		</form>
 
 
 		<div id="articlesListe" class="row">
+			<%
+			if (articles != null) {
+			%>
 			<%
 			for (ArticleVendu a : articles) {
 			%>
@@ -123,10 +123,22 @@
 					<p class="card-text">
 						Fin de l'enchère :
 						<%=a.getFinEnchere()%></p>
-					<%-- 					<p class="card-text">"Vendeur : <%=a.getUtilisateur().getIdUtilisateur()%>"</p>
- --%>
+					<%--<p class="card-text">"Vendeur : <%=a.getUtilisateur().getIdUtilisateur()%>"</p>
+	 --%>
+
+					<%
+					if (Utilisateur != null) {
+					%>
+					<a href="<%=request.getContextPath()%>/AfficherDetailArticle"
+					class="btn btn-primary" id="DetailArticleButton">Détails</a>
+					<%
+					}
+					%>
 				</div>
 			</div>
+			<%
+			}
+			%>
 			<%
 			}
 			%>
