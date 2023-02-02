@@ -18,8 +18,6 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			
 			+ " WHERE no_utilisateur = ?;";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
-	//ajouter foreign key
-	// where id dans update
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 

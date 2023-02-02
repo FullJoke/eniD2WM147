@@ -53,6 +53,7 @@ public class ServletModificationProfil extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		String mdp = request.getParameter("mdp");
+		String newMdp = request.getParameter("newMdp");
 		String confirmation = request.getParameter("confirmation");
 
 		BusinessException bE = new BusinessException();
@@ -92,7 +93,7 @@ public class ServletModificationProfil extends HttpServlet {
 			if (!bE.getListeMessage().isEmpty()) {
 				throw bE;
 			}
-			user = em.updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville, mdp, ((Utilisateur)session.getAttribute("Utilisateur")).getCredit(), ((Utilisateur)session.getAttribute("Utilisateur")).getIdUtilisateur());
+			user = em.updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville,newMdp.isBlank()?mdp:newMdp , ((Utilisateur)session.getAttribute("Utilisateur")).getCredit(), ((Utilisateur)session.getAttribute("Utilisateur")).getIdUtilisateur());
 			session.setAttribute("Utilisateur", user);
 			System.out.println("MODIFICATION - SUCCESS");
 			response.sendRedirect(request.getContextPath()+"/Profil");

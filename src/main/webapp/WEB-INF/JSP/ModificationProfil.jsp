@@ -45,7 +45,7 @@
 			<h2>Mon Profil</h2>
 		</div>
 		<div class="row justify-content-md-center">
-			<form action="<%=request.getContextPath()%>/delete" method="post">
+			<form action="<%=request.getContextPath()%>/ModificationProfil" method="post">
 				<%
 				Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur");
 				%>
@@ -68,14 +68,17 @@
 					value="<%=user.getCodePostal()%>"> <br> <label
 					id="signUpVilleLabel">Ville : </label> <input id="ModifVille"
 					type="text" name="ville" value="<%=user.getVille()%>"> <br>
-				<!--                <label id="signUpMdpNLabel">Ancien mot de passe : </label> <input                id="ModifMdpActuel" type="password" name="mdp"                placeholder="********" required                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">                <br> -->
+				<label id="signUpMdpNLabel">Mot de passe : </label> <input
+					id="ModifMdpActuel" type="password" name="mdp"
+					placeholder="********" required
+					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
+				<br>
 				<h6 class="mdpCom">
 					Le mot de passe doit avoir au moins 8 caractères (max15),<br>
 					un chiffre, une lettre majuscule et une minuscule
 				</h6>
 				<label id="signUpMdpNewLabel">Nouveau mot de passe : </label> <input
-					id="ModifNewMdp" type="password" name="mdp" placeholder="********"
-					required
+					id="ModifNewMdp" type="password" name="newMdp" placeholder="********"
 					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
 				<br> <label id="signUpConfirmationLabel">Confirmation :
 				</label> <input id="ModifConfirmation" type="password" name="confirmation"
