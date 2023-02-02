@@ -49,7 +49,7 @@ public class EnchereManager {
 		return user;
 	}
 
-	public void deleteUser(int idUtilisateur) {
+	public void deleteUser(int idUtilisateur) throws BusinessException {
 		utilisateurDAO.deleteUser(idUtilisateur);
 	}
 

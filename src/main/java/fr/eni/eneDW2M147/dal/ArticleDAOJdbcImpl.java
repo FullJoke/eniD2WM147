@@ -19,6 +19,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS WHERE no_categorie=?";
 	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLE(nom,description,debutEnchere,"
 			+ "finEnchere,prixInitial,prixVente,etatVente,image)VALUES(?,?,?,?,?,?,?,?)";
+	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS  Where no_article =?";
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -73,7 +74,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return articles;
 	}
 
-	public List<Categorie> selectAllCategories() {
+	public List<Categorie> selectAllCategories() throws BusinessException {
 		List<Categorie> categories = new ArrayList<>();
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -88,13 +89,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
 		}
 
 		return categories;
 	}
 
-	public void insertArticle(String nom, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, int prixVente, String etatVente, String image) throws BusinessException {
+	public void insertArticle(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
+			int prixInitial, int prixVente, String etatVente, String image) throws BusinessException {
 		ArticleVendu arti;
 		Connection cnx;
 		try {
@@ -109,8 +113,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			pstmt.setInt(6, prixVente);
 			pstmt.setString(7, String.valueOf(etatVente));
 			pstmt.setString(8, image);
-			
-		    pstmt.executeUpdate();
+
+			pstmt.executeUpdate();
 
 //			if (rs.next()) {
 //
@@ -136,6 +140,29 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 
 	}
-	
+
+	public int selectArticleById(int idArticle) throws BusinessException {
+		int article = 0;
+		PreparedStatement pstmt;
+		Connection cnx;
+		try {
+			cnx = ConnectionProvider.getConnection();
+			pstmt = cnx.prepareStatement(SELECT_ART_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
+
+			pstmt.executeQuery();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			rs.next();
+			article = rs.getInt(idArticle);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
+		}
+
+		return article;
+
+	}
 
 }
