@@ -103,10 +103,16 @@
 					<input id="inscriptionButton" class="btn btn-primary"
 						id="ModifSaveButton" type="submit" value="Enregistrer"> <a
 						id="inscriptionButton" class="btn btn-secondary"
-						href="<%=request.getContextPath()%>/Profil">Annuler</a> <a
-						id="inscriptionButton" class="btn btn-danger"
-						href="http://www.google.fr">Supprimer</a>
+						href="<%=request.getContextPath()%>/Profil">Annuler</a>
+
 				</div>
+			</form>
+			<form action="<%=request.getContextPath()%>/delete" method="post">
+				<!-- <a	id="inscriptionButton" class="btn btn-danger" href="www.google.fr">Supprimer</a> -->
+				<input type="hidden" name="utilisateur"
+					value="<%=user.getIdUtilisateur()%>">
+				<button class="btn btn-danger" id="inscriptionButton" type="submit"
+					onclick="window.location.href ='<%=request.getContextPath()%>/delete';">Supprimer</button>
 			</form>
 		</div>
 	</div>

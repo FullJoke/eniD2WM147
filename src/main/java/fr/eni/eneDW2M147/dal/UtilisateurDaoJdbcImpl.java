@@ -11,13 +11,15 @@ import fr.eni.eniD2WM147.bo.Utilisateur;
 public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
-	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,"
-			+ "rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?"
-			+ ", rue=?, code_postal=?,ville=?, mot_de_passe=?,credit=?"
-			
-			+ " WHERE no_utilisateur = ?;";
+	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?,ville=?, mot_de_passe=?,credit=? WHERE no_utilisateur = ?;";
+
+	// private static final String DELETE_RETRAIT = "DELETE r FROM RETRAITS r JOIN
+	// ARTICLES_VENDUS av ON r.no_article=av.no_article WHERE r.no_article=?";
+	private static final String DELETE_ENCHERES = "DELETE e FROM ENCHERES e JOIN ARTICLES_VENDUS av ON e.no_article=av.no_article WHERE av.no_utilisateur=?";
+	private static final String DELETE_ARTICLE_VENDUS = "DELETE av FROM ARTICLES_VENDUS av Inner join UTILISATEURS u ON av.no_utilisateur=u.no_utilisateur WHERE av.no_utilisateur=?";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
+
 	private static final String SELECT_USER_BY_ID = "SELECT * FROM UTILISATEURS  Where no_utilisateur =?";
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
@@ -84,7 +86,6 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 
 			stmtp.executeUpdate();
 			ResultSet rs = stmtp.getGeneratedKeys();
-			
 
 			if (rs.next()) {
 				int idUtilisateur = rs.getInt(1);
@@ -104,6 +105,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 		return utilisateur;
 
 	}
+
 	@Override
 	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel, String rue,
 			String codePostal, String ville, String mdp, int credit, int idUtilisateur) throws BusinessException {
@@ -122,8 +124,8 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(9, mdp);
 			pstmt.setInt(10, credit);
 			pstmt.setInt(11, idUtilisateur);
-			//pas bon car id à 0
-System.out.println("id utilisateur" + idUtilisateur);
+			// pas bon car id à 0
+			System.out.println("id utilisateur" + idUtilisateur);
 			pstmt.executeUpdate();
 
 			user.setPseudo(pseudo);
@@ -149,11 +151,43 @@ System.out.println("id utilisateur" + idUtilisateur);
 
 	}
 
+	public void deleteAll(int idUtilisateur) throws BusinessException {
+		try {
+			deleteUser(idUtilisateur);
+			deleteEnchere(idUtilisateur);
+			deleteArticle(idUtilisateur);
+
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
+		}
+	}
+
 	public void deleteUser(int idUtilisateur) throws BusinessException {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = cnx.prepareStatement(DELETE_USER);
+			pstmt.setInt(1, idUtilisateur);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
+		}
+	}
+
+	// public void deleteRetrait(int numArticle) throws BusinessException {
+	//
+	// }
+	public void deleteEnchere(int idUtilisateur) throws BusinessException {
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_ENCHERES);
 			pstmt.setInt(1, idUtilisateur);
 			pstmt.executeUpdate();
 
@@ -165,6 +199,21 @@ System.out.println("id utilisateur" + idUtilisateur);
 		}
 	}
 
+	public void deleteArticle(int idUtilisateur) throws BusinessException {
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_ARTICLE_VENDUS);
+			pstmt.setInt(1, idUtilisateur);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
+		}
+	}
 
 	public int selectUserById(int idUtilisateur) throws BusinessException {
 		int user = 0;

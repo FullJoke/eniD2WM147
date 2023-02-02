@@ -17,6 +17,12 @@ public interface UtilisateurDAO {
 
 	public void deleteUser(int idUtilisateur) throws BusinessException;
 
+	public void deleteEnchere(int idUtilisateur) throws BusinessException;
+
+	public void deleteArticle(int idUtilisateur) throws BusinessException;
+
+	public void deleteAll(int idUtilisateur) throws BusinessException;
+
 	public int selectUserById(int idUtilisateur) throws BusinessException;
 
 }
