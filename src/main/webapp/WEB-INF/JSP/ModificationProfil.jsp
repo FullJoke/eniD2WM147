@@ -45,17 +45,14 @@
 			<h2>Mon Profil</h2>
 		</div>
 		<div class="row justify-content-md-center">
-<<<<<<< HEAD
-			<form action="<%=request.getContextPath()%>/ModificationProfil" method="post">
-=======
 
-			<form action="<%=request.getContextPath()%>/delete"
-				method="post">
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
+
+			<form action="<%=request.getContextPath()%>/delete" method="post">
+
 				<%
 				Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur");
 				%>
-<<<<<<< HEAD
+
 				<label id="signUpPseudoLabel">Pseudo : </label> <input
 					id="ModifPseudo" pattern="[a-zA-Z0-9]{3,20}"
 					value="<%=user.getPseudo()%>" name="pseudo"> <br> <label
@@ -75,50 +72,20 @@
 					value="<%=user.getCodePostal()%>"> <br> <label
 					id="signUpVilleLabel">Ville : </label> <input id="ModifVille"
 					type="text" name="ville" value="<%=user.getVille()%>"> <br>
-				<label id="signUpMdpNLabel">Mot de passe : </label> <input
-					id="ModifMdpActuel" type="password" name="mdp"
-					placeholder="********" required
-=======
-				<label id="signUpPseudoLabel">Pseudo : </label>
-				<input id="ModifPseudo" pattern="[a-zA-Z0-9]{3,20}" value="<%=user.getPseudo()%>"
-				name="pseudo">
-				<br>
-				<label id="signUpNomLabel">Nom : </label>
-				<input id="ModifNom" type="text" name="nom" value="<%=user.getNom()%>">
-				<br>
-				<label id="signUpPrenomLabel">Prenom : </label>
-				<input id="ModifPrenom" type="text" name="prenom" value="<%=user.getPrenom()%>">
-				<br>
-				<label id="signUpEmailLabel">Email : </label>
-				<input id="ModifEmail" type="email" name="email" value="<%=user.getEmail()%>">
-				<br>
-				<label id="signUpTelephoneLabel">Telephone : </label>
-				<input id="ModifTelephone" pattern="^0[0-9]{9}" type="tel" name="tel"
-				value="<%=user.getTelephone()%>">
-				<br>
-				<label id="signUpRueLabel">Rue : </label>
-				<input id="ModifRue" type="text" name="rue" value="<%=user.getRue()%>">
-				<br>
-				<label id="signUpCodePostalLabel">Code Postal : </label>
-				<input id="ModifCodePostal" type="text" name="codePostal"
-				value="<%=user.getCodePostal()%>">
-				<br>
-				<label id="signUpVilleLabel">Ville : </label>
-				<input id="ModifVille" type="text" name="ville" value="<%=user.getVille()%>">
-				<br>
-<!-- 				<label id="signUpMdpNLabel">Ancien mot de passe : </label> <input
+				<!-- 				<label id="signUpMdpNLabel">Ancien mot de passe : </label> <input
 				id="ModifMdpActuel" type="password" name="mdp"
 				placeholder="********" required
 				pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
 				<br> -->
 
-				<h6 class="mdpCom">Le mot de passe doit avoir au moins 8 caractères (max15),<br>
-					un chiffre, une lettre majuscule et une minuscule</h6>
-					
-				<label id="signUpMdpNewLabel">Nouveau mot de passe : </label>
-				<input id="ModifNewMdp" type="password" name="mdp" placeholder="********"
+				<h6 class="mdpCom">
+					Le mot de passe doit avoir au moins 8 caractères (max15),<br>
+					un chiffre, une lettre majuscule et une minuscule
+				</h6>
+
+				<label id="signUpMdpNewLabel">Nouveau mot de passe : </label> <input
+					id="ModifNewMdp" type="password" name="mdp" placeholder="********"
 					required
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
 				<br>
 				<h6 class="mdpCom">
@@ -126,7 +93,8 @@
 					un chiffre, une lettre majuscule et une minuscule
 				</h6>
 				<label id="signUpMdpNewLabel">Nouveau mot de passe : </label> <input
-					id="ModifNewMdp" type="password" name="newMdp" placeholder="********"
+					id="ModifNewMdp" type="password" name="newMdp"
+					placeholder="********"
 					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
 				<br> <label id="signUpConfirmationLabel">Confirmation :
 				</label> <input id="ModifConfirmation" type="password" name="confirmation"
