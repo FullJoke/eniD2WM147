@@ -19,7 +19,8 @@
 		<%@ include file="Entete.html"%>
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire </a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire
+				</a>
 			</div>
 		</div>
 	</header>
@@ -39,21 +40,17 @@
 		</div>
 		<div class="row justify-content-center">
 			<form action="<%=request.getContextPath()%>/login" method="post">
-				<label id="loginIdLabel">Identifiant : </label>
-				<input id="loginId" type="text" name="id">
-				
+				<label id="loginIdLabel">Identifiant : </label> <input id="loginId"
+					type="text" name="id"> <br> <label>Mot de
+					Passe : </label> <input id="loginPassword" type="password" name="mdp">
+
 				<br>
-				
-				<label>Mot de Passe : </label>
-				<input id="loginPassword" type="password" name="mdp">
-				
-				<br>
-				
+
 				<div class="inscriptionButtons">
-				<input id="inscriptionButton" class="btn btn-primary"
-					   id="signUpOKButton" type="submit" value="Valider">
-				<a id="inscriptionButton" class="btn btn-secondary"
-				href="<%=request.getContextPath()%>/accueil">Annuler</a>
+					<input id="inscriptionButton" class="btn btn-primary"
+						id="signUpOKButton" type="submit" value="Valider"> <a
+						id="inscriptionButton" class="btn btn-secondary"
+						href="<%=request.getContextPath()%>/accueil">Annuler</a>
 				</div>
 			</form>
 		</div>
@@ -67,9 +64,11 @@
 			<%
 			for (String erreur : listeErreur) {
 			%>
-			<div class="d-flex justify-content-center">
+ 			<div id="loginError" class="alert alert-danger" role="alert">
+				<%=erreur%></div>
+<%--  			<div class="d-flex justify-content-center">
 				<p style="color: red"><%=erreur%></p>
-			</div>
+			</div> --%>
 
 			<%
 			}
@@ -78,11 +77,11 @@
 			}
 			%>
 		</div>
-
-
-
-
 	</div>
+
+	<footer id="footer">
+		<%@ include file="footer.html"%>
+	</footer>
 
 </body>
 </html>

@@ -106,44 +106,55 @@
 
 		<div id="articlesListe" class="row">
 			<%
-			if (articles != null) {
+			if (!articles.isEmpty()) {
 			%>
-			<%
-			for (ArticleVendu a : articles) {
-			%>
-			<div class="card" style="width: 15rem;">
-				<img class="card-img-left" src="..." alt="PC GAMER">
-				<div class="card-body">
-					<h5 class="card-title"><%=a.getNom()%></h5>
-					<p class="card-text">
-						Prix :
-						<%=a.getPrixVente()%>
-						crédits
-					</p>
-					<p class="card-text">
-						Fin de l'enchère :
-						<%=a.getFinEnchere()%></p>
-					<%--<p class="card-text">"Vendeur : <%=a.getUtilisateur().getIdUtilisateur()%>"</p>
-	 --%>
-
-					<%
-					if (Utilisateur != null) {
-					%>
-					<a href="<%=request.getContextPath()%>/AfficherDetailArticle"
-					class="btn btn-primary" id="DetailArticleButton">Détails</a>
-					<%
-					}
-					%>
+				<%
+				for (ArticleVendu a : articles) {
+					int idArt = a.getIdArticle();
+				%>
+				<div class="card" style="width: 15rem">
+					<form action="<%=request.getContextPath()%>/AfficherDetailArticle">
+						<input type="hidden" name="Article" value="<%=idArt%>"> <img
+							class="card-img-left" src="..." alt="PC GAMER">
+						<div class="card-body">
+							<h5 class="card-title"><%=a.getNom()%></h5>
+							<p class="card-text">
+								Prix :
+								<%=a.getPrixVente()%>
+								crédits
+							</p>
+							<p class="card-text">
+								Fin de l'enchère :
+								<%=a.getFinEnchere()%></p>
+							<p class="card-text">
+								Vendeur :
+								<%=a.getUtilisateur().getPseudo()%></p>
+	
+							<%
+							if (Utilisateur != null) {
+							%>
+							<input id="DetailArticleButton" class="btn btn-primary" type="submit"
+							value="Détails">
+							<%
+							}
+							%>
+						</div>
+					</form>
 				</div>
-			</div>
-			<%
-			}
-			%>
-			<%
-			}
-			%>
+				<%}%>
+			<%}%>
+			<%if(articles.isEmpty()) {%>
+				<div class="alert alert-info" role="alert" id="noArticleAlerte"> 
+				Il n'y a aucun article dans cette catégorie.</div>
+			<%}%>
 
 		</div>
 	</div>
+	
+	
+	<footer id="footer">
+	<%@ include file="footer.html"%>
+	</footer>
+	
 </body>
 </html>

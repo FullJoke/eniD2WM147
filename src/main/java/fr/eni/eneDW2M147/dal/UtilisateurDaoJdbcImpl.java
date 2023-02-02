@@ -216,17 +216,33 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 	}
 
 	public Utilisateur selectUserById(int idUtilisateur) throws BusinessException {
-		int user = 0;
+
+		Utilisateur user = null;
 		PreparedStatement pstmt;
 		Connection cnx;
 		try {
 			cnx = ConnectionProvider.getConnection();
 			pstmt = cnx.prepareStatement(SELECT_USER_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
-
 			pstmt.executeQuery();
+			pstmt.setInt(1, idUtilisateur);
 			ResultSet rs = pstmt.getGeneratedKeys();
-			rs.next();
-			user = rs.getInt(idUtilisateur);
+
+			if (rs.next()) {
+				idUtilisateur = rs.getInt("no_utilisateur");
+				String pseudo = rs.getString("pseudo");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String email = rs.getString("email");
+				String telephone = rs.getString("telephone");
+				String rue = rs.getString("rue");
+				String codePostal = rs.getString("code_postal");
+				String ville = rs.getString("ville");
+				int credit = rs.getInt("credit");
+				Boolean administrateur = rs.getBoolean("administrateur");
+
+				user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, credit,
+						administrateur);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -11,15 +11,19 @@ import java.util.List;
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
+import fr.eni.eniD2WM147.bo.Utilisateur;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
-	private static final String SELECT_ALL_ARTICLES = "SELECT * FROM ARTICLES_VENDUS";
+	private static final String SELECT_ALL_ARTICLES = "SELECT * FROM ARTICLES_VENDUS av "
+			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur";
 	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
-	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS WHERE no_categorie=?";
+	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS av "
+			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_categorie=?";
 	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLE(nom,description,debutEnchere,"
 			+ "finEnchere,prixInitial,prixVente,etatVente,image)VALUES(?,?,?,?,?,?,?,?)";
-	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS  Where no_article =?";
+	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS av"
+			+ " INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_article=?";
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -28,14 +32,17 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				ArticleVendu arti = new ArticleVendu(rs.getString("nom_article"), rs.getString("description"),
+
+				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
+
+				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
+						rs.getString("description"),
 						LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
 								rs.getTime("date_debut_enchere").toLocalTime()),
 						LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
-								rs.getTime("date_debut_enchere").toLocalTime()),
-						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
-						rs.getInt("no_categorie"), rs.getString("etat_vente"), rs.getString("image"));
-				System.out.println(arti);
+								rs.getTime("date_fin_enchere").toLocalTime()),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
+						rs.getString("image"), u);
 				articles.add(arti);
 
 			}
@@ -56,14 +63,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				ArticleVendu arti = new ArticleVendu(rs.getString("nom_article"), rs.getString("description"),
+				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
+
+				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
+						rs.getString("description"),
 						LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
 								rs.getTime("date_debut_enchere").toLocalTime()),
 						LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
-								rs.getTime("date_debut_enchere").toLocalTime()),
-						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
-						rs.getInt("no_categorie"), rs.getString("etat_vente"), rs.getString("image"));
-				System.out.println(arti);
+								rs.getTime("date_fin_enchere").toLocalTime()),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
+						rs.getString("image"), u);
 				articles.add(arti);
 
 			}
@@ -116,22 +125,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			pstmt.executeUpdate();
 
-//			if (rs.next()) {
-//
-//				String nom1 = rs.getString("nom");
-//				String description1 = rs.getString("description");
-//				LocalDateTime debutEnchere1 = LocalDateTime.of((rs.getDate("debutEnchere")
-//						.toLocalDate()), rs.getTime("debutEnchere").toLocalTime());
-//				LocalDateTime finEnchere1 = LocalDateTime.of((rs.getDate("finEnchere")
-//						.toLocalDate()), rs.getTime("finEnchere").toLocalTime());
-//				String prixInitial1 = rs.getString("prixInitial");
-//				String prixVente1 = rs.getString("prixVente");
-//				String etatVente1 = rs.getString("etatVente");
-//				String image1 = rs.getString("nom");
-//				}
-//			 arti = new ArticleVendu(nom,description, debutEnchere,
-//					finEnchere, prixInitial,prixVente,etatVente, image);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException bException = new BusinessException();
@@ -141,18 +134,28 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	}
 
-	public int selectArticleById(int idArticle) throws BusinessException {
-		int article = 0;
+	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
+		ArticleVendu article = null;
 		PreparedStatement pstmt;
-		Connection cnx;
-		try {
-			cnx = ConnectionProvider.getConnection();
-			pstmt = cnx.prepareStatement(SELECT_ART_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
-
-			pstmt.executeQuery();
-			ResultSet rs = pstmt.getGeneratedKeys();
-			rs.next();
-			article = rs.getInt(idArticle);
+		Utilisateur u;
+		try (Connection cnx = ConnectionProvider.getConnection()){
+			
+			pstmt = cnx.prepareStatement(SELECT_ART_BY_ID);
+			pstmt.setInt(1, idArticle);
+			ResultSet rs = pstmt.executeQuery();
+		
+			if (rs.next()) {
+				 u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
+		        System.out.println(u.getPseudo());
+		        ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
+		        rs.getString("description"),
+                LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
+                        rs.getTime("date_debut_enchere").toLocalTime()),
+                LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
+                        rs.getTime("date_fin_enchere").toLocalTime()),
+                rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
+                rs.getString("image"),u);
+                 }
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -161,7 +164,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			throw bException;
 		}
 
-		return article;
+		return null;
 
 	}
 

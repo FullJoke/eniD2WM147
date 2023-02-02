@@ -63,7 +63,6 @@ public class EnchereManager {
 
 	}
 
-
 	public void deleteAll(int idUtilisateur) throws BusinessException {
 		BusinessException bE = new BusinessException();
 		if (!bE.getListeMessage().isEmpty()) {
@@ -73,6 +72,18 @@ public class EnchereManager {
 		
 		
 	}
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 
 	// Articles
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
@@ -90,6 +101,10 @@ public class EnchereManager {
 			throw bE;
 		}
 		return articleDAO.selectArticlesByCat(noCategorie);
+	}
+	
+	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
+		return articleDAO.selectArticleById(idArticle);
 	}
 
 	public List<Categorie> selectAllCat() throws BusinessException {
