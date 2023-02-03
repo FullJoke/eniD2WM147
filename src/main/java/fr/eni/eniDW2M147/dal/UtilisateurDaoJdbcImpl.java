@@ -11,16 +11,17 @@ import fr.eni.eniDW2M147.businessException.BusinessException;
 public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
+	private static final String SELECT_BY_ENCHERE = "SELECT * FROM ENCHERES e JOIN UTILISATEURS u "
+			+ "ON e.no_utilisateur=u.no_utilisateur WHERE no_article = ?";
+
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?,ville=?, mot_de_passe=?,credit=? WHERE no_utilisateur = ?;";
 
-	// private static final String DELETE_RETRAIT = "DELETE r FROM RETRAITS r JOIN
-	// ARTICLES_VENDUS av ON r.no_article=av.no_article WHERE r.no_article=?";
 	private static final String DELETE_ENCHERES = "DELETE e FROM ENCHERES e JOIN ARTICLES_VENDUS av ON e.no_article=av.no_article WHERE av.no_utilisateur=?";
 	private static final String DELETE_ARTICLE_VENDUS = "DELETE av FROM ARTICLES_VENDUS av Inner join UTILISATEURS u ON av.no_utilisateur=u.no_utilisateur WHERE av.no_utilisateur=?";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 
-	private static final String SELECT_USER_BY_ID = "SELECT * FROM UTILISATEURS  Where no_utilisateur =?";
+	private static final String SELECT_USER_BY_ID = "SELECT * FROM UTILISATEURS  WHERE no_utilisateur =?";
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 
@@ -216,19 +217,15 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 	}
 
 	public Utilisateur selectUserById(int idUtilisateur) throws BusinessException {
-
+		System.out.println("id de l'utilisateur recherché : " + idUtilisateur);
 		Utilisateur user = null;
-		PreparedStatement pstmt;
-		Connection cnx;
-		try {
-			cnx = ConnectionProvider.getConnection();
-			pstmt = cnx.prepareStatement(SELECT_USER_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
-			pstmt.executeQuery();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_USER_BY_ID);
 			pstmt.setInt(1, idUtilisateur);
-			ResultSet rs = pstmt.getGeneratedKeys();
+			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				idUtilisateur = rs.getInt("no_utilisateur");
 				String pseudo = rs.getString("pseudo");
 				String nom = rs.getString("nom");
 				String prenom = rs.getString("prenom");
@@ -240,19 +237,43 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 				int credit = rs.getInt("credit");
 				Boolean administrateur = rs.getBoolean("administrateur");
 
-				user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, credit,
+				user = new Utilisateur(idUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, credit,
 						administrateur);
+				System.out.println("nom du vendeur : " + user.getNom());
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException bException = new BusinessException();
-			bException.addMessage("une erreur est survenue");
+			bException.addMessage("une erreur est survenue lors de la recherche de l'utilisateur en base de donnnée");
 			throw bException;
 		}
 
-		return null;
+		return user;
 
+	}
+
+	public Utilisateur selectByEnchere(int idArticle) throws BusinessException {
+		Utilisateur u = null;
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ENCHERE);
+			pstmt.setInt(1, idArticle);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue lors de la recherche de l'utilisateur en base de donnnée");
+			throw bException;
+		}
+		System.out.println("DAL - Utilisateur : " + u.getPseudo());
+		return u;
 	}
 
 }

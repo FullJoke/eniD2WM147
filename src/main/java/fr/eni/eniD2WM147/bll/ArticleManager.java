@@ -11,10 +11,11 @@ import fr.eni.eniDW2M147.dal.EnchereDAOFactory;
 
 public class ArticleManager {
 	private ArticleDAO articleDAO;
-	
+
 	public ArticleManager() {
 		this.articleDAO = EnchereDAOFactory.getArticleDAO();
 	}
+
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		BusinessException bE = new BusinessException();
 		if (!bE.getListeMessage().isEmpty()) {
@@ -47,7 +48,7 @@ public class ArticleManager {
 	public ArticleVendu insert(ArticleVendu article) throws BusinessException {
 		BusinessException bE = new BusinessException();
 		validerDebutEnchere(article.getDebutEnchere(), bE);
-		validerFinEnchere(article.getDebutEnchere(),article.getFinEnchere() ,bE);
+		validerFinEnchere(article.getDebutEnchere(), article.getFinEnchere(), bE);
 		validerDescription(article.getDescription(), bE);
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
@@ -61,14 +62,22 @@ public class ArticleManager {
 			businessException.addMessage("La date est obligatoire et ne peut pas être dans le futur");
 		}
 	}
-	private void validerFinEnchere(LocalDateTime debutEnchere,LocalDateTime finEnchere,BusinessException businessException) {
-		if(finEnchere==null ||finEnchere.isBefore(debutEnchere)) {
+
+	private void validerFinEnchere(LocalDateTime debutEnchere, LocalDateTime finEnchere,
+			BusinessException businessException) {
+		if (finEnchere == null || finEnchere.isBefore(debutEnchere)) {
 			businessException.addMessage("La date est obligatoire et ne peut pas être avant le début de l'enchère");
 		}
 	}
-	private void validerDescription(String description,BusinessException businessException) {
-		if(description==null || description.length()>300) {
+
+	private void validerDescription(String description, BusinessException businessException) {
+		if (description == null || description.length() > 300) {
 			businessException.addMessage("La description est obligatoire et ne peut pas dépasser 300 caractères");
 		}
 	}
+
+	public Categorie selectCatByIdArt(int idArticle) {
+		return articleDAO.selectCatByIdArt(idArticle);
+	}
+
 }

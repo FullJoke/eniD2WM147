@@ -105,4 +105,14 @@ public class UtilisateurManager {
 		utilisateurDAO.deleteAll(idUtilisateur);
 
 	}
+
+	public Utilisateur getUtilisateurByEnchere(int idArticle) throws BusinessException {
+		System.out.println("BLL - idArticle : " + idArticle);
+		return utilisateurDAO.selectByEnchere(idArticle);
+	}
+
+	public Utilisateur getUtilisateurById(int idUtilisateur) throws BusinessException {
+		System.out.println("BLL - id de l'utilisateur recherché : " + idUtilisateur);
+		return utilisateurDAO.selectUserById(idUtilisateur);
+	}
 }
