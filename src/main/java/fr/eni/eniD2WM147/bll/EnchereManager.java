@@ -70,12 +70,17 @@ public class EnchereManager {
 		}
 		utilisateurDAO.deleteAll(idUtilisateur);
 	}
-	
+
 	public Utilisateur getUtilisateurByEnchere(int idArticle) throws BusinessException {
 		System.out.println("BLL - idArticle : " + idArticle);
 		return utilisateurDAO.selectByEnchere(idArticle);
 	}
 	
+	public Utilisateur getUtilisateurById(int idUtilisateur) throws BusinessException {
+		System.out.println("BLL - id de l'utilisateur recherché : " + idUtilisateur);
+		return utilisateurDAO.selectUserById(idUtilisateur);
+	}
+
 	/*
 	 * 
 	 * 
@@ -105,7 +110,7 @@ public class EnchereManager {
 		}
 		return articleDAO.selectArticlesByCat(noCategorie);
 	}
-	
+
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
 		System.out.println("BLL - idArticle selectionné : " + idArticle);
 		return articleDAO.selectArticleById(idArticle);
@@ -118,9 +123,17 @@ public class EnchereManager {
 		}
 		return articleDAO.selectAllCategories();
 	}
-	
+
 	public Categorie selectCatByIdArt(int idArticle) {
 		return articleDAO.selectCatByIdArt(idArticle);
 	}
 
+//	public ArticleVendu insert(ArticleVendu article) throws BusinessException {
+//		BusinessException bE = new BusinessException();
+//		if (!bE.getListeMessage().isEmpty()) {
+//			throw bE;
+//		}
+//		return articleDAO.insertArticle(article);
+//
+//	}
 }

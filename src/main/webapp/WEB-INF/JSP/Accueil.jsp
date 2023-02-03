@@ -120,7 +120,7 @@
 							<h5 class="card-title"><%=a.getNom()%></h5>
 							<p class="card-text">
 								Prix :
-								<%=a.getPrixVente()%>
+								<%=a.getPrixInitial()%>
 								crédits
 							</p>
 							<p class="card-text">

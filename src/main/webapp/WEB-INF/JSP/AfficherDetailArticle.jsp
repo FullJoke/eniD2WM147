@@ -110,7 +110,12 @@
 			<br> <label id="retraitArt">Retrait : </label>
 			
 			<br> <label id="vendeurArt">Vendeur :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<%=av.getUtilisateur().getPseudo()%></label>
+			<%=av.getUtilisateur().getPseudo()%> </label>
+			<form id="detailsVendeurBtn" action="<%=request.getContextPath()%>/Profil" method="post">
+			<input type="hidden" name="vendeur" value="<%=av.getUtilisateur().getIdUtilisateur()%>">
+			<input type="submit" value="Détails Vendeur" class="btn btn-primary">
+			
+			</form>
 			
 			<br> <label id="porpositionArt">Ma proposition : </label>
 			<input type="number" min="1" max="1000">

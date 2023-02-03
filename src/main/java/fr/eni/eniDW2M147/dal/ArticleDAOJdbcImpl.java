@@ -76,7 +76,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
 						rs.getString("image"), u);
 				articles.add(arti);
-
 			}
 
 		} catch (SQLException e1) {
@@ -141,24 +140,24 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		ArticleVendu article = null;
 		PreparedStatement pstmt;
 		Utilisateur u;
-		try (Connection cnx = ConnectionProvider.getConnection()){
-			
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
 			pstmt = cnx.prepareStatement(SELECT_ART_BY_ID);
 			pstmt.setInt(1, idArticle);
 			ResultSet rs = pstmt.executeQuery();
-		
+
 			if (rs.next()) {
-				 u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
-		        
-		        article = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
-		        rs.getString("description"),
-                LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
-                        rs.getTime("date_debut_enchere").toLocalTime()),
-                LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
-                        rs.getTime("date_fin_enchere").toLocalTime()),
-                rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-                rs.getString("image"),u);
-                 }
+				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
+
+				article = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
+						rs.getString("description"),
+						LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
+								rs.getTime("date_debut_enchere").toLocalTime()),
+						LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
+								rs.getTime("date_fin_enchere").toLocalTime()),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
+						rs.getString("image"), u);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -174,16 +173,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	public Categorie selectCatByIdArt(int idArticle) {
 		Categorie cat = null;
-		
-		try(Connection cnx = ConnectionProvider.getConnection()){
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_CAT);
 			pstmt.setInt(1, idArticle);
-			
+
 			ResultSet rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				cat = new Categorie(rs.getInt("no_categorie"),
-									rs.getString("libelle"));
+
+			if (rs.next()) {
+				cat = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
