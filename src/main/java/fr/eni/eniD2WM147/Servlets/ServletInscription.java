@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniDW2M147.businessException.BusinessException;
 
@@ -52,7 +53,7 @@ public class ServletInscription extends HttpServlet {
 		// n'enregistre pas l'utilisateur et envoie directement sur la page // d'accueil
 		HttpSession session = request.getSession();
 
-		EnchereManager em = new EnchereManager();
+		UtilisateurManager um = new UtilisateurManager();
 		Utilisateur user = null;
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -69,11 +70,11 @@ public class ServletInscription extends HttpServlet {
 
 		try {
 			BusinessException bE = new BusinessException();
-			if (pseudo.isBlank() || !pseudo.chars().allMatch(Character::isLetterOrDigit)) {
-				bE.addMessage("Le pseudo ne peut contenir que des chiffres et des lettres");
+			if (pseudo.isBlank() ) {
+				bE.addMessage("Le pseudo est obligatoire");
 			}
-			if (nom.isBlank() || !nom.chars().allMatch(Character::isLetter)) {
-				bE.addMessage("Le nom est obligatoire et ne peut contenir que des lettres.");
+			if (nom.isBlank()) {
+				bE.addMessage("Le nom est obligatoire.");
 			}
 			if (prenom.isBlank() || !prenom.chars().allMatch(Character::isLetter)) {
 				bE.addMessage("Le prenom est obligatoire et ne peut contenir que des lettres.");
@@ -107,7 +108,7 @@ public class ServletInscription extends HttpServlet {
 			}
 
 
-			user = em.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
+			user = um.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
 			session.setAttribute("Utilisateur", user);
 
 
