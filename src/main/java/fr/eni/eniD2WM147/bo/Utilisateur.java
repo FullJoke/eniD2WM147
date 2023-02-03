@@ -156,11 +156,11 @@ public class Utilisateur {
 		this.credit = credit;
 	}
 
-	public boolean isAdmiistrateur() {
+	public boolean isAdministrateur() {
 		return administrateur;
 	}
 
-	public void setAdmiistrateur(boolean administrateur) {
+	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
 
