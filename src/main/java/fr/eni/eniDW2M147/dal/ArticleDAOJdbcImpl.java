@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.naming.java.javaURLContextFactory;
+
 
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
-import fr.eni.eniD2WM147.bo.Enchere;
+
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniDW2M147.businessException.BusinessException;
 
@@ -28,6 +28,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS av"
 			+ " INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_article=?";
+	private static final String INSERT_ENCHERES="";
+	
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -129,10 +131,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			pstmt.setString(10, article.getImage());
 
 			pstmt.executeUpdate();
+			
+			
 			ResultSet rs = pstmt.getGeneratedKeys();
+			
 			if (rs.next()) {
 				int idArticle = rs.getInt(article.getIdArticle());
 				art = new ArticleVendu(article);
+				art.setIdArticle(idArticle);
+				
 			}
 			System.out.println(article);
 			//faire une boucle for each avec un INSERT Enchere pour créer les encheres avec l'article. 
@@ -143,7 +150,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			bException.addMessage("une erreur est survenue");
 			throw bException;
 		}
-		return art;
+		return article;
 		
 	}
 

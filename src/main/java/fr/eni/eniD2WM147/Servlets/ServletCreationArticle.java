@@ -86,7 +86,7 @@ public class ServletCreationArticle extends HttpServlet {
 		
 		//voir pour cat et parse pour localdate
 		//Ajouter article
-		article = new ArticleVendu(art,description,dateDebut,dateFin,prix,numUtilisateur,listeCat,"CR",null);
+		article = new ArticleVendu(art,description,dateDebut,dateFin,prix,numUtilisateur,listeCat,"CR",image);
 		request.getParameter("saveNewArt");
 		
 		article = em.insert(article);
