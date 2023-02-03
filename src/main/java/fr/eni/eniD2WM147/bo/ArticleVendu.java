@@ -17,7 +17,7 @@ public class ArticleVendu {
 	private List<Enchere> listeEnchere;
 	private Utilisateur utilisateur;
 	private Retrait retrait;
-
+	private Categorie categorie;
 
 	// Constructeurs
 	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
@@ -36,7 +36,7 @@ public class ArticleVendu {
 	}
 	
 	
-	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere, int i,
+	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
 			int prixInitial, int prixVente, int numCategorie, String etatVente, String image) {
 		super();
 		this.nom = nom;
@@ -62,6 +62,10 @@ public class ArticleVendu {
 		this.image = image;
 	}
 
+
+	public ArticleVendu(ArticleVendu article) {
+		// TODO Auto-generated constructor stub
+	}
 
 	// Getters & Setters
 	public int getIdArticle() {
@@ -159,6 +163,17 @@ public class ArticleVendu {
 	public void setRetrait(Retrait retrait) {
 		this.retrait = retrait;
 	}
+	
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
 
 	// Méthodes
 	@Override

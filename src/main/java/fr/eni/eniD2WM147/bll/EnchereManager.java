@@ -1,5 +1,6 @@
 package fr.eni.eniD2WM147.bll;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
@@ -69,10 +70,9 @@ public class EnchereManager {
 			throw bE;
 		}
 		utilisateurDAO.deleteAll(idUtilisateur);
-		
-		
+
 	}
-	
+
 	/*
 	 * 
 	 * 
@@ -102,7 +102,7 @@ public class EnchereManager {
 		}
 		return articleDAO.selectArticlesByCat(noCategorie);
 	}
-	
+
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
 		return articleDAO.selectArticleById(idArticle);
 	}
@@ -115,4 +115,12 @@ public class EnchereManager {
 		return articleDAO.selectAllCategories();
 	}
 
+	public ArticleVendu insert(ArticleVendu article) throws BusinessException {
+		BusinessException bE = new BusinessException();
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+		return articleDAO.insertArticle(article);
+
+	}
 }

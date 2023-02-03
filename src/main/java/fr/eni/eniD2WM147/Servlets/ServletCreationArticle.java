@@ -10,11 +10,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport;
 
 import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
+import fr.eni.eniD2WM147.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletAfficherArticle
@@ -53,21 +57,31 @@ public class ServletCreationArticle extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("doPost");
 		
-		request.getParameter("article");
-		request.getParameter("story");
-		request.getParameter("listcate");
-		request.getParameter("miseAprix");
-		request.getParameter("debutEnchere");
-		request.getParameter("finEnchere");
-		request.getParameter("rue");
-		request.getParameter("codePostal");
-		request.getParameter("ville");
+		try {
+		EnchereManager em = new EnchereManager();
+		ArticleVendu article = null;
+		
+		String art = request.getParameter("article");
+		String description =request.getParameter("story");
+		String categorie =request.getParameter("listcate");
+		String prix =request.getParameter("miseAprix");
+		String debutVente = request.getParameter("debutEnchere");
+		String finVente =request.getParameter("finEnchere");
+		String rue= request.getParameter("rue");
+		String codePostal=request.getParameter("codePostal");
+		String ville =request.getParameter("ville");
 
 		request.getParameter("saveNewArt");
+		article = em.insert(article);
 		request.getParameter("annulerNewArt");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/Accueil.jsp");
-		rd.forward(request, response);
+	
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			response.sendRedirect(request.getContextPath()+"/accueil");
+			doGet(request, response);
+		}
+
 	}
 
 }

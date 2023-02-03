@@ -51,6 +51,7 @@
 		</div>
 
 		<div class="row justify-content-md-center">
+			
 			<form method="Post" action="">
 				<label>Article :</label> <input type="text" name="article">
 				
@@ -62,6 +63,7 @@
 				<br>
 				
 				<%
+				Utilisateur user = (Utilisateur)session.getAttribute("Utilisateur");
 				List<Categorie> categories =
 				(List<Categorie>) request.getAttribute("categories");
 				%>
@@ -95,16 +97,16 @@
 				
 				<br>
 				
-				<label>Fin de lenchère</label>
+				<label>Fin de l'enchère</label>
 				<input type="datetime-local" name="finEnchere">
 				
 				<br>
 				
 				<fieldset>
 					<legend>Retrait</legend>
-					<label>Rue :</label> <input type="text" name="rue"> <br>
-					<label>Code Postal :</label> <input type="text" name="codePostal">
-					<br> <label>Ville :</label> <input type="text" name="ville">
+					<label>Rue :</label> <input type="text" name="rue" value="<%=user.getRue()%>"> <br>
+					<label>Code Postal :</label> <input type="text" name="codePostal" value="<%=user.getCodePostal()%>">
+					<br> <label>Ville :</label> <input type="text" name="ville" value="<%=user.getVille()%>">
 				</fieldset>
 
 
