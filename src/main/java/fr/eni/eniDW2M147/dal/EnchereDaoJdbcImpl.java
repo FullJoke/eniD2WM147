@@ -53,7 +53,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 				user.getCredit()>prixEnchere.getMontantEnchere() ) {
 			
 			em.insertBid(prixEnchere.getDateEnchere(), prixEnchere.getMontantEnchere());
-			util.ge
+			
 			}
 		
 		
