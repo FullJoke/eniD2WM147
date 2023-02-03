@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport;
+
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
@@ -76,28 +76,39 @@ public class ServletCreationArticle extends HttpServlet {
 		
 		LocalDateTime dateDebut=null;
 		LocalDateTime dateFin=null;
-		String listeCat=null;
+		int numCat =Integer.parseInt(categorie);
 		
 		dateDebut= LocalDateTime.parse(debutVente);
 		dateFin=LocalDateTime.parse(finVente);
-		listeCat = (String) request.getAttribute("listcate");
-		prix=String.valueOf(prix);
-		 Utilisateur numUtilisateur = (Utilisateur) session.getAttribute("Utilisateur");
 		
+		int prixEntier=Integer.parseInt(prix);
+		 Utilisateur vendeur = (Utilisateur) session.getAttribute("Utilisateur");
+		 Categorie cat = new Categorie(numCat);
+		//voir pour le lieu de retrait
 		//voir pour cat et parse pour localdate
 		//Ajouter article
-		article = new ArticleVendu(art,description,dateDebut,dateFin,prix,numUtilisateur,listeCat,"CR",image);
+		article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, "CR", image, vendeur, cat);
 		request.getParameter("saveNewArt");
 		
 		article = em.insert(article);
 		request.getParameter("annulerNewArt");
 		
+		BusinessException bE = new BusinessException();
+		if(art.isBlank()) {
+			bE.addMessage("L'article doit avoir un nom");
+		}
+		if(description.isBlank()|| description.length()>300) {
+			bE.addMessage("L'article doit avoir une description et ne doit pas être de plus 300 caractères");
+		}
+		if(debutVente.isBlank() ) {
+			
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("/accueil");
+		rd.forward(request, response);
 		
-
-	
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			response.sendRedirect(request.getContextPath()+"/accueil");
+			//response.sendRedirect(request.getContextPath()+"/WEB-INF/JSP/CreationArticle.jsp");
 			doGet(request, response);
 		}
 
