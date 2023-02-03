@@ -1,19 +1,17 @@
 <%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>Profil Supprimé</title>
+<title>Insertion de l'article</title>
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <link href="CSS/Style.css" rel="stylesheet">
 </head>
-</head>
 <body>
-<body>
+
 
 	<header>
 		<%@ include file="Entete.html"%>
@@ -69,13 +67,6 @@
 			<li id="bread" class="breadcrumb-item active" aria-current="page">Home</li>
 		</ol>
 	</nav>
-	<h1 style="text-align: center">Votre profil a bien été supprimé.</h1>
-	
-     <div class="container">
-     <form method="get" action="<%=request.getContextPath()%>/accueil">
-     <input type="submit" class="btn btn-primary" name="retourSuppression" value="Retour"></input>
-     </form>
-     </div>
-     
+
 </body>
 </html>

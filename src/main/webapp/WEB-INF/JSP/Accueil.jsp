@@ -2,8 +2,10 @@
 <%@page import="fr.eni.eniD2WM147.bo.ArticleVendu"%>
 <%@page import="java.util.List"%>
 <%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>

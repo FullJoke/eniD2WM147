@@ -27,7 +27,6 @@ public class ServletDeleteUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		System.out.println("doGet");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/SuppressionProfil.jsp");
 		rd.forward(request, response);
@@ -39,23 +38,27 @@ public class ServletDeleteUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		System.out.println("doPost-DELETE");
+		request.getParameter("retourSuppression");
+		response.sendRedirect("/WEB-INF/JSP/Accueil.jsp");
+
 		HttpSession session = request.getSession();
-		
 		EnchereManager em = new EnchereManager();
 		Utilisateur user = null;
-		user= (Utilisateur) session.getAttribute("Utilisateur");
+		user = (Utilisateur) session.getAttribute("Utilisateur");
+		request.getParameter("retourSuppression");
 		try {
 			em.deleteAll(user.getIdUtilisateur());
 			System.out.println(user.getIdUtilisateur());
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			
+
 			request.setAttribute("listeErreur", e.getListeMessage());
 		}
 		session.setAttribute("Utilisateur", user);
-		response.sendRedirect(request.getContextPath()+"/delete");
-		
+		response.sendRedirect(request.getContextPath() + "/delete");
+
 	}
 
 }
