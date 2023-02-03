@@ -42,7 +42,7 @@ public class ServletModificationProfil extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("doPost");
 		HttpSession session = request.getSession();
-
+		request.setCharacterEncoding("UTF-8");
 		UtilisateurManager um = new UtilisateurManager();
 		Utilisateur user = null;
 		String pseudo = request.getParameter("pseudo");
@@ -59,13 +59,13 @@ public class ServletModificationProfil extends HttpServlet {
 
 		BusinessException bE = new BusinessException();
 		try {
-			if (pseudo.isBlank() || !pseudo.chars().allMatch(Character::isLetterOrDigit)) {
+			if (pseudo.isBlank()) {
 				bE.addMessage("Le pseudo ne peut contenir que des chiffres et des lettres");
 			}
-			if (nom.isBlank() || !nom.chars().allMatch(Character::isLetter)) {
+			if (nom.isBlank()) {
 				bE.addMessage("Le nom est obligatoire et ne peut contenir que des lettres.");
 			}
-			if (prenom.isBlank() || !prenom.chars().allMatch(Character::isLetter)) {
+			if (prenom.isBlank()) {
 				bE.addMessage("Le prenom est obligatoire et ne peut contenir que des lettres.");
 			}
 			if (email.isBlank()) {

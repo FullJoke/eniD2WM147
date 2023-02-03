@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniDW2M147.businessException.BusinessException;
 
@@ -44,9 +45,9 @@ public class ServletProfil extends HttpServlet {
 		int idUtilisateur = Integer.parseInt(idUtilisateurTemp);
 		System.out.println("id de l'utilisateur à rechercher : " + idUtilisateur);
 		
-		EnchereManager em = new EnchereManager();
+		UtilisateurManager um = new UtilisateurManager();
 		try {
-			Utilisateur u = em.getUtilisateurById(idUtilisateur);
+			Utilisateur u = um.getUtilisateurById(idUtilisateur);
 			System.out.println(u.getNom());
 			
 			request.setAttribute("vendeur", u);

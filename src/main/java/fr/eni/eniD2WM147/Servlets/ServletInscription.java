@@ -52,7 +52,8 @@ public class ServletInscription extends HttpServlet {
 		// une fois connecté redirigé vers l'ecran d'accueil en mode connecté // annuler
 		// n'enregistre pas l'utilisateur et envoie directement sur la page // d'accueil
 		HttpSession session = request.getSession();
-
+		request.setCharacterEncoding("UTF-8");
+		
 		UtilisateurManager um = new UtilisateurManager();
 		Utilisateur user = null;
 		String pseudo = request.getParameter("pseudo");
@@ -76,7 +77,7 @@ public class ServletInscription extends HttpServlet {
 			if (nom.isBlank()) {
 				bE.addMessage("Le nom est obligatoire.");
 			}
-			if (prenom.isBlank() || !prenom.chars().allMatch(Character::isLetter)) {
+			if (prenom.isBlank() ) {
 				bE.addMessage("Le prenom est obligatoire et ne peut contenir que des lettres.");
 			}
 			if (email.isBlank()) {
@@ -84,8 +85,8 @@ public class ServletInscription extends HttpServlet {
 			}
 			// || !email.contains(MOTIF)
 			// mettre limitation en chiffre et 10
-			if (tel.isBlank() || !tel.chars().allMatch(Character::isDigit)) {
-				bE.addMessage("Le numéro de téléphone doit contenir 10 chiffres.");
+			if (tel.isBlank()) {
+				bE.addMessage("Le numéro de téléphone est obligatoire.");
 			}
 
 			if (rue.isBlank()) {
@@ -100,7 +101,7 @@ public class ServletInscription extends HttpServlet {
 			if (mdp.isBlank()) {
 				bE.addMessage("Le mot de passe est obligatoire.");
 			}
-			if (confirmation.isBlank() & confirmation.equals(mdp)) {
+			if (confirmation.isBlank()) {
 				bE.addMessage("Veuillez confirmer votre mot de passe");
 			}
 			if (!bE.getListeMessage().isEmpty()) {

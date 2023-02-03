@@ -27,7 +27,16 @@ public class UtilisateurManager {
 			String codePostal, String ville, int i, boolean b, String mdp) throws BusinessException {
 
 		BusinessException bE = new BusinessException();
-
+		validerPseudo(pseudo, bE);
+		validerNom(prenom, bE);
+		validerPrenom(prenom, bE);
+		validerMail(email, bE);
+		validerTelephone(tel, bE);
+		validerRue(rue, bE);
+		validerCP(codePostal, bE);
+		validerVille(ville, bE);
+		validerMdp(mdp, bE);
+		
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
@@ -52,40 +61,66 @@ public class UtilisateurManager {
 	}
 
 	public void validerPrenom(String prenom, BusinessException businessException) {
-
+		if (prenom == null || !prenom.chars().allMatch(Character::isLetter)) {
+			businessException.addMessage("Le prénom est obligatoire et ne peut contenir que des lettres.");
+		}
 	}
 
 	public void validerMail(String mail, BusinessException businessException) {
-
+		if(mail==null) {
+			businessException.addMessage("Le mail est obligatoire");
+		}
 	}
 
 	public void validerTelephone(String telephone, BusinessException businessException) {
-
+		if(telephone==null || !telephone.chars().allMatch(Character::isDigit) & Integer.parseInt(telephone)!=10) {
+			businessException.addMessage("Le telephone est obligatoire et doit contenir 10 chiffres");
+		}
 	}
 
 	public void validerRue(String rue, BusinessException businessException) {
-
+		if(rue==null) {
+			businessException.addMessage("La rue est obligatoire.");
+		}
 	}
 
 	public void validerVille(String ville, BusinessException businessException) {
-
+		if(ville==null) {
+			businessException.addMessage("La ville est obligatoire.");
+		}
 	}
 
 	public void validerCP(String codePostal, BusinessException businessException) {
-
+		if(codePostal==null) {
+			businessException.addMessage("Le code postal est obligatoire.");
+		}
 	}
 
 	public void validerMdp(String mdp, BusinessException businessException) {
-
+		if(mdp==null) {
+			businessException.addMessage("Le mot de passe est obligatoire.");
+		}
 	}
 
-	public void validerConfirmation(String confirmation, BusinessException businessException) {
-
+	public void validerConfirmation(String confirmation, String mdp, BusinessException businessException) {
+		if(confirmation==null & confirmation.equals(mdp)) {
+			businessException.addMessage("La confirmation de mot de passe est obligatoire et doit etre la meme que le mot de passe.");
+		}
 	}
 
 	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel, String rue,
 			String codePostal, String ville, String mdp, int credit, int idUtilisateur) throws BusinessException {
 		BusinessException bE = new BusinessException();
+		validerPseudo(pseudo, bE);
+		validerNom(prenom, bE);
+		validerPrenom(prenom, bE);
+		validerMail(email, bE);
+		validerTelephone(tel, bE);
+		validerRue(rue, bE);
+		validerCP(codePostal, bE);
+		validerVille(ville, bE);
+		validerMdp(mdp, bE);
+		
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
