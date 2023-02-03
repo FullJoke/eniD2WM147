@@ -67,6 +67,11 @@ public class ArticleVendu {
 		this.categorie = categorie;
 	}
 
+	public ArticleVendu(String art, String description2, LocalDateTime dateDebut, LocalDateTime dateFin, String prix,
+			Utilisateur numUtilisateur, String listeCat, String string, Object object) {
+		// TODO Auto-generated constructor stub
+	}
+
 	// Getters & Setters
 	public int getIdArticle() {
 		return idArticle;

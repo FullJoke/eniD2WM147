@@ -110,41 +110,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return categories;
 	}
 
-//	public void insertArticle(String nom,String description,LocalDateTime debutEchere,LocalDateTime finEnchere,int prixInitial,int prixVente, int numUtilisateur, int numCategorie, String etatVente, String image) throws BusinessException{
-//		ArticleVendu article = null;
-//		Categorie cat = null;
-//		Utilisateur user =null;
-//		try (Connection cnx = ConnectionProvider.getConnection()) {
-//
-//			PreparedStatement stmtp = cnx.prepareStatement(INSERT_NEW_ART, PreparedStatement.RETURN_GENERATED_KEYS);
-//			stmtp.setString(1, nom);
-//			stmtp.setString(2, description);
-//			stmtp.setTimestamp(3,java.sql.Timestamp.valueOf(debutEchere) );
-//			stmtp.setTimestamp(4, java.sql.Timestamp.valueOf(finEnchere));
-//			stmtp.setInt(5, prixInitial);
-//			stmtp.setInt(6,prixVente );
-//			stmtp.setInt(7, (Utilisateur));
-//			stmtp.setInt(8,numCategorie );
-//			stmtp.setString(9,etatVente );
-//			stmtp.setString(10,image );
-//			
-//
-//			stmtp.executeUpdate();
-//			ResultSet rs = stmtp.getGeneratedKeys();
-//
-//			if (rs.next()) {
-//				int idArticle = rs.getInt(1);
-//				
-//				
-//
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			BusinessException bException = new BusinessException();
-//			bException.addMessage("une erreur est survenue");
-//			throw bException;
-//		}
-//	}
 	public ArticleVendu insertArticle(ArticleVendu article) throws BusinessException {
 		Connection cnx;
 		ArticleVendu art=null;
@@ -158,8 +123,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			pstmt.setTimestamp(4, java.sql.Timestamp.valueOf(article.getFinEnchere()));
 			pstmt.setInt(5, article.getPrixInitial());
 			pstmt.setInt(6, article.getPrixVente());
-			pstmt.setString(7,String.valueOf(article.getUtilisateur()));
-			pstmt.setString(8, String.valueOf(article.getCategorie()));
+			pstmt.setString(7,String.valueOf(article.getUtilisateur().getIdUtilisateur()));
+			pstmt.setString(8, String.valueOf(article.getCategorie().getNumCategorie()));
 			pstmt.setString(9, String.valueOf(article.getEtatVente()));
 			pstmt.setString(10, article.getImage());
 
@@ -168,10 +133,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			if (rs.next()) {
 				int idArticle = rs.getInt(article.getIdArticle());
 				art = new ArticleVendu(article);
-				
-
 			}
 			System.out.println(article);
+			//faire une boucle for each avec un INSERT Enchere pour créer les encheres avec l'article. 
 
 		} catch (SQLException e) {
 			e.printStackTrace();

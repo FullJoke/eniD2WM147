@@ -13,6 +13,11 @@ public class Categorie {
 		this.libelle = libelle;
 	}
 
+	public Categorie(int numCategorie) {
+		super();
+		this.numCategorie = numCategorie;
+	}
+
 	public Categorie(int numCategorie, String libelle, List<ArticleVendu> articles) {
 		super();
 		this.numCategorie = numCategorie;

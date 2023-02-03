@@ -76,18 +76,23 @@ public class ServletCreationArticle extends HttpServlet {
 		
 		LocalDateTime dateDebut=null;
 		LocalDateTime dateFin=null;
-		List<String>listeCat=null;
+		String listeCat=null;
 		
 		dateDebut= LocalDateTime.parse(debutVente);
 		dateFin=LocalDateTime.parse(finVente);
-		listeCat = Arrays.asList(categorie);
+		listeCat = (String) request.getAttribute("listcate");
 		prix=String.valueOf(prix);
+		 Utilisateur numUtilisateur = (Utilisateur) session.getAttribute("Utilisateur");
 		
 		//voir pour cat et parse pour localdate
 		//Ajouter article
+		article = new ArticleVendu(art,description,dateDebut,dateFin,prix,numUtilisateur,listeCat,"CR",null);
 		request.getParameter("saveNewArt");
+		
 		article = em.insert(article);
 		request.getParameter("annulerNewArt");
+		
+		
 
 	
 		} catch (BusinessException e) {

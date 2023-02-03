@@ -37,6 +37,13 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 	
+	
+	public Utilisateur(int idUtilisateur) {
+		super();
+		this.idUtilisateur = idUtilisateur;
+	}
+
+
 	public Utilisateur(int idUtilisateur, String pseudo) {
         super();
         this.idUtilisateur = idUtilisateur;
