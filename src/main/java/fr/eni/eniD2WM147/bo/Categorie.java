@@ -26,7 +26,7 @@ public class Categorie {
 	}
 
 	public Categorie() {
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	public int getNumCategorie() {
@@ -52,5 +52,12 @@ public class Categorie {
 	public void setArticles(List<ArticleVendu> articles) {
 		this.articles = articles;
 	}
+
+	@Override
+	public String toString() {
+		return "Categorie [numCategorie=" + numCategorie + ", libelle=" + libelle + ", articles=" + articles + "]";
+	}
+	
+	
 
 }

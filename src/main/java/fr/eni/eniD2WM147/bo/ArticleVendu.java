@@ -21,34 +21,21 @@ public class ArticleVendu {
 
 	// Constructeurs
 	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, int prixVente, String etatVente, String image,
-			Utilisateur utilisateur, Categorie categorie) {
+			LocalDateTime finEnchere, int prixInitial, int prixVente, String image, String etatVente,
+			Utilisateur utilisateur, Retrait retrait, Categorie categorie) {
 
-		this(nom, description, debutEnchere, finEnchere, prixInitial, prixVente, etatVente, image, utilisateur,
-				categorie);
+		this(nom, description, debutEnchere, finEnchere, prixInitial, prixVente, image, etatVente, utilisateur,
+				retrait, categorie);
 		this.idArticle = idArticle;
 	}
 
-	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, int prixVente, String etatVente, String image, Utilisateur utilisateur,
-			Categorie categorie) {
-		super();
-		this.nom = nom;
-		this.description = description;
-		this.debutEnchere = debutEnchere;
-		this.finEnchere = finEnchere;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.image = image;
-		this.utilisateur = utilisateur;
-		this.categorie=categorie;
+	public ArticleVendu() {
+
 	}	
 
-	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, int prixVente, String image, String etatVente,
-			List<Enchere> listeEnchere, Utilisateur utilisateur, Retrait retrait, Categorie categorie) {
-		this.idArticle = idArticle;
+	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere,
+			LocalDateTime finEnchere, int prixInitial, int prixVente, String image, String etatVente, 
+			Utilisateur utilisateur, Retrait retrait, Categorie categorie) {
 		this.nom = nom;
 		this.description = description;
 		this.debutEnchere = debutEnchere;
@@ -57,7 +44,6 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 		this.image = image;
 		this.etatVente = etatVente;
-		this.listeEnchere = listeEnchere;
 		this.utilisateur = utilisateur;
 		this.retrait = retrait;
 		this.categorie = categorie;

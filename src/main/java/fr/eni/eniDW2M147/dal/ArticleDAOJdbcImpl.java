@@ -58,7 +58,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
 								rs.getTime("date_fin_enchere").toLocalTime()),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u, null);
+						rs.getString("image"), u, null, null);
 				articles.add(arti);
 
 			}
@@ -88,7 +88,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
 								rs.getTime("date_fin_enchere").toLocalTime()),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u, null);
+						rs.getString("image"), u, null, null);
 				articles.add(arti);
 				articles.add(arti);
 			}
@@ -129,6 +129,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_NEW_ART, PreparedStatement.RETURN_GENERATED_KEYS);
 
+
 			pstmt.setString(1, article.getNom());
 			pstmt.setString(2, article.getDescription());
 			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(article.getDebutEnchere()));
@@ -146,6 +147,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			ResultSet rs = pstmt.getGeneratedKeys();
 
 			if (rs.next()) {
+
 				int idArticle = rs.getInt(1);
 				article.setIdArticle(idArticle);
 
@@ -213,7 +215,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 									   rs.getInt("prix_vente"),
 									   rs.getString("image"),
 									   rs.getString("etat_vente"),
-									   encheres,
 									   u,
 									   r,
 									   c);
