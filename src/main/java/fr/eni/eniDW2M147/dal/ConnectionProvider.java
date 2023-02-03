@@ -1,4 +1,4 @@
-package fr.eni.eneDW2M147.dal;
+package fr.eni.eniDW2M147.dal;
 
 import java.sql.Connection;
 import java.sql.SQLException;

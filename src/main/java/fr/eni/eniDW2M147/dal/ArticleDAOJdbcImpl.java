@@ -1,4 +1,4 @@
-package fr.eni.eneDW2M147.dal;
+package fr.eni.eniDW2M147.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,11 +8,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.eneDW2M147.businessException.BusinessException;
+import org.apache.naming.java.javaURLContextFactory;
+
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.bo.Utilisateur;
+import fr.eni.eniDW2M147.businessException.BusinessException;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
@@ -108,6 +110,41 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return categories;
 	}
 
+//	public void insertArticle(String nom,String description,LocalDateTime debutEchere,LocalDateTime finEnchere,int prixInitial,int prixVente, int numUtilisateur, int numCategorie, String etatVente, String image) throws BusinessException{
+//		ArticleVendu article = null;
+//		Categorie cat = null;
+//		Utilisateur user =null;
+//		try (Connection cnx = ConnectionProvider.getConnection()) {
+//
+//			PreparedStatement stmtp = cnx.prepareStatement(INSERT_NEW_ART, PreparedStatement.RETURN_GENERATED_KEYS);
+//			stmtp.setString(1, nom);
+//			stmtp.setString(2, description);
+//			stmtp.setTimestamp(3,java.sql.Timestamp.valueOf(debutEchere) );
+//			stmtp.setTimestamp(4, java.sql.Timestamp.valueOf(finEnchere));
+//			stmtp.setInt(5, prixInitial);
+//			stmtp.setInt(6,prixVente );
+//			stmtp.setInt(7, (Utilisateur));
+//			stmtp.setInt(8,numCategorie );
+//			stmtp.setString(9,etatVente );
+//			stmtp.setString(10,image );
+//			
+//
+//			stmtp.executeUpdate();
+//			ResultSet rs = stmtp.getGeneratedKeys();
+//
+//			if (rs.next()) {
+//				int idArticle = rs.getInt(1);
+//				
+//				
+//
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			BusinessException bException = new BusinessException();
+//			bException.addMessage("une erreur est survenue");
+//			throw bException;
+//		}
+//	}
 	public ArticleVendu insertArticle(ArticleVendu article) throws BusinessException {
 		Connection cnx;
 		ArticleVendu art=null;

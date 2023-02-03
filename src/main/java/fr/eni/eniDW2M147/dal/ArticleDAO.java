@@ -1,11 +1,11 @@
-package fr.eni.eneDW2M147.dal;
+package fr.eni.eniDW2M147.dal;
 
 
 import java.util.List;
 
-import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
+import fr.eni.eniDW2M147.businessException.BusinessException;
 
 public interface ArticleDAO {
 

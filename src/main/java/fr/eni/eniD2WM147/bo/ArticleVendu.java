@@ -35,7 +35,6 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 	}
 	
-	
 	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
 			int prixInitial, int prixVente, int numCategorie, String etatVente, String image) {
 		super();
@@ -49,22 +48,23 @@ public class ArticleVendu {
 		this.image = image;
 	}
 
+
+
+	public ArticleVendu(ArticleVendu article) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, int prixVente, String etatVente, String image) {
+			int prixInitial, String image, Utilisateur utilisateur, Categorie categorie) {
 		super();
 		this.nom = nom;
 		this.description = description;
 		this.debutEnchere = debutEnchere;
 		this.finEnchere = finEnchere;
 		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
 		this.image = image;
-	}
-
-
-	public ArticleVendu(ArticleVendu article) {
-		// TODO Auto-generated constructor stub
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 
 	// Getters & Setters
