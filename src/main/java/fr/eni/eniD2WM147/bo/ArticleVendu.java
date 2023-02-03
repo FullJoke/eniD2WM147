@@ -50,8 +50,8 @@ public class ArticleVendu {
 
 
 
-	public ArticleVendu(ArticleVendu article) {
-		// TODO Auto-generated constructor stub
+	public ArticleVendu() {
+		
 	}
 
 	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,

@@ -5,9 +5,11 @@ import java.util.List;
 
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
+import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniDW2M147.businessException.BusinessException;
 import fr.eni.eniDW2M147.dal.ArticleDAO;
+import fr.eni.eniDW2M147.dal.EnchereDAO;
 import fr.eni.eniDW2M147.dal.EnchereDAOFactory;
 import fr.eni.eniDW2M147.dal.UtilisateurDAO;
 
@@ -17,10 +19,14 @@ public class EnchereManager {
 
 	private ArticleDAO articleDAO;
 
+	private EnchereDAO enchereDAO;
+
 	public EnchereManager() {
-		this.utilisateurDAO = EnchereDAOFactory.getEnchereDao();
+		this.utilisateurDAO = EnchereDAOFactory.getUtilisateurDao();
 
 		this.articleDAO = EnchereDAOFactory.getArticleDAO();
+
+		this.enchereDAO = EnchereDAOFactory.getEnchereDAO();
 
 	}
 
@@ -122,5 +128,17 @@ public class EnchereManager {
 		}
 		return articleDAO.insertArticle(article);
 
+	}
+	public Enchere insertBid(LocalDateTime dateEnchere, int montantEnchere) throws BusinessException {
+
+		BusinessException bE = new BusinessException();
+
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+
+		Enchere enchere = enchereDAO.insertBid( dateEnchere, montantEnchere);
+
+		return enchere;
 	}
 }

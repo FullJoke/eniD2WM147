@@ -119,16 +119,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_NEW_ART, PreparedStatement.RETURN_GENERATED_KEYS);
 			
-			pstmt.setString(1, article.getNom());
-			pstmt.setString(2, article.getDescription());
-			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(article.getDebutEnchere()));
-			pstmt.setTimestamp(4, java.sql.Timestamp.valueOf(article.getFinEnchere()));
-			pstmt.setInt(5, article.getPrixInitial());
-			pstmt.setInt(6, article.getPrixVente());
+			pstmt.setString(1,article.getNom());
+			pstmt.setString(2,article.getDescription());
+			pstmt.setTimestamp(3,java.sql.Timestamp.valueOf(article.getDebutEnchere()));
+			pstmt.setTimestamp(4,java.sql.Timestamp.valueOf(article.getFinEnchere()));
+			pstmt.setInt(5,article.getPrixInitial());
+			pstmt.setInt(6,article.getPrixVente());
 			pstmt.setString(7,String.valueOf(article.getUtilisateur().getIdUtilisateur()));
-			pstmt.setString(8, String.valueOf(article.getCategorie().getNumCategorie()));
-			pstmt.setString(9, String.valueOf(article.getEtatVente()));
-			pstmt.setString(10, article.getImage());
+			pstmt.setString(8,String.valueOf(article.getCategorie().getNumCategorie()));
+			pstmt.setString(9,String.valueOf(article.getEtatVente()));
+			pstmt.setString(10,article.getImage());
 
 			pstmt.executeUpdate();
 			
@@ -139,8 +139,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				int idArticle = rs.getInt(article.getIdArticle());
 				art = new ArticleVendu(article);
 				art.setIdArticle(idArticle);
-				
-			}
+				}
 			System.out.println(article);
 			//faire une boucle for each avec un INSERT Enchere pour créer les encheres avec l'article. 
 
