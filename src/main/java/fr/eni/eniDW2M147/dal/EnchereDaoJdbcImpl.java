@@ -41,4 +41,23 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		return bid;
 
 	}
+
+
+	public Enchere bidArticle() throws BusinessException {
+		Utilisateur user = new Utilisateur();
+		ArticleVendu art = new ArticleVendu();
+		Enchere prixEnchere = new Enchere();
+		EnchereManager em = new EnchereManager();
+		UtilisateurManager util = new UtilisateurManager();
+		
+		if(prixEnchere.getMontantEnchere() > art.getPrixInitial()&& 
+				user.getCredit()>prixEnchere.getMontantEnchere() ) {
+			
+			em.insertBid(prixEnchere.getDateEnchere(), prixEnchere.getMontantEnchere());
+			}
+
+	return null;
+
+	}
+
 }
