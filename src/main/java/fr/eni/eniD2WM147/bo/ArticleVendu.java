@@ -43,6 +43,24 @@ public class ArticleVendu {
 		this.image = image;
 		this.utilisateur = utilisateur;
 		this.categorie=categorie;
+	}	
+
+	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
+			LocalDateTime finEnchere, int prixInitial, int prixVente, String image, String etatVente,
+			List<Enchere> listeEnchere, Utilisateur utilisateur, Retrait retrait, Categorie categorie) {
+		this.idArticle = idArticle;
+		this.nom = nom;
+		this.description = description;
+		this.debutEnchere = debutEnchere;
+		this.finEnchere = finEnchere;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.image = image;
+		this.etatVente = etatVente;
+		this.listeEnchere = listeEnchere;
+		this.utilisateur = utilisateur;
+		this.retrait = retrait;
+		this.categorie = categorie;
 	}
 
 	// Getters & Setters
