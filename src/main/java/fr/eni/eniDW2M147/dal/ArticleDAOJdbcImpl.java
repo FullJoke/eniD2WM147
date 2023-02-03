@@ -8,9 +8,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.jasper.tagplugins.jstl.Util;
+
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
-
+import fr.eni.eniD2WM147.bo.Enchere;
+import fr.eni.eniD2WM147.bo.Retrait;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniDW2M147.businessException.BusinessException;
 
@@ -22,8 +25,18 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS av "
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_categorie=?";
 	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) VALUES (?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS av"
-			+ " INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_article=?";
+	private static final String SELECT_ART_BY_ID = "SELECT av.nom_article, av.nom_article, av.description, av.date_debut_enchere, av.date_fin_enchere, av.prix_initial, av.prix_vente,\r\n"
+			+ "	   u.no_utilisateur as id_vendeur, u.pseudo as pseudo_vendeur,\r\n"
+			+ "	   r.rue, r.code_postal, r.ville,\r\n"
+			+ "	   c.no_categorie, c.libelle,\r\n"
+			+ "	   e.montant_enchere, e.no_utilisateur as id_acheteur, (SELECT pseudo FROM UTILISATEURS WHERE no_utilisateur=e.no_utilisateur) as pseudo_acheteur\r\n"
+			+ "FROM ARTICLES_VENDUS av INNER JOIN UTILISATEURS u ON av.no_utilisateur=u.no_utilisateur\r\n"
+			+ "							  JOIN RETRAITS r ON av.no_article=r.no_article\r\n"
+			+ "							  JOIN CATEGORIES c ON av.no_categorie=c.no_categorie\r\n"
+			+ "							  JOIN ENCHERES e ON av.no_article=e.no_article\r\n"
+			+ "							  \r\n"
+			+ "							  \r\n"
+			+ "WHERE av.no_article=?";
 	private static final String SELECT_CAT = "SELECT * FROM CATEGORIES c JOIN ARTICLES_VENDUS av ON "
 			+ "c.no_categorie = av.no_categorie WHERE no_article=?";
 	private static final String INSERT_ENCHERES = "INSERT INTO ENCHERES (no_utilisateur,no_article,date_enchere,montant_enchere) VALUES(?,?,?,?)";
@@ -45,7 +58,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
 								rs.getTime("date_fin_enchere").toLocalTime()),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u, null);
+						rs.getString("image"), u, null, null);
 				articles.add(arti);
 
 			}
@@ -75,7 +88,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
 								rs.getTime("date_fin_enchere").toLocalTime()),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u, null);
+						rs.getString("image"), u, null, null);
 				articles.add(arti);
 				articles.add(arti);
 			}
@@ -158,11 +171,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
 		System.out.println("DAL - idArticle selectionné : " + idArticle);
-		ArticleVendu article = null;
 
 		ArticleVendu art = null;
 		PreparedStatement pstmt;
 		Utilisateur u;
+		Categorie c;
+		Retrait r;
+		Enchere e;
+		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			pstmt = cnx.prepareStatement(SELECT_ART_BY_ID);
@@ -170,24 +186,45 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
+				
+				c = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				System.out.println(c.getLibelle());
+				
+				Utilisateur acheteur = new Utilisateur(rs.getInt("id_acheteur"), rs.getString("pseudo_acheteur"));
+				System.out.println("Pseudo de l'acheteur : " + acheteur.getNom());
+				e = new Enchere(rs.getInt("montant_enchere"), acheteur);
+				System.out.println("Montant de l'enchère : " + e.getMontantEnchere());
+				List<Enchere> encheres = new ArrayList<>();
+				encheres.add(e);
+				
+				u = new Utilisateur(rs.getInt("id_vendeur"), rs.getString("pseudo_vendeur"));
 				System.out.println(u.getPseudo());
+				
+				r = new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"));
+				System.out.println("Ville du retrait : " + r.getVille());
+				
 
-				art = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
-						rs.getString("description"),
-						LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()),
-								rs.getTime("date_debut_enchere").toLocalTime()),
-						LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
-								rs.getTime("date_fin_enchere").toLocalTime()),
-						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u, null);
+				art = new ArticleVendu(rs.getInt("no_Article"),
+									   rs.getString("nom_article"),
+									   rs.getString("description"),
+									   LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()),
+									   rs.getTime("date_debut_enchere").toLocalTime()),
+									   LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
+									   rs.getTime("date_fin_enchere").toLocalTime()),
+									   rs.getInt("prix_initial"),
+									   rs.getInt("prix_vente"),
+									   rs.getString("image"),
+									   rs.getString("etat_vente"),
+									   u,
+									   r,
+									   c);
 
 				// recuperer aussi la categorie en base de donnée
 
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
 			BusinessException bException = new BusinessException();
 			bException.addMessage("une erreur est survenue");
 			throw bException;

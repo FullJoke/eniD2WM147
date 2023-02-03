@@ -21,43 +21,31 @@ public class ArticleVendu {
 
 	// Constructeurs
 	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, int prixVente, String etatVente, String image,
-			Utilisateur utilisateur, Categorie categorie) {
+			LocalDateTime finEnchere, int prixInitial, int prixVente, String image, String etatVente,
+			Utilisateur utilisateur, Retrait retrait, Categorie categorie) {
 
-		this(nom, description, debutEnchere, finEnchere, prixInitial, prixVente, etatVente, image, utilisateur,
-				categorie);
+		this(nom, description, debutEnchere, finEnchere, prixInitial, prixVente, image, etatVente, utilisateur,
+				retrait, categorie);
 		this.idArticle = idArticle;
 	}
 
-	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, int prixVente, String etatVente, String image, Utilisateur utilisateur,
-			Categorie categorie) {
-		super();
+	public ArticleVendu() {
+
+	}	
+
+	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere,
+			LocalDateTime finEnchere, int prixInitial, int prixVente, String image, String etatVente, 
+			Utilisateur utilisateur, Retrait retrait, Categorie categorie) {
 		this.nom = nom;
 		this.description = description;
 		this.debutEnchere = debutEnchere;
 		this.finEnchere = finEnchere;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
+		this.image = image;
 		this.etatVente = etatVente;
-		this.image = image;
-
-	}
-
-	public ArticleVendu() {
-
-	}
-
-	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, String image, Utilisateur utilisateur, Categorie categorie) {
-		super();
-		this.nom = nom;
-		this.description = description;
-		this.debutEnchere = debutEnchere;
-		this.finEnchere = finEnchere;
-		this.prixInitial = prixInitial;
-		this.image = image;
 		this.utilisateur = utilisateur;
+		this.retrait = retrait;
 		this.categorie = categorie;
 	}
 

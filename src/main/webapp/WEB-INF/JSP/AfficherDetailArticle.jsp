@@ -97,7 +97,7 @@
 			<br>
 			
 			<label id="bestOfferArt">Meilleure offre :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<%=av.getPrixVente()%> pts par <%=u.getPseudo()%></label>
+			En cours </label>
 			
 			<br>
 			
