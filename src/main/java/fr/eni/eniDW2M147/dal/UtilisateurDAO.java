@@ -1,8 +1,7 @@
-package fr.eni.eneDW2M147.dal;
-
-import fr.eni.eneDW2M147.businessException.BusinessException;
+package fr.eni.eniDW2M147.dal;
 
 import fr.eni.eniD2WM147.bo.Utilisateur;
+import fr.eni.eniDW2M147.businessException.BusinessException;
 
 public interface UtilisateurDAO {
 
@@ -17,7 +16,6 @@ public interface UtilisateurDAO {
 
 	public void deleteUser(int idUtilisateur) throws BusinessException;
 
-
 	public Utilisateur selectUserById(int idUtilisateur) throws BusinessException;
 
 	public void deleteEnchere(int idUtilisateur) throws BusinessException;
@@ -26,6 +24,5 @@ public interface UtilisateurDAO {
 
 	public void deleteAll(int idUtilisateur) throws BusinessException;
 
-	
 
 }

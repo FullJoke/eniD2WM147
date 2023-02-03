@@ -1,14 +1,15 @@
 package fr.eni.eniD2WM147.bll;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-import fr.eni.eneDW2M147.businessException.BusinessException;
-import fr.eni.eneDW2M147.dal.ArticleDAO;
-import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
-import fr.eni.eneDW2M147.dal.UtilisateurDAO;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
+import fr.eni.eniDW2M147.businessException.BusinessException;
+import fr.eni.eniDW2M147.dal.ArticleDAO;
+import fr.eni.eniDW2M147.dal.EnchereDAOFactory;
+import fr.eni.eniDW2M147.dal.UtilisateurDAO;
 
 public class EnchereManager {
 
@@ -63,16 +64,26 @@ public class EnchereManager {
 
 	}
 
-
 	public void deleteAll(int idUtilisateur) throws BusinessException {
 		BusinessException bE = new BusinessException();
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
 		utilisateurDAO.deleteAll(idUtilisateur);
-		
-		
+
 	}
+
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 
 	// Articles
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
@@ -92,6 +103,10 @@ public class EnchereManager {
 		return articleDAO.selectArticlesByCat(noCategorie);
 	}
 
+	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
+		return articleDAO.selectArticleById(idArticle);
+	}
+
 	public List<Categorie> selectAllCat() throws BusinessException {
 		BusinessException bE = new BusinessException();
 		if (!bE.getListeMessage().isEmpty()) {
@@ -100,4 +115,12 @@ public class EnchereManager {
 		return articleDAO.selectAllCategories();
 	}
 
+	public ArticleVendu insert(ArticleVendu article) throws BusinessException {
+		BusinessException bE = new BusinessException();
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+		return articleDAO.insertArticle(article);
+
+	}
 }

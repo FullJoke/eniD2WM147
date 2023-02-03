@@ -1,12 +1,12 @@
-package fr.eni.eneDW2M147.dal;
+package fr.eni.eniDW2M147.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.Utilisateur;
+import fr.eni.eniDW2M147.businessException.BusinessException;
 
 public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 
@@ -216,6 +216,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 	}
 
 	public Utilisateur selectUserById(int idUtilisateur) throws BusinessException {
+
 		Utilisateur user = null;
 		PreparedStatement pstmt;
 		Connection cnx;
@@ -227,7 +228,8 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			ResultSet rs = pstmt.getGeneratedKeys();
 
 			if (rs.next()) {
-                String pseudo = rs.getString("pseudo");
+				idUtilisateur = rs.getInt("no_utilisateur");
+				String pseudo = rs.getString("pseudo");
 				String nom = rs.getString("nom");
 				String prenom = rs.getString("prenom");
 				String email = rs.getString("email");
@@ -237,11 +239,10 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 				String ville = rs.getString("ville");
 				int credit = rs.getInt("credit");
 				Boolean administrateur = rs.getBoolean("administrateur");
-				
-				user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-						credit, administrateur);
-        }
-			
+
+				user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, credit,
+						administrateur);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -250,7 +251,7 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			throw bException;
 		}
 
-		return user;
+		return null;
 
 	}
 

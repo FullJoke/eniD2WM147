@@ -115,6 +115,9 @@
 					onclick="window.location.href ='<%=request.getContextPath()%>/delete';">Supprimer</button>
 			</form>
 		</div>
-	</div>
+	</div>	
+	<footer id="footer">
+	<%@ include file="footer.html"%>
+	</footer>
 </body>
 </html>
