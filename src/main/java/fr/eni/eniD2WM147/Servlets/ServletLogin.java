@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniDW2M147.businessException.BusinessException;
 
@@ -38,7 +39,7 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		EnchereManager em = new EnchereManager();
+		UtilisateurManager um = new UtilisateurManager();
 
 		String id = request.getParameter("id");
 		String mdp = request.getParameter("mdp");
@@ -59,7 +60,7 @@ public class ServletLogin extends HttpServlet {
 				throw beLog;
 			}
 
-			u = em.getUserByEmailAndPassword(id, mdp);
+			u = um.getUserByEmailAndPassword(id, mdp);
 			if (u == null) {
 
 				System.out.println("LOGIN - FAIL");

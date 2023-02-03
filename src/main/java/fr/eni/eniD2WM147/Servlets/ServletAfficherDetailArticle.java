@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.eniD2WM147.bll.ArticleManager;
 import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniDW2M147.businessException.BusinessException;
@@ -26,7 +27,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		EnchereManager em = new EnchereManager();
+		ArticleManager am = new ArticleManager();
 		System.out.println("AfficherArticle - doGet");
 		String idArtTemp = request.getParameter("Article");
 		System.out.println(idArtTemp);
@@ -34,7 +35,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 		int idArt = Integer.parseInt(idArtTemp);
 		
 		try {
-			ArticleVendu av = em.selectArticleById(idArt);
+			ArticleVendu av = am.selectArticleById(idArt);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
