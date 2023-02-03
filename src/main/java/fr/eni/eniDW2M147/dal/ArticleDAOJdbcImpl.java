@@ -199,6 +199,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				System.out.println(u.getPseudo());
 				
 				r = new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"));
+				System.out.println("Ville du retrait : " + r.getVille());
 				
 
 				art = new ArticleVendu(rs.getInt("no_Article"),
