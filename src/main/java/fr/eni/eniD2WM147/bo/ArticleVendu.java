@@ -12,7 +12,7 @@ public class ArticleVendu {
 	private int prixInitial;
 	private int prixVente;
 	private String image;
-	
+
 	private String etatVente;
 	private List<Enchere> listeEnchere;
 	private Utilisateur utilisateur;
@@ -22,21 +22,16 @@ public class ArticleVendu {
 	// Constructeurs
 	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
 			LocalDateTime finEnchere, int prixInitial, int prixVente, String etatVente, String image,
-			Utilisateur utilisateur) {
+			Utilisateur utilisateur, Categorie categorie) {
+
+		this(nom, description, debutEnchere, finEnchere, prixInitial, prixVente, etatVente, image, utilisateur,
+				categorie);
 		this.idArticle = idArticle;
-		this.nom = nom;
-		this.description = description;
-		this.debutEnchere = debutEnchere;
-		this.finEnchere = finEnchere;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.image = image;
-		this.utilisateur = utilisateur;
 	}
-	
+
 	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, int prixVente, int numCategorie, String etatVente, String image) {
+			int prixInitial, int prixVente, String etatVente, String image, Utilisateur utilisateur,
+			Categorie categorie) {
 		super();
 		this.nom = nom;
 		this.description = description;
@@ -46,30 +41,8 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
 		this.image = image;
-	}
-
-
-
-	public ArticleVendu(ArticleVendu article) {
-		// TODO Auto-generated constructor stub
-	}
-
-	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, String image, Utilisateur utilisateur, Categorie categorie) {
-		super();
-		this.nom = nom;
-		this.description = description;
-		this.debutEnchere = debutEnchere;
-		this.finEnchere = finEnchere;
-		this.prixInitial = prixInitial;
-		this.image = image;
 		this.utilisateur = utilisateur;
-		this.categorie = categorie;
-	}
-
-	public ArticleVendu(String art, String description2, LocalDateTime dateDebut, LocalDateTime dateFin, String prix,
-			Utilisateur numUtilisateur, String listeCat, String string, Object object) {
-		// TODO Auto-generated constructor stub
+		this.categorie=categorie;
 	}
 
 	// Getters & Setters
@@ -168,17 +141,14 @@ public class ArticleVendu {
 	public void setRetrait(Retrait retrait) {
 		this.retrait = retrait;
 	}
-	
 
 	public Categorie getCategorie() {
 		return categorie;
 	}
 
-
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
-
 
 	// Méthodes
 	@Override

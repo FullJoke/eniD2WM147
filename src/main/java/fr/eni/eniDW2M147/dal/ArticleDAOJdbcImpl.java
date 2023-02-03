@@ -25,11 +25,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			+ "finEnchere,prixInitial,prixVente,etatVente,image)VALUES(?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS av"
 			+ " INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_article=?";
-
 	private static final String SELECT_CAT = "SELECT * FROM CATEGORIES c JOIN ARTICLES_VENDUS av ON "
 			+ "c.no_categorie = av.no_categorie WHERE no_article=?";
-
-	private static final String INSERT_ENCHERES = "";
+	private static final String INSERT_ENCHERES = "INSERT INTO ENCHERES (no_utilisateur,no_article,date_enchere,montant_enchere) VALUES(?,?,?,?)";
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -41,14 +39,13 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
 
-				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
+				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"),
+						rs.getString("nom_article"),
 						rs.getString("description"),
-						LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
-								rs.getTime("date_debut_enchere").toLocalTime()),
-						LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
-								rs.getTime("date_fin_enchere").toLocalTime()),
+						LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()), rs.getTime("date_debut_enchere").toLocalTime()),
+						LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()), rs.getTime("date_fin_enchere").toLocalTime()),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u);
+						rs.getString("image"), u, null);
 				articles.add(arti);
 
 			}
@@ -71,14 +68,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			while (rs.next()) {
 				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
 
-				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
+				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"),
+						rs.getString("nom_article"),
 						rs.getString("description"),
-						LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
-								rs.getTime("date_debut_enchere").toLocalTime()),
-						LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
-								rs.getTime("date_fin_enchere").toLocalTime()),
+						LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()), rs.getTime("date_debut_enchere").toLocalTime()),
+						LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()), rs.getTime("date_fin_enchere").toLocalTime()),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u);
+						rs.getString("image"), u, null);
+				articles.add(arti);
 				articles.add(arti);
 			}
 
@@ -111,22 +108,26 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return categories;
 	}
 
-	public void insertArticle(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, int prixVente, String etatVente, String image) throws BusinessException {
+	public ArticleVendu insertArticle(ArticleVendu article) throws BusinessException {
 		ArticleVendu art;
 		Connection cnx;
+
+		
 		try {
 			cnx = ConnectionProvider.getConnection();
-			PreparedStatement pstmt = cnx.prepareStatement(INSERT_NEW_ART);
+			PreparedStatement pstmt = cnx.prepareStatement(INSERT_NEW_ART, PreparedStatement.RETURN_GENERATED_KEYS);
 
-			pstmt.setString(1, nom);
-			pstmt.setString(2, description);
-			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(debutEnchere));
-			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(finEnchere));
-			pstmt.setInt(5, prixInitial);
-			pstmt.setInt(6, prixVente);
-			pstmt.setString(7, String.valueOf(etatVente));
-			pstmt.setString(8, image);
+			pstmt.setString(1, article.getNom());
+			pstmt.setString(2, article.getDescription());
+			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(article.getDebutEnchere()));
+			pstmt.setTimestamp(4, java.sql.Timestamp.valueOf(article.getFinEnchere()));
+			pstmt.setInt(5, article.getPrixInitial());
+			pstmt.setInt(6, article.getPrixVente());
+			pstmt.setString(7, String.valueOf(article.getUtilisateur().getIdUtilisateur()));
+			System.out.println(article.getCategorie());
+			pstmt.setString(8, String.valueOf(article.getCategorie().getNumCategorie()));
+			pstmt.setString(9, String.valueOf(article.getEtatVente()));
+			pstmt.setString(10, article.getImage());
 
 			pstmt.executeUpdate();
 
@@ -134,9 +135,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			if (rs.next()) {
 				int idArticle = rs.getInt(1);
+				article.setIdArticle(idArticle);
 
 			}
-			System.out.println("");
+			System.out.println(article);
+			// Faire une methode valider date debut et date de fin pour verifier qu'elles
+			// respectent bien les dates
 			// faire une boucle for each avec un INSERT Enchere pour créer les encheres avec
 			// l'article.
 
@@ -147,12 +151,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			throw bException;
 		}
 
+		return article;
 
 	}
 
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
 		System.out.println("DAL - idArticle selectionné : " + idArticle);
 		ArticleVendu article = null;
+
+		ArticleVendu art =null;
 		PreparedStatement pstmt;
 		Utilisateur u;
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -163,15 +170,18 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			if (rs.next()) {
 				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
+				System.out.println(u.getPseudo());
+				
+				art = new ArticleVendu(rs.getInt("no_Article"),
+								rs.getString("nom_article"),
+								rs.getString("description"),
+								LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()), rs.getTime("date_debut_enchere").toLocalTime()),
+								LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()), rs.getTime("date_fin_enchere").toLocalTime()),
+								rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
+								rs.getString("image"), u, null);
+						
+				//recuperer aussi la categorie en base de donnée
 
-				article = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
-						rs.getString("description"),
-						LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
-								rs.getTime("date_debut_enchere").toLocalTime()),
-						LocalDateTime.of(rs.getDate("date_fin_enchere").toLocalDate(),
-								rs.getTime("date_fin_enchere").toLocalTime()),
-						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u);
 			}
 
 		} catch (SQLException e) {
@@ -180,8 +190,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			bException.addMessage("une erreur est survenue");
 			throw bException;
 		}
-		System.out.println(article);
-		return article;
+
+		return art;
 
 	}
 
@@ -204,11 +214,4 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		System.out.println("DAL - Categorie Article : " + cat.getLibelle());
 		return cat;
 	}
-
-	@Override
-	public ArticleVendu insertArticle(ArticleVendu article) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
