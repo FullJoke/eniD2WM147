@@ -22,8 +22,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS av "
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_categorie=?";
 	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) VALUES (?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS av"
-			+ " INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_article=?";
+	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS av "
+			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur "
+			+ "JOIN RETRAITS r ON av.no_article = r.no_article "
+			+ "WHERE no_article=?";
 	private static final String SELECT_CAT = "SELECT * FROM CATEGORIES c JOIN ARTICLES_VENDUS av ON "
 			+ "c.no_categorie = av.no_categorie WHERE no_article=?";
 	private static final String INSERT_ENCHERES = "INSERT INTO ENCHERES (no_utilisateur,no_article,date_enchere,montant_enchere) VALUES(?,?,?,?)";
@@ -156,7 +158,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
 		System.out.println("DAL - idArticle selectionné : " + idArticle);
-		ArticleVendu article = null;
 
 		ArticleVendu art = null;
 		PreparedStatement pstmt;
