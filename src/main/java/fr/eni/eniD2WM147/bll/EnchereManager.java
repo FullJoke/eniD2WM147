@@ -2,13 +2,13 @@ package fr.eni.eniD2WM147.bll;
 
 import java.util.List;
 
-import fr.eni.eneDW2M147.businessException.BusinessException;
-import fr.eni.eneDW2M147.dal.ArticleDAO;
-import fr.eni.eneDW2M147.dal.EnchereDAOFactory;
-import fr.eni.eneDW2M147.dal.UtilisateurDAO;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
+import fr.eni.eniDW2M147.businessException.BusinessException;
+import fr.eni.eniDW2M147.dal.ArticleDAO;
+import fr.eni.eniDW2M147.dal.EnchereDAOFactory;
+import fr.eni.eniDW2M147.dal.UtilisateurDAO;
 
 public class EnchereManager {
 
@@ -69,8 +69,11 @@ public class EnchereManager {
 			throw bE;
 		}
 		utilisateurDAO.deleteAll(idUtilisateur);
-		
-		
+	}
+	
+	public Utilisateur getUtilisateurByEnchere(int idArticle) throws BusinessException {
+		System.out.println("BLL - idArticle : " + idArticle);
+		return utilisateurDAO.selectByEnchere(idArticle);
 	}
 	
 	/*
@@ -104,6 +107,7 @@ public class EnchereManager {
 	}
 	
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
+		System.out.println("BLL - idArticle selectionné : " + idArticle);
 		return articleDAO.selectArticleById(idArticle);
 	}
 
@@ -113,6 +117,10 @@ public class EnchereManager {
 			throw bE;
 		}
 		return articleDAO.selectAllCategories();
+	}
+	
+	public Categorie selectCatByIdArt(int idArticle) {
+		return articleDAO.selectCatByIdArt(idArticle);
 	}
 
 }

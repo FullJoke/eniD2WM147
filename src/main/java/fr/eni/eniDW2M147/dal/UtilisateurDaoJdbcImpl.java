@@ -1,21 +1,23 @@
-package fr.eni.eneDW2M147.dal;
+package fr.eni.eniDW2M147.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import fr.eni.eneDW2M147.businessException.BusinessException;
+import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
+import fr.eni.eniDW2M147.businessException.BusinessException;
 
 public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";
+	private static final String SELECT_BY_ENCHERE ="SELECT * FROM ENCHERES e JOIN UTILISATEURS u "
+			+ "ON e.no_utilisateur=u.no_utilisateur WHERE no_article = ?";
+	
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?,ville=?, mot_de_passe=?,credit=? WHERE no_utilisateur = ?;";
 
-	// private static final String DELETE_RETRAIT = "DELETE r FROM RETRAITS r JOIN
-	// ARTICLES_VENDUS av ON r.no_article=av.no_article WHERE r.no_article=?";
 	private static final String DELETE_ENCHERES = "DELETE e FROM ENCHERES e JOIN ARTICLES_VENDUS av ON e.no_article=av.no_article WHERE av.no_utilisateur=?";
 	private static final String DELETE_ARTICLE_VENDUS = "DELETE av FROM ARTICLES_VENDUS av Inner join UTILISATEURS u ON av.no_utilisateur=u.no_utilisateur WHERE av.no_utilisateur=?";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
@@ -246,12 +248,37 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException bException = new BusinessException();
-			bException.addMessage("une erreur est survenue");
+			bException.addMessage("une erreur est survenue lors de la recherche de l'utilisateur en base de donnnée");
 			throw bException;
 		}
 
 		return user;
 
 	}
+	
+	public Utilisateur selectByEnchere(int idArticle) throws BusinessException {
+		Utilisateur u = null;
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ENCHERE);
+			pstmt.setInt(1, idArticle);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				u = new Utilisateur(rs.getInt("no_utilisateur"),
+									rs.getString("pseudo"));
+			}
 
-}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue lors de la recherche de l'utilisateur en base de donnnée");
+			throw bException;
+		}
+		System.out.println("DAL - Utilisateur : " + u.getPseudo());
+		return u;
+	}
+
+	}
+

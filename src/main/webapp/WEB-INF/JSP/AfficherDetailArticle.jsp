@@ -1,3 +1,5 @@
+<%@page import="fr.eni.eniD2WM147.bo.Categorie"%>
+<%@page import="fr.eni.eniD2WM147.bo.ArticleVendu"%>
 <%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -71,35 +73,44 @@
 			<li class="breadcrumb-item active" aria-current="page">Détails Vente</li>
 		</ol>
 	</nav>
+	
+	<%ArticleVendu av = (ArticleVendu) request.getAttribute("detailArticle");%>
+	<%Utilisateur u = (Utilisateur) request.getAttribute("enchereUtilisateur");%>
+	<%Categorie cat = (Categorie) request.getAttribute("articleCategorie");%>
 
 
 	<div class="container">
 		<h2 style="text-align: center;">Détail Vente</h2>
 
-		<h4 style="text-align: center;">Pc gamer pour travailler</h4>
+		<h4 style="text-align: center;"><%=av.getNom()%></h4>
 		<br>
 		<div id="detailsArticle">
 			<label id="descriptionArt">Description : </label>
-			<textarea readonly style="vertical-align: top;"></textarea>
+			<textarea readonly style="vertical-align: top"><%=av.getDescription()%></textarea>
 			
 			<br>
 			<br>
 			
-			<label id="cateArt">Categorie : </label>
+			<label id="cateArt">Categorie :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<%=cat.getLibelle()%></label>
 			
 			<br>
 			
-			<label id="bestOfferArt">Meilleure offre : </label>
+			<label id="bestOfferArt">Meilleure offre :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<%=av.getPrixVente()%> pts par <%=u.getPseudo()%></label>
 			
 			<br>
 			
-			<label id="misePrixArt">Mise à prix : </label>
+			<label id="misePrixArt">Mise à prix :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<%=av.getPrixInitial()%> pts</label>
 			
-			<br> <label id="finEncArt">Fin de l'enchère : </label>
+			<br> <label id="finEncArt">Fin de l'enchère :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<%=av.getFinEnchere()%></label>
 			
 			<br> <label id="retraitArt">Retrait : </label>
 			
-			<br> <label id="vendeurArt">Vendeur : </label>
+			<br> <label id="vendeurArt">Vendeur :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<%=av.getUtilisateur().getPseudo()%></label>
 			
 			<br> <label id="porpositionArt">Ma proposition : </label>
 			<input type="number" min="1" max="1000">

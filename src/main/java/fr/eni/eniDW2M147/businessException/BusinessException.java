@@ -1,4 +1,4 @@
-package fr.eni.eneDW2M147.businessException;
+package fr.eni.eniDW2M147.businessException;
 
 import java.util.ArrayList;
 import java.util.List;

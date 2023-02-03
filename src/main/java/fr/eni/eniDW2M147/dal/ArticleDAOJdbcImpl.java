@@ -1,4 +1,4 @@
-package fr.eni.eneDW2M147.dal;
+package fr.eni.eniDW2M147.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.eneDW2M147.businessException.BusinessException;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
+import fr.eni.eniDW2M147.businessException.BusinessException;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
@@ -24,6 +24,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			+ "finEnchere,prixInitial,prixVente,etatVente,image)VALUES(?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS av"
 			+ " INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_article=?";
+	private static final String SELECT_CAT = "SELECT * FROM CATEGORIES c JOIN ARTICLES_VENDUS av ON "
+			+ "c.no_categorie = av.no_categorie WHERE no_article=?";
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -135,6 +137,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
+		System.out.println("DAL - idArticle selectionné : " + idArticle);
 		ArticleVendu article = null;
 		PreparedStatement pstmt;
 		Utilisateur u;
@@ -146,9 +149,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		
 			if (rs.next()) {
 				 u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
-		        System.out.println(u.getPseudo());
 		        
-		        ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
+		        article = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
 		        rs.getString("description"),
                 LocalDateTime.of(rs.getDate("date_debut_enchere").toLocalDate(),
                         rs.getTime("date_debut_enchere").toLocalTime()),
@@ -164,9 +166,30 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			bException.addMessage("une erreur est survenue");
 			throw bException;
 		}
-
+		System.out.println(article);
 		return article;
 
+	}
+
+	@Override
+	public Categorie selectCatByIdArt(int idArticle) {
+		Categorie cat = null;
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_CAT);
+			pstmt.setInt(1, idArticle);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cat = new Categorie(rs.getInt("no_categorie"),
+									rs.getString("libelle"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("DAL - Categorie Article : " + cat.getLibelle());
+		return cat;
 	}
 
 }

@@ -115,7 +115,7 @@
 				<div class="card" style="width: 15rem">
 					<form action="<%=request.getContextPath()%>/AfficherDetailArticle">
 						<input type="hidden" name="Article" value="<%=idArt%>"> <img
-							class="card-img-left" src="..." alt="PC GAMER">
+							class="card-img-left" src="..." alt="Image Produit">
 						<div class="card-body">
 							<h5 class="card-title"><%=a.getNom()%></h5>
 							<p class="card-text">
