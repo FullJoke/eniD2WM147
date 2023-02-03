@@ -28,7 +28,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS av"
 			+ " INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_article=?";
-	private static final String INSERT_ENCHERES="";
+	private static final String INSERT_ENCHERES="INSERT INTO ENCHERES (no_utilisateur,no_article,date_enchere,montant_enchere) VALUES(?,?,?,?)";
 	
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
@@ -142,6 +142,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				
 			}
 			System.out.println(article);
+			//Faire une methode valider date debut et date de fin pour verifier qu'elles respectent bien les dates
 			//faire une boucle for each avec un INSERT Enchere pour créer les encheres avec l'article. 
 
 		} catch (SQLException e) {
