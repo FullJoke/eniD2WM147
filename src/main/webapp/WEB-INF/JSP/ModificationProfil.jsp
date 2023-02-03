@@ -78,11 +78,6 @@
 				pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
 				<br> -->
 
-				<h6 class="mdpCom">
-					Le mot de passe doit avoir au moins 8 caractères (max15),<br>
-					un chiffre, une lettre majuscule et une minuscule
-				</h6>
-
 				<label id="signUpMdpNewLabel">Nouveau mot de passe : </label> <input
 					id="ModifNewMdp" type="password" name="mdp" placeholder="********"
 					required
@@ -111,7 +106,7 @@
 				<!-- <a	id="inscriptionButton" class="btn btn-danger" href="www.google.fr">Supprimer</a> -->
 				<input type="hidden" name="utilisateur"
 					value="<%=user.getIdUtilisateur()%>">
-				<button class="btn btn-danger" id="inscriptionButton" type="submit"
+				<button id="deleteButton" class="btn btn-danger" id="inscriptionButton" type="submit"
 					onclick="window.location.href ='<%=request.getContextPath()%>/delete';">Supprimer</button>
 			</form>
 		</div>

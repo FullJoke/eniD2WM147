@@ -23,6 +23,6 @@ public interface UtilisateurDAO {
 	public void deleteArticle(int idUtilisateur) throws BusinessException;
 
 	public void deleteAll(int idUtilisateur) throws BusinessException;
-
-
+	
+	public Utilisateur selectByEnchere(int idArticle) throws BusinessException;
 }

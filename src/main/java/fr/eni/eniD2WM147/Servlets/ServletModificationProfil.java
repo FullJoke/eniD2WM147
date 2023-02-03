@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniDW2M147.businessException.BusinessException;
 
@@ -42,7 +43,7 @@ public class ServletModificationProfil extends HttpServlet {
 		System.out.println("doPost");
 		HttpSession session = request.getSession();
 
-		EnchereManager em = new EnchereManager();
+		UtilisateurManager um = new UtilisateurManager();
 		Utilisateur user = null;
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -93,7 +94,7 @@ public class ServletModificationProfil extends HttpServlet {
 			if (!bE.getListeMessage().isEmpty()) {
 				throw bE;
 			}
-			user = em.updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville,newMdp.isBlank()?mdp:newMdp , ((Utilisateur)session.getAttribute("Utilisateur")).getCredit(), ((Utilisateur)session.getAttribute("Utilisateur")).getIdUtilisateur());
+			user = um.updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville,newMdp.isBlank()?mdp:newMdp , ((Utilisateur)session.getAttribute("Utilisateur")).getCredit(), ((Utilisateur)session.getAttribute("Utilisateur")).getIdUtilisateur());
 			session.setAttribute("Utilisateur", user);
 			System.out.println("MODIFICATION - SUCCESS");
 			response.sendRedirect(request.getContextPath()+"/Profil");

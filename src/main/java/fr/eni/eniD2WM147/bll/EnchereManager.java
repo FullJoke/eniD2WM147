@@ -22,7 +22,7 @@ public class EnchereManager {
 	private EnchereDAO enchereDAO;
 
 	public EnchereManager() {
-		this.utilisateurDAO = EnchereDAOFactory.getUtilisateurDao();
+		this.utilisateurDAO = EnchereDAOFactory.getUtilisateurDAO();
 
 		this.articleDAO = EnchereDAOFactory.getArticleDAO();
 

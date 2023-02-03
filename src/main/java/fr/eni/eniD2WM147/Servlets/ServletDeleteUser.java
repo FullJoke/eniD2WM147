@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
+import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniDW2M147.businessException.BusinessException;
 
@@ -44,12 +45,16 @@ public class ServletDeleteUser extends HttpServlet {
 		response.sendRedirect("/WEB-INF/JSP/Accueil.jsp");
 
 		HttpSession session = request.getSession();
+
 		EnchereManager em = new EnchereManager();
+
+		
+		UtilisateurManager um = new UtilisateurManager();
 		Utilisateur user = null;
 		user = (Utilisateur) session.getAttribute("Utilisateur");
 		request.getParameter("retourSuppression");
 		try {
-			em.deleteAll(user.getIdUtilisateur());
+			um.deleteAll(user.getIdUtilisateur());
 			System.out.println(user.getIdUtilisateur());
 		} catch (BusinessException e) {
 			e.printStackTrace();

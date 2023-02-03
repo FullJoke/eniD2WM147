@@ -178,7 +178,7 @@ label {
 }
 
 #inscriptionButton {
-	margin-right: 47px;
+	margin-right: 101px;
 }
 
 #articlesListe {
@@ -260,4 +260,12 @@ label {
 #loginError{
 	margin-left: 60px;
 	padding: 20px 146px 20px 360px;
+}
+
+#deleteButton{
+	margin: 628px 0px 0px 0px;
+}
+
+#detailsVendeurBtn{
+	margin: -50px 0px 0px 227px
 }

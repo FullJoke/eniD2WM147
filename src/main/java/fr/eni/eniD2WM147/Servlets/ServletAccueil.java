@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.eniD2WM147.bll.ArticleManager;
 import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
@@ -30,13 +31,13 @@ public class ServletAccueil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("ServletAccueil - doGet");
-		EnchereManager em = new EnchereManager();
+		ArticleManager am = new ArticleManager();
 		List<ArticleVendu> articles = new ArrayList<>();
 		List<Categorie> categories = new ArrayList<>();
 		int catChoisie;
 
 		try {
-			categories = em.selectAllCat();
+			categories = am.selectAllCat();
 			request.setAttribute("categories", categories);
 
 			String catChoisieTemp = request.getParameter("categorieChoisie");
@@ -46,9 +47,9 @@ public class ServletAccueil extends HttpServlet {
 			catChoisie = Integer.parseInt(catChoisieTemp);
 
 			if (catChoisie == 0) {
-				articles = em.selectAllArticles();
+				articles = am.selectAllArticles();
 			} else {
-				articles = em.selectArticlesByCat(catChoisie);
+				articles = am.selectArticlesByCat(catChoisie);
 			}
 
 			for (ArticleVendu a : articles) {
@@ -70,6 +71,7 @@ public class ServletAccueil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }

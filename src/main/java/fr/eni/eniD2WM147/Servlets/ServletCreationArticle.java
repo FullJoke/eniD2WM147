@@ -3,7 +3,6 @@ package fr.eni.eniD2WM147.Servlets;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,11 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport;
-
+import fr.eni.eniD2WM147.bll.ArticleManager;
 import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
@@ -36,11 +35,14 @@ public class ServletCreationArticle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Creation Vente - doGet");
+
 		EnchereManager em = new EnchereManager();
+
+		ArticleManager am = new ArticleManager();
 
 		List<Categorie> categories = new ArrayList<>();
 		try {
-			categories = em.selectAllCat();
+			categories = am.selectAllCat();
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,8 +62,10 @@ public class ServletCreationArticle extends HttpServlet {
 		System.out.println("doPost");
 		HttpSession session = request.getSession();
 		try {
-			EnchereManager em = new EnchereManager();
+
+			ArticleManager am = new ArticleManager();
 			ArticleVendu article = null;
+
 
 			String art = request.getParameter("article");
 			String description = request.getParameter("story");
@@ -76,27 +80,41 @@ public class ServletCreationArticle extends HttpServlet {
 
 			LocalDateTime dateDebut = null;
 			LocalDateTime dateFin = null;
-			String listeCat = null;
+			int numCat = Integer.parseInt(categorie);
 
-		dateFin=LocalDateTime.parse(finVente);
-		listeCat = (String) request.getAttribute("listcate");
-		prix=String.valueOf(prix);
-			Utilisateur numUtilisateur = (Utilisateur) session.getAttribute("Utilisateur");
+			dateDebut = LocalDateTime.parse(debutVente);
+			dateFin = LocalDateTime.parse(finVente);
 
+			int prixEntier = Integer.parseInt(prix);
+			Utilisateur vendeur = (Utilisateur) session.getAttribute("Utilisateur");
+			Categorie cat = new Categorie(numCat);
+			// voir pour le lieu de retrait
 			// voir pour cat et parse pour localdate
 			// Ajouter article
-			article = new ArticleVendu(art, description, dateDebut, dateFin, prix, numUtilisateur, listeCat, "CR",
-					image);
+			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, "CR", image, vendeur, cat);
 			request.getParameter("saveNewArt");
 
-			article = em.insert(article);
+			article = am.insert(article);
 			request.getParameter("annulerNewArt");
-			response.sendRedirect(request.getContextPath() + "/accueil");
-			doGet(request, response);
+
+			BusinessException bE = new BusinessException();
+			if (art.isBlank()) {
+				bE.addMessage("L'article doit avoir un nom");
+			}
+			if (description.isBlank()) {
+				bE.addMessage("L'article doit avoir une description ");
+			}
+			if (debutVente.isBlank()) {
+				bE.addMessage("");
+			}
+			RequestDispatcher rd = request.getRequestDispatcher("/accueil");
+			rd.forward(request, response);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
 
+			// response.sendRedirect(request.getContextPath()+"/WEB-INF/JSP/CreationArticle.jsp");
+			doGet(request, response);
 		}
 
 	}
