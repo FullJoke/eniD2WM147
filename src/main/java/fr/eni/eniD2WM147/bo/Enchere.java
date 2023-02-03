@@ -21,6 +21,10 @@ public class Enchere {
 		this.utilisateur = utilisateur;
 		this.article = article;
 	}
+	
+	public Enchere() {
+		
+	}
 
 	public LocalDateTime getDateEnchere() {
 		return dateEnchere;

@@ -116,6 +116,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_NEW_ART, PreparedStatement.RETURN_GENERATED_KEYS);
 
+
 			pstmt.setString(1, article.getNom());
 			pstmt.setString(2, article.getDescription());
 			pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(article.getDebutEnchere()));
@@ -133,6 +134,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			ResultSet rs = pstmt.getGeneratedKeys();
 
 			if (rs.next()) {
+
 				int idArticle = rs.getInt(1);
 				article.setIdArticle(idArticle);
 

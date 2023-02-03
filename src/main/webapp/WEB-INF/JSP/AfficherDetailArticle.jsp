@@ -78,7 +78,7 @@
 	<%Utilisateur u = (Utilisateur) request.getAttribute("enchereUtilisateur");%>
 	<%Categorie cat = (Categorie) request.getAttribute("articleCategorie");%>
 
-
+<form method ="post" action="<%=request.getContextPath()%>/accueil">
 	<div class="container">
 		<h2 style="text-align: center;">Détail Vente</h2>
 
@@ -118,11 +118,12 @@
 			</form>
 			
 			<br> <label id="porpositionArt">Ma proposition : </label>
-			<input type="number" min="1" max="1000">
+			<input type="number" min="1" max="1000" name="encherir">
 			<input id="MakeAnEnchereButton" class="btn btn-primary" type="submit" name="encherirAff"
 				value="Encherir">
 		</div>
 	</div>
+	</form>
 
 	<footer id="footer">
 	<%@ include file="footer.html"%>

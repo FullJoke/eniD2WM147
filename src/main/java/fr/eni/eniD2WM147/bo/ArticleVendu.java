@@ -41,8 +41,24 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
 		this.image = image;
+
+	}
+
+	public ArticleVendu() {
+
+	}
+
+	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
+			int prixInitial, String image, Utilisateur utilisateur, Categorie categorie) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.debutEnchere = debutEnchere;
+		this.finEnchere = finEnchere;
+		this.prixInitial = prixInitial;
+		this.image = image;
 		this.utilisateur = utilisateur;
-		this.categorie=categorie;
+		this.categorie = categorie;
 	}
 
 	// Getters & Setters
