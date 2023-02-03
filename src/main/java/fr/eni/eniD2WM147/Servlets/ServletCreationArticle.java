@@ -54,50 +54,50 @@ public class ServletCreationArticle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		System.out.println("doPost");
-//		HttpSession session = request.getSession();
-//		try {
-//		EnchereManager em = new EnchereManager();
-//		ArticleVendu article = null;
-//		
-//		String art = request.getParameter("article");
-//		String description =request.getParameter("story");
-//		String image=request.getParameter("photoArticle");
-//		String categorie =request.getParameter("listcate");
-//		String prix =request.getParameter("miseAprix");
-//		String debutVente = request.getParameter("debutEnchere");
-//		String finVente =request.getParameter("finEnchere");
-//		String rue= request.getParameter("rue");
-//		String codePostal=request.getParameter("codePostal");
-//		String ville =request.getParameter("ville");
-//		
-//		LocalDateTime dateDebut=null;
-//		LocalDateTime dateFin=null;
-//		String listeCat=null;
-//		
-//		dateDebut= LocalDateTime.parse(debutVente);
-//		dateFin=LocalDateTime.parse(finVente);
-//		listeCat = (String) request.getAttribute("listcate");
-//		prix=String.valueOf(prix);
-//		 Utilisateur numUtilisateur = (Utilisateur) session.getAttribute("Utilisateur");
-//		
-//		//voir pour cat et parse pour localdate
-//		//Ajouter article
-//		article = new ArticleVendu(art,description,dateDebut,dateFin,prix,numUtilisateur,listeCat,"CR",null);
-//		request.getParameter("saveNewArt");
-//		
-//		article = em.insert(article);
-//		request.getParameter("annulerNewArt");
-//		
-//		
-//
-//	
-//		} catch (BusinessException e) {
-//			e.printStackTrace();
-//			response.sendRedirect(request.getContextPath()+"/accueil");
-//			doGet(request, response);
-//		}
-//
+		System.out.println("doPost");
+		HttpSession session = request.getSession();
+		try {
+		EnchereManager em = new EnchereManager();
+		ArticleVendu article = null;
+		
+		String art = request.getParameter("article");
+		String description =request.getParameter("story");
+		String image=request.getParameter("photoArticle");
+		String categorie =request.getParameter("listcate");
+		String prix =request.getParameter("miseAprix");
+		String debutVente = request.getParameter("debutEnchere");
+		String finVente =request.getParameter("finEnchere");
+		String rue= request.getParameter("rue");
+		String codePostal=request.getParameter("codePostal");
+		String ville =request.getParameter("ville");
+		
+		LocalDateTime dateDebut=null;
+		LocalDateTime dateFin=null;
+		String listeCat=null;
+		
+		dateDebut= LocalDateTime.parse(debutVente);
+		dateFin=LocalDateTime.parse(finVente);
+		listeCat = (String) request.getAttribute("listcate");
+		prix=String.valueOf(prix);
+		 Utilisateur numUtilisateur = (Utilisateur) session.getAttribute("Utilisateur");
+		
+		//voir pour cat et parse pour localdate
+		//Ajouter article
+		article = new ArticleVendu(art,description,dateDebut,dateFin,prix,numUtilisateur,listeCat,"CR",image);
+		request.getParameter("saveNewArt");
+		
+		article = em.insert(article);
+		request.getParameter("annulerNewArt");
+		
+		
+
+	
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			response.sendRedirect(request.getContextPath()+"/accueil");
+			doGet(request, response);
+		}
+
 	}
 
 }

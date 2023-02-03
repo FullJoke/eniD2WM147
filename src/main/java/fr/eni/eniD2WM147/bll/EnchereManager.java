@@ -128,12 +128,12 @@ public class EnchereManager {
 		return articleDAO.selectCatByIdArt(idArticle);
 	}
 
-//	public ArticleVendu insert(ArticleVendu article) throws BusinessException {
-//		BusinessException bE = new BusinessException();
-//		if (!bE.getListeMessage().isEmpty()) {
-//			throw bE;
-//		}
-//		return articleDAO.insertArticle(article);
-//
-//	}
+	public ArticleVendu insert(ArticleVendu article) throws BusinessException {
+		BusinessException bE = new BusinessException();
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+		return articleDAO.insertArticle(article);
+
+	}
 }

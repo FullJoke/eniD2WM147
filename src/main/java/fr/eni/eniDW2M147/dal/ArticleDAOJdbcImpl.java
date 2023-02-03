@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
+
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniDW2M147.businessException.BusinessException;
 
@@ -24,8 +25,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			+ "finEnchere,prixInitial,prixVente,etatVente,image)VALUES(?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ART_BY_ID = "SELECT * FROM ARTICLES_VENDUS av"
 			+ " INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_article=?";
+
 	private static final String SELECT_CAT = "SELECT * FROM CATEGORIES c JOIN ARTICLES_VENDUS av ON "
 			+ "c.no_categorie = av.no_categorie WHERE no_article=?";
+
+	private static final String INSERT_ENCHERES = "";
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -109,7 +113,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	public void insertArticle(String nom, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
 			int prixInitial, int prixVente, String etatVente, String image) throws BusinessException {
-		ArticleVendu arti;
+		ArticleVendu art;
 		Connection cnx;
 		try {
 			cnx = ConnectionProvider.getConnection();
@@ -126,12 +130,23 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			pstmt.executeUpdate();
 
+			ResultSet rs = pstmt.getGeneratedKeys();
+
+			if (rs.next()) {
+				int idArticle = rs.getInt(1);
+
+			}
+			System.out.println("");
+			// faire une boucle for each avec un INSERT Enchere pour créer les encheres avec
+			// l'article.
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException bException = new BusinessException();
 			bException.addMessage("une erreur est survenue");
 			throw bException;
 		}
+
 
 	}
 
@@ -188,6 +203,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 		System.out.println("DAL - Categorie Article : " + cat.getLibelle());
 		return cat;
+	}
+
+	@Override
+	public ArticleVendu insertArticle(ArticleVendu article) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

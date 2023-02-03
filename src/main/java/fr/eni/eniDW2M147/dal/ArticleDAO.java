@@ -22,4 +22,6 @@ public interface ArticleDAO {
 	
 	public Categorie selectCatByIdArt(int idArticle);
 
+	public ArticleVendu insertArticle(ArticleVendu article);
+
 }
