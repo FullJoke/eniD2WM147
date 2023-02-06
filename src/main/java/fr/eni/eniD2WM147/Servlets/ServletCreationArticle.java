@@ -22,6 +22,7 @@ import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
 
+
 /**
  * Servlet implementation class ServletAfficherArticle
  */
@@ -90,7 +91,7 @@ public class ServletCreationArticle extends HttpServlet {
 			// voir pour le lieu de retrait
 			// voir pour cat et parse pour localdate
 			// Ajouter article
-			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, "CR", image, vendeur, null, cat);
+			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, "CR", image, vendeur, null, cat, null);
 			request.getParameter("saveNewArt");
 
 			article = ArticleManager.getInstance().insert(article);

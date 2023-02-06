@@ -10,6 +10,7 @@ import fr.eni.eniD2WM147.dal.ArticleDAO;
 import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
 
 
+
 public class ArticleManager {
 	private ArticleDAO articleDAO;
 	public static ArticleManager instance;

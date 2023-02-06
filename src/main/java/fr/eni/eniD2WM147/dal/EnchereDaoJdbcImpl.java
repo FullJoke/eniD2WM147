@@ -46,13 +46,16 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		Enchere prixEnchere = new Enchere();
 		ArticleVendu art = new ArticleVendu();
 		EnchereManager em = new EnchereManager();
+
 		int creditEnchere = 0;
 
-		if (user.getCredit() > prixEnchere.getMontantEnchere()&&
-				prixEnchere.getMontantEnchere()> art.getPrixVente()) {
+		if (user.getCredit() > prixEnchere.getMontantEnchere()
+				&& prixEnchere.getMontantEnchere() > art.getPrixVente()) {
 			creditEnchere = user.getCredit() - prixEnchere.getMontantEnchere();
+		
 		} else if (user.getCredit() == prixEnchere.getMontantEnchere()
 				|| user.getCredit() < prixEnchere.getMontantEnchere()) {
+
 			BusinessException bException = new BusinessException();
 			bException.addMessage("Crédit insuffisant");
 			throw bException;

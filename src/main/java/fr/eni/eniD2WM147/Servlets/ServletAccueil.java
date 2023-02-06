@@ -17,6 +17,7 @@ import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
 
+
 /**
  * Servlet implementation class ServletAccueil
  */

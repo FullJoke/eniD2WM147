@@ -6,6 +6,7 @@ import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
 import fr.eni.eniD2WM147.dal.UtilisateurDAO;
 
 
+
 public class UtilisateurManager {
 	private UtilisateurDAO utilisateurDAO;
 	private static UtilisateurManager instance;
