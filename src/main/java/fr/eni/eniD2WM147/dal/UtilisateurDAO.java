@@ -1,7 +1,8 @@
-package fr.eni.eniDW2M147.dal;
+package fr.eni.eniD2WM147.dal;
 
 import fr.eni.eniD2WM147.bo.Utilisateur;
-import fr.eni.eniDW2M147.businessException.BusinessException;
+import fr.eni.eniD2WM147.businessException.BusinessException;
+
 
 public interface UtilisateurDAO {
 

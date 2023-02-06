@@ -1,4 +1,4 @@
-package fr.eni.eniDW2M147.dal;
+package fr.eni.eniD2WM147.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,8 @@ import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.bo.Retrait;
 import fr.eni.eniD2WM147.bo.Utilisateur;
-import fr.eni.eniDW2M147.businessException.BusinessException;
+import fr.eni.eniD2WM147.businessException.BusinessException;
+
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
