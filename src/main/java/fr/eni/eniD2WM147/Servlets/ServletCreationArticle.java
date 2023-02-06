@@ -15,16 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eniD2WM147.bll.ArticleManager;
-import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
-<<<<<<< HEAD
-=======
 
-
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 
 /**
  * Servlet implementation class ServletAfficherArticle
@@ -40,11 +35,6 @@ public class ServletCreationArticle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Creation Vente - doGet");
-<<<<<<< HEAD
-=======
-
-		ArticleManager am = ArticleManager.getInstance();
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 
 		List<Categorie> categories = new ArrayList<>();
 		try {
@@ -95,12 +85,8 @@ public class ServletCreationArticle extends HttpServlet {
 			// voir pour le lieu de retrait
 			// voir pour cat et parse pour localdate
 			// Ajouter article
-<<<<<<< HEAD
-			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, image, "CR", vendeur, null,
-					cat);
-=======
+
 			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, image, "CR", vendeur, null, cat, null);
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 			request.getParameter("saveNewArt");
 
 			article = ArticleManager.getInstance().insert(article);
