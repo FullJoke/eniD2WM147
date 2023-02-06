@@ -12,11 +12,18 @@ import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
 
 public class ArticleManager {
 	private ArticleDAO articleDAO;
-
+	public static ArticleManager instance;
+	
 	public ArticleManager() {
 		this.articleDAO = EnchereDAOFactory.getArticleDAO();
 	}
 
+	public static ArticleManager getInstance() {
+		if(instance==null) {
+			instance = new ArticleManager();
+		}
+		return instance;
+	}
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		BusinessException bE = new BusinessException();
 		if (!bE.getListeMessage().isEmpty()) {

@@ -43,7 +43,7 @@ public class ServletModificationProfil extends HttpServlet {
 		System.out.println("doPost");
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
-		UtilisateurManager um = new UtilisateurManager();
+		
 		Utilisateur user = null;
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -94,7 +94,7 @@ public class ServletModificationProfil extends HttpServlet {
 			if (!bE.getListeMessage().isEmpty()) {
 				throw bE;
 			}
-			user = um.updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville,newMdp.isBlank()?mdp:newMdp , ((Utilisateur)session.getAttribute("Utilisateur")).getCredit(), ((Utilisateur)session.getAttribute("Utilisateur")).getIdUtilisateur());
+			user =UtilisateurManager.getInstance().updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville,newMdp.isBlank()?mdp:newMdp , ((Utilisateur)session.getAttribute("Utilisateur")).getCredit(), ((Utilisateur)session.getAttribute("Utilisateur")).getIdUtilisateur());
 			session.setAttribute("Utilisateur", user);
 			System.out.println("MODIFICATION - SUCCESS");
 			response.sendRedirect(request.getContextPath()+"/Profil");

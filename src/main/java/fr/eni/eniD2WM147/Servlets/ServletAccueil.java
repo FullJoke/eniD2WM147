@@ -32,13 +32,12 @@ public class ServletAccueil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("ServletAccueil - doGet");
-		ArticleManager am = new ArticleManager();
 		List<ArticleVendu> articles = new ArrayList<>();
 		List<Categorie> categories = new ArrayList<>();
 		int catChoisie;
 
 		try {
-			categories = am.selectAllCat();
+			categories = ArticleManager.getInstance().selectAllCat();
 			request.setAttribute("categories", categories);
 
 			String catChoisieTemp = request.getParameter("categorieChoisie");
@@ -48,9 +47,9 @@ public class ServletAccueil extends HttpServlet {
 			catChoisie = Integer.parseInt(catChoisieTemp);
 
 			if (catChoisie == 0) {
-				articles = am.selectAllArticles();
+				articles = ArticleManager.getInstance().selectAllArticles();
 			} else {
-				articles = am.selectArticlesByCat(catChoisie);
+				articles = ArticleManager.getInstance().selectArticlesByCat(catChoisie);
 			}
 
 			for (ArticleVendu a : articles) {

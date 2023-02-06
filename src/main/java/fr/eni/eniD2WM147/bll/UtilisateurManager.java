@@ -8,12 +8,21 @@ import fr.eni.eniD2WM147.dal.UtilisateurDAO;
 
 public class UtilisateurManager {
 	private UtilisateurDAO utilisateurDAO;
-
+	private static UtilisateurManager instance;
+	
 	public UtilisateurManager() {
 		this.utilisateurDAO = EnchereDAOFactory.getUtilisateurDAO();
 
 	}
 
+	public static UtilisateurManager getInstance() {
+		if(instance==null) {
+			instance= new UtilisateurManager();
+		}
+		return instance;
+		
+	}
+	
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 		BusinessException bE = new BusinessException();
 
@@ -37,6 +46,7 @@ public class UtilisateurManager {
 		validerCP(codePostal, bE);
 		validerVille(ville, bE);
 		validerMdp(mdp, bE);
+		
 		
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
@@ -103,11 +113,6 @@ public class UtilisateurManager {
 		}
 	}
 
-	public void validerConfirmation(String confirmation, String mdp, BusinessException businessException) {
-		if(confirmation==null & confirmation.equals(mdp)) {
-			businessException.addMessage("La confirmation de mot de passe est obligatoire et doit etre la meme que le mot de passe.");
-		}
-	}
 
 	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel, String rue,
 			String codePostal, String ville, String mdp, int credit, int idUtilisateur) throws BusinessException {

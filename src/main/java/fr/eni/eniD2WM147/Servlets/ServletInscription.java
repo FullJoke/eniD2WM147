@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
@@ -53,8 +52,7 @@ public class ServletInscription extends HttpServlet {
 		// n'enregistre pas l'utilisateur et envoie directement sur la page // d'accueil
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
-		
-		UtilisateurManager um = new UtilisateurManager();
+
 		Utilisateur user = null;
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -71,13 +69,13 @@ public class ServletInscription extends HttpServlet {
 
 		try {
 			BusinessException bE = new BusinessException();
-			if (pseudo.isBlank() ) {
+			if (pseudo.isBlank()) {
 				bE.addMessage("Le pseudo est obligatoire");
 			}
 			if (nom.isBlank()) {
 				bE.addMessage("Le nom est obligatoire.");
 			}
-			if (prenom.isBlank() ) {
+			if (prenom.isBlank()) {
 				bE.addMessage("Le prenom est obligatoire et ne peut contenir que des lettres.");
 			}
 			if (email.isBlank()) {
@@ -101,17 +99,14 @@ public class ServletInscription extends HttpServlet {
 			if (mdp.isBlank()) {
 				bE.addMessage("Le mot de passe est obligatoire.");
 			}
-			if (confirmation.isBlank()) {
+			if (confirmation.isBlank() & confirmation.equals(mdp)) {
 				bE.addMessage("Veuillez confirmer votre mot de passe");
 			}
 			if (!bE.getListeMessage().isEmpty()) {
 				throw bE;
 			}
-
-
-			user = um.insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
+			user = UtilisateurManager.getInstance().insertUtilisateur(pseudo, nom, prenom, email, tel, rue, codePostal, ville, 100, false, mdp);
 			session.setAttribute("Utilisateur", user);
-
 
 			System.out.println("INSCRIPTION - SUCCESS");
 			response.sendRedirect(request.getContextPath() + "/accueil");

@@ -45,9 +45,9 @@ public class ServletProfil extends HttpServlet {
 		int idUtilisateur = Integer.parseInt(idUtilisateurTemp);
 		System.out.println("id de l'utilisateur à rechercher : " + idUtilisateur);
 		
-		UtilisateurManager um = new UtilisateurManager();
+		
 		try {
-			Utilisateur u = um.getUtilisateurById(idUtilisateur);
+			Utilisateur u = UtilisateurManager.getInstance().getUtilisateurById(idUtilisateur);
 			System.out.println(u.getNom());
 			
 			request.setAttribute("vendeur", u);

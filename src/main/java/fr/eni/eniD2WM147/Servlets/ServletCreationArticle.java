@@ -64,9 +64,7 @@ public class ServletCreationArticle extends HttpServlet {
 		HttpSession session = request.getSession();
 		try {
 
-			ArticleManager am = new ArticleManager();
 			ArticleVendu article = null;
-
 
 			String art = request.getParameter("article");
 			String description = request.getParameter("story");
@@ -95,7 +93,7 @@ public class ServletCreationArticle extends HttpServlet {
 			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, "CR", image, vendeur, null, cat);
 			request.getParameter("saveNewArt");
 
-			article = am.insert(article);
+			article = ArticleManager.getInstance().insert(article);
 			request.getParameter("annulerNewArt");
 
 			BusinessException bE = new BusinessException();
