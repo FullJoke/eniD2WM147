@@ -47,7 +47,7 @@
 		<div class="row justify-content-md-center">
 
 
-			<form action="<%=request.getContextPath()%>/delete" method="post">
+			<form action="<%=request.getContextPath()%>/ModificationProfil" method="post">
 
 				<%
 				Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur");

@@ -137,7 +137,6 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 			user.setRue(rue);
 			user.setCodePostal(codePostal);
 			user.setVille(ville);
-			user.setMdp(mdp);
 			user.setCredit(credit);
 			user.setIdUtilisateur(idUtilisateur);
 

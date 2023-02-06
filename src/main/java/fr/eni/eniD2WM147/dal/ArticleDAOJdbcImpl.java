@@ -19,7 +19,8 @@ import fr.eni.eniD2WM147.businessException.BusinessException;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
-	private static final String SELECT_ALL_ARTICLES = "SELECT * FROM ARTICLES_VENDUS av "
+	private static final String SELECT_ALL_ARTICLES = "SELECT  av.no_article, av.nom_article, "
+			+ "av.date_fin_enchere, u.no_utilisateur, u.pseudo FROM ARTICLES_VENDUS av "
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur";
 	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS av "
