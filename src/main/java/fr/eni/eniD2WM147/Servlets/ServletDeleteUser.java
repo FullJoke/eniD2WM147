@@ -43,7 +43,7 @@ public class ServletDeleteUser extends HttpServlet {
 
 		System.out.println("doPost-DELETE");
 		request.getParameter("retourSuppression");
-		response.sendRedirect("/WEB-INF/JSP/Accueil.jsp");
+		//response.sendRedirect("/WEB-INF/JSP/Accueil.jsp");
 
 		HttpSession session = request.getSession();
 
@@ -59,7 +59,7 @@ public class ServletDeleteUser extends HttpServlet {
 			request.setAttribute("listeErreur", e.getListeMessage());
 		}
 		session.setAttribute("Utilisateur", user);
-		response.sendRedirect(request.getContextPath() + "/delete");
+		response.sendRedirect(request.getContextPath() + "/deconnexion");
 
 	}
 

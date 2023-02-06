@@ -87,7 +87,7 @@ public class ServletModificationProfil extends HttpServlet {
 			if (mdp.isBlank()) {
 				bE.addMessage("Le mot de passe est obligatoire.");
 			}
-			if (confirmation.isBlank() & confirmation.equals(mdp)) {
+			if (confirmation.isBlank() || !confirmation.equals(mdp)) {
 				bE.addMessage("Veuillez confirmer votre mot de passe");
 			}
 			if (!bE.getListeMessage().isEmpty()) {
