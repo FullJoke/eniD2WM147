@@ -186,8 +186,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			pstmt.setInt(1, idArticle);
 			ResultSet rs = pstmt.executeQuery();
 
+		
+			
 			if (rs.next()) {
-				
+				System.out.println("coucou");
 				c = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 				System.out.println(c.getLibelle());
 				

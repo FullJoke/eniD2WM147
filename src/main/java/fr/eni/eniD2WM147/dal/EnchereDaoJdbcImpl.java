@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
@@ -41,7 +43,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 	}
 
-	public int bidArticle() throws BusinessException {
+	public Enchere bidArticle() throws BusinessException {
 		Utilisateur user = new Utilisateur();
 		Enchere prixEnchere = new Enchere();
 		ArticleVendu art = new ArticleVendu();
@@ -65,8 +67,11 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 		em.insertBid(prixEnchere.getDateEnchere(), prixEnchere.getMontantEnchere());
 
-		return creditEnchere;
+		return prixEnchere;
 
 	}
+	
+	
+	}
 
-}
+

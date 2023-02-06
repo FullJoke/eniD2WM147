@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniD2WM147.bll.ArticleManager;
+import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.businessException.BusinessException;
@@ -30,7 +31,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 
 		System.out.println("AfficherArticle - doGet");
 		String idArtTemp = request.getParameter("Article");
-System.out.println(idArtTemp);
+
 		int idArt = Integer.parseInt(idArtTemp);
 		System.out.println("Servlet - idArticle selectionné : " + idArt);
 
@@ -49,17 +50,7 @@ System.out.println(idArtTemp);
 
 			request.setAttribute("ArticleAAfficher", av);
 
-//			ArticleVendu av = ArticleManager.getInstance().selectArticleById(idArt);
-//			System.out.println("SERVLET - Attribut Article : " + av);
-//			request.setAttribute("detailArticle", av);
-//
-//			Categorie c = ArticleManager.getInstance().selectCatByIdArt(av.getIdArticle());
-//			System.out.println("SERVLET - Attribut Categorie : " + c);
-//			request.setAttribute("articleCategorie", c);
-//
-//			Utilisateur u = UtilisateurManager.getInstance().getUtilisateurByEnchere(idArt);
-//			System.out.println("SERVLET - Attribut Utilisateur : " + u.getPseudo());
-//			request.setAttribute("enchereUtilisateur", u);
+
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -76,6 +67,18 @@ System.out.println(idArtTemp);
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("AfficherArticle - doPost");
+	    Enchere enchere;
+		try {
+			enchere = EnchereManager.getInstance().bidArticle();
+			request.setAttribute("encherir", enchere);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+		
+		
+		
 
 		doGet(request, response);
 	}

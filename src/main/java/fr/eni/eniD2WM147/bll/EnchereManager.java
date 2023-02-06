@@ -35,4 +35,17 @@ public class EnchereManager {
 		return enchere;
 	}
 
+	public Enchere bidArticle() throws BusinessException {
+
+		BusinessException bE = new BusinessException();
+
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+		Enchere enchere = enchereDAO.bidArticle();
+
+		return enchere;
+
+	}
+
 }

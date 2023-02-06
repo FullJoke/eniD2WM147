@@ -75,6 +75,7 @@
 	</nav>
 	
 	<%ArticleVendu av = (ArticleVendu) request.getAttribute("ArticleAAfficher");%>
+	<%Utilisateur user = (Utilisateur)request.getAttribute("encherir");%>
 
 	<form id="detailsVendeurBtn" action="<%=request.getContextPath()%>/Profil" method="post">
 		<div class="container">
@@ -95,7 +96,7 @@
 				<br>
 				
 				<label id="bestOfferArt">Meilleure offre :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<%=av.getEnchere().getMontantEnchere()%> crédits
+				<%=av.getEnchere().getMontantEnchere()> av.getPrixVente()%> crédits
 				<%if (av.getEnchere().getMontantEnchere()>0) {%>
 				par <%=av.getEnchere().getUtilisateur().getPseudo()%>
 				<%}%></label>
@@ -119,7 +120,7 @@
 								
 				<br> <label id="porpositionArt">Ma proposition : </label>
 				<input type="number" min="1" max="1000" name="encherir">
-				<input id="MakeAnEnchereButton" class="btn btn-primary" type="submit" name="encherirAff"
+				<input id="MakeAnEnchereButton" class="btn btn-primary" type="submit" name="encherir"
 					value="Encherir">
 			</div>
 		</div>

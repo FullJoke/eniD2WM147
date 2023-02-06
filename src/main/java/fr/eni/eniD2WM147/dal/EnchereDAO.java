@@ -9,5 +9,6 @@ public interface EnchereDAO {
 	
 	
 	public Enchere insertBid(LocalDateTime dateEnchere, int montantEnchere) throws BusinessException;
+	public Enchere bidArticle() throws BusinessException;
 
 }
