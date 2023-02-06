@@ -95,7 +95,10 @@
 				<br>
 				
 				<label id="bestOfferArt">Meilleure offre :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				En cours </label>
+				<%=av.getEnchere().getMontantEnchere()%> crédits
+				<%if (av.getEnchere().getMontantEnchere()>0) {%>
+				par <%=av.getEnchere().getUtilisateur().getPseudo()%>
+				<%}%></label>
 				
 				<br>
 				
