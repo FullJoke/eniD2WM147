@@ -53,7 +53,14 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 				&& prixEnchere.getMontantEnchere() > art.getPrixVente()) {
 			creditEnchere = user.getCredit() - prixEnchere.getMontantEnchere();
 		
-		} else if (user.getCredit() == prixEnchere.getMontantEnchere()
+		} 
+		
+		
+		
+		
+		
+		
+		else if (user.getCredit() == prixEnchere.getMontantEnchere()
 				|| user.getCredit() < prixEnchere.getMontantEnchere()) {
 
 			BusinessException bException = new BusinessException();

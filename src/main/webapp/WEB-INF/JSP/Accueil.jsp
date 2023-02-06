@@ -103,8 +103,8 @@
 				%>
 			</select> <input class="btn btn-primary" id="categorieSelectButton"
 				type="submit" name="categorieSelectButton" value="Filtrer">
-		</form>
-
+		
+              </form>
 
 		<div id="articlesListe" class="row">
 			<%
@@ -136,7 +136,7 @@
 							if (Utilisateur != null) {
 							%>
 							<input id="DetailArticleButton" class="btn btn-primary" type="submit"
-							value="Détails">
+							value="Détails" >
 							<%
 							}
 							%>
