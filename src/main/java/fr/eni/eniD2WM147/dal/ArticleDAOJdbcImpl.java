@@ -19,8 +19,7 @@ import fr.eni.eniD2WM147.businessException.BusinessException;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
-	private static final String SELECT_ALL_ARTICLES = "SELECT  av.no_article, av.nom_article, "
-			+ "av.date_fin_enchere, u.no_utilisateur, u.pseudo FROM ARTICLES_VENDUS av "
+	private static final String SELECT_ALL_ARTICLES = "SELECT  * FROM ARTICLES_VENDUS av "
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur";
 	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS av "
@@ -46,6 +45,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
+			System.out.println(SELECT_ALL_ARTICLES);
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLES);
 			ResultSet rs = pstmt.executeQuery();
 
@@ -75,6 +75,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
+		System.out.println(SELECT_ART_BY_CAT);
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ART_BY_CAT);
 			pstmt.setInt(1, noCategorie);
@@ -92,7 +93,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
 						rs.getString("image"), u, null, null, null);
 				articles.add(arti);
-				articles.add(arti);
 			}
 
 		} catch (SQLException e1) {
@@ -103,6 +103,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	public List<Categorie> selectAllCategories() throws BusinessException {
 		List<Categorie> categories = new ArrayList<>();
+		System.out.println(SELECT_ALL_CATEGORIES);
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_CATEGORIES);
@@ -126,6 +127,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	public ArticleVendu insertArticle(ArticleVendu article) throws BusinessException {
 		Connection cnx;
+		System.out.println(INSERT_NEW_ART);
 
 		try {
 			cnx = ConnectionProvider.getConnection();
@@ -173,7 +175,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
 		System.out.println("DAL - idArticle selectionné : " + idArticle);
-
+		
 		ArticleVendu art = null;
 		PreparedStatement pstmt;
 		Utilisateur u;
@@ -181,7 +183,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		Retrait r;
 		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-
+			System.out.println(SELECT_ART_BY_ID);
 			pstmt = cnx.prepareStatement(SELECT_ART_BY_ID);
 			pstmt.setInt(1, idArticle);
 			ResultSet rs = pstmt.executeQuery();
@@ -236,6 +238,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		Categorie cat = null;
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
+			System.out.println(SELECT_CAT);
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_CAT);
 			pstmt.setInt(1, idArticle);
 
@@ -250,7 +253,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		System.out.println("DAL - Categorie Article : " + cat.getLibelle());
 		return cat;
 	}
-	
 
 	@Override
 	public Enchere selectEnchereByIdArticle(int idArt) {
@@ -258,6 +260,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		Utilisateur u = null;
 		
 		try(Connection cnx = ConnectionProvider.getConnection()){
+			System.out.println(SELECT_ENCHERE_BY_IDARTICLE);
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ENCHERE_BY_IDARTICLE);
 			pstmt.setInt(1, idArt);
 			

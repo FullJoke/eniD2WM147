@@ -35,6 +35,7 @@ public class ServletCreationArticle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Creation Vente - doGet");
+		request.setCharacterEncoding("UTF-8");
 
 		List<Categorie> categories = new ArrayList<>();
 		try {
@@ -55,11 +56,14 @@ public class ServletCreationArticle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doPost");
+		System.out.println("ServletCreationArticle - doPost");
+		request.setCharacterEncoding("UTF-8");
+
 		HttpSession session = request.getSession();
 		try {
 
 			ArticleVendu article = null;
+			System.out.println("Nouvelle Article : " + article);
 
 			String art = request.getParameter("article");
 			String description = request.getParameter("story");
@@ -88,6 +92,7 @@ public class ServletCreationArticle extends HttpServlet {
 
 			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, image, "CR", vendeur, null, cat, null);
 			request.getParameter("saveNewArt");
+			System.out.println("Nouvelle Article : " + article);
 
 			article = ArticleManager.getInstance().insert(article);
 			request.getParameter("annulerNewArt");
@@ -102,8 +107,8 @@ public class ServletCreationArticle extends HttpServlet {
 			if (debutVente.isBlank()) {
 				bE.addMessage("");
 			}
-			RequestDispatcher rd = request.getRequestDispatcher("/accueil");
-			rd.forward(request, response);
+			
+			response.sendRedirect(request.getContextPath()+"/accueil");
 
 		} catch (BusinessException e) {
 			e.printStackTrace();

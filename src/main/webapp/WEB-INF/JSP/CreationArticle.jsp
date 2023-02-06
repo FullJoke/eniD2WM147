@@ -52,7 +52,7 @@
 
 		<div class="row justify-content-md-center">
 			
-			<form method="Post" action="">
+			<form method="Post" action="<%=request.getContextPath()%>/CreationArticle">
 				<label>Article :</label> <input type="text" name="article">
 				
 				<br>

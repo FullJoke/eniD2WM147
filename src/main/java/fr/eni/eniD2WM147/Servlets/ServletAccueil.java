@@ -14,9 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.eniD2WM147.bll.ArticleManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
+import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.businessException.BusinessException;
-
-
 
 /**
  * Servlet implementation class ServletAccueil
@@ -45,9 +44,20 @@ public class ServletAccueil extends HttpServlet {
 				catChoisieTemp = "0";
 			}
 			catChoisie = Integer.parseInt(catChoisieTemp);
+			System.out.println(articles);
 
 			if (catChoisie == 0) {
 				articles = ArticleManager.getInstance().selectAllArticles();
+
+				for (ArticleVendu av : articles) {
+					Enchere e = ArticleManager.getInstance().selectEnchereByIdArticle(av.getIdArticle());
+
+					if (e == null) {
+						e = new Enchere(0, null);
+					}					
+					av.setEnchere(e);
+				}
+
 			} else {
 				articles = ArticleManager.getInstance().selectArticlesByCat(catChoisie);
 			}
@@ -56,9 +66,9 @@ public class ServletAccueil extends HttpServlet {
 				System.out.println(a.getIdArticle());
 
 			}
-				request.setAttribute("articles", articles);
-		} catch (BusinessException e) {
-			e.printStackTrace();
+			request.setAttribute("articles", articles);
+		} catch (BusinessException ex) {
+			ex.printStackTrace();
 		}
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/Accueil.jsp");
