@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
-
 public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 
 	private static final String SELECT_BY_EMAIL_MDP = "Select * from UTILISATEURS where (email =? and mot_de_passe =?) OR (pseudo=? and mot_de_passe =?)";

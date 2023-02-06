@@ -8,8 +8,6 @@ import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
 
-
-
 public interface ArticleDAO {
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException;

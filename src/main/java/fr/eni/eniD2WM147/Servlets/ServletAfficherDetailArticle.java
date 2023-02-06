@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniD2WM147.bll.ArticleManager;
-import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
-import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Enchere;
-import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
 /**
@@ -33,7 +30,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 
 		System.out.println("AfficherArticle - doGet");
 		String idArtTemp = request.getParameter("Article");
-
+System.out.println(idArtTemp);
 		int idArt = Integer.parseInt(idArtTemp);
 		System.out.println("Servlet - idArticle selectionné : " + idArt);
 
