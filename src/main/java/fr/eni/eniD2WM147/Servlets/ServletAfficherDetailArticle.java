@@ -37,18 +37,22 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 		System.out.println("Servlet - idArticle selectionné : " + idArt);
 
 		try {
-
+			
 			ArticleVendu av = ArticleManager.getInstance().selectArticleById(idArt);
-			System.out.println("SERVLET - Attribut Article : " + av);
-			request.setAttribute("detailArticle", av);
+			System.out.println(av);
+			request.setAttribute("ArticleAAfficher", av);
 
-			Categorie c = ArticleManager.getInstance().selectCatByIdArt(av.getIdArticle());
-			System.out.println("SERVLET - Attribut Categorie : " + c);
-			request.setAttribute("articleCategorie", c);
-
-			Utilisateur u = UtilisateurManager.getInstance().getUtilisateurByEnchere(idArt);
-			System.out.println("SERVLET - Attribut Utilisateur : " + u.getPseudo());
-			request.setAttribute("enchereUtilisateur", u);
+//			ArticleVendu av = ArticleManager.getInstance().selectArticleById(idArt);
+//			System.out.println("SERVLET - Attribut Article : " + av);
+//			request.setAttribute("detailArticle", av);
+//
+//			Categorie c = ArticleManager.getInstance().selectCatByIdArt(av.getIdArticle());
+//			System.out.println("SERVLET - Attribut Categorie : " + c);
+//			request.setAttribute("articleCategorie", c);
+//
+//			Utilisateur u = UtilisateurManager.getInstance().getUtilisateurByEnchere(idArt);
+//			System.out.println("SERVLET - Attribut Utilisateur : " + u.getPseudo());
+//			request.setAttribute("enchereUtilisateur", u);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
