@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.eniD2WM147.bll.EnchereManager;
-import fr.eni.eniD2WM147.bo.Enchere;
-import fr.eni.eniD2WM147.dal.EnchereDAO;
+
+
 
 /**
  * Servlet implementation class ServletFaireUneEnchere
@@ -23,8 +22,7 @@ public class ServletFaireUneEnchere extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("doPost");
-		
-		EnchereManager enchere = new EnchereManager();
+	
 		
 		request.getParameter("encherir");
 	

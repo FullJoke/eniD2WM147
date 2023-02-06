@@ -48,23 +48,15 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		Enchere prixEnchere = new Enchere();
 		EnchereManager em = new EnchereManager();
 		UtilisateurManager util = new UtilisateurManager();
-		
-		if(prixEnchere.getMontantEnchere() > art.getPrixInitial()&& 
-				user.getCredit()>prixEnchere.getMontantEnchere() ) {
-			
+
+		if (prixEnchere.getMontantEnchere() > art.getPrixInitial()
+				&& user.getCredit() > prixEnchere.getMontantEnchere()) {
+
 			em.insertBid(prixEnchere.getDateEnchere(), prixEnchere.getMontantEnchere());
-			}
-		
-		
-		
-		
-	
-		
-	
-		
-	return null;
-		
-		
-		
+		}
+
+		return null;
+
 	}
+
 }
