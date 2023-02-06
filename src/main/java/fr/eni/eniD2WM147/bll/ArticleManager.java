@@ -9,21 +9,21 @@ import fr.eni.eniD2WM147.businessException.BusinessException;
 import fr.eni.eniD2WM147.dal.ArticleDAO;
 import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
 
-
 public class ArticleManager {
 	private ArticleDAO articleDAO;
 	public static ArticleManager instance;
-	
+
 	public ArticleManager() {
 		this.articleDAO = EnchereDAOFactory.getArticleDAO();
 	}
 
 	public static ArticleManager getInstance() {
-		if(instance==null) {
+		if (instance == null) {
 			instance = new ArticleManager();
 		}
 		return instance;
 	}
+
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		BusinessException bE = new BusinessException();
 		if (!bE.getListeMessage().isEmpty()) {
@@ -58,6 +58,7 @@ public class ArticleManager {
 		validerDebutEnchere(article.getDebutEnchere(), bE);
 		validerFinEnchere(article.getDebutEnchere(), article.getFinEnchere(), bE);
 		validerDescription(article.getDescription(), bE);
+		validerPrix(article.getPrixVente(), bE);
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
@@ -83,6 +84,13 @@ public class ArticleManager {
 			businessException.addMessage("La description est obligatoire et ne peut pas dépasser 300 caractères");
 		}
 	}
+
+	private void validerPrix(int prix, BusinessException businessException) {
+		if ( prix < 0) {
+			businessException.addMessage("Le prix est obligatoire et doit être positif");
+		}
+	}
+	
 
 	public Categorie selectCatByIdArt(int idArticle) {
 		return articleDAO.selectCatByIdArt(idArticle);
