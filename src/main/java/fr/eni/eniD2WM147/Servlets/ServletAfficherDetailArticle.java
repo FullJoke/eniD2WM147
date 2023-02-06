@@ -15,7 +15,7 @@ import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
-import fr.eni.eniDW2M147.businessException.BusinessException;
+import fr.eni.eniD2WM147.businessException.BusinessException;
 
 /**
  * Servlet implementation class ServletAfficherDetailArticle
@@ -31,7 +31,6 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ArticleManager am = new ArticleManager();
-		UtilisateurManager um = new UtilisateurManager();
 		System.out.println("AfficherArticle - doGet");
 		String idArtTemp = request.getParameter("Article");
 
@@ -39,18 +38,22 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 		System.out.println("Servlet - idArticle selectionné : " + idArt);
 		
 		try {
-
 			ArticleVendu av = am.selectArticleById(idArt);
 			System.out.println("SERVLET - Attribut Article : " + av);
-			request.setAttribute("detailArticle", av);
+			request.setAttribute("ArticleAAfficher", av);
 			
-			Categorie c = am.selectCatByIdArt(av.getIdArticle());
-			System.out.println("SERVLET - Attribut Categorie : " + c);
-			request.setAttribute("articleCategorie", c);
-			
-			Utilisateur u = um.getUtilisateurByEnchere(idArt);
-			System.out.println("SERVLET - Attribut Utilisateur : " + u.getPseudo());
-			request.setAttribute("enchereUtilisateur", u);
+
+//			ArticleVendu av = am.selectArticleById(idArt);
+//			System.out.println("SERVLET - Attribut Article : " + av);
+//			request.setAttribute("detailArticle", av);
+//			
+//			Categorie c = am.selectCatByIdArt(av.getIdArticle());
+//			System.out.println("SERVLET - Attribut Categorie : " + c);
+//			request.setAttribute("articleCategorie", c);
+//			
+//			Utilisateur u = um.getUtilisateurByEnchere(idArt);
+//			System.out.println("SERVLET - Attribut Utilisateur : " + u.getPseudo());
+//			request.setAttribute("enchereUtilisateur", u);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();

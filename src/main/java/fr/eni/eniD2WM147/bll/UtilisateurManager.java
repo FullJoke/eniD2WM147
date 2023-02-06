@@ -1,9 +1,9 @@
 package fr.eni.eniD2WM147.bll;
 
 import fr.eni.eniD2WM147.bo.Utilisateur;
-import fr.eni.eniDW2M147.businessException.BusinessException;
-import fr.eni.eniDW2M147.dal.EnchereDAOFactory;
-import fr.eni.eniDW2M147.dal.UtilisateurDAO;
+import fr.eni.eniD2WM147.businessException.BusinessException;
+import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
+import fr.eni.eniD2WM147.dal.UtilisateurDAO;
 
 public class UtilisateurManager {
 	private UtilisateurDAO utilisateurDAO;

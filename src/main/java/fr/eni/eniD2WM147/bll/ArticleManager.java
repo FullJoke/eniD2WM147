@@ -5,9 +5,9 @@ import java.util.List;
 
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
-import fr.eni.eniDW2M147.businessException.BusinessException;
-import fr.eni.eniDW2M147.dal.ArticleDAO;
-import fr.eni.eniDW2M147.dal.EnchereDAOFactory;
+import fr.eni.eniD2WM147.businessException.BusinessException;
+import fr.eni.eniD2WM147.dal.ArticleDAO;
+import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
 
 public class ArticleManager {
 	private ArticleDAO articleDAO;

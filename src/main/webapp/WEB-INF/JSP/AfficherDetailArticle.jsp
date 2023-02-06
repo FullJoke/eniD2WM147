@@ -74,9 +74,7 @@
 		</ol>
 	</nav>
 	
-	<%ArticleVendu av = (ArticleVendu) request.getAttribute("detailArticle");%>
-	<%Utilisateur u = (Utilisateur) request.getAttribute("enchereUtilisateur");%>
-	<%Categorie cat = (Categorie) request.getAttribute("articleCategorie");%>
+	<%ArticleVendu av = (ArticleVendu) request.getAttribute("ArticleAAfficher");%>
 
 <form method ="post" action="<%=request.getContextPath()%>/accueil">
 	<div class="container">
@@ -92,12 +90,13 @@
 			<br>
 			
 			<label id="cateArt">Categorie :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<%=cat.getLibelle()%></label>
+			<%=av.getCategorie().getLibelle()%></label>
 			
 			<br>
 			
 			<label id="bestOfferArt">Meilleure offre :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			En cours </label>
+			<%=av.getEnchere().getMontantEnchere()%> crédits par 
+			<%=av.getEnchere().getUtilisateur().getPseudo()%> </label>
 			
 			<br>
 			
@@ -107,7 +106,9 @@
 			<br> <label id="finEncArt">Fin de l'enchère :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 			<%=av.getFinEnchere()%></label>
 			
-			<br> <label id="retraitArt">Retrait : </label>
+			<br> <label id="retraitArt">Retrait :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+			<%=av.getRetrait().getRue()%> <%=av.getRetrait().getCodePostal()%> 
+			<%=av.getRetrait().getVille()%></label>
 			
 			<br> <label id="vendeurArt">Vendeur :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 			<%=av.getUtilisateur().getPseudo()%> </label>
