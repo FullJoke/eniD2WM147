@@ -14,7 +14,7 @@ public class ArticleVendu {
 	private String image;
 
 	private String etatVente;
-	private List<Enchere> listeEnchere;
+	private Enchere enchere;
 	private Utilisateur utilisateur;
 	private Retrait retrait;
 	private Categorie categorie;
@@ -22,10 +22,10 @@ public class ArticleVendu {
 	// Constructeurs
 	public ArticleVendu(int idArticle, String nom, String description, LocalDateTime debutEnchere,
 			LocalDateTime finEnchere, int prixInitial, int prixVente, String image, String etatVente,
-			Utilisateur utilisateur, Retrait retrait, Categorie categorie) {
+			Utilisateur utilisateur, Retrait retrait, Categorie categorie, Enchere enchere) {
 
 		this(nom, description, debutEnchere, finEnchere, prixInitial, prixVente, image, etatVente, utilisateur,
-				retrait, categorie);
+				retrait, categorie, enchere);
 		this.idArticle = idArticle;
 	}
 
@@ -35,7 +35,7 @@ public class ArticleVendu {
 
 	public ArticleVendu(String nom, String description, LocalDateTime debutEnchere,
 			LocalDateTime finEnchere, int prixInitial, int prixVente, String image, String etatVente, 
-			Utilisateur utilisateur, Retrait retrait, Categorie categorie) {
+			Utilisateur utilisateur, Retrait retrait, Categorie categorie, Enchere enchere) {
 		this.nom = nom;
 		this.description = description;
 		this.debutEnchere = debutEnchere;
@@ -47,6 +47,7 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 		this.retrait = retrait;
 		this.categorie = categorie;
+		this.enchere = enchere;
 	}
 
 	// Getters & Setters
@@ -122,12 +123,12 @@ public class ArticleVendu {
 		this.image = image;
 	}
 
-	public List<Enchere> getListeEnchere() {
-		return listeEnchere;
+	public Enchere getEnchere() {
+		return enchere;
 	}
 
-	public void setListeEnchere(List<Enchere> listeEnchere) {
-		this.listeEnchere = listeEnchere;
+	public void setEnchere(Enchere enchere) {
+		this.enchere = enchere;
 	}
 
 	public Utilisateur getUtilisateur() {

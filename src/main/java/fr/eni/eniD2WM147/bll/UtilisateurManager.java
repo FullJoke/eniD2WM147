@@ -16,8 +16,8 @@ public class UtilisateurManager {
 	private static final String regexVerifCP = "\\d";
 	private static final String regexVerifVille = "\\w\\s";
 	private static final String regexVerifRue = "\\w\\s^\\s";
-	private static final String regewVerifMdp ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{8}$";
-	
+	private static final String regewVerifMdp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{8}$";
+
 	private UtilisateurDAO utilisateurDAO;
 	private static UtilisateurManager instance;
 	Matcher m;
@@ -134,7 +134,7 @@ public class UtilisateurManager {
 		if (codePostal == null || Pattern.matches(regexVerifCP, codePostal)) {
 			businessException.addMessage("Le code postal est obligatoire.");
 		}
-		if (codePostal.length()!= 5) {
+		if (codePostal.length() != 5) {
 			businessException.addMessage("Le code postal ne doit pas dépasser 10 caractères");
 		}
 	}

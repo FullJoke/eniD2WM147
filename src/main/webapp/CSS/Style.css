@@ -164,6 +164,14 @@ label {
 	margin-bottom: 100px;
 }
 
+#signUpCreditLabel{
+	margin: 10px 48px 18px 13px;
+}
+
+#ModifCrédit{
+	margin: 0px 0px 0px 0px;
+}
+
 .mdpCom {
 	margin-top: 5px;
 	margin-bottom: 20px;
@@ -235,6 +243,7 @@ label {
 
 #vendeurArt {
 	margin-left: 30px;
+	margin-bottom: 25px;
 }
 
 #porpositionArt {
@@ -263,9 +272,49 @@ label {
 }
 
 #deleteButton{
-	margin: 628px 0px 0px 0px;
+	margin: 687px 0px 0px 0px;
 }
 
 #detailsVendeurBtn{
 	margin: -50px 0px 0px 227px
+}
+
+#CreaVenteDesc{
+	margin: 0px 47px 0px -41px;
+}
+
+#CreaVenteCat{
+	margin: 15px 47px 0px -34px;
+}
+
+#CreaVenteImage{
+	margin: 15px 47px 0px -87px;
+}
+
+#CreaVentePrixInit{
+	margin: 15px 50px 0px -40px;
+}
+
+#CreaVenteDebEnchere{
+	margin: 15px 52px 0px -110px;
+}
+
+#CreaVenteFinEnchere{
+	margin: 15px 52px 0px -82px;
+}
+
+#CreaVenteRue{
+	margin: 15px 55px 0px 18px;
+}
+
+#CreaVenteCodeP{
+	margin: 15px 54px 0px -49px;
+}
+
+#CreaVenteVille{
+	margin: 15px 53px 0px 17px;
+}
+
+#CreaVenteBtn{
+	margin: 34px 0px 0px 75px;
 }

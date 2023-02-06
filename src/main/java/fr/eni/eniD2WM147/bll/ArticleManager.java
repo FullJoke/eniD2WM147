@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
+import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 import fr.eni.eniD2WM147.dal.ArticleDAO;
 import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
@@ -86,14 +87,17 @@ public class ArticleManager {
 	}
 
 	private void validerPrix(int prix, BusinessException businessException) {
-		if ( prix < 0) {
+		if (prix < 0) {
 			businessException.addMessage("Le prix est obligatoire et doit être positif");
 		}
 	}
-	
 
 	public Categorie selectCatByIdArt(int idArticle) {
 		return articleDAO.selectCatByIdArt(idArticle);
+	}
+
+	public Enchere selectEnchereByIdArticle(int idArt) {
+		return articleDAO.selectEnchereByIdArticle(idArt);
 	}
 
 }
