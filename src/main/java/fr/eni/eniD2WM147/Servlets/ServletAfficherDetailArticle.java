@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniD2WM147.bll.ArticleManager;
-import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
@@ -30,34 +29,31 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ArticleManager am = new ArticleManager();
-		UtilisateurManager um = new UtilisateurManager();
+
 		System.out.println("AfficherArticle - doGet");
 		String idArtTemp = request.getParameter("Article");
 
 		int idArt = Integer.parseInt(idArtTemp);
 		System.out.println("Servlet - idArticle selectionné : " + idArt);
-		
+
 		try {
 
-			ArticleVendu av = am.selectArticleById(idArt);
+			ArticleVendu av = ArticleManager.getInstance().selectArticleById(idArt);
 			System.out.println("SERVLET - Attribut Article : " + av);
 			request.setAttribute("detailArticle", av);
-			
-			Categorie c = am.selectCatByIdArt(av.getIdArticle());
+
+			Categorie c = ArticleManager.getInstance().selectCatByIdArt(av.getIdArticle());
 			System.out.println("SERVLET - Attribut Categorie : " + c);
 			request.setAttribute("articleCategorie", c);
-			
-			Utilisateur u = um.getUtilisateurByEnchere(idArt);
+
+			Utilisateur u = UtilisateurManager.getInstance().getUtilisateurByEnchere(idArt);
 			System.out.println("SERVLET - Attribut Utilisateur : " + u.getPseudo());
 			request.setAttribute("enchereUtilisateur", u);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/AfficherDetailArticle.jsp");
 		rd.forward(request, response);
 	}
@@ -69,8 +65,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("AfficherArticle - doPost");
-		
-				
+
 		doGet(request, response);
 	}
 

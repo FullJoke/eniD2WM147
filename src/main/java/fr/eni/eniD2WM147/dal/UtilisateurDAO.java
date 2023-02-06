@@ -3,6 +3,7 @@ package fr.eni.eniD2WM147.dal;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
+
 public interface UtilisateurDAO {
 
 	public Utilisateur getUserByEmailAndPassword(String mail, String mdp) throws BusinessException;

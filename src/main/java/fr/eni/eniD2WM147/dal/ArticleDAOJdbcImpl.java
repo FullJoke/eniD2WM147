@@ -17,6 +17,7 @@ import fr.eni.eniD2WM147.bo.Retrait;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
+
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String SELECT_ALL_ARTICLES = "SELECT * FROM ARTICLES_VENDUS av "
