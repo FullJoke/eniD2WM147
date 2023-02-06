@@ -178,7 +178,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		Utilisateur u;
 		Categorie c;
 		Retrait r;
-		Enchere e;
 		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
