@@ -7,6 +7,29 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="CSS/Style.css" rel="stylesheet">
 <body>
+
+	<div id="logErrorMessages">
+		<!-- Gestion des erreurs -->
+		<%
+		List<String> listeErreur = (List<String>) request.getAttribute("listeErreur");
+		if (listeErreur != null) {
+		%>
+		<%
+		for (String erreur : listeErreur) {
+		%>
+		<div id="loginError" class="alert alert-danger" role="alert">
+			<%=erreur%></div>
+		<%--  			<div class="d-flex justify-content-center">
+				<p style="color: red"><%=erreur%></p>
+			</div> --%>
+
+		<%
+		}
+		%>
+		<%
+		}
+		%>
+	</div>
 	<header>
 		<%@ include file="Entete.html"%>
 		<div class="d-flex flex-row-reverse">
@@ -31,25 +54,33 @@
 			<form action="<%=request.getContextPath()%>/inscription"
 				method="post">
 				<label id="signUpPseudoLabel">Pseudo : </label> <input
-					id="signUpPseudo" pattern="[a-zA-Z0-9]{3,20}"
-					placeholder="Invite01" name="pseudo"> <br> <label
-					id="signUpNomLabel">Nom : </label> <input id="signUpNom"
-					type="text" name="nom" placeholder="Martin"> <br> <label
-					id="signUpPrenomLabel">Prenom : </label> <input id="signUpPrenom"
-					type="text" name="prenom" placeholder="Camille"> <br>
-				<label id="signUpEmailLabel">Email : </label> <input
-					id="signUpEmail" type="email" name="email"
-					placeholder="martin.camille@fakemail.com"> <br> <label
-					id="signUpTelephoneLabel">Telephone : </label> <input
-					id="signUpTelephone" pattern="^0[0-9]{9}" type="tel" name="tel"
-					placeholder="01 02 03 04 05"> <br> <label
-					id="signUpRueLabel">Rue : </label> <input id="signUpRue"
-					type="text" name="rue" placeholder="rue de bidule"> <br>
+					id="signUpPseudo" 
+					placeholder="Invite01" name="pseudo" value="${pseudo}"> <br>
+
+				<label id="signUpNomLabel">Nom : </label> <input id="signUpNom"
+					type="text" name="nom"  placeholder="Martin" value="${nom}">
+				<br> 
+				<label id="signUpPrenomLabel">Prenom : </label> <input
+					id="signUpPrenom" type="text" name="prenom" placeholder="Camille"
+					value="${prenom}"> <br> 
+					
+					<label id="signUpEmailLabel">Email
+					: </label> <input id="signUpEmail" type="email" name="email"
+					placeholder="martincamille@fakemail.com" value="${email}">
+				<br> 
+				<label id="signUpTelephoneLabel">Telephone : </label> <input
+					id="signUpTelephone"  type="tel" name="tel"
+					placeholder="01 02 03 04 05" value="${tel}"> <br>
+					 <label	id="signUpRueLabel">Rue : </label> <input id="signUpRue"
+					type="text" name="rue" placeholder="rue de bidule" value="${rue}">
+				<br> 
 				<label id="signUpCodePostalLabel">Code Postal : </label> <input
 					id="signUpCodePostal" type="text" name="codePostal"
-					placeholder="11111"> <br> <label id="signUpVilleLabel">Ville
-					: </label> <input id="signUpVille" type="text" name="ville"
-					placeholder="Fausseville"> <br>
+					placeholder="11111" value="${codePostal}"> <br> 
+					<label
+					id="signUpVilleLabel">Ville : </label> <input id="signUpVille"
+					type="text" name="ville" placeholder="Fausseville" value="${ville}">
+				<br>
 				<h6 class="mdpCom">
 					Le mot de passe doit avoir au moins 8 caractères (max15),<br>
 					un chiffre, une lettre majuscule et une minuscule
@@ -70,11 +101,11 @@
 			</form>
 		</div>
 
-		
-		
-	<footer id="footer">
-	<%@ include file="footer.html"%>
-	</footer>
+
+
+		<footer id="footer">
+			<%@ include file="footer.html"%>
+		</footer>
 	</div>
 </body>
 

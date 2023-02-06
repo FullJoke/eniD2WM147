@@ -21,7 +21,6 @@ import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
-
 /**
  * Servlet implementation class ServletAfficherArticle
  */
@@ -37,13 +36,9 @@ public class ServletCreationArticle extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("Creation Vente - doGet");
 
-		EnchereManager em = new EnchereManager();
-
-		ArticleManager am = new ArticleManager();
-
 		List<Categorie> categories = new ArrayList<>();
 		try {
-			categories = am.selectAllCat();
+			categories = ArticleManager.getInstance().selectAllCat();
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,7 +85,8 @@ public class ServletCreationArticle extends HttpServlet {
 			// voir pour le lieu de retrait
 			// voir pour cat et parse pour localdate
 			// Ajouter article
-			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, "CR", image, vendeur, null, cat);
+			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, image, "CR", vendeur, null,
+					cat);
 			request.getParameter("saveNewArt");
 
 			article = ArticleManager.getInstance().insert(article);

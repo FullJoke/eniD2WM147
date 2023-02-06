@@ -55,13 +55,29 @@ public class ServletInscription extends HttpServlet {
 
 		Utilisateur user = null;
 		String pseudo = request.getParameter("pseudo");
+		request.setAttribute("pseudo",pseudo);
+		
 		String nom = request.getParameter("nom");
+		request.setAttribute("nom",nom);
+		
 		String prenom = request.getParameter("prenom");
+		request.setAttribute("prenom",prenom);
+		
 		String email = request.getParameter("email");
+		request.setAttribute("email",email);
+		
 		String tel = request.getParameter("tel");
+		request.setAttribute("tel",tel);
+		
 		String rue = request.getParameter("rue");
+		request.setAttribute("rue",rue);
+		
 		String codePostal = request.getParameter("codePostal");
+		request.setAttribute("codePostal",codePostal);
+		
 		String ville = request.getParameter("ville");
+		request.setAttribute("ville",ville);
+		
 		String mdp = request.getParameter("mdp");
 		String confirmation = request.getParameter("confirmation");
 
@@ -99,8 +115,8 @@ public class ServletInscription extends HttpServlet {
 			if (mdp.isBlank()) {
 				bE.addMessage("Le mot de passe est obligatoire.");
 			}
-			if (confirmation.isBlank() & confirmation.equals(mdp)) {
-				bE.addMessage("Veuillez confirmer votre mot de passe");
+			if (confirmation.isBlank() || !confirmation.equals(mdp)) {
+				bE.addMessage("Erreur lors de la confirmation du mot de passe");
 			}
 			if (!bE.getListeMessage().isEmpty()) {
 				throw bE;
