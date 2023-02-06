@@ -3,9 +3,9 @@ package fr.eni.eniD2WM147.bll;
 import java.time.LocalDateTime;
 
 import fr.eni.eniD2WM147.bo.Enchere;
-import fr.eni.eniDW2M147.businessException.BusinessException;
-import fr.eni.eniDW2M147.dal.EnchereDAO;
-import fr.eni.eniDW2M147.dal.EnchereDAOFactory;
+import fr.eni.eniD2WM147.businessException.BusinessException;
+import fr.eni.eniD2WM147.dal.EnchereDAO;
+import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
 
 public class EnchereManager {
 

@@ -19,7 +19,7 @@ import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Utilisateur;
-import fr.eni.eniDW2M147.businessException.BusinessException;
+import fr.eni.eniD2WM147.businessException.BusinessException;
 
 /**
  * Servlet implementation class ServletAfficherArticle

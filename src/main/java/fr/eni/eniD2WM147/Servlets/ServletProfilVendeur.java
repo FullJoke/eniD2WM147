@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.Utilisateur;
-import fr.eni.eniDW2M147.businessException.BusinessException;
+import fr.eni.eniD2WM147.businessException.BusinessException;
 
 /**
  * Servlet implementation class ServletProfilVendeur
