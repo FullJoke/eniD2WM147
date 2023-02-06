@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
-import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.bo.Utilisateur;
@@ -42,20 +41,26 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 	}
 
-	public Enchere bidArticle() throws BusinessException {
+	public int bidArticle() throws BusinessException {
 		Utilisateur user = new Utilisateur();
-		ArticleVendu art = new ArticleVendu();
 		Enchere prixEnchere = new Enchere();
+		ArticleVendu art = new ArticleVendu();
 		EnchereManager em = new EnchereManager();
-		UtilisateurManager util = new UtilisateurManager();
+		int creditEnchere = 0;
 
-		if (prixEnchere.getMontantEnchere() > art.getPrixInitial()
-				&& user.getCredit() > prixEnchere.getMontantEnchere()) {
-
-			em.insertBid(prixEnchere.getDateEnchere(), prixEnchere.getMontantEnchere());
+		if (user.getCredit() > prixEnchere.getMontantEnchere()&&
+				prixEnchere.getMontantEnchere()> art.getPrixVente()) {
+			creditEnchere = user.getCredit() - prixEnchere.getMontantEnchere();
+		} else if (user.getCredit() == prixEnchere.getMontantEnchere()
+				|| user.getCredit() < prixEnchere.getMontantEnchere()) {
+			BusinessException bException = new BusinessException();
+			bException.addMessage("Crédit insuffisant");
+			throw bException;
 		}
 
-		return null;
+		em.insertBid(prixEnchere.getDateEnchere(), prixEnchere.getMontantEnchere());
+
+		return creditEnchere;
 
 	}
 
