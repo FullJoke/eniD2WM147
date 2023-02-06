@@ -55,11 +55,6 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		
 		} 
 		
-		
-		
-		
-		
-		
 		else if (user.getCredit() == prixEnchere.getMontantEnchere()
 				|| user.getCredit() < prixEnchere.getMontantEnchere()) {
 
