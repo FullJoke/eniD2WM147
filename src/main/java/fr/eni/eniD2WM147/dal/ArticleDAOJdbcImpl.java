@@ -179,7 +179,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		Categorie c;
 		Retrait r;
 		
-		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			pstmt = cnx.prepareStatement(SELECT_ART_BY_ID);

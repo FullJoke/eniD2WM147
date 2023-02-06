@@ -57,7 +57,7 @@
 				
 				<br>
 				
-				<label id="">Description :</label>
+				<label id="CreaVenteDesc">Description :</label>
 				<textarea id="story" name="story" rows="5" cols="33"></textarea>
 				
 				<br>
@@ -68,7 +68,7 @@
 				(List<Categorie>) request.getAttribute("categories");
 				%>
 				
-				<label>Catégories :</label>
+				<label id="CreaVenteCat">Catégories :</label>
 				<select name="listcate">
 				<option value="0">Toutes</option>
 				<%
@@ -82,38 +82,39 @@
 				
 				<br>
 				
-				<label>Photo de l'article :</label>
+				<label id="CreaVenteImage">Photo de l'article :</label>
 				<input type="image" name="photoArticle">
 				
 				<br>
 				
-				<label>Mise à prix</label>
+				<label id="CreaVentePrixInit">Mise à prix :</label>
 				<input type="number" name="miseAprix" min="1" max="1000">
 				
 				<br>
 				
-				<label>Début de l'enchère</label>
+				<label id="CreaVenteDebEnchere">Début de l'enchère :</label>
 				<input type="datetime-local" name="debutEnchere">
 				
 				<br>
 				
-				<label>Fin de l'enchère</label>
+				<label id="CreaVenteFinEnchere">Fin de l'enchère :</label>
 				<input type="datetime-local" name="finEnchere">
 				
 				<br>
 				
 				<fieldset>
 					<legend>Retrait</legend>
-					<label>Rue :</label> <input type="text" name="rue" value="<%=user.getRue()%>"> <br>
-					<label>Code Postal :</label> <input type="text" name="codePostal" value="<%=user.getCodePostal()%>">
-					<br> <label>Ville :</label> <input type="text" name="ville" value="<%=user.getVille()%>">
+					<label id="CreaVenteRue">Rue :</label> <input type="text" name="rue" value="<%=user.getRue()%>"> <br>
+					<label id="CreaVenteCodeP">Code Postal :</label> <input type="text" name="codePostal" value="<%=user.getCodePostal()%>">
+					<br> <label id="CreaVenteVille">Ville :</label> <input type="text" name="ville" value="<%=user.getVille()%>">
 				</fieldset>
 
-
+				<div id="CreaVenteBtn">
 				<input class="btn btn-primary" type="submit" name="saveNewArt"
 					value="Enregistrer">
 				<a href="<%=request.getContextPath()%>/accueil" class="btn btn-secondary">
 				Annuler</a>
+				</div>
 
 			</form>
 		</div>

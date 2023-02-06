@@ -51,7 +51,6 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 			request.setAttribute("ArticleAAfficher", av);
 
 
-
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}

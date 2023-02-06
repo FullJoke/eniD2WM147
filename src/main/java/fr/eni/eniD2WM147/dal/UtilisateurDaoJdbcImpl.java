@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
@@ -17,11 +19,11 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit, mot_de_passe, administrateur)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?,ville=?, mot_de_passe=?,credit=? WHERE no_utilisateur = ?;";
 
-	private static final String DELETE_ENCHERES = "DELETE e FROM ENCHERES e JOIN ARTICLES_VENDUS av ON e.no_article=av.no_article WHERE av.no_utilisateur=?";
-	private static final String DELETE_ARTICLE_VENDUS = "DELETE av FROM ARTICLES_VENDUS av Inner join UTILISATEURS u ON av.no_utilisateur=u.no_utilisateur WHERE av.no_utilisateur=?";
+	private static final String DELETE_ENCHERES = "DELETE e FROM ENCHERES e INNER JOIN ARTICLES_VENDUS av ON e.no_article=av.no_article WHERE av.no_utilisateur=?";
+	private static final String DELETE_ARTICLE_VENDUS = "DELETE av FROM ARTICLES_VENDUS av INNER JOIN UTILISATEURS u ON av.no_utilisateur=u.no_utilisateur WHERE av.no_utilisateur=?";
 	private static final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 
-	private static final String SELECT_USER_BY_ID = "SELECT * FROM UTILISATEURS  WHERE no_utilisateur =?";
+	private static final String SELECT_USER_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur =?";
 
 	public Utilisateur getUserByEmailAndPassword(String id, String mdp) throws BusinessException {
 
@@ -87,9 +89,11 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 
 			stmtp.executeUpdate();
 			ResultSet rs = stmtp.getGeneratedKeys();
-
+			
 			if (rs.next()) {
 				int idUtilisateur = rs.getInt(1);
+
+				
 
 				utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit,
 						administrateur);
@@ -154,9 +158,9 @@ public class UtilisateurDaoJdbcImpl implements UtilisateurDAO {
 
 	public void deleteAll(int idUtilisateur) throws BusinessException {
 		try {
-			deleteUser(idUtilisateur);
 			deleteEnchere(idUtilisateur);
 			deleteArticle(idUtilisateur);
+			deleteUser(idUtilisateur);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();

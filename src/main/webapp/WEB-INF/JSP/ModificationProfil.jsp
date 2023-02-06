@@ -94,6 +94,8 @@
 				<br> <label id="signUpConfirmationLabel">Confirmation :
 				</label> <input id="ModifConfirmation" type="password" name="confirmation"
 					placeholder="********"> <br>
+				<label id="signUpCreditLabel">Crédit : </label>
+				<input id="ModifCrédit" value="<%=user.getCredit()%>" readonly="readonly">
 				<div class="ModifProfilButtons">
 					<input id="inscriptionButton" class="btn btn-primary"
 						id="ModifSaveButton" type="submit" value="Enregistrer"> <a
@@ -103,16 +105,17 @@
 				</div>
 			</form>
 			<form action="<%=request.getContextPath()%>/delete" method="post">
-				<!-- <a	id="inscriptionButton" class="btn btn-danger" href="www.google.fr">Supprimer</a> -->
 				<input type="hidden" name="utilisateur"
 					value="<%=user.getIdUtilisateur()%>">
-				<button id="deleteButton" class="btn btn-danger" id="inscriptionButton" type="submit"
+				<button id="deleteButton" class="btn btn-danger"
+					id="inscriptionButton" type="submit"
 					onclick="window.location.href ='<%=request.getContextPath()%>/delete';">Supprimer</button>
 			</form>
+
 		</div>
-	</div>	
+	</div>
 	<footer id="footer">
-	<%@ include file="footer.html"%>
+		<%@ include file="footer.html"%>
 	</footer>
 </body>
 </html>
