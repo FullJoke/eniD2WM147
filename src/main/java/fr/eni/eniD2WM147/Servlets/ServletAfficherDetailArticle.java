@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.eniD2WM147.bll.ArticleManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
+import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
 /**
@@ -29,14 +30,23 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 
 		System.out.println("AfficherArticle - doGet");
 		String idArtTemp = request.getParameter("Article");
-
+System.out.println(idArtTemp);
 		int idArt = Integer.parseInt(idArtTemp);
 		System.out.println("Servlet - idArticle selectionné : " + idArt);
 
 		try {
-			
+
 			ArticleVendu av = ArticleManager.getInstance().selectArticleById(idArt);
 			System.out.println(av);
+
+			Enchere e = ArticleManager.getInstance().selectEnchereByIdArticle(idArt);
+			if (e == null) {
+				e = new Enchere(0, null);
+			}
+			System.out.println(e);
+			
+			av.setEnchere(e);
+
 			request.setAttribute("ArticleAAfficher", av);
 
 //			ArticleVendu av = ArticleManager.getInstance().selectArticleById(idArt);

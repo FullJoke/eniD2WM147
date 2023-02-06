@@ -38,6 +38,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			+ "WHERE av.no_article=?";
 	private static final String SELECT_CAT = "SELECT * FROM CATEGORIES c JOIN ARTICLES_VENDUS av ON "
 			+ "c.no_categorie = av.no_categorie WHERE no_article=?";
+	private static final String SELECT_ENCHERE_BY_IDARTICLE = "SELECT e.montant_enchere, u.no_utilisateur, "
+			+ "u.pseudo FROM ENCHERES e JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur "
+			+ "WHERE no_article=?";
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -175,7 +178,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		Utilisateur u;
 		Categorie c;
 		Retrait r;
-		Enchere e;
+		
 		
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -246,5 +249,33 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 		System.out.println("DAL - Categorie Article : " + cat.getLibelle());
 		return cat;
+	}
+	
+
+	@Override
+	public Enchere selectEnchereByIdArticle(int idArt) {
+		Enchere e = null;
+		Utilisateur u = null;
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ENCHERE_BY_IDARTICLE);
+			pstmt.setInt(1, idArt);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
+				
+				e = new Enchere(rs.getInt("montant_enchere"), u);
+			}
+			
+			
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		
+		return e;
 	}
 }

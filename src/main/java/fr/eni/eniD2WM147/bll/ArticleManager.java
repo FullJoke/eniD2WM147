@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
+import fr.eni.eniD2WM147.bo.Enchere;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 import fr.eni.eniD2WM147.dal.ArticleDAO;
 import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
@@ -87,6 +88,10 @@ public class ArticleManager {
 
 	public Categorie selectCatByIdArt(int idArticle) {
 		return articleDAO.selectCatByIdArt(idArticle);
+	}
+
+	public Enchere selectEnchereByIdArticle(int idArt) {
+		return articleDAO.selectEnchereByIdArticle(idArt);
 	}
 
 }

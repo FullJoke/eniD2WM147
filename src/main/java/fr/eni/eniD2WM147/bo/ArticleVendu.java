@@ -127,7 +127,7 @@ public class ArticleVendu {
 		return enchere;
 	}
 
-	public void setListeEnchere(Enchere enchere) {
+	public void setEnchere(Enchere enchere) {
 		this.enchere = enchere;
 	}
 
