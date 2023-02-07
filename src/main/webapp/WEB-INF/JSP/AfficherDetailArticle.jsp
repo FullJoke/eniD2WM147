@@ -108,11 +108,11 @@
 	<div id="myOffer">
 		<form action="${pageContext.request.contextPath}/FaireUneEnchere"
 			method="post">
-			<label id="porpositionArt">Ma proposition : </label> <input
-				type="hidden" name="idArticle" value="<%=av.getIdArticle()%>">
-			<input type="hidden" name="bestOffer"
-				value="<%=av.getEnchere().getMontantEnchere()%>"> <input
-				type="number" min="1" max="1000" name="encherir"> <input
+			<label id="porpositionArt">Ma proposition : </label>
+			<input type="hidden" name="idArticle" value="<%=av.getIdArticle()%>">
+			<input type="hidden" name="bestOffer" value="<%=av.getEnchere().getMontantEnchere()%>">
+			<input
+				type="number" min="1" max="1000" name="enchere"> <input
 				id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
 				name="encherirAff" value="Encherir">
 		</form>
