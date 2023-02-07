@@ -330,3 +330,27 @@ label {
 #NomArt{
 	margin: 0px 0px 35px 240px;
 }
+
+#AccueilAchatsRadio{
+	margin: 20px 0px 0px 0px;
+}
+
+#AccueilVentesRadio{
+	margin: -161px 0px 20px 400px;
+}
+
+#achat{
+	margin: 0px 0px 0px 0px;
+}
+
+#EnchereOuvCheck{
+	margin: 0px 24px 10px 10px;
+}
+
+#MesEncheresCheck{
+	margin: 0px 24px 10px 48px;
+}
+
+#EnchereWinCheck{
+	margin: 0px 24px 0px -55px;
+}

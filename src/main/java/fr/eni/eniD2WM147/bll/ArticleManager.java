@@ -1,6 +1,7 @@
 package fr.eni.eniD2WM147.bll;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.eniD2WM147.bo.ArticleVendu;
@@ -98,6 +99,18 @@ public class ArticleManager {
 
 	public Enchere selectEnchereByIdArticle(int idArt) {
 		return articleDAO.selectEnchereByIdArticle(idArt);
+	}
+
+	public List<ArticleVendu> listeArticleAccueil(int catChoisie, String filtreAchat, 
+			String enchereOuv, String mesEncheres, String encheresRemportees, String ventesEnCours, 
+			String ventesNonDebutees, String ventesTerminees, int idSession) {
+		System.out.println("BLL - ArticleManager : ListeArticleAccueil");
+		List<ArticleVendu> articles = new ArrayList<>();
+		articles = articleDAO.listeArticleAccueil(catChoisie, filtreAchat, enchereOuv, mesEncheres, 
+				encheresRemportees, ventesEnCours, ventesNonDebutees, ventesTerminees, idSession);
+		
+		
+		return articles;
 	}
 
 }

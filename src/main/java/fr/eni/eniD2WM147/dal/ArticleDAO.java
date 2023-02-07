@@ -24,4 +24,8 @@ public interface ArticleDAO {
 
 	public Enchere selectEnchereByIdArticle(int idArt);
 
+	public List<ArticleVendu> listeArticleAccueil(int catChoisie, String filtreAchat, String enchereOuv, 
+			String mesEncheres, String encheresRemportees, String ventesEnCours, String ventesNonDebutees, 
+			String ventesTerminees, int idSession);
+
 }
