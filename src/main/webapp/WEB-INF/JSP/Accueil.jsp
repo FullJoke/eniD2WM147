@@ -22,16 +22,6 @@
 	<header>
 		<%@ include file="Entete.html"%>
 
-
-		<%
-		List<Categorie> categories = (List<Categorie>) request.getAttribute("categories");
-		%>
-		<%
-		List<ArticleVendu> articles = (List<ArticleVendu>) request.getAttribute("articles");
-		%>
-		<%
-		Utilisateur Utilisateur = (Utilisateur) session.getAttribute("Utilisateur");
-		%>
 		<c:choose>
 			<c:when test="${empty Utilisateur }">
 				<div class="d-flex flex-row-reverse">
