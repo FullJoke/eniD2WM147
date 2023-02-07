@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%><%@ page
 	language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%><!DOCTYPE html>
@@ -9,6 +10,29 @@
 <title>Profil</title>
 </head>
 <body>
+	<div id="logErrorMessages">
+		<!-- Gestion des erreurs -->
+		<%
+		List<String> listeErreur = (List<String>) request.getAttribute("listeErreur");
+		if (listeErreur != null) {
+		%>
+		<%
+		for (String erreur : listeErreur) {
+		%>
+		<div id="loginError" class="alert alert-danger" role="alert">
+			<%=erreur%></div>
+		<%--  			<div class="d-flex justify-content-center">
+				<p style="color: red"><%=erreur%></p>
+			</div> --%>
+
+		<%
+		}
+		%>
+		<%
+		}
+		%>
+	</div>
+
 	<header>
 		<%@ include file="Entete.html"%>
 		<div class="d-flex flex-row-reverse">
@@ -72,11 +96,6 @@
 					value="<%=user.getCodePostal()%>"> <br> <label
 					id="signUpVilleLabel">Ville : </label> <input id="ModifVille"
 					type="text" name="ville" value="<%=user.getVille()%>"> <br>
-				<!-- 				<label id="signUpMdpNLabel">Ancien mot de passe : </label> <input
-				id="ModifMdpActuel" type="password" name="mdp"
-				placeholder="********" required
-				pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
-				<br> -->
 
 				<label id="signUpMdpNewLabel">Nouveau mot de passe : </label> <input
 					id="ModifNewMdp" type="password" name="mdp" placeholder="********"

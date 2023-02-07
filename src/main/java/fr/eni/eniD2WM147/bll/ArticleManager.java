@@ -3,19 +3,19 @@ package fr.eni.eniD2WM147.bll;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Enchere;
+import fr.eni.eniD2WM147.bo.Retrait;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 import fr.eni.eniD2WM147.dal.ArticleDAO;
 import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
 
 public class ArticleManager {
 	private ArticleDAO articleDAO;
-	public static ArticleManager instance;
+	private static ArticleManager instance;
 
-	public ArticleManager() {
+	private ArticleManager() {
 		this.articleDAO = EnchereDAOFactory.getArticleDAO();
 	}
 
@@ -31,7 +31,6 @@ public class ArticleManager {
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
-
 		return articleDAO.selectAllArticles();
 	}
 
@@ -57,37 +56,30 @@ public class ArticleManager {
 
 	public ArticleVendu insert(ArticleVendu article) throws BusinessException {
 		BusinessException bE = new BusinessException();
-		validerDebutEnchere(article.getDebutEnchere(), bE);
-		validerFinEnchere(article.getDebutEnchere(), article.getFinEnchere(), bE);
-		validerDescription(article.getDescription(), bE);
-		validerPrix(article.getPrixVente(), bE);
+		validerInsert(article.getDescription(), article.getDebutEnchere(), article.getFinEnchere(),
+				article.getPrixInitial(), bE);
+
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
 		return articleDAO.insertArticle(article);
-
 	}
 
-	private void validerDebutEnchere(LocalDateTime debutEnchere, BusinessException businessException) {
-		if (debutEnchere == null || debutEnchere.isAfter(LocalDateTime.now())) {
-			businessException.addMessage("La date est obligatoire et ne peut pas être dans le futur");
-		}
-	}
-
-	private void validerFinEnchere(LocalDateTime debutEnchere, LocalDateTime finEnchere,
+	private void validerInsert(String description, LocalDateTime debutEnchere, LocalDateTime finEnchere, int prix,
 			BusinessException businessException) {
-		if (finEnchere == null || finEnchere.isBefore(debutEnchere)) {
+		int jour = LocalDateTime.now().getDayOfMonth();
+		int mois = LocalDateTime.now().getMonthValue();
+		if (debutEnchere == null || debutEnchere.getDayOfMonth() < jour || debutEnchere.getMonthValue() < mois) {
+			businessException.addMessage("La date est obligatoire et ne peut pas être dans le passé");
+		}
+
+		if (finEnchere == null || finEnchere.getDayOfMonth() < jour || finEnchere.getMonthValue() < mois) {
 			businessException.addMessage("La date est obligatoire et ne peut pas être avant le début de l'enchère");
 		}
-	}
 
-	private void validerDescription(String description, BusinessException businessException) {
 		if (description == null || description.length() > 300) {
 			businessException.addMessage("La description est obligatoire et ne peut pas dépasser 300 caractères");
 		}
-	}
-
-	private void validerPrix(int prix, BusinessException businessException) {
 		if (prix < 0) {
 			businessException.addMessage("Le prix est obligatoire et doit être positif");
 		}
@@ -101,15 +93,14 @@ public class ArticleManager {
 		return articleDAO.selectEnchereByIdArticle(idArt);
 	}
 
-	public List<ArticleVendu> listeArticleAccueil(int catChoisie, String filtreAchat, 
-			String enchereOuv, String mesEncheres, String encheresRemportees, String ventesEnCours, 
-			String ventesNonDebutees, String ventesTerminees, int idSession) {
+	public List<ArticleVendu> listeArticleAccueil(int catChoisie, String filtreAchat, String enchereOuv,
+			String mesEncheres, String encheresRemportees, String ventesEnCours, String ventesNonDebutees,
+			String ventesTerminees, int idSession) {
 		System.out.println("BLL - ArticleManager : ListeArticleAccueil");
 		List<ArticleVendu> articles = new ArrayList<>();
-		articles = articleDAO.listeArticleAccueil(catChoisie, filtreAchat, enchereOuv, mesEncheres, 
-				encheresRemportees, ventesEnCours, ventesNonDebutees, ventesTerminees, idSession);
-		
-		
+		articles = articleDAO.listeArticleAccueil(catChoisie, filtreAchat, enchereOuv, mesEncheres, encheresRemportees,
+				ventesEnCours, ventesNonDebutees, ventesTerminees, idSession);
+
 		return articles;
 	}
 

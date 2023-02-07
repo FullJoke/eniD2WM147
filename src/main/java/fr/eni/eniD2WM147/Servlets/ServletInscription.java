@@ -19,15 +19,6 @@ import fr.eni.eniD2WM147.businessException.BusinessException;
  */
 @WebServlet("/inscription")
 public class ServletInscription extends HttpServlet {
-	// private static final String MOTIF =
-	// "^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$";
-	// private static final String
-	// MOTIF="(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))";
-	// private static String regex
-	// ="(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))";
-	// private static Pattern pattern =Pattern.compile(regex);
-	// private static Matcher matcher;
-
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -48,8 +39,6 @@ public class ServletInscription extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// une fois connecté redirigé vers l'ecran d'accueil en mode connecté // annuler
-		// n'enregistre pas l'utilisateur et envoie directement sur la page // d'accueil
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
 

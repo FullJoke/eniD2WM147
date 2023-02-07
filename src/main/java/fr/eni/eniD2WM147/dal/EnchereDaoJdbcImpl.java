@@ -45,7 +45,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 		Utilisateur user = new Utilisateur();
 		Enchere prixEnchere = new Enchere();
 		ArticleVendu art = new ArticleVendu();
-		EnchereManager em = new EnchereManager();
+	
 
 		int creditEnchere = 0;
 
@@ -63,7 +63,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 			throw bException;
 		}
 
-		em.insertBid(prixEnchere.getDateEnchere(), prixEnchere.getMontantEnchere());
+		EnchereManager.getInstance().insertBid(prixEnchere.getDateEnchere(), prixEnchere.getMontantEnchere());
 
 		return creditEnchere;
 
