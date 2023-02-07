@@ -10,4 +10,8 @@ public interface EnchereDAO {
 	
 	public Enchere insertBid(LocalDateTime dateEnchere, int montantEnchere) throws BusinessException;
 
+	public void enchereUpdate(int idSession, int myOffer, int idArticle);
+
+	public void enchereInsert(int idSession, int myOffer, int idArticle);
+
 }

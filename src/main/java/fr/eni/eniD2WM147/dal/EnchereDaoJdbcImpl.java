@@ -15,6 +15,14 @@ import fr.eni.eniD2WM147.businessException.BusinessException;
 public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 	private static final String INSERT_BID = "INSERT INTO ENCHERES(date_enchere,montant_enchere)VALUES(?,?)";
+	private static final String UPDATE_ENCHERE ="UPDATE ENCHERES "
+			+ "SET no_utilisateur=?, date_enchere=GETDATE(), montant_enchere=? "
+			+ "WHERE no_article = ?";
+	private static final String INSERT_ENCHERE ="INSERT INTO ENCHERES VALUES (?, ?, GETDATE(), ?);";
+	
+	
+	
+	
 
 	public Enchere insertBid(LocalDateTime dateEnchere, int montantEnchere) throws BusinessException {
 
@@ -67,6 +75,38 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 		return creditEnchere;
 
+	}
+
+	@Override
+	public void enchereUpdate(int idSession, int myOffer, int idArticle) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_ENCHERE);
+			pstmt.setInt(1, idSession);
+			pstmt.setInt(2, myOffer);
+			pstmt.setInt(3, idArticle);
+			
+			pstmt.executeUpdate();
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+
+	@Override
+	public void enchereInsert(int idSession, int myOffer, int idArticle) {
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE);
+			pstmt.setInt(1, idSession);
+			pstmt.setInt(2, idArticle);
+			pstmt.setInt(3, myOffer);
+			
+			pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

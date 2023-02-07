@@ -78,10 +78,11 @@
 	ArticleVendu av = (ArticleVendu) request.getAttribute("ArticleAAfficher");
 	%>
 
-	<form id="detailsVendeurBtn"
-		action="<%=request.getContextPath()%>/Profil" method="post">
-		<div id="AfficherDétailsArticle" class="container">
-			<h2 id="AfficherDétailTitle" style="text-align: center;">Détail Vente</h2>
+	<div id="AfficherDétailsArticle" class="container">
+		<form id="detailsVendeurBtn"
+			action="<%=request.getContextPath()%>/Profil" method="post">
+			<h2 id="AfficherDétailTitle" style="text-align: center;">Détail
+				Vente</h2>
 
 			<div class="row justify-content-md-center">
 
@@ -98,10 +99,10 @@
 					<br> <label id="bestOfferArt">Meilleure offre
 						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getEnchere().getMontantEnchere()%>
 						crédits <%
-					 if (av.getEnchere().getMontantEnchere() > 0) {
-					 %> par <%=av.getEnchere().getUtilisateur().getPseudo()%> <%
-					 }
-					 %>
+ if (av.getEnchere().getMontantEnchere() > 0) {
+ %> par <%=av.getEnchere().getUtilisateur().getPseudo()%> <%
+ }
+ %>
 					</label> <br> <label id="misePrixArt">Mise à prix
 						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getPrixInitial()%>
 						pts
@@ -117,17 +118,25 @@
 					</label> <input type="hidden" name="vendeur"
 						value="<%=av.getUtilisateur().getIdUtilisateur()%>"> <input
 						type="submit" value="Détails Vendeur" class="btn btn-primary">
-
-					<br> <label id="porpositionArt">Ma proposition : </label> 
-					<input type="hidden" name="idArticle" value="<%=av.getIdArticle()%>">
-					<input
-						type="number" min="1" max="1000" name="encherir"> <input
-						id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
-						name="encherirAff" value="Encherir">
 				</div>
 			</div>
+		</form>
+
+
+		<br>
+		<div id="myOffer">
+			<form action="<%=request.getContextPath()%>/FaireUneEnchere" method="post">
+				<label id="porpositionArt">Ma proposition : </label>
+				
+				<input type="hidden" name="idArticle" value="<%=av.getIdArticle()%>">
+				<input type="hidden" name="bestOffer" value="<%=av.getEnchere().getMontantEnchere()%>">
+				
+				<input type="number" min="1" name="enchere">
+				<input id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
+					name="encherirAff" value="Encherir">
+			</form>
 		</div>
-	</form>
+	</div>
 
 	<footer id="footer">
 		<%@ include file="footer.html"%>

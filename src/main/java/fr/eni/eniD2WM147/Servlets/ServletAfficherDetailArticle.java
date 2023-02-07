@@ -30,7 +30,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 
 		System.out.println("AfficherArticle - doGet");
 		String idArtTemp = request.getParameter("Article");
-System.out.println(idArtTemp);
+		System.out.println(idArtTemp);
 		int idArt = Integer.parseInt(idArtTemp);
 		System.out.println("Servlet - idArticle selectionné : " + idArt);
 
