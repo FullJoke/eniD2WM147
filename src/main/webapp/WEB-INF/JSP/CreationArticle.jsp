@@ -1,3 +1,5 @@
+<%@page import="fr.eni.eniD2WM147.bo.ArticleVendu"%>
+<%@page import="fr.eni.eniD2WM147.bo.Retrait"%>
 <%@page import="java.util.List"%><%@page
 	import="fr.eni.eniD2WM147.bo.Categorie"%><%@page
 	import="fr.eni.eniD2WM147.bo.Utilisateur"%><%@ page language="java"
@@ -71,12 +73,12 @@
 
 			<form method="Post"
 				action="<%=request.getContextPath()%>/CreationArticle">
-				<label>Article :</label> <input type="text" name="article">
+				<label>Article :</label> <input type="text" name="nomArticle" required value="${nomArticle}">
 				<br> <label id="CreaVenteDesc">Description :</label> <br>
 
 				<label id="CreaVenteDesc">Description :</label>
 
-				<textarea id="story" name="story" rows="5" cols="33"></textarea>
+				<textarea id="descritpion" name="descritpion" rows="5" cols="33" maxlength="300" ></textarea>
 				<br>
 				<%
 				Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur");
@@ -84,7 +86,6 @@
 				%>
 				<label id="CreaVenteCat">Catégories :</label> <select
 					name="listcate">
-					<option value="0">Toutes</option>
 					<%
 					for (Categorie c : categories) {
 					%>
@@ -93,20 +94,26 @@
 					}
 					%>
 				</select> <br> <label id="CreaVenteImage">Photo de l'article :</label> <input
-					type="image" name="photoArticle"> <br> <label
+					type="image" name="photoArticle"> <br> 
+					<label
 					id="CreaVentePrixInit">Mise à prix :</label> <input type="number"
-					name="miseAprix" min="1" max="1000"> <br> <label
-					id="CreaVenteDebEnchere">Début de l'enchère :</label> <input
+					name="miseAprix" min="1" max="1000"> <br> 
+					
+					<label
+					id="CreaVenteDebEnchere" >Début de l'enchère :</label> <input required
 					type="datetime-local" name="debutEnchere"> <br> <label
-					id="CreaVenteFinEnchere">Fin de l'enchère :</label> <input
+					id="CreaVenteFinEnchere">Fin de l'enchère :</label> <input required
 					type="datetime-local" name="finEnchere"> <br>
 				<fieldset>
 					<legend>Retrait</legend>
-					<label id="CreaVenteRue">Rue :</label> <input type="text"
-						name="rue" value="<%=user.getRue()%>"> <br> <label
-						id="CreaVenteCodeP">Code Postal :</label> <input type="text"
+					<label id="CreaVenteRue">Rue :</label> <input required type="text"
+						name="rue" value="<%=user.getRue()%>"> <br> 
+						
+						<label
+						id="CreaVenteCodeP">Code Postal :</label> <input required type="text"
 						name="codePostal" value="<%=user.getCodePostal()%>"> <br>
-					<label id="CreaVenteVille">Ville :</label> <input type="text"
+						
+					<label id="CreaVenteVille">Ville :</label> <input required type="text"
 						name="ville" value="<%=user.getVille()%>">
 				</fieldset>
 				<div id="CreaVenteBtn">

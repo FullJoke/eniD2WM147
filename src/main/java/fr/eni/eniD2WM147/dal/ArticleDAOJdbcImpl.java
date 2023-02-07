@@ -20,9 +20,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SELECT_ALL_ARTICLES = "SELECT  * FROM ARTICLES_VENDUS av "
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur";
 	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
-	private static final String SELECT_ART_BY_CAT = "SELECT * FROM ARTICLES_VENDUS av "
-			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur WHERE no_categorie=?";
-	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
 	private static final String SELECT_ART_BY_ID = "SELECT av.no_article, av.nom_article, av.description, av.date_debut_enchere, av.date_fin_enchere, av.prix_initial,\r\n"
 			+ "	   av.prix_vente, av.image, av.etat_vente,\r\n"
 			+ "	   u.no_utilisateur as id_vendeur, u.pseudo as pseudo_vendeur,\r\n"
@@ -36,21 +34,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SELECT_ENCHERE_BY_IDARTICLE = "SELECT e.montant_enchere, u.no_utilisateur, "
 			+ "u.pseudo FROM ENCHERES e JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur "
 			+ "WHERE no_article=?";
-	/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
+
 	public static final String SELECT_ALL = "SELECT av.no_article as noArticle, "
 			+ "av.nom_article as nomArticle, av.description, av.date_debut_enchere, av.date_fin_enchere, "
 			+ "av.prix_initial, av.prix_vente, av.etat_vente, av.image, u.no_utilisateur as noVendeur, u.pseudo as pseudoVendeur, "
@@ -67,6 +51,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public static final String MES_VENTES_EN_COURS = "av.date_fin_enchere>GETDATE()";
 	public static final String MES_VENTES_NON_DEBUTEES = "av.date_debut_enchere>GETDATE()";
 	public static final String MES_VENTES_TERMINEES = "av.date_fin_enchere<GETDATE()";
+
+	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT_RETRAIT = "insert into RETRAITS values (?,?,?,?)";
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -98,35 +85,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	}
 
-	@Override
-	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
-		List<ArticleVendu> articles = new ArrayList<>();
-		System.out.println(SELECT_ART_BY_CAT);
-		try (Connection cnx = ConnectionProvider.getConnection()) {
-			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ART_BY_CAT);
-			pstmt.setInt(1, noCategorie);
-			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
-
-				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
-						rs.getString("description"),
-						LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()),
-								rs.getTime("date_debut_enchere").toLocalTime()),
-						LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
-								rs.getTime("date_fin_enchere").toLocalTime()),
-						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u, null, null, null);
-				articles.add(arti);
-			}
-
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-		return articles;
-	}
-
 	public List<Categorie> selectAllCategories() throws BusinessException {
 		List<Categorie> categories = new ArrayList<>();
 		System.out.println(SELECT_ALL_CATEGORIES);
@@ -152,11 +110,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	public ArticleVendu insertArticle(ArticleVendu article) throws BusinessException {
-		Connection cnx;
+
 		System.out.println(INSERT_NEW_ART);
 
 		try {
-			cnx = ConnectionProvider.getConnection();
+			Connection cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_NEW_ART, PreparedStatement.RETURN_GENERATED_KEYS);
 
 			pstmt.setString(1, article.getNom());
@@ -166,7 +124,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			pstmt.setInt(5, article.getPrixInitial());
 			pstmt.setInt(6, article.getPrixVente());
 			pstmt.setString(7, String.valueOf(article.getUtilisateur().getIdUtilisateur()));
-			System.out.println(article.getCategorie());
 			pstmt.setString(8, String.valueOf(article.getCategorie().getNumCategorie()));
 			pstmt.setString(9, String.valueOf(article.getEtatVente()));
 			pstmt.setString(10, article.getImage());
@@ -182,10 +139,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			}
 			System.out.println(article);
-			// Faire une methode valider date debut et date de fin pour verifier qu'elles
-			// respectent bien les dates
-			// faire une boucle for each avec un INSERT Enchere pour créer les encheres avec
-			// l'article.
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,6 +148,31 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 
 		return article;
+
+	}
+
+	public Retrait insertRetrait(Retrait retrait) throws BusinessException {
+
+		try {
+			Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(INSERT_RETRAIT);
+
+			System.out.println(retrait);
+			System.out.println(retrait.getArticle());
+
+			pstmt.setInt(1, retrait.getArticle().getIdArticle());
+			pstmt.setString(2, retrait.getRue());
+			pstmt.setString(3, retrait.getCodePostal());
+			pstmt.setString(4, retrait.getVille());
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue");
+			throw bException;
+		}
+		return retrait;
 
 	}
 
@@ -397,5 +375,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 		return articles;
 	}
+
+
+
+
 
 }

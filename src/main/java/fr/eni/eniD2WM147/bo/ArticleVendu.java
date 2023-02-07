@@ -46,6 +46,7 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 		this.utilisateur = utilisateur;
 		this.retrait = retrait;
+	
 		this.categorie = categorie;
 		this.enchere = enchere;
 	}
