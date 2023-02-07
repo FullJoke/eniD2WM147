@@ -5,6 +5,7 @@ import java.util.List;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Enchere;
+import fr.eni.eniD2WM147.bo.Retrait;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 import fr.eni.eniD2WM147.dal.ArticleDAO;
 import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
@@ -90,4 +91,7 @@ public class ArticleManager {
 	public Enchere selectEnchereByIdArticle(int idArt) {
 		return articleDAO.selectEnchereByIdArticle(idArt);
 	}
+	public Retrait insertRetraitByIdArticle(Retrait retrait) throws BusinessException  {
+        return articleDAO.insertRetraitByIdArticle(retrait);
+    }
 }

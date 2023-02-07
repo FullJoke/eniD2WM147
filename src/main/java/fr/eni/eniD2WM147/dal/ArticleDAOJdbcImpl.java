@@ -277,4 +277,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		
 		return e;
 	}
+
+	@Override
+	public Retrait insertRetraitByIdArticle(Retrait retrait) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
