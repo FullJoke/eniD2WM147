@@ -5,6 +5,7 @@ import java.util.List;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Enchere;
+import fr.eni.eniD2WM147.bo.Retrait;
 import fr.eni.eniD2WM147.businessException.BusinessException;
 
 
@@ -23,5 +24,7 @@ public interface ArticleDAO {
 	public ArticleVendu insertArticle(ArticleVendu article) throws BusinessException ;
 
 	public Enchere selectEnchereByIdArticle(int idArt);
+	
+	public Retrait insertRetraitByIdArticle(Retrait retrait) throws BusinessException;
 
 }

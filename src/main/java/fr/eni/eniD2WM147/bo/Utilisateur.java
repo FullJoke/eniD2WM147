@@ -13,12 +13,10 @@ public class Utilisateur {
 	private String codePostal;
 	private String ville;
 	private int credit;
-	private String mdp;
 	
 	private boolean administrateur;
 	private List<ArticleVendu> listeArticle;
 
-	
 
 	// Constructeurs
 	public Utilisateur(int idUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
@@ -68,11 +66,6 @@ public class Utilisateur {
 
 	public Utilisateur() {
 
-	}
-
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
 	}
 
 	// Getters & Setters

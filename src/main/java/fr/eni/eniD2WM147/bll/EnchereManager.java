@@ -13,7 +13,7 @@ public class EnchereManager {
 	private EnchereDAO enchereDAO;
 	private static EnchereManager instance;
 
-	public EnchereManager() {
+	private EnchereManager() {
 		this.enchereDAO = EnchereDAOFactory.getEnchereDAO();
 	}
 

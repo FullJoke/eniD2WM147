@@ -14,22 +14,26 @@ import fr.eni.eniD2WM147.businessException.BusinessException;
 public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 	private static final String INSERT_BID = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
-	//private static final String INSERT_BID2 = "SELECT * FROM ENCHERES WHERE no_article =? ";
-	public Enchere insertBid(LocalDateTime dateEnchere,int montantEnchere,Utilisateur utilisateur,ArticleVendu article) throws BusinessException {
+
+	// private static final String INSERT_BID2 = "SELECT * FROM ENCHERES WHERE
+	// no_article =? ";
+	public Enchere insertBid(LocalDateTime dateEnchere, int montantEnchere, Utilisateur utilisateur,
+			ArticleVendu article) throws BusinessException {
 
 		Enchere bid = null;
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement stmtp = cnx.prepareStatement(INSERT_BID);
-			stmtp.setTimestamp(1,java.sql.Timestamp.valueOf(dateEnchere));
-			stmtp.setInt(2,montantEnchere);
-			stmtp.setInt(3,utilisateur.getIdUtilisateur());
-			stmtp.setInt(4,article.getIdArticle());
+			stmtp.setTimestamp(1, java.sql.Timestamp.valueOf(dateEnchere));
+			stmtp.setInt(2, montantEnchere);
+			stmtp.setInt(3, utilisateur.getIdUtilisateur());
+			stmtp.setInt(4, article.getIdArticle());
 			ResultSet rs = stmtp.executeQuery();
 
 			if (rs.next()) {
-				//bid = new Enchere(LocalDateTime.of(rs.getDate("date_enchere").toLocalDate(),
-					//	rs.getTime("date_enchere").toLocalTime()), rs.getInt("montant_enchere"),(Utilisateur)rs.getInt("no_utilisateur"),rs.getInt("no_article"));
+				// bid = new Enchere(LocalDateTime.of(rs.getDate("date_enchere").toLocalDate(),
+				// rs.getTime("date_enchere").toLocalTime()),
+				// rs.getInt("montant_enchere"),(Utilisateur)rs.getInt("no_utilisateur"),rs.getInt("no_article"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -42,9 +46,12 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 	}
 
+
+
 	public Enchere bidArticle(LocalDateTime dateEnchere,int montantEnchere,Utilisateur utilisateur,ArticleVendu article) throws BusinessException {
 		ArticleVendu art = null;
 		Enchere prixEnchere = null;
+
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -59,7 +66,8 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 				
 				if(montantEnchere > rs.getInt("montant_enchere")) {
 					
-					
+					//EnchereManager.getInstance().insertBid(prixEnchere.getDateEnchere(), prixEnchere.getMontantEnchere());
+
 					
 					System.out.println("ooops");
 				}
@@ -73,9 +81,10 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 			e.printStackTrace();
 		}
 
+
 		return prixEnchere;
+
 
 	}
 
 }
-

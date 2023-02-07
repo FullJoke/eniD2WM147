@@ -78,6 +78,7 @@
 	<%ArticleVendu av = (ArticleVendu) request.getAttribute("ArticleAAfficher");%>
 	
 
+<<<<<<< HEAD
 	<form id="detailsVendeurBtn" action="<%=request.getContextPath()%>/AfficherDetailArticle" method="post">
 		<div class="container">
 			<h2 style="text-align: center;">Détail Vente</h2>
@@ -88,7 +89,23 @@
 				<label id="descriptionArt">Description : </label>
 				<textarea readonly style="vertical-align: top"><%=av.getDescription()%></textarea>
 				
+=======
+	<%
+	ArticleVendu av = (ArticleVendu) request.getAttribute("ArticleAAfficher");
+	%>
+
+	<form id="detailsVendeurBtn"
+		action="<%=request.getContextPath()%>/Profil" method="post">
+		<div id="AfficherDétailsArticle" class="container">
+			<h2 id="AfficherDétailTitle" style="text-align: center;">Détail Vente</h2>
+
+			<div class="row justify-content-md-center">
+
+
+				<h4 id="NomArt" style="text-align: center;"><%=av.getNom()%></h4>
+>>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 				<br>
+<<<<<<< HEAD
 				<br>
 				
 				<label id="cateArt">Categorie :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -123,6 +140,43 @@
 				<input type="number" min="1" max="1000" name="enchere">
 				<input id="MakeAnEnchereButton" class="btn btn-primary" type="submit" name="encherir"
 					value="Encherir">
+=======
+				<div id="detailsArticle">
+					<label id="descriptionArt">Description : </label>
+					<textarea readonly style="vertical-align: top"><%=av.getDescription()%></textarea>
+
+					<br> <br> <label id="cateArt">Categorie
+						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getCategorie().getLibelle()%></label>
+
+					<br> <label id="bestOfferArt">Meilleure offre
+						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getEnchere().getMontantEnchere()%>
+						crédits <%
+					 if (av.getEnchere().getMontantEnchere() > 0) {
+					 %> par <%=av.getEnchere().getUtilisateur().getPseudo()%> <%
+					 }
+					 %>
+					</label> <br> <label id="misePrixArt">Mise à prix
+						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getPrixInitial()%>
+						pts
+					</label> <br> <label id="finEncArt">Fin de l'enchère
+						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getFinEnchere()%></label>
+
+					<br> <label id="retraitArt">Retrait
+						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getRetrait().getRue()%>
+						<%=av.getRetrait().getCodePostal()%> <%=av.getRetrait().getVille()%></label>
+
+					<br> <label id="vendeurArt">Vendeur
+						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getUtilisateur().getPseudo()%>
+					</label> <input type="hidden" name="vendeur"
+						value="<%=av.getUtilisateur().getIdUtilisateur()%>"> <input
+						type="submit" value="Détails Vendeur" class="btn btn-primary">
+
+					<br> <label id="porpositionArt">Ma proposition : </label> <input
+						type="number" min="1" max="1000" name="encherir"> <input
+						id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
+						name="encherirAff" value="Encherir">
+				</div>
+>>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 			</div>
 		</div>
 	</form>
