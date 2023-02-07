@@ -22,9 +22,9 @@ public interface ArticleDAO {
 	public Categorie selectCatByIdArt(int idArticle);
 
 	public ArticleVendu insertArticle(ArticleVendu article) throws BusinessException ;
-
-	public Enchere selectEnchereByIdArticle(int idArt);
 	
-	public Retrait insertRetraitByIdArticle(Retrait retrait) throws BusinessException;
+	public Retrait insertRetrait(Retrait retrait) throws BusinessException;
+	
+	public Enchere selectEnchereByIdArticle(int idArt);
 
 }

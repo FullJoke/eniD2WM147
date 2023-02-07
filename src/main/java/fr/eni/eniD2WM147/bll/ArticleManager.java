@@ -2,6 +2,8 @@ package fr.eni.eniD2WM147.bll;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.regex.Pattern;
+
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Enchere;
@@ -13,6 +15,7 @@ import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
 public class ArticleManager {
 	private ArticleDAO articleDAO;
 	private static ArticleManager instance;
+	
 
 	private ArticleManager() {
 		this.articleDAO = EnchereDAOFactory.getArticleDAO();
@@ -55,7 +58,7 @@ public class ArticleManager {
 
 	public ArticleVendu insert(ArticleVendu article) throws BusinessException {
 		BusinessException bE = new BusinessException();
-		validerInsert(article.getDescription(), article.getDebutEnchere(), article.getFinEnchere(),
+		validerInsertArticle(article.getDescription(), article.getDebutEnchere(), article.getFinEnchere(),
 				article.getPrixInitial(), bE);
 
 		if (!bE.getListeMessage().isEmpty()) {
@@ -64,8 +67,8 @@ public class ArticleManager {
 		return articleDAO.insertArticle(article);
 	}
 
-	private void validerInsert(String description, LocalDateTime debutEnchere, LocalDateTime finEnchere, int prix,
-			BusinessException businessException) {
+	private void validerInsertArticle(String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
+			int prix, BusinessException businessException) {
 		int jour = LocalDateTime.now().getDayOfMonth();
 		int mois = LocalDateTime.now().getMonthValue();
 		if (debutEnchere == null || debutEnchere.getDayOfMonth() < jour || debutEnchere.getMonthValue() < mois) {
@@ -73,14 +76,32 @@ public class ArticleManager {
 		}
 
 		if (finEnchere == null || finEnchere.getDayOfMonth() < jour || finEnchere.getMonthValue() < mois) {
-			businessException.addMessage("La date est obligatoire et ne peut pas être avant le début de l'enchère");
+			businessException.addMessage("La date est obligatoire et ne peut pas être avant le début de l'enchère.");
 		}
 
 		if (description == null || description.length() > 300) {
-			businessException.addMessage("La description est obligatoire et ne peut pas dépasser 300 caractères");
+			businessException.addMessage("La description est obligatoire et ne peut pas dépasser 300 caractères.");
 		}
 		if (prix < 0) {
-			businessException.addMessage("Le prix est obligatoire et doit être positif");
+			businessException.addMessage("Le prix doit être positif.");
+		}
+		
+	}
+
+	public Retrait insertRetrait(Retrait retrait) throws BusinessException {
+		BusinessException bE = new BusinessException();
+		validerInsertRetrait(retrait.getRue(), retrait.getCodePostal(), retrait.getVille(), bE);
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+		return articleDAO.insertRetrait(retrait);
+
+	}
+
+	private void validerInsertRetrait(String rue, String codePostal, String ville,
+			BusinessException businessException) {
+		if (rue == null || codePostal == null || ville == null) {
+			businessException.addMessage("Un des éléments de l'adresse n'est pas valide.");
 		}
 	}
 
@@ -91,7 +112,5 @@ public class ArticleManager {
 	public Enchere selectEnchereByIdArticle(int idArt) {
 		return articleDAO.selectEnchereByIdArticle(idArt);
 	}
-	public Retrait insertRetraitByIdArticle(Retrait retrait) throws BusinessException  {
-        return articleDAO.insertRetraitByIdArticle(retrait);
-    }
+
 }
