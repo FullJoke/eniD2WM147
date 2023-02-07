@@ -14,8 +14,17 @@ import fr.eni.eniD2WM147.businessException.BusinessException;
 
 public class EnchereDaoJdbcImpl implements EnchereDAO {
 
-	private static final String INSERT_BID = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere)VALUES(?,?,?,?)";
-	private static final String BID_ARTICLE = "UPDATE ENCHERES SET no_utilisateur=?,date_enchere=GETDATE(),montant_enchere=? WHERE no_article=?";
+
+	private static final String INSERT_BID = "INSERT INTO ENCHERES(date_enchere,montant_enchere)VALUES(?,?)";
+	private static final String UPDATE_ENCHERE ="UPDATE ENCHERES "
+			+ "SET no_utilisateur=?, date_enchere=GETDATE(), montant_enchere=? "
+			+ "WHERE no_article = ?";
+	private static final String INSERT_ENCHERE ="INSERT INTO ENCHERES VALUES (?, ?, GETDATE(), ?);";
+	
+	
+	
+	
+
 
 	public Enchere insertBid(LocalDateTime dateEnchere, int montantEnchere, Utilisateur utilisateur,
 			ArticleVendu article) throws BusinessException {
@@ -55,48 +64,38 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 	}
 
-	public void bidArticle(int montantEnchere, int idUtilisateur, LocalDateTime now, int idArticle)
-			throws BusinessException {
 
-		Enchere prixEnchere = null;
 
-		try (Connection cnx = ConnectionProvider.getConnection()) {
-
-			PreparedStatement pstmt = cnx.prepareStatement(BID_ARTICLE);
-
-			
-			pstmt.setInt(1, idUtilisateur);
-			pstmt.setInt(2, montantEnchere);
+	@Override
+	public void enchereUpdate(int idSession, int myOffer, int idArticle) {
+		
+		try (Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_ENCHERE);
+			pstmt.setInt(1, idSession);
+			pstmt.setInt(2, myOffer);
 			pstmt.setInt(3, idArticle);
-
+			
 			pstmt.executeUpdate();
-
-//			if (rs.next()) {
-//
-//				int montantEnch = rs.getInt("montant_enchere");
-//
-//				if (prixEnchere.getMontantEnchere() > montantEnch) {
-//
-//					System.out.println("ooops");
-//
-//					prixEnchere = EnchereManager.getInstance().insertBid(prixEnchere.getDateEnchere(),
-//							prixEnchere.getMontantEnchere(), prixEnchere.getUtilisateur(), prixEnchere.getArticle());
-//
-//				}
-//
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		
-//
-//		return prixEnchere;
-//
-//	}
-
+	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+
+	@Override
+	public void enchereInsert(int idSession, int myOffer, int idArticle) {
+		
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE);
+			pstmt.setInt(1, idSession);
+			pstmt.setInt(2, idArticle);
+			pstmt.setInt(3, myOffer);
+			
+			pstmt.executeQuery();
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
 }

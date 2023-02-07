@@ -11,6 +11,9 @@ public interface EnchereDAO {
 	
 	
 	public Enchere insertBid(LocalDateTime dateEnchere,int montantEnchere,Utilisateur utilisateur,ArticleVendu article) throws BusinessException;
-	public void bidArticle(int montantEnchere,int idUtilisateur,LocalDateTime now,int idArticle) throws BusinessException;
+
+	public void enchereUpdate(int idSession, int myOffer, int idArticle);
+
+	public void enchereInsert(int idSession, int myOffer, int idArticle);
 
 }

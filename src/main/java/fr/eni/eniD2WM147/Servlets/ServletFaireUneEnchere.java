@@ -1,9 +1,7 @@
 package fr.eni.eniD2WM147.Servlets;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eniD2WM147.bll.EnchereManager;
-import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Utilisateur;
-import fr.eni.eniD2WM147.businessException.BusinessException;
 
 /**
  * Servlet implementation class ServletFaireUneEnchere
@@ -26,38 +22,38 @@ public class ServletFaireUneEnchere extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try {
+		System.out.println("/nServlet FaireUneEnchere : doPost");
+		EnchereManager em = EnchereManager.getInstance();
 
-			System.out.println("ServletfaireEnchere - doPost");
+		HttpSession session = request.getSession();
+		Utilisateur u = (Utilisateur) session.getAttribute("Utilisateur");
+		int idSession = u.getIdUtilisateur();
+		System.out.println("idSession : " + idSession);
 
-			int enchere = Integer.parseInt(request.getParameter("enchere"));
-			System.out.println(enchere);
-			
-			HttpSession session = request.getSession();
-			Utilisateur u = (Utilisateur) session.getAttribute("Utilisateur");
-			int idsession = u.getIdUtilisateur();
-			System.out.println(idsession);
-			
-			LocalDateTime now = LocalDateTime.now();
-			System.out.println(now);
-			
-	
-			int idArticle = Integer.parseInt(request.getParameter("idArticle"));
-			System.out.println(idArticle);
-			
-			
-			EnchereManager.getInstance().bidArticle(enchere,u.getIdUtilisateur(),now,idArticle);
-			
-			
-			//request.getParameter("retourEnchere");
-			
+		String idArticleTemp = request.getParameter("idArticle");
+		int idArticle = Integer.parseInt(idArticleTemp);
+		System.out.println("idArticle : " + idArticle);
 
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String bestOfferTemp = request.getParameter("bestOffer");
+		int bestOffer = Integer.parseInt(bestOfferTemp);
+		System.out.println("Meilleure Offre : " + bestOffer);
+
+		String myOfferTemp = request.getParameter("enchere");
+		int myOffer = Integer.parseInt(myOfferTemp);
+		System.out.println("Proposition d'enchère : " + myOffer);
+
+		if (bestOffer == 0) {
+			System.out.println("Vous êtes le premier à enchérir");
+			em.enchereInsert(idSession, myOffer, idArticle);
+		} else if (myOffer <= bestOffer) {
+			System.out.println("Vous êtes trop radin !");
+		} else {
+			System.out.println("Vous l'emportez !");
+			em.enchereUpdate(idSession, myOffer, idArticle);
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/AfficherDetailArticle");
+		request.setAttribute("idArticle", idArticle);
+		response.sendRedirect(request.getContextPath()+"/accueil");
 
 	}
 

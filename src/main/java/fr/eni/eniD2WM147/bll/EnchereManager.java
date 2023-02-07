@@ -51,4 +51,12 @@ public class EnchereManager {
 
 	}
 
+	public void enchereUpdate(int idSession, int myOffer, int idArticle) {
+		enchereDAO.enchereUpdate(idSession, myOffer, idArticle);
+	}
+
+	public void enchereInsert(int idSession, int myOffer, int idArticle) {
+		enchereDAO.enchereInsert(idSession, myOffer, idArticle);
+	}
+
 }
