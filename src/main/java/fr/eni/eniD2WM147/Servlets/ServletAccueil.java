@@ -53,7 +53,7 @@ public class ServletAccueil extends HttpServlet {
 					Enchere e = ArticleManager.getInstance().selectEnchereByIdArticle(av.getIdArticle());
 
 					if (e == null) {
-						e = new Enchere(0, null);
+						e = new Enchere(null, 0, null, av);
 					}					
 					av.setEnchere(e);
 				}

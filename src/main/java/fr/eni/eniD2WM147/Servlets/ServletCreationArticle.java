@@ -114,14 +114,6 @@ public class ServletCreationArticle extends HttpServlet {
 
 		try {
 
-			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, image, "CR", vendeur, null,
-					cat, null);
-			request.getParameter("saveNewArt");
-			System.out.println("Nouvelle Article : " + article);
-
-			article = ArticleManager.getInstance().insert(article);
-			request.getParameter("annulerNewArt");
-
 			BusinessException bE = new BusinessException();
 			if (art.isBlank()) {
 				bE.addMessage("L'article doit avoir un nom");

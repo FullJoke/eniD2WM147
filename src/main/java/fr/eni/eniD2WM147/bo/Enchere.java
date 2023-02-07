@@ -20,7 +20,6 @@ public class Enchere {
 
 	}
 
-
 	public LocalDateTime getDateEnchere() {
 		return dateEnchere;
 	}

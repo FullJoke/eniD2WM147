@@ -44,7 +44,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 
 			Enchere e = ArticleManager.getInstance().selectEnchereByIdArticle(idArt);
 			if (e == null) {
-			//	e = new Enchere(0, null);
+				e = new Enchere(null, 0, null, av);
 			}
 			System.out.println(e);
 
@@ -66,35 +66,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String idArtTemp = request.getParameter("Article");
-
-		int idArt = Integer.parseInt(idArtTemp);
-	
-		
-	
-		System.out.println("AfficherArticle - doPost");
-		int enchere = Integer.parseInt(request.getParameter("enchere"));
-		request.setAttribute("enchere",enchere );
-		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("Utilisateur");
-		ArticleVendu arti = null;
-		for(ArticleVendu art : utilisateur.getListeArticles()) {
-			if (art.getIdArticle() == idArt) {
-				arti = art;
-			}
-		}
-		
-		System.out.println(enchere);
-		try {
-			Enchere enc = EnchereManager.getInstance().bidArticle(LocalDateTime.now(), enchere, utilisateur, arti);
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/AfficherDetailArticle.jsp");
-			rd.forward(request, response);
-		
+	        doGet(request,response);
 	}
 }
 	

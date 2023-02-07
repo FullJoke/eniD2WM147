@@ -24,29 +24,29 @@ public class EnchereManager {
 		return instance;
 	}
 
-//	public Enchere insertBid(LocalDateTime dateEnchere, int montantEnchere) throws BusinessException {
-//
-//		BusinessException bE = new BusinessException();
-//
-//		if (!bE.getListeMessage().isEmpty()) {
-//			throw bE;
-//		}
-//
-//	//	Enchere enchere = enchereDAO.insertBid(dateEnchere, montantEnchere);
-//
-//	//	return enchere;
-//	}
-
-	public Enchere bidArticle(LocalDateTime dateEnchere,int montantEnchere,Utilisateur utilisateur,ArticleVendu article) throws BusinessException {
+	public Enchere insertBid(LocalDateTime dateEnchere,int montantEnchere,Utilisateur utilisateur,ArticleVendu article) throws BusinessException {
 
 		BusinessException bE = new BusinessException();
 
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
-		Enchere enchere = enchereDAO.bidArticle(dateEnchere, montantEnchere, utilisateur, article);
 
-		return enchere;
+		Enchere enchereInsert = enchereDAO.insertBid(dateEnchere, montantEnchere,utilisateur,article);
+
+		return enchereInsert;
+	}
+
+	public Enchere bidArticle(int montantEnchere) throws BusinessException {
+
+		BusinessException bE = new BusinessException();
+
+		if (!bE.getListeMessage().isEmpty()) {
+			throw bE;
+		}
+		Enchere enchereBid = enchereDAO.bidArticle( montantEnchere);
+
+		return enchereBid;
 
 	}
 
