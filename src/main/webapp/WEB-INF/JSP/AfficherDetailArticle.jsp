@@ -126,7 +126,9 @@
 						type="submit" value="Détails Vendeur" class="btn btn-primary">
 
 					<br> <label id="porpositionArt">Ma proposition : </label> <input
-						type="number" min="1" max="1000" name="encherir"> <input
+						type="number" min="1" max="1000" name="enchere"> 
+						<input type="hidden" name="idArticle" value="<%= av.getIdArticle()%>">
+						<input
 						id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
 						name="encher" value="Encherir">
 				</div>
