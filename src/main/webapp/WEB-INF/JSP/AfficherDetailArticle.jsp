@@ -80,13 +80,13 @@
 
 	<form id="detailsVendeurBtn"
 		action="<%=request.getContextPath()%>/Profil" method="post">
-		<div class="container">
-			<h2 style="text-align: center;">Détail Vente</h2>
+		<div id="AfficherDétailsArticle" class="container">
+			<h2 id="AfficherDétailTitle" style="text-align: center;">Détail Vente</h2>
 
 			<div class="row justify-content-md-center">
 
 
-				<h4 style="text-align: center;"><%=av.getNom()%></h4>
+				<h4 id="NomArt" style="text-align: center;"><%=av.getNom()%></h4>
 				<br>
 				<div id="detailsArticle">
 					<label id="descriptionArt">Description : </label>
@@ -98,11 +98,10 @@
 					<br> <label id="bestOfferArt">Meilleure offre
 						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getEnchere().getMontantEnchere()%>
 						crédits <%
- if (av.getEnchere().getMontantEnchere() > 0) {
- %> par <%=av.getEnchere().getUtilisateur().getPseudo()%>
-						<%
-						}
-						%>
+					 if (av.getEnchere().getMontantEnchere() > 0) {
+					 %> par <%=av.getEnchere().getUtilisateur().getPseudo()%> <%
+					 }
+					 %>
 					</label> <br> <label id="misePrixArt">Mise à prix
 						:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=av.getPrixInitial()%>
 						pts

@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.eniD2WM147.bll.ArticleManager;
-import fr.eni.eniD2WM147.bll.EnchereManager;
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
 import fr.eni.eniD2WM147.bo.Retrait;
@@ -37,6 +36,8 @@ public class ServletCreationArticle extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("Creation Vente - doGet");
 
+		request.setCharacterEncoding("UTF-8");
+
 		List<Categorie> categories = new ArrayList<>();
 		try {
 			categories = ArticleManager.getInstance().selectAllCat();
@@ -56,7 +57,9 @@ public class ServletCreationArticle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doPost");
+
+		System.out.println("ServletCreationArticle - doPost");
+		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
@@ -109,6 +112,15 @@ public class ServletCreationArticle extends HttpServlet {
 		// voir pour le lieu de retrait
 
 		try {
+
+			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, image, "CR", vendeur, null,
+					cat, null);
+			request.getParameter("saveNewArt");
+			System.out.println("Nouvelle Article : " + article);
+
+			article = ArticleManager.getInstance().insert(article);
+			request.getParameter("annulerNewArt");
+
 			BusinessException bE = new BusinessException();
 			if (art.isBlank()) {
 				bE.addMessage("L'article doit avoir un nom");
@@ -119,15 +131,16 @@ public class ServletCreationArticle extends HttpServlet {
 			if (debutVente.isBlank()) {
 				bE.addMessage("La date de début de vente doit être précisée.");
 			}
+
 			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, image, "CR", vendeur, null,
 					cat, null);
 
 			request.getParameter("saveNewArt");
 			request.getParameter("annulerNewArt");
-			
+
 			System.out.println("servlet-article" + article);
 			article = ArticleManager.getInstance().insert(article);
-			
+
 			response.sendRedirect(request.getContextPath() + "/accueil");
 
 		} catch (BusinessException e) {

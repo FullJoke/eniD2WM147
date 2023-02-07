@@ -105,10 +105,10 @@
 
 
 
+	</div>
 		<footer id="footer">
 			<%@ include file="footer.html"%>
 		</footer>
-	</div>
 </body>
 
 </html>

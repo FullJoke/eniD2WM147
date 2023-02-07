@@ -69,10 +69,20 @@
 			<h2 id="profilTitle">Création de vente</h2>
 		</div>
 		<div class="row justify-content-md-center">
+<<<<<<< HEAD
 			<form method="Post"
 				action="<%=request.getContextPath()%>/CreationArticle">
 				<label>Article :</label> <input type="text" name="article" >
 				<br> <label id="CreaVenteDesc">Description :</label>
+=======
+			
+			<form method="Post" action="<%=request.getContextPath()%>/CreationArticle">
+				<label>Article :</label> <input type="text" name="article">
+				
+				<br>
+				
+				<label id="CreaVenteDesc">Description :</label>
+>>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 				<textarea id="story" name="story" rows="5" cols="33"></textarea>
 				<br>
 				<%

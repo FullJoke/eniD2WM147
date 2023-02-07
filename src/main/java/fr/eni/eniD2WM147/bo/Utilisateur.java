@@ -13,12 +13,9 @@ public class Utilisateur {
 	private String codePostal;
 	private String ville;
 	private int credit;
-	private String mdp;
 	
 	private boolean administrateur;
 	private List<ArticleVendu> listeArticle;
-
-	private List<Enchere> listeEnchere;
 
 	// Constructeurs
 	public Utilisateur(int idUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
@@ -68,11 +65,6 @@ public class Utilisateur {
 
 	public Utilisateur() {
 
-	}
-
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
 	}
 
 	// Getters & Setters
@@ -170,14 +162,6 @@ public class Utilisateur {
 
 	public void setListeArticles(List<ArticleVendu> listeArticles) {
 		this.listeArticle = listeArticles;
-	}
-
-	public List<Enchere> getListeEnchere() {
-		return listeEnchere;
-	}
-
-	public void setListeEnchere(List<Enchere> listeEnchere) {
-		this.listeEnchere = listeEnchere;
 	}
 
 	// Methodes
