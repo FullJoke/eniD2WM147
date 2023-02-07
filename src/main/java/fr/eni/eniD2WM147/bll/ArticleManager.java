@@ -37,14 +37,6 @@ public class ArticleManager {
 		return articleDAO.selectAllArticles();
 	}
 
-	public List<ArticleVendu> selectArticlesByCat(int noCategorie) throws BusinessException {
-		BusinessException bE = new BusinessException();
-		if (!bE.getListeMessage().isEmpty()) {
-			throw bE;
-		}
-		return articleDAO.selectArticlesByCat(noCategorie);
-	}
-
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
 		return articleDAO.selectArticleById(idArticle);
 	}
