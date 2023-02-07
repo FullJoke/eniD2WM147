@@ -57,26 +57,6 @@ public class ServletAccueil extends HttpServlet {
 
 			}
 
-//			if (catChoisie == 0) {
-//				articles = ArticleManager.getInstance().selectAllArticles();
-//
-//				for (ArticleVendu av : articles) {
-//					Enchere e = ArticleManager.getInstance().selectEnchereByIdArticle(av.getIdArticle());
-//
-//					if (e == null) {
-//						e = new Enchere(0, null);
-//					}
-//					av.setEnchere(e);
-//				}
-//
-//			} else {
-//				articles = ArticleManager.getInstance().selectArticlesByCat(catChoisie);
-//			}
-//
-//			for (ArticleVendu a : articles) {
-//				System.out.println(a.getIdArticle());
-//
-//			}
 			request.setAttribute("articles", articles);
 		} catch (BusinessException ex) {
 			ex.printStackTrace();
