@@ -112,7 +112,7 @@
 				type="hidden" name="idArticle" value="<%=av.getIdArticle()%>">
 			<input type="hidden" name="bestOffer"
 				value="<%=av.getEnchere().getMontantEnchere()%>"> <input
-				type="number" min="1" max="1000" name="encherir"> <input
+				type="number" min="1" max="1000" name="enchere"> <input
 				id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
 				name="encherirAff" value="Encherir">
 		</form>
