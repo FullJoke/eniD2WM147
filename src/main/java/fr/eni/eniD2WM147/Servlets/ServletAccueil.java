@@ -120,8 +120,13 @@ public class ServletAccueil extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("Utilisateur");
-		System.out.println("Id de l'utilisateur connecté : " + u.getIdUtilisateur());
-		int idSession = u.getIdUtilisateur();
+		int idSession;
+		if (u == null) {
+			idSession = 0;
+		} else {
+			idSession = u.getIdUtilisateur();
+		}
+		System.out.println("Id de la session : "+idSession);
 
 		List<ArticleVendu> articles = new ArrayList<>();
 		ArticleManager am = ArticleManager.getInstance();

@@ -118,7 +118,9 @@
 						value="<%=av.getUtilisateur().getIdUtilisateur()%>"> <input
 						type="submit" value="Détails Vendeur" class="btn btn-primary">
 
-					<br> <label id="porpositionArt">Ma proposition : </label> <input
+					<br> <label id="porpositionArt">Ma proposition : </label> 
+					<input type="hidden" name="idArticle" value="<%=av.getIdArticle()%>">
+					<input
 						type="number" min="1" max="1000" name="encherir"> <input
 						id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
 						name="encherirAff" value="Encherir">
