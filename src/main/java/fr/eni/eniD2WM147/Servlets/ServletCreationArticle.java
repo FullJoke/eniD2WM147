@@ -63,15 +63,15 @@ public class ServletCreationArticle extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
-		request.setCharacterEncoding("UTF-8");
 
 		ArticleVendu article = null;
+		Retrait retrait = null;
 
-		String art = request.getParameter("article");
-		request.setAttribute("art", art);
+		String nomArticle = request.getParameter("nomArticle");
+		request.setAttribute("nomArticle", nomArticle);
 
-		String description = request.getParameter("story");
-		// request.setAttribute("story", description);
+		String description = request.getParameter("descritpion");
+		// request.setAttribute("descritpion", description);
 
 		String image = request.getParameter("photoArticle");
 		// request.setAttribute("photoArticle", image);
@@ -108,14 +108,13 @@ public class ServletCreationArticle extends HttpServlet {
 
 		int prixEntier = Integer.parseInt(prix);
 		Utilisateur vendeur = (Utilisateur) session.getAttribute("Utilisateur");
+
 		Categorie cat = new Categorie(numCat);
-		// Retrait retrait = new Retrait(rue, codePostal, ville);
-		// voir pour le lieu de retrait
 
 		try {
 
 			BusinessException bE = new BusinessException();
-			if (art.isBlank()) {
+			if (nomArticle.isBlank()) {
 				bE.addMessage("L'article doit avoir un nom");
 			}
 			if (description.isBlank()) {
@@ -124,15 +123,19 @@ public class ServletCreationArticle extends HttpServlet {
 			if (debutVente.isBlank()) {
 				bE.addMessage("La date de début de vente doit être précisée.");
 			}
-
-			article = new ArticleVendu(art, description, dateDebut, dateFin, prixEntier, 0, image, "CR", vendeur, null,
-					cat, null);
-
+			if (rue.isBlank() || ville.isBlank() || codePostal.isBlank()) {
+				bE.addMessage("L'un des éléments de l'adresse est manquant.");
+			}
+			retrait = new Retrait(rue, codePostal, ville);
+			article = new ArticleVendu(nomArticle, description, dateDebut, dateFin, prixEntier, 0, image, "CR", vendeur,
+					retrait, cat, null);
+			retrait.setArticle(article);
 			request.getParameter("saveNewArt");
 			request.getParameter("annulerNewArt");
 
-			System.out.println("servlet-article" + article);
+			System.out.println("servlet-article" + article + retrait);
 			article = ArticleManager.getInstance().insert(article);
+			retrait = ArticleManager.getInstance().insertRetrait(retrait);
 
 			response.sendRedirect(request.getContextPath() + "/accueil");
 

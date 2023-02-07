@@ -20,7 +20,7 @@ public class UtilisateurManager {
 
 	private UtilisateurDAO utilisateurDAO;
 	private static UtilisateurManager instance;
-	Matcher m;
+	//Matcher m;
 
 	private UtilisateurManager() {
 		this.utilisateurDAO = EnchereDAOFactory.getUtilisateurDAO();
