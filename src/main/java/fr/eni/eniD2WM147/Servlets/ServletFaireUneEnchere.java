@@ -25,16 +25,6 @@ public class ServletFaireUneEnchere extends HttpServlet {
 		
 		request.getParameter("encherir");
 	
-		
-	
-		
-		
-	
-		
-		
-		
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/Accueil.jsp");
 		rd.forward(request, response);
 	}

@@ -267,7 +267,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			if(rs.next()) {
 				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
 				
-				e = new Enchere(rs.getInt("montant_enchere"), u);
+				//e = new Enchere(rs.getInt("montant_enchere"), u);
 			}
 			
 			

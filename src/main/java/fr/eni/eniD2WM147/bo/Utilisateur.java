@@ -172,13 +172,6 @@ public class Utilisateur {
 		this.listeArticle = listeArticles;
 	}
 
-	public List<Enchere> getListeEnchere() {
-		return listeEnchere;
-	}
-
-	public void setListeEnchere(List<Enchere> listeEnchere) {
-		this.listeEnchere = listeEnchere;
-	}
 
 	// Methodes
 	@Override
