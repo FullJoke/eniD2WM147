@@ -30,7 +30,7 @@ public class ServletDeleteUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("doGet");
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/SuppressionProfil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/Accueil.jsp");
 		rd.forward(request, response);
 	}
 

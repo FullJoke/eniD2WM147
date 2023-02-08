@@ -24,14 +24,21 @@ public class ServletTelechargerImage extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   System.out.println("hey");
+   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/UploadImageArticle.jsp");
+	rd.forward(request, response);
+    	
+    }
     
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/UploadImageArticle.jsp");
-		rd.forward(request, response);
+		System.out.println("coucou");
+		doGet(request,response);
 	}
 
 }
