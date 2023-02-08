@@ -1,7 +1,6 @@
 package fr.eni.eniD2WM147.bo;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class ArticleVendu {
 	private int idArticle;

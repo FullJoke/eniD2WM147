@@ -5,12 +5,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -35,6 +33,10 @@ public class ServletCreationArticle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Creation Vente - doGet");
+		
+	
+		
+		
 
 		ArticleManager am = ArticleManager.getInstance();
 		request.setCharacterEncoding("UTF-8");
@@ -47,9 +49,10 @@ public class ServletCreationArticle extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("categories", categories);
+		response.sendRedirect("/WEB-INF/JSP/CreationArticle.jsp");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/CreationArticle.jsp");
-		rd.forward(request, response);
+		//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/CreationArticle.jsp");
+		//rd.forward(request, response);
 	}
 
 	/**
