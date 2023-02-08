@@ -40,6 +40,11 @@
 					<div class="p-2">
 						<a id="topMenu" href="${pageContext.request.contextPath}/Profil">Mon
 							Profil</a>
+						<form action="${pageContext.request.contextPath}/Profil"
+							method="post">
+							<button name="vendeur" value="${Utilisateur.idUtilisateur}">
+								Mon Profil</button>
+						</form>
 					</div>
 					.
 					<div class="p-2">
@@ -62,6 +67,7 @@
 	</nav>
 	<div class="container">
 		<h2>Liste des enchères</h2>
+
 		<form action="${pageContext.request.contextPath}/accueil"
 			method="post">
 			<label id="selectArticle">Filtres :</label> <input type="text"
@@ -122,16 +128,23 @@
 								<p class="card-text">
 									<b>Fin de l'enchère : </b><br> ${dateFin}
 								</p>
+
+
 								<p class="card-text">Vendeur : ${a.utilisateur.pseudo}</p>
+
 								<c:if test="${!empty Utilisateur }">
 									<input id="DetailArticleButton" class="btn btn-primary"
 										type="submit" value="Détails">
 								</c:if>
+
+
 							</div>
 						</form>
 					</div>
+
 				</c:forEach>
 			</c:if>
+
 			<c:if test="${empty articles}">
 				<div class="alert alert-info" role="alert" id="noArticleAlerte">
 					Il n'y a aucun article dans cette catégorie.</div>

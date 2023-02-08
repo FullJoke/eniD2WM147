@@ -106,12 +106,12 @@ public class ArticleManager {
 		return articleDAO.selectEnchereByIdArticle(idArt);
 	}
 
-	public List<ArticleVendu> listeArticleAccueil(int catChoisie, String filtreAchat, String enchereOuv,
+	public List<ArticleVendu> listeArticleAccueil(String rechercheClavier, int catChoisie, String filtreAchat, String enchereOuv,
 			String mesEncheres, String encheresRemportees, String ventesEnCours, String ventesNonDebutees,
 			String ventesTerminees, int idSession) {
 		System.out.println("BLL - ArticleManager : ListeArticleAccueil");
 		List<ArticleVendu> articles = new ArrayList<>();
-		articles = articleDAO.listeArticleAccueil(catChoisie, filtreAchat, enchereOuv, mesEncheres, encheresRemportees,
+		articles = articleDAO.listeArticleAccueil(rechercheClavier, catChoisie, filtreAchat, enchereOuv, mesEncheres, encheresRemportees,
 				ventesEnCours, ventesNonDebutees, ventesTerminees, idSession);
 
 		return articles;

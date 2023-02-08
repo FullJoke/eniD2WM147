@@ -44,8 +44,12 @@
 		<div class="row justify-content-md-center">
 			<div>
 				<%
-				Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur");
+				Utilisateur loged = (Utilisateur) session.getAttribute("Utilisateur");
 				%>
+				<%
+				Utilisateur user = (Utilisateur) request.getAttribute("vendeur");
+				%>
+
 				<label id="profilPseudoLabel">Pseudo : </label> <span><%=user.getPseudo()%></span>
 				<br> <label id="profilNomLabel">Nom : </label> <span><%=user.getNom()%></span>
 				<br> <label id="profilPrenomLabel">Prenom : </label> <span><%=user.getPrenom()%></span>
@@ -55,8 +59,16 @@
 				<br> <label id="profilCodePostalLabel">Code Postal : </label> <span><%=user.getCodePostal()%></span>
 				<br> <label id="profilVilleLabel">Ville : </label> <span><%=user.getVille()%></span>
 				<br>
+
+				<%
+				if (user.getIdUtilisateur() == loged.getIdUtilisateur()) {
+				%>
 				<button class="btn btn-primary" id="profilModifButton"
 					onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
+				<%
+				}
+				%>
+
 			</div>
 		</div>
 	</div>
