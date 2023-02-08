@@ -331,21 +331,44 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				compteur++;
 			}
 			if (ventesEnCours != null) {
-				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
+				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND "	
+				: " WHERE ");
+				preparedStatement.append(preparedStatement.toString().contains(VENTES)?"( ":"");
 				preparedStatement.append(MES_VENTES_EN_COURS);
 			}
 			if (ventesNonDebutees != null) {
-				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
+				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? 
+				(preparedStatement.toString().contains(MES_VENTES_EN_COURS)?" OR ":" AND ")
+				:" WHERE ");
+				preparedStatement.append(preparedStatement.toString()
+						.contains(MES_VENTES_EN_COURS)?"":"( ");
 				preparedStatement.append(MES_VENTES_NON_DEBUTEES);
 			}
 			if (ventesTerminees != null) {
-				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
+				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? 
+				((preparedStatement.toString().contains(MES_VENTES_EN_COURS)||
+				  preparedStatement.toString().contains(MES_VENTES_NON_DEBUTEES))?" OR ":" AND ")
+				: " WHERE ");
+				preparedStatement.append(preparedStatement.toString()
+						.contains(MES_VENTES_NON_DEBUTEES)?"":"( ");
 				preparedStatement.append(MES_VENTES_TERMINEES);
 			}
-
+			
+			preparedStatement.append(preparedStatement.toString().contains("( ")?" ) ":"");
+			
+			if(!preparedStatement.toString().contains(MES_VENTES_NON_DEBUTEES) &&
+			   !preparedStatement.toString().contains(MES_VENTES_TERMINEES) &&
+			   !preparedStatement.toString().contains(MES_ENCHERES_REMPORTEES)) {
+				
+				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? 
+						" AND " : " WHERE ");
+				preparedStatement.append(ENCHERES_OUVERTES);
+			}
+			
 			System.out.println("Requete finale : " + preparedStatement.toString());
 			System.out.println("Nombre de ? : " + compteur);
 			System.out.println("Liste des Set du PreparedStatement : " + parametres);
+
 
 			if (!preparedStatement.toString().contains(MES_VENTES_NON_DEBUTEES)
 					&& !preparedStatement.toString().contains(MES_ENCHERES_REMPORTEES)) {
@@ -364,7 +387,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				}
 			}
 
-			System.out.println(pstmt.toString());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Utilisateur u = new Utilisateur(rs.getInt("noVendeur"), rs.getString("pseudoVendeur"));
