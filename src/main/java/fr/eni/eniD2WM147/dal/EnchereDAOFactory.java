@@ -2,8 +2,6 @@ package fr.eni.eniD2WM147.dal;
 
 public class EnchereDAOFactory {
 
-	
-
 	public static UtilisateurDAO getUtilisateurDAO() {
 
 		return new UtilisateurDaoJdbcImpl();
