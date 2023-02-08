@@ -75,11 +75,11 @@
 
 
 
-		<label id="selectArticle">Filtres :</label> <input type="text"
-			name="selectArt" placeholder="Le nom de l'article contient">
-		<br>
 		<form action="${pageContext.request.contextPath}/accueil"
 			method="post">
+		<label id="selectArticle">Filtres :</label>
+		<input type="text" name="rechercheClavier" placeholder="Le nom de l'article contient">
+		<br>
 			<label>Categories :</label> <select id="categorieSelect"
 				name="categorieChoisie">
 				<option value="0">Toutes</option>

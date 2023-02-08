@@ -19,7 +19,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String SELECT_ALL_ARTICLES = "SELECT  * FROM ARTICLES_VENDUS av "
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur "
-			+ "LEFT JOIN ENCHERES e ON av.no_article=e.no_article";
+			+ "LEFT JOIN ENCHERES e ON av.no_article=e.no_article WHERE av.etat_vente='EC'";
 	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
 
 	private static final String SELECT_ART_BY_ID = "SELECT av.no_article, av.nom_article, av.description, av.date_debut_enchere, av.date_fin_enchere, av.prix_initial,\r\n"
@@ -45,13 +45,13 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	public static final String CATEGORIE = "av.no_categorie=?";
 	public static final String ACHATS = "av.no_utilisateur<>?";
-	public static final String ENCHERES_OUVERTES = "date_fin_enchere>GETDATE()";
+	public static final String ENCHERES_OUVERTES = "av.etat_vente='EC'";
 	public static final String MES_ENCHERES = "e.no_utilisateur=?";
-	public static final String MES_ENCHERES_REMPORTEES = "av.date_fin_enchere<GETDATE()";
+	public static final String MES_ENCHERES_REMPORTEES = "av.etat_vente='VD'";
 	public static final String VENTES = "av.no_utilisateur= ?";
-	public static final String MES_VENTES_EN_COURS = "av.date_fin_enchere>GETDATE()";
-	public static final String MES_VENTES_NON_DEBUTEES = "av.date_debut_enchere>GETDATE()";
-	public static final String MES_VENTES_TERMINEES = "av.date_fin_enchere<GETDATE()";
+	public static final String MES_VENTES_EN_COURS = "av.etat_vente='EC'";
+	public static final String MES_VENTES_NON_DEBUTEES = "av.etat_vente='CR'";
+	public static final String MES_VENTES_TERMINEES = "av.etat_vente='VD'";
 
 	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private static final String INSERT_RETRAIT = "insert into RETRAITS values (?,?,?,?)";
@@ -65,11 +65,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			while (rs.next()) {
 
-				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"),
-												rs.getString("pseudo"));
-				
+				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
+
 				Enchere enchere = new Enchere(rs.getInt("montant_enchere"), null);
-				
+
 				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
 						rs.getString("description"),
 						LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()),
@@ -279,9 +278,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<ArticleVendu> listeArticleAccueil(int catChoisie, String filtreAchat, String enchereOuv,
-			String mesEncheres, String encheresRemportees, String ventesEnCours, String ventesNonDebutees,
-			String ventesTerminees, int idSession) {
+	public List<ArticleVendu> listeArticleAccueil(String rechercheClavier, int catChoisie, String filtreAchat,
+			String enchereOuv, String mesEncheres, String encheresRemportees, String ventesEnCours,
+			String ventesNonDebutees, String ventesTerminees, int idSession) {
 		List<ArticleVendu> articles = new ArrayList<>();
 		List<String> parametres = new ArrayList<>();
 		int compteur = 0;
@@ -291,6 +290,13 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			StringBuilder preparedStatement = new StringBuilder();
 			preparedStatement.append(SELECT_ALL);
 
+			if (rechercheClavier != null) {
+				String recherche = "nom_article like '%" + rechercheClavier + "%'";
+				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
+				preparedStatement.append(recherche);
+				compteur++;
+
+			}
 			if (catChoisie != 0) {
 				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
 				preparedStatement.append(CATEGORIE);
@@ -379,9 +385,5 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 		return articles;
 	}
-
-
-
-
 
 }

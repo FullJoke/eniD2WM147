@@ -24,7 +24,7 @@ public interface ArticleDAO {
 
 	public ArticleVendu insertArticle(ArticleVendu article) throws BusinessException;
 
-	public List<ArticleVendu> listeArticleAccueil(int catChoisie, String filtreAchat, String enchereOuv,
+	public List<ArticleVendu> listeArticleAccueil(String rechercheClavier, int catChoisie, String filtreAchat, String enchereOuv,
 			String mesEncheres, String encheresRemportees, String ventesEnCours, String ventesNonDebutees,
 			String ventesTerminees, int idSession);
 
