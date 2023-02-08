@@ -119,43 +119,40 @@ label {
 	margin-left: -49px;
 }
 
-#profilPseudoLabel {
-	text-decoration: underline;
-}
 
 #profilNomLabel {
 	margin-left: 20px;
-	text-decoration: underline
+	
 }
 
 #profilPrenomLabel {
 	margin-left: -5px;
-	text-decoration: underline
+	
 }
 
 #profilEmailLabel {
 	margin-left: 16px;
-	text-decoration: underline
+	
 }
 
 #profilTelephoneLabel {
 	margin-left: -26px;
-	text-decoration: underline
+	
 }
 
 #profilRueLabel {
 	margin-left: 29px;
-	text-decoration: underline
+	
 }
 
 #profilCodePostalLabel {
 	margin-left: -39px;
-	text-decoration: underline
+	
 }
 
 #profilVilleLabel {
 	margin-left: 26px;
-	text-decoration: underline
+	
 }
 
 #profilModifButton {
@@ -323,9 +320,7 @@ label {
 	margin: 63px 0px 0px -221px;
 }
 
-#AfficherDétailTitle{
-	margin: 0px 0px 45px 265px;
-}
+
 
 #NomArt{
 	margin: 0px 0px 35px 240px;
@@ -358,3 +353,41 @@ label {
 #myOffer{
 	margin: -76px -25px 0px 536px;
 }
+/*CSS pour la jsp AfficherDetailArticle */
+#AfficherDétailTitle{
+	margin: 0px 0px 0px 600px;
+	
+}
+
+#detailVente{
+	text-align: center;
+}
+#descriptionArt{
+	
+}
+
+#cateArt{
+	
+}
+
+#misePrixArt{
+	
+}
+#finEncArt{
+	
+}
+#retraitArt{
+	
+}
+#vendeurArt{
+	
+}
+#porpositionArt{
+	
+}
+#MakeAnEnchereButton{
+	
+}
+
+
+

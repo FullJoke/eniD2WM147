@@ -14,7 +14,7 @@
 <body>
 	<header>
 		<%@ include file="Entete.html"%>
-	
+
 		<c:choose>
 			<c:when test="${empty Utilisateur }">
 				<div class="d-flex flex-row-reverse">
@@ -59,18 +59,23 @@
 		<ol class="breadcrumb">
 			<li id="bread" class="breadcrumb-item"><a
 				href="${pageContext.request.contextPath}/accueil">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Détails
-				Vente</li>
+			<li id="detailVente" class="breadcrumb-item active"
+				aria-current="page">Détails Vente</li>
 		</ol>
 	</nav>
-	<%
-	ArticleVendu av = (ArticleVendu) request.getAttribute("ArticleAAfficher");
-	%>
-	<div id="AfficherDétailsArticle" class="container">
+
+
+
+	<div  class="container">
 		<form id="detailsVendeurBtn"
-			action="${pageContext.request.contextPath}/Profil" method="post">
-			<h2 id="AfficherDétailTitle" style="text-align: center;">Détail
-				Vente</h2>
+			action="${pageContext.request.contextPath}/Profil" method="get">
+
+			<div class="row justify-content-md-center">
+				<h2 id="AfficherDétailTitle" style="text-align: center;">Détail
+					Vente</h2>
+			</div>
+
+
 			<div class="row justify-content-md-center">
 				<!-- Comme pas de boucle ou pas d'article que l'on peut créer avec des cheverons,
  on utilise l'attribut de l'article pour obtenir ses infos -->
