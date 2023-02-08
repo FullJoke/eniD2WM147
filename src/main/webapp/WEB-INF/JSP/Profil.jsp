@@ -1,4 +1,5 @@
 <%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -51,32 +52,22 @@
 		<div class="row justify-content-md-center">
 			<div>
 
-				<%
-				Utilisateur loged = (Utilisateur) session.getAttribute("Utilisateur");
-				%>
-				<%
-				Utilisateur user = (Utilisateur) request.getAttribute("vendeur");
-				%>
 
-				<label id="profilPseudoLabel">Pseudo : </label> <span><%=user.getPseudo()%></span>
-				<br> <label id="profilNomLabel">Nom : </label> <span><%=user.getNom()%></span>
-				<br> <label id="profilPrenomLabel">Prenom : </label> <span><%=user.getPrenom()%></span>
-				<br> <label id="profilEmailLabel">Email : </label> <span><%=user.getEmail()%></span>
-				<br> <label id="profilTelephoneLabel">Telephone : </label> <span><%=user.getTelephone()%></span>
-				<br> <label id="profilRueLabel">Rue : </label> <span><%=user.getRue()%></span>
-				<br> <label id="profilCodePostalLabel">Code Postal : </label> <span><%=user.getCodePostal()%></span>
-				<br> <label id="profilVilleLabel">Ville : </label> <span><%=user.getVille()%></span>
+				<label id="profilPseudoLabel">Pseudo : </label> <span>${vendeur.pseudo}</span>
+				<br> <label id="profilNomLabel">Nom : </label> <span>${vendeur.nom}</span>
+				<br> <label id="profilPrenomLabel">Prenom : </label> <span>${vendeur.prenom}</span>
+				<br> <label id="profilEmailLabel">Email : </label> <span>${vendeur.email}</span>
+				<br> <label id="profilTelephoneLabel">Telephone : </label> <span>${vendeur.telephone}</span>
+				<br> <label id="profilRueLabel">Rue : </label> <span>${vendeur.rue}</span>
+				<br> <label id="profilCodePostalLabel">Code Postal : </label> <span>${vendeur.codePostal}</span>
+				<br> <label id="profilVilleLabel">Ville : </label> <span>${vendeur.ville}</span>
 				<br>
 
+				<c:if test="${vendeur.idUtilisateur==Utilisateur.idUtilisateur}">
+					<button class="btn btn-primary" id="profilModifButton"
+						onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
+				</c:if>
 
-				<%
-				if (user.getIdUtilisateur() == loged.getIdUtilisateur()) {
-				%>
-				<button class="btn btn-primary" id="profilModifButton"
-					onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
-				<%
-				}
-				%>
 			</div>
 
 		</div>
