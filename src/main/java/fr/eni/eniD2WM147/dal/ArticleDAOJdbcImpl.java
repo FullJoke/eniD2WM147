@@ -47,7 +47,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public static final String ACHATS = "av.no_utilisateur<>?";
 	public static final String ENCHERES_OUVERTES = "av.etat_vente='EC'";
 	public static final String MES_ENCHERES = "e.no_utilisateur=?";
-	public static final String MES_ENCHERES_REMPORTEES = "av.etat_vente='VD'";
+	public static final String MES_ENCHERES_REMPORTEES = MES_ENCHERES + " AND av.etat_vente='VD'";
 	public static final String VENTES = "av.no_utilisateur= ?";
 	public static final String MES_VENTES_EN_COURS = "av.etat_vente='EC'";
 	public static final String MES_VENTES_NON_DEBUTEES = "av.etat_vente='CR'";
