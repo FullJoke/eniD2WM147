@@ -37,19 +37,7 @@ public class EnchereManager {
 		return enchereInsert;
 	}
 
-	public void bidArticle(int montantEnchere,int idUtilisateur,LocalDateTime now,int idArticle) throws BusinessException {
-
-		BusinessException bE = new BusinessException();
-		System.out.println("BLL insertion enchere");
-
-		if (!bE.getListeMessage().isEmpty()) {
-			throw bE;
-		}
-		 enchereDAO.bidArticle(montantEnchere,idUtilisateur,now,idArticle);
-
-		
-
-	}
+	
 
 	public void enchereUpdate(int idSession, int myOffer, int idArticle) {
 		enchereDAO.enchereUpdate(idSession, myOffer, idArticle);
