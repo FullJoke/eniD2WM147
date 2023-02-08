@@ -21,12 +21,12 @@
 			</div>
 			.
 			<div class="p-2">
-				<p id="topMenuUnusable">Mon
-					Profil</p>
+				<p id="topMenuUnusable">Mon Profil</p>
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/CreationArticle">Vendre un article</a>
+				<a id="topMenu" href="<%=request.getContextPath()%>/CreationArticle">Vendre
+					un article</a>
 			</div>
 			.
 			<div class="p-2">
@@ -51,42 +51,32 @@
 		<div class="row justify-content-md-center">
 			<div>
 
-		<%Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur"); %>
-		
-			<label id="profilPseudoLabel">Pseudo : </label>
-			<span><%=user.getPseudo() %></span>
-			<br>
-			
-			<label id="profilNomLabel">Nom : </label>
-			<span><%=user.getNom() %></span>
-			<br>
-			
-			<label id="profilPrenomLabel">Prenom : </label>
-			<span><%=user.getPrenom() %></span>
-			<br>
-			
-			<label id="profilEmailLabel">Email : </label>
-			<span><%=user.getEmail() %></span>
-			<br>
-			
-			<label id="profilTelephoneLabel">Telephone : </label>
-			<span><%=user.getTelephone() %></span>
-			<br>
-			
-			<label id="profilRueLabel">Rue : </label>
-			<span><%=user.getRue() %></span>
-			<br>
-			
-			<label id="profilCodePostalLabel">Code Postal : </label>
-			<span><%=user.getCodePostal() %></span>
-			<br>
-			
-			<label id="profilVilleLabel">Ville : </label>
-			<span><%=user.getVille() %></span>
-			<br>
-			
-			<button class="btn btn-primary" id="profilModifButton" onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
-			
+				<%
+				Utilisateur loged = (Utilisateur) session.getAttribute("Utilisateur");
+				%>
+				<%
+				Utilisateur user = (Utilisateur) request.getAttribute("vendeur");
+				%>
+
+				<label id="profilPseudoLabel">Pseudo : </label> <span><%=user.getPseudo()%></span>
+				<br> <label id="profilNomLabel">Nom : </label> <span><%=user.getNom()%></span>
+				<br> <label id="profilPrenomLabel">Prenom : </label> <span><%=user.getPrenom()%></span>
+				<br> <label id="profilEmailLabel">Email : </label> <span><%=user.getEmail()%></span>
+				<br> <label id="profilTelephoneLabel">Telephone : </label> <span><%=user.getTelephone()%></span>
+				<br> <label id="profilRueLabel">Rue : </label> <span><%=user.getRue()%></span>
+				<br> <label id="profilCodePostalLabel">Code Postal : </label> <span><%=user.getCodePostal()%></span>
+				<br> <label id="profilVilleLabel">Ville : </label> <span><%=user.getVille()%></span>
+				<br>
+
+
+				<%
+				if (user.getIdUtilisateur() == loged.getIdUtilisateur()) {
+				%>
+				<button class="btn btn-primary" id="profilModifButton"
+					onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
+				<%
+				}
+				%>
 			</div>
 
 		</div>
@@ -97,7 +87,7 @@
 
 
 	<footer id="footer">
-	<%@ include file="footer.html"%>
+		<%@ include file="footer.html"%>
 	</footer>
 
 </body>
