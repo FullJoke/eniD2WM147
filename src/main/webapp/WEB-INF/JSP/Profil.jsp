@@ -1,20 +1,16 @@
-<%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%><%@ page
+	language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Profil</title>
-
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <link href="CSS/Style.css" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<%@ include file="Entete.html"%>
-
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
 				<a id="topMenu" href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
@@ -33,9 +29,7 @@
 				<a id="topMenu" href="<%=request.getContextPath()%>/accueil">Enchères</a>
 			</div>
 		</div>
-
 	</header>
-
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li id="bread" class="breadcrumb-item"><a
@@ -47,10 +41,8 @@
 		<div class="row justify-content-md-center">
 			<h2 id="profilTitle">Profil</h2>
 		</div>
-
 		<div class="row justify-content-md-center">
 			<div>
-
 				<%
 				Utilisateur loged = (Utilisateur) session.getAttribute("Utilisateur");
 				%>
@@ -68,7 +60,6 @@
 				<br> <label id="profilVilleLabel">Ville : </label> <span><%=user.getVille()%></span>
 				<br>
 
-
 				<%
 				if (user.getIdUtilisateur() == loged.getIdUtilisateur()) {
 				%>
@@ -77,18 +68,12 @@
 				<%
 				}
 				%>
+
 			</div>
-
 		</div>
-
-
-
 	</div>
-
-
 	<footer id="footer">
 		<%@ include file="footer.html"%>
 	</footer>
-
 </body>
 </html>

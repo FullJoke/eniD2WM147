@@ -8,24 +8,23 @@ public class Enchere {
 	Utilisateur utilisateur;
 	ArticleVendu article;
 
-	public Enchere(LocalDateTime dateEnchere, int montantEnchere, Utilisateur utilisateur, ArticleVendu article) {
 
+	public Enchere(LocalDateTime dateEnchere, int montantEnchere) {
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
+	}
+
+	public Enchere(int montantEnchere, Utilisateur utilisateur) {
+		
+		this.montantEnchere = montantEnchere;
 		this.utilisateur = utilisateur;
-		this.article = article;
 	}
 
 	public Enchere() {
 
 	}
 
-	public Enchere(int montantEnchere, Utilisateur utilisateur) {
-		
-		this.montantEnchere= montantEnchere;
-		this.utilisateur = utilisateur;
-	
-	}
+
 
 	public LocalDateTime getDateEnchere() {
 		return dateEnchere;
