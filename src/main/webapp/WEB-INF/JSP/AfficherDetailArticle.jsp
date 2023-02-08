@@ -68,7 +68,7 @@
 
 	<div class="container">
 		<form id="detailsVendeurBtn"
-			action="${pageContext.request.contextPath}/Profil" method="get">
+			action="${pageContext.request.contextPath}/Profil" method="post">
 
 			<div class="row justify-content-md-center">
 				<h2 id="AfficherDétailTitle" style="text-align: center;">Détail

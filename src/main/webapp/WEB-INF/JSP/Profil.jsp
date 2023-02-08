@@ -45,16 +45,6 @@
 		</div>
 		<div class="row justify-content-md-center">
 			<div>
-<<<<<<< HEAD
-
-=======
-				<%
-				Utilisateur loged = (Utilisateur) session.getAttribute("Utilisateur");
-				%>
-				<%
-				Utilisateur user = (Utilisateur) request.getAttribute("vendeur");
-				%>
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 
 				<label id="profilPseudoLabel">Pseudo : </label> <span>${vendeur.pseudo}</span>
 				<br> <label id="profilNomLabel">Nom : </label> <span>${vendeur.nom}</span>
@@ -65,24 +55,11 @@
 				<br> <label id="profilCodePostalLabel">Code Postal : </label> <span>${vendeur.codePostal}</span>
 				<br> <label id="profilVilleLabel">Ville : </label> <span>${vendeur.ville}</span>
 				<br>
-
-<<<<<<< HEAD
+				
 				<c:if test="${vendeur.idUtilisateur==Utilisateur.idUtilisateur}">
 					<button class="btn btn-primary" id="profilModifButton"
 						onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
 				</c:if>
-
-=======
-				<%
-				if (user.getIdUtilisateur() == loged.getIdUtilisateur()) {
-				%>
-				<button class="btn btn-primary" id="profilModifButton"
-					onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
-				<%
-				}
-				%>
-
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 			</div>
 		</div>
 	</div>

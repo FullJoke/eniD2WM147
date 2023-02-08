@@ -39,10 +39,9 @@
 					.
 					<div class="p-2">
 						<form action="${pageContext.request.contextPath}/Profil"
-							method="post">
-							<button name="vendeur" value="${Utilisateur.idUtilisateur}">
-								Mon Profil</button>
->>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
+							  method="post">
+							<button id="topMenu" name="vendeur" value="${Utilisateur.idUtilisateur}">
+							Mon Profil</button>
 						</form>
 					</div>
 					.
