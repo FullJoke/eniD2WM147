@@ -7,15 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Profil</title>
-
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <link href="CSS/Style.css" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<%@ include file="Entete.html"%>
-
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
 				<a id="topMenu" href="<%=request.getContextPath()%>/deconnexion">Déconnexion</a>
@@ -34,9 +31,7 @@
 				<a id="topMenu" href="<%=request.getContextPath()%>/accueil">Enchères</a>
 			</div>
 		</div>
-
 	</header>
-
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li id="bread" class="breadcrumb-item"><a
@@ -48,10 +43,18 @@
 		<div class="row justify-content-md-center">
 			<h2 id="profilTitle">Profil</h2>
 		</div>
-
 		<div class="row justify-content-md-center">
 			<div>
+<<<<<<< HEAD
 
+=======
+				<%
+				Utilisateur loged = (Utilisateur) session.getAttribute("Utilisateur");
+				%>
+				<%
+				Utilisateur user = (Utilisateur) request.getAttribute("vendeur");
+				%>
+>>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 
 				<label id="profilPseudoLabel">Pseudo : </label> <span>${vendeur.pseudo}</span>
 				<br> <label id="profilNomLabel">Nom : </label> <span>${vendeur.nom}</span>
@@ -63,23 +66,28 @@
 				<br> <label id="profilVilleLabel">Ville : </label> <span>${vendeur.ville}</span>
 				<br>
 
+<<<<<<< HEAD
 				<c:if test="${vendeur.idUtilisateur==Utilisateur.idUtilisateur}">
 					<button class="btn btn-primary" id="profilModifButton"
 						onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
 				</c:if>
 
+=======
+				<%
+				if (user.getIdUtilisateur() == loged.getIdUtilisateur()) {
+				%>
+				<button class="btn btn-primary" id="profilModifButton"
+					onclick="window.location.href ='<%=request.getContextPath()%>/ModificationProfil';">Modifier</button>
+				<%
+				}
+				%>
+
+>>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 			</div>
-
 		</div>
-
-
-
 	</div>
-
-
 	<footer id="footer">
 		<%@ include file="footer.html"%>
 	</footer>
-
 </body>
 </html>

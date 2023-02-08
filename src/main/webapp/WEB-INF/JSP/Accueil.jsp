@@ -1,27 +1,20 @@
-<%@page import="fr.eni.eniD2WM147.bo.Categorie"%>
-<%@page import="fr.eni.eniD2WM147.bo.ArticleVendu"%>
-<%@page import="java.util.List"%>
-<%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
+<%@page import="fr.eni.eniD2WM147.bo.Categorie"%><%@page
+	import="fr.eni.eniD2WM147.bo.ArticleVendu"%><%@page
+	import="java.util.List"%><%@page
+	import="fr.eni.eniD2WM147.bo.Utilisateur"%><%@taglib prefix="fmt"
+	uri="http://java.sun.com/jsp/jstl/fmt"%><%@taglib prefix="c"
+	uri="http://java.sun.com/jsp/jstl/core"%><%@ page language="java"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>enchère</title>
-
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <link href="CSS/Style.css" rel="stylesheet">
 </head>
 <body>
-
 	<header>
 		<%@ include file="Entete.html"%>
-
 		<c:choose>
 			<c:when test="${empty Utilisateur }">
 				<div class="d-flex flex-row-reverse">
@@ -36,7 +29,6 @@
 							Se Connecter</a>
 					</div>
 				</div>
-
 			</c:when>
 			<c:otherwise>
 				<div class="d-flex flex-row-reverse">
@@ -47,9 +39,10 @@
 					.
 					<div class="p-2">
 						<form action="${pageContext.request.contextPath}/Profil"
-							  method="post">
-							<button id="topMenu" name="vendeur" value="${Utilisateur.idUtilisateur}">
-							Mon Profil</button>
+							method="post">
+							<button name="vendeur" value="${Utilisateur.idUtilisateur}">
+								Mon Profil</button>
+>>>>>>> branch 'master' of https://github.com/FullJoke/eniD2WM147.git
 						</form>
 					</div>
 					.
@@ -71,12 +64,8 @@
 			<li id="bread" class="breadcrumb-item active" aria-current="page">Home</li>
 		</ol>
 	</nav>
-
-
 	<div class="container">
 		<h2>Liste des enchères</h2>
-
-
 
 		<form action="${pageContext.request.contextPath}/accueil"
 			method="post">
@@ -88,11 +77,9 @@
 				<c:forEach var="c" items="${categories}">
 					<option value="${c.numCategorie}">${c.libelle}</option>
 				</c:forEach>
-
 			</select> <input class="btn btn-primary" id="categorieSelectButton"
 				type="submit" name="categorieSelectButton" value="Filtrer">
 			<!-- </form> -->
-
 			<c:if test="${!empty Utilisateur }">
 				<div id="AccueilAchatsRadio">
 					<div>
@@ -101,15 +88,12 @@
 					</div>
 					<br> <label id="EnchereOuvCheck" for="enchères ouvertes">enchères
 						ouvertes</label> <input type="checkbox" name="enchereOuvCheck"> <br>
-
 					<label id="MesEncheresCheck" for="mes enchères"> mes
 						enchères</label> <input type="checkbox" name="mesEncheresCheck"> <br>
-
 					<label id="EnchereWinCheck" for=" mes enchères remportées">mes
 						enchères remportées</label> <input type="checkbox"
 						name="enchereRemporteesCheck">
 				</div>
-
 				<div id="AccueilVentesRadio">
 					<div>
 						<input type="radio" id="ventes" name="RButton" value="Ventes">
@@ -117,17 +101,13 @@
 					</div>
 					<br> <label for="mes ventes en cours">mes ventes en
 						cours</label> <input type="checkbox" name="ventesEnCoursCheck"> <br>
-
 					<label for="ventes non debutées">ventes non debutées</label> <input
 						type="checkbox" name="ventesNonDébutéesCheck"> <br> <label
 						for="ventes terminées">ventes terminées</label> <input
 						type="checkbox" name=ventesTermineesCheck>
 				</div>
 			</c:if>
-
 		</form>
-
-
 		<div id="articlesListe" class="row">
 			<c:if test="${!empty articles }">
 				<c:forEach var="a" items="${articles}">
@@ -148,12 +128,14 @@
 									<b>Fin de l'enchère : </b><br> ${dateFin}
 								</p>
 
+
 								<p class="card-text">Vendeur : ${a.utilisateur.pseudo}</p>
 
 								<c:if test="${!empty Utilisateur }">
 									<input id="DetailArticleButton" class="btn btn-primary"
 										type="submit" value="Détails">
 								</c:if>
+
 
 							</div>
 						</form>
@@ -166,15 +148,10 @@
 				<div class="alert alert-info" role="alert" id="noArticleAlerte">
 					Il n'y a aucun article dans cette catégorie.</div>
 			</c:if>
-
-
 		</div>
 	</div>
-
-
 	<footer id="footer">
 		<%@ include file="footer.html"%>
 	</footer>
-
 </body>
 </html>
