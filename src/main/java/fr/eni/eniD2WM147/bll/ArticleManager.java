@@ -3,7 +3,7 @@ package fr.eni.eniD2WM147.bll;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
+
 
 import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Categorie;
@@ -116,6 +116,8 @@ public class ArticleManager {
 
 		return articles;
 	}
-
+	public void deleteArticle(int idArticle) throws BusinessException {
+		articleDAO.deleteArticle(idArticle);
+	}
 }
 

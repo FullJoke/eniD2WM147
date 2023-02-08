@@ -1,5 +1,6 @@
 package fr.eni.eniD2WM147.bll;
 
+
 import fr.eni.eniD2WM147.dal.EnchereDAO;
 import fr.eni.eniD2WM147.dal.EnchereDAOFactory;
 
@@ -17,6 +18,7 @@ public class EnchereManager {
 		}
 		return instance;
 	}
+
 
 	public void enchereUpdate(int idSession, int myOffer, int idArticle) {
 		enchereDAO.enchereUpdate(idSession, myOffer, idArticle);

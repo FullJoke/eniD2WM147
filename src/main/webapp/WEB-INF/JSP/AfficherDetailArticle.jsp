@@ -68,7 +68,7 @@
 
 	<div class="container">
 		<form id="detailsVendeurBtn"
-			action="${pageContext.request.contextPath}/Profil" method="get">
+			action="${pageContext.request.contextPath}/Profil" method="post">
 
 			<div class="row justify-content-md-center">
 				<h2 id="AfficherDétailTitle" style="text-align: center;">Détail
@@ -124,7 +124,20 @@
 				<input type="number" min="1" max="1000" name="enchere"> <input
 					id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
 					name="encherirAff" value="Encherir">
+
+
 			</form>
+			
+			<div>
+				<form method="post" action="${pageContext.request.contextPath}/deleteArticle" >
+					<c:if test="${!empty Utilisateur }">
+						<button class="btn btn-danger" id="supressionArtButton" value="${ArticleAAfficher.idArticle }"
+							type="submit" name="articleASupprimer"
+							onclick="window.location.href ='${pageContext.request.contextPath}/deleteArticle';">Supprimer
+							Vente</button>
+					</c:if>
+				</form>
+			</div>
 		</div>
 
 	</div>

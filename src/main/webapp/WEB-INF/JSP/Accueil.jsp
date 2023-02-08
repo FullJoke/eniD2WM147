@@ -38,12 +38,16 @@
 					</div>
 					.
 					<div class="p-2">
+
 						<a id="topMenu" href="${pageContext.request.contextPath}/Profil">Mon
 							Profil</a>
+
+
 						<form action="${pageContext.request.contextPath}/Profil"
-							method="post">
-							<button name="vendeur" value="${Utilisateur.idUtilisateur}">
-								Mon Profil</button>
+							  method="post">
+							<button id="topMenu" name="vendeur" value="${Utilisateur.idUtilisateur}">
+
+							Mon Profil</button>
 						</form>
 					</div>
 					.
