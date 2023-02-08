@@ -10,11 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import fr.eni.eniD2WM147.bll.UtilisateurManager;
 import fr.eni.eniD2WM147.bo.Utilisateur;
 import fr.eni.eniD2WM147.businessException.BusinessException;
-
 
 /**
  * Servlet implementation class ServletDeleteUser
@@ -30,7 +28,7 @@ public class ServletDeleteUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("doGet");
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/SuppressionProfil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/Accueil.jsp");
 		rd.forward(request, response);
 	}
 
@@ -43,8 +41,6 @@ public class ServletDeleteUser extends HttpServlet {
 
 		System.out.println("doPost-DELETE");
 		request.getParameter("retourSuppression");
-		//response.sendRedirect("/WEB-INF/JSP/Accueil.jsp");
-
 		HttpSession session = request.getSession();
 
 		Utilisateur user = null;

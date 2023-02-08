@@ -55,6 +55,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private static final String INSERT_RETRAIT = "INSERT INTO RETRAITS VALUES (?,?,?,?)";
 
+	private static final String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE no_article=?";
+
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -115,8 +117,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 		System.out.println(INSERT_NEW_ART);
 
-		try {
-			Connection cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection();) {
+
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_NEW_ART, PreparedStatement.RETURN_GENERATED_KEYS);
 
 			pstmt.setString(1, article.getNom());
@@ -155,8 +157,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	public Retrait insertRetrait(Retrait retrait) throws BusinessException {
 
-		try {
-			Connection cnx = ConnectionProvider.getConnection();
+		try (Connection cnx = ConnectionProvider.getConnection();) {
+
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_RETRAIT);
 
 			System.out.println(retrait);
@@ -291,7 +293,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			if (!rechercheClavier.isBlank()) {
 				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
-				preparedStatement.append("nom_article like '%"+rechercheClavier+"%'");
+				preparedStatement.append("nom_article like '%" + rechercheClavier + "%'");
 
 			}
 			if (catChoisie != 0) {
@@ -344,10 +346,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			System.out.println("Requete finale : " + preparedStatement.toString());
 			System.out.println("Nombre de ? : " + compteur);
 			System.out.println("Liste des Set du PreparedStatement : " + parametres);
-			
-			if(!preparedStatement.toString().contains(MES_VENTES_NON_DEBUTEES) &&
-			   !preparedStatement.toString().contains(MES_ENCHERES_REMPORTEES)) {
-				
+
+			if (!preparedStatement.toString().contains(MES_VENTES_NON_DEBUTEES)
+					&& !preparedStatement.toString().contains(MES_ENCHERES_REMPORTEES)) {
+
 				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
 				preparedStatement.append(ENCHERES_OUVERTES);
 			}
@@ -358,7 +360,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					int i = Integer.parseInt(param);
 					pstmt.setInt(parametres.indexOf(param) + 1, i);
 				} catch (NumberFormatException n) {
-					pstmt.setString(parametres.indexOf(param)+1, param);
+					pstmt.setString(parametres.indexOf(param) + 1, param);
 				}
 			}
 
@@ -388,6 +390,24 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 
 		return articles;
+	}
+
+	public void deleteArticle(int idArticle) throws BusinessException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_ARTICLE);
+
+			pstmt.setInt(1, idArticle);
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException bException = new BusinessException();
+			bException.addMessage("une erreur est survenue lors de la suppression");
+			throw bException;
+		}
+
 	}
 
 }

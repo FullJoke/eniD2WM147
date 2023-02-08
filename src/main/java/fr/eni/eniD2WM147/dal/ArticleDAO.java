@@ -19,14 +19,14 @@ public interface ArticleDAO {
 	public Categorie selectCatByIdArt(int idArticle);
 
 	public Retrait insertRetrait(Retrait retrait) throws BusinessException;
-	
+
 	public Enchere selectEnchereByIdArticle(int idArt);
 
 	public ArticleVendu insertArticle(ArticleVendu article) throws BusinessException;
 
-	public List<ArticleVendu> listeArticleAccueil(String rechercheClavier, int catChoisie, String filtreAchat, String enchereOuv,
-			String mesEncheres, String encheresRemportees, String ventesEnCours, String ventesNonDebutees,
-			String ventesTerminees, int idSession);
+	public List<ArticleVendu> listeArticleAccueil(String rechercheClavier, int catChoisie, String filtreAchat,
+			String enchereOuv, String mesEncheres, String encheresRemportees, String ventesEnCours,
+			String ventesNonDebutees, String ventesTerminees, int idSession);
 
-
+	public void deleteArticle(int idArticle) throws BusinessException;
 }
