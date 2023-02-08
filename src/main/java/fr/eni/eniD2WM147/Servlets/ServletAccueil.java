@@ -33,7 +33,7 @@ public class ServletAccueil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("ServletAccueil - doGet");
-		List<ArticleVendu> as = (List<ArticleVendu>) request.getAttribute("articles");
+		List<ArticleVendu> articlesDoPost = (List<ArticleVendu>) request.getAttribute("articles");
 		List<ArticleVendu> articles = new ArrayList<>();
 		List<Categorie> categories = new ArrayList<>();
 		int catChoisie;
@@ -47,15 +47,15 @@ public class ServletAccueil extends HttpServlet {
 				catChoisieTemp = "0";
 			}
 			catChoisie = Integer.parseInt(catChoisieTemp);
-			System.out.println(articles);
+			System.out.println("Liste des articles à afficher : "+articles);
 
-			if (as != null) {
-				articles = as;
+			if (articlesDoPost != null) {
+				articles = articlesDoPost;
 			} else {
 				articles = ArticleManager.getInstance().selectAllArticles();
 
-
 			}
+			System.out.println("Liste des articles à afficher : "+articles);
 
 			request.setAttribute("articles", articles);
 		} catch (BusinessException ex) {
@@ -73,6 +73,8 @@ public class ServletAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("ServletAccueil - doPost");
+		request.setCharacterEncoding("UTF-8");
+
 
 		String catChoisieTemp = request.getParameter("categorieChoisie");
 		int catChoisie = Integer.parseInt(catChoisieTemp);
@@ -98,6 +100,9 @@ public class ServletAccueil extends HttpServlet {
 
 		String ventesTerminees = request.getParameter("ventesTermineesCheck");
 		System.out.println("Filtre Ventes Terminées : " + ventesTerminees);
+		
+		String rechercheClavier = request.getParameter("rechercheClavier");
+		System.out.println("recherche tappée par l'utilisateur : " + rechercheClavier);
 
 		HttpSession session = request.getSession();
 		Utilisateur u = (Utilisateur) session.getAttribute("Utilisateur");
@@ -112,7 +117,7 @@ public class ServletAccueil extends HttpServlet {
 		List<ArticleVendu> articles = new ArrayList<>();
 		ArticleManager am = ArticleManager.getInstance();
 
-		articles = am.listeArticleAccueil(catChoisie, filtreAchat, enchereOuv, mesEncheres, encheresRemportees,
+		articles = am.listeArticleAccueil(rechercheClavier, catChoisie, filtreAchat, enchereOuv, mesEncheres, encheresRemportees,
 				ventesEnCours, ventesNonDebutees, ventesTerminees, idSession);
 
 		request.setAttribute("articles", articles);
