@@ -354,17 +354,19 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			
 			preparedStatement.append(preparedStatement.toString().contains("( ")?" ) ":"");
 			
+			if(!preparedStatement.toString().contains(MES_VENTES_NON_DEBUTEES) &&
+			   !preparedStatement.toString().contains(MES_VENTES_TERMINEES) &&
+			   !preparedStatement.toString().contains(MES_ENCHERES_REMPORTEES)) {
+				
+				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? 
+						" AND " : " WHERE ");
+				preparedStatement.append(ENCHERES_OUVERTES);
+			}
+			
 			System.out.println("Requete finale : " + preparedStatement.toString());
 			System.out.println("Nombre de ? : " + compteur);
 			System.out.println("Liste des Set du PreparedStatement : " + parametres);
 			
-			if(!preparedStatement.toString().contains(MES_VENTES_NON_DEBUTEES) &&
-			   !preparedStatement.toString().contains(MES_ENCHERES_REMPORTEES)) {
-				
-				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
-				preparedStatement.append(ENCHERES_OUVERTES);
-			}
-
 			PreparedStatement pstmt = cnx.prepareStatement(preparedStatement.toString());
 			for (String param : parametres) {
 				try {
@@ -375,7 +377,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				}
 			}
 
-			System.out.println(pstmt.toString());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Utilisateur u = new Utilisateur(rs.getInt("noVendeur"), rs.getString("pseudoVendeur"));
