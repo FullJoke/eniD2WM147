@@ -33,7 +33,7 @@ public class ServletAccueil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("ServletAccueil - doGet");
-		List<ArticleVendu> as = (List<ArticleVendu>) request.getAttribute("articles");
+		List<ArticleVendu> articlesDoPost = (List<ArticleVendu>) request.getAttribute("articles");
 		List<ArticleVendu> articles = new ArrayList<>();
 		List<Categorie> categories = new ArrayList<>();
 		int catChoisie;
@@ -47,14 +47,14 @@ public class ServletAccueil extends HttpServlet {
 				catChoisieTemp = "0";
 			}
 			catChoisie = Integer.parseInt(catChoisieTemp);
-			System.out.println(articles);
+			System.out.println("Liste des articles à afficher : "+articles);
 
-			if (as != null) {
-				articles = as;
+			if (articlesDoPost != null) {
+				articles = articlesDoPost;
 			} else {
 				articles = ArticleManager.getInstance().selectAllArticles();
-
 			}
+			System.out.println("Liste des articles à afficher : "+articles);
 
 			request.setAttribute("articles", articles);
 		} catch (BusinessException ex) {

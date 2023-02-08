@@ -18,7 +18,8 @@ import fr.eni.eniD2WM147.businessException.BusinessException;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String SELECT_ALL_ARTICLES = "SELECT  * FROM ARTICLES_VENDUS av "
-			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur";
+			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur "
+			+ "LEFT JOIN ENCHERES e ON av.no_article=e.no_article";
 	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
 
 	private static final String SELECT_ART_BY_ID = "SELECT av.no_article, av.nom_article, av.description, av.date_debut_enchere, av.date_fin_enchere, av.prix_initial,\r\n"
@@ -64,8 +65,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			while (rs.next()) {
 
-				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"));
-
+				Utilisateur u = new Utilisateur(rs.getInt("no_utilisateur"),
+												rs.getString("pseudo"));
+				
+				Enchere enchere = new Enchere(rs.getInt("montant_enchere"), null);
+				
 				ArticleVendu arti = new ArticleVendu(rs.getInt("no_Article"), rs.getString("nom_article"),
 						rs.getString("description"),
 						LocalDateTime.of((rs.getDate("date_debut_enchere").toLocalDate()),
@@ -73,7 +77,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						LocalDateTime.of((rs.getDate("date_fin_enchere").toLocalDate()),
 								rs.getTime("date_fin_enchere").toLocalTime()),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getString("etat_vente"),
-						rs.getString("image"), u, null, null, null);
+						rs.getString("image"), u, null, null, enchere);
 				articles.add(arti);
 
 			}
