@@ -24,20 +24,19 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SELECT_ART_BY_ID = "SELECT av.no_article, av.nom_article, av.description, av.date_debut_enchere, av.date_fin_enchere, av.prix_initial,\r\n"
 			+ "	   av.prix_vente, av.image, av.etat_vente,\r\n"
 			+ "	   u.no_utilisateur as id_vendeur, u.pseudo as pseudo_vendeur,\r\n"
-			+ "	   r.rue, r.code_postal, r.ville,\r\n" + "	   c.no_categorie, c.libelle\r\n" + "\r\n"
+			+ "	   r.rue, r.code_postal, r.ville,\r\n" + "	   c.no_categorie, c.libelle\r\n"
 			+ "FROM ARTICLES_VENDUS av INNER JOIN UTILISATEURS u ON av.no_utilisateur=u.no_utilisateur\r\n"
 			+ "							  JOIN RETRAITS r ON av.no_article=r.no_article\r\n"
 			+ "							  JOIN CATEGORIES c ON av.no_categorie=c.no_categorie\r\n"
-			+ "							  						  \r\n" + "WHERE av.no_article=?";
+			+ "WHERE av.no_article=?";
 	private static final String SELECT_CAT = "SELECT * FROM CATEGORIES c JOIN ARTICLES_VENDUS av ON "
 			+ "c.no_categorie = av.no_categorie WHERE no_article=?";
 	private static final String SELECT_ENCHERE_BY_IDARTICLE = "SELECT e.montant_enchere, u.no_utilisateur, "
 			+ "u.pseudo FROM ENCHERES e JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur "
 			+ "WHERE no_article=?";
-
-	public static final String SELECT_ALL = "SELECT av.no_article as noArticle, "
+	public static final String SELECT_ALL = "SELECT av.no_article AS noArticle, "
 			+ "av.nom_article as nomArticle, av.description, av.date_debut_enchere, av.date_fin_enchere, "
-			+ "av.prix_initial, av.prix_vente, av.etat_vente, av.image, u.no_utilisateur as noVendeur, u.pseudo as pseudoVendeur, "
+			+ "av.prix_initial, av.prix_vente, av.etat_vente, av.image, u.no_utilisateur AS noVendeur, u.pseudo AS pseudoVendeur, "
 			+ "e.montant_enchere " + "FROM ARTICLES_VENDUS av "
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur=u.no_utilisateur "
 			+ "LEFT JOIN ENCHERES e ON av.no_article=e.no_article";
@@ -53,7 +52,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public static final String MES_VENTES_TERMINEES = "av.date_fin_enchere<GETDATE()";
 
 	private static final String INSERT_NEW_ART = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente, image) VALUES (?,?,?,?,?,?,?,?,?,?)";
-	private static final String INSERT_RETRAIT = "insert into RETRAITS values (?,?,?,?)";
+	private static final String INSERT_RETRAIT = "INSERT INTO RETRAITS VALUES (?,?,?,?)";
 
 	public List<ArticleVendu> selectAllArticles() throws BusinessException {
 		List<ArticleVendu> articles = new ArrayList<>();
@@ -375,9 +374,5 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 		return articles;
 	}
-
-
-
-
 
 }

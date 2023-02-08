@@ -136,7 +136,7 @@
 						class="card-img-left" src="..." alt="Image Produit">
 					<div class="card-body">
 						<h5 class="card-title">${a.nom}</h5>
-						<p class="card-text">Prix : ${a.prixInitial} crédits</p>
+						<p class="card-text">Prix : ${a.enchere.montantEnchere} crédits</p>
 
 						<fmt:parseDate value="${a.finEnchere}"
 							pattern="yyyy-MM-dd'T'HH:mm" var="date_fin_enchere" />

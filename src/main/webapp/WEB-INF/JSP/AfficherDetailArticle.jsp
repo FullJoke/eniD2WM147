@@ -14,9 +14,7 @@
 <body>
 	<header>
 		<%@ include file="Entete.html"%>
-		<%
-		Utilisateur Utilisateur = (Utilisateur) session.getAttribute("Utilisateur");
-		%>
+	
 		<c:choose>
 			<c:when test="${empty Utilisateur }">
 				<div class="d-flex flex-row-reverse">
