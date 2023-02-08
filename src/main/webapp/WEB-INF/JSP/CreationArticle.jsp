@@ -93,8 +93,12 @@
 					<%
 					}
 					%>
-				</select> <br> <label id="CreaVenteImage">Photo de l'article :</label> <input
-					type="image" name="photoArticle"> <br> 
+				</select> <br> 
+		
+				<label id="CreaVenteImage">Photo de l'article :</label> 
+				<a	href="<%=request.getContextPath()%>/WEB-INF/JSP/UploadImageArticle.jsp"
+						class="btn btn-primary"> Télécharger une image</a> <br> 
+					
 					<label
 					id="CreaVentePrixInit">Mise à prix :</label> <input type="number"
 					name="miseAprix" min="1" max="1000"> <br> 
