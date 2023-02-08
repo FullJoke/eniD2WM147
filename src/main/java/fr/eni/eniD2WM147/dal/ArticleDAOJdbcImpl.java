@@ -47,7 +47,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public static final String ACHATS = "av.no_utilisateur<>?";
 	public static final String ENCHERES_OUVERTES = "av.etat_vente='EC'";
 	public static final String MES_ENCHERES = "e.no_utilisateur=?";
-	public static final String MES_ENCHERES_REMPORTEES = "av.etat_vente='VD'";
+	public static final String MES_ENCHERES_REMPORTEES = MES_ENCHERES + " AND av.etat_vente='VD'";
 	public static final String VENTES = "av.no_utilisateur= ?";
 	public static final String MES_VENTES_EN_COURS = "av.etat_vente='EC'";
 	public static final String MES_VENTES_NON_DEBUTEES = "av.etat_vente='CR'";
@@ -290,11 +290,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			StringBuilder preparedStatement = new StringBuilder();
 			preparedStatement.append(SELECT_ALL);
 
-			if (rechercheClavier != null) {
-				String recherche = "nom_article like '%" + rechercheClavier + "%'";
+			if (!rechercheClavier.isBlank()) {
 				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
-				preparedStatement.append(recherche);
-				compteur++;
+				preparedStatement.append("nom_article like '%"+rechercheClavier+"%'");
 
 			}
 			if (catChoisie != 0) {
@@ -347,6 +345,13 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			System.out.println("Requete finale : " + preparedStatement.toString());
 			System.out.println("Nombre de ? : " + compteur);
 			System.out.println("Liste des Set du PreparedStatement : " + parametres);
+			
+			if(!preparedStatement.toString().contains(MES_VENTES_NON_DEBUTEES) &&
+			   !preparedStatement.toString().contains(MES_ENCHERES_REMPORTEES)) {
+				
+				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
+				preparedStatement.append(ENCHERES_OUVERTES);
+			}
 
 			PreparedStatement pstmt = cnx.prepareStatement(preparedStatement.toString());
 			for (String param : parametres) {
@@ -354,7 +359,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					int i = Integer.parseInt(param);
 					pstmt.setInt(parametres.indexOf(param) + 1, i);
 				} catch (NumberFormatException n) {
-					pstmt.setString(parametres.indexOf(param), param);
+					pstmt.setString(parametres.indexOf(param)+1, param);
 				}
 			}
 

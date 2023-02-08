@@ -48,6 +48,11 @@
 					<div class="p-2">
 						<a id="topMenu" href="${pageContext.request.contextPath}/Profil">Mon
 							Profil</a>
+						<form action="${pageContext.request.contextPath}/Profil"
+							  method="post">
+							<button name="vendeur" value="${Utilisateur.idUtilisateur}">
+							Mon Profil</button>
+						</form>
 					</div>
 					.
 					<div class="p-2">
@@ -77,10 +82,9 @@
 
 		<form action="${pageContext.request.contextPath}/accueil"
 			method="post">
-		<label id="selectArticle">Filtres :</label>
-		<input type="text" name="rechercheClavier" placeholder="Le nom de l'article contient">
-		<br>
-			<label>Categories :</label> <select id="categorieSelect"
+			<label id="selectArticle">Filtres :</label> <input type="text"
+				name="rechercheClavier" placeholder="Le nom de l'article contient">
+			<br> <label>Categories :</label> <select id="categorieSelect"
 				name="categorieChoisie">
 				<option value="0">Toutes</option>
 				<c:forEach var="c" items="${categories}">
@@ -129,40 +133,40 @@
 		<div id="articlesListe" class="row">
 			<c:if test="${!empty articles }">
 				<c:forEach var="a" items="${articles}">
-			<div class="card" style="width: 15rem">
-				<form
-					action="${pageContext.request.contextPath}/AfficherDetailArticle">
-					<input type="hidden" name="Article" value="${a.idArticle}"> <img
-						class="card-img-left" src="..." alt="Image Produit">
-					<div class="card-body">
-						<h5 class="card-title">${a.nom}</h5>
-						<p class="card-text">Prix : ${a.enchere.montantEnchere==0? a.prixInitial : a.enchere.montantEnchere}  
-						crédits</p>
-						<fmt:parseDate value="${a.finEnchere}"
-							pattern="yyyy-MM-dd'T'HH:mm" var="date_fin_enchere" />
-						<fmt:formatDate value="${date_fin_enchere}"
-							pattern="dd MMMM yyyy HH:mm" var="dateFin" />
-						<p class="card-text">
-							<b>Fin de l'enchère : </b><br>
-							${dateFin}</p>
+					<div class="card" style="width: 15rem">
+						<form
+							action="${pageContext.request.contextPath}/AfficherDetailArticle">
+							<input type="hidden" name="Article" value="${a.idArticle}">
+							<img class="card-img-left" src="..." alt="Image Produit">
+							<div class="card-body">
+								<h5 class="card-title">${a.nom}</h5>
+								<p class="card-text">Prix : ${a.enchere.montantEnchere==0? a.prixInitial : a.enchere.montantEnchere}
+									crédits</p>
+								<fmt:parseDate value="${a.finEnchere}"
+									pattern="yyyy-MM-dd'T'HH:mm" var="date_fin_enchere" />
+								<fmt:formatDate value="${date_fin_enchere}"
+									pattern="dd MMMM yyyy HH:mm" var="dateFin" />
+								<p class="card-text">
+									<b>Fin de l'enchère : </b><br> ${dateFin}
+								</p>
 
-						<p class="card-text">Vendeur : ${a.utilisateur.pseudo}</p>
-						
-						<c:if test="${!empty Utilisateur }">
-						<input id="DetailArticleButton" class="btn btn-primary"
-							type="submit" value="Détails">
-						</c:if>
+								<p class="card-text">Vendeur : ${a.utilisateur.pseudo}</p>
 
+								<c:if test="${!empty Utilisateur }">
+									<input id="DetailArticleButton" class="btn btn-primary"
+										type="submit" value="Détails">
+								</c:if>
+
+							</div>
+						</form>
 					</div>
-				</form>
-			</div>
 
 				</c:forEach>
 			</c:if>
-			
+
 			<c:if test="${empty articles}">
-			<div class="alert alert-info" role="alert" id="noArticleAlerte">
-				Il n'y a aucun article dans cette catégorie.</div>
+				<div class="alert alert-info" role="alert" id="noArticleAlerte">
+					Il n'y a aucun article dans cette catégorie.</div>
 			</c:if>
 
 
