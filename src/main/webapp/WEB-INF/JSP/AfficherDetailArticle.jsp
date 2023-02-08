@@ -66,7 +66,7 @@
 
 
 
-	<div  class="container">
+	<div class="container">
 		<form id="detailsVendeurBtn"
 			action="${pageContext.request.contextPath}/Profil" method="get">
 
@@ -79,8 +79,11 @@
 			<div class="row justify-content-md-center">
 				<!-- Comme pas de boucle ou pas d'article que l'on peut créer avec des cheverons,
  on utilise l'attribut de l'article pour obtenir ses infos -->
-				<h4 id="NomArt" style="text-align: center;">${ArticleAAfficher.nom}</h4>
-				<br>
+				<div class="row justify-content-md-center">
+					<h4 id="NomArt" style="text-align: center;">${ArticleAAfficher.nom}</h4>
+					<br>
+				</div>
+
 				<div id="detailsArticle">
 					<label id="descriptionArt">Description : </label>
 					<textarea readonly style="vertical-align: top">${ArticleAAfficher.description}</textarea>
@@ -99,26 +102,28 @@
 					</label> <br> <label id="retraitArt">Retrait : <span>${ArticleAAfficher.retrait.rue },
 					</span> <span>${ArticleAAfficher.retrait.codePostal}
 							${ArticleAAfficher.retrait.ville}</span>
-					</label> <br> <label id="vendeurArt">Vendeur <span>${ArticleAAfficher.utilisateur.pseudo}</span>
+					</label> <br> <label id="vendeurArt">Vendeur : <span
+						id="idVendeur">${ArticleAAfficher.utilisateur.pseudo}</span>
 					</label> <input type="hidden" name="vendeur"
 						value="${ArticleAAfficher.utilisateur.idUtilisateur}"> <input
-						type="submit" value="Détails Vendeur" class="btn btn-primary">
-					<br>
+						id="infoVendeurButton" type="submit" value="Détails Vendeur"
+						class="btn btn-primary"> <br>
 				</div>
 			</div>
 		</form>
-	</div>
-	<div id="myOffer">
-		<form action="${pageContext.request.contextPath}/FaireUneEnchere"
-			method="post">
-			<label id="porpositionArt">Ma proposition : </label> <input
-				type="hidden" name="idArticle" value="${ArticleAAfficher.idArticle}">
-			<input type="hidden" name="bestOffer"
-				value="${ArticleAAfficher.enchere.montantEnchere}"> <input
-				type="number" min="1" max="1000" name="enchere"> <input
-				id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
-				name="encherirAff" value="Encherir">
-		</form>
+
+		<div id="myOffer">
+			<form action="${pageContext.request.contextPath}/FaireUneEnchere"
+				method="post">
+				<label id="porpositionArt">Ma proposition : </label> <input
+					type="hidden" name="idArticle"
+					value="${ArticleAAfficher.idArticle}"> <input type="hidden"
+					name="bestOffer" value="${ArticleAAfficher.enchere.montantEnchere}">
+				<input type="number" min="1" max="1000" name="enchere"> <input
+					id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
+					name="encherirAff" value="Encherir">
+			</form>
+		</div>
 	</div>
 	<footer id="footer">
 		<%@ include file="footer.html"%>

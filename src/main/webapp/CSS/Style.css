@@ -119,40 +119,32 @@ label {
 	margin-left: -49px;
 }
 
-
 #profilNomLabel {
 	margin-left: 20px;
-	
 }
 
 #profilPrenomLabel {
 	margin-left: -5px;
-	
 }
 
 #profilEmailLabel {
 	margin-left: 16px;
-	
 }
 
 #profilTelephoneLabel {
 	margin-left: -26px;
-	
 }
 
 #profilRueLabel {
 	margin-left: 29px;
-	
 }
 
 #profilCodePostalLabel {
 	margin-left: -39px;
-	
 }
 
 #profilVilleLabel {
 	margin-left: 26px;
-	
 }
 
 #profilModifButton {
@@ -161,11 +153,11 @@ label {
 	margin-bottom: 100px;
 }
 
-#signUpCreditLabel{
+#signUpCreditLabel {
 	margin: 10px 48px 18px 13px;
 }
 
-#ModifCrédit{
+#ModifCrédit {
 	margin: 0px 0px 0px 0px;
 }
 
@@ -247,7 +239,7 @@ label {
 	margin-left: -30px;
 }
 
-#footer{
+#footer {
 	color: white;
 	font-size: 1.2rem;
 	background-color: rgb(39, 44, 61);
@@ -257,137 +249,147 @@ label {
 	padding-bottom: 20px;
 }
 
-#noArticleAlerte{
+#noArticleAlerte {
 	margin-top: 80px;
 	margin-left: 285px;
 	padding: 20px 100px 20px 100px;
 }
 
-#loginError{
+#loginError {
 	margin-left: 60px;
 	padding: 20px 146px 20px 360px;
 }
 
-#deleteButton{
+#deleteButton {
 	margin: 687px 0px 0px 0px;
 }
 
-#detailsVendeurBtn{
+#detailsVendeurBtn {
 	margin: -50px 0px 0px 227px
 }
 
-#CreaVenteDesc{
+#CreaVenteDesc {
 	margin: 0px 47px 0px -41px;
 }
 
-#CreaVenteCat{
+#CreaVenteCat {
 	margin: 15px 47px 0px -34px;
 }
 
-#CreaVenteImage{
+#CreaVenteImage {
 	margin: 15px 47px 0px -87px;
 }
 
-#CreaVentePrixInit{
+#CreaVentePrixInit {
 	margin: 15px 50px 0px -40px;
 }
 
-#CreaVenteDebEnchere{
+#CreaVenteDebEnchere {
 	margin: 15px 52px 0px -110px;
 }
 
-#CreaVenteFinEnchere{
+#CreaVenteFinEnchere {
 	margin: 15px 52px 0px -82px;
 }
 
-#CreaVenteRue{
+#CreaVenteRue {
 	margin: 15px 55px 0px 18px;
 }
 
-#CreaVenteCodeP{
+#CreaVenteCodeP {
 	margin: 15px 54px 0px -49px;
 }
 
-#CreaVenteVille{
+#CreaVenteVille {
 	margin: 15px 53px 0px 17px;
 }
 
-#CreaVenteBtn{
+#CreaVenteBtn {
 	margin: 34px 0px 0px 75px;
 }
 
-#AfficherDétailsArticle{
+#AfficherDétailsArticle {
 	margin: 63px 0px 0px -221px;
 }
 
-
-
-#NomArt{
+#NomArt {
 	margin: 0px 0px 35px 240px;
 }
 
-#AccueilAchatsRadio{
+#AccueilAchatsRadio {
 	margin: 20px 0px 0px 0px;
 }
 
-#AccueilVentesRadio{
+#AccueilVentesRadio {
 	margin: -161px 0px 20px 400px;
 }
 
-#achat{
+#achat {
 	margin: 0px 0px 0px 0px;
 }
 
-#EnchereOuvCheck{
+#EnchereOuvCheck {
 	margin: 0px 24px 10px 10px;
 }
 
-#MesEncheresCheck{
+#MesEncheresCheck {
 	margin: 0px 24px 10px 48px;
 }
 
-#EnchereWinCheck{
+#EnchereWinCheck {
 	margin: 0px 24px 0px -55px;
 }
 
-#myOffer{
+#myOffer {
 	margin: -76px -25px 0px 536px;
 }
 /*CSS pour la jsp AfficherDetailArticle */
-#AfficherDétailTitle{
-	margin: 0px 0px 0px 600px;
-	
+#AfficherDétailTitle {
+	margin: 30px 100px 50px -120px;
 }
 
-#detailVente{
-	text-align: center;
-}
-#descriptionArt{
+#NomArt {
 	
+	margin: 0px 500px 30px 150px;
 }
 
-#cateArt{
-	
+#descriptionArt {
+	margin: 0px 25px 30px -500px
 }
 
-#misePrixArt{
-	
+#cateArt {
+	margin: 0px 0px 30px -500px
 }
-#finEncArt{
-	
+
+#misePrixArt {
+	margin: 0px 0px 30px -500px
 }
-#retraitArt{
-	
+
+#finEncArt {
+	margin: 0px 0px 30px -500px
 }
-#vendeurArt{
-	
+
+#retraitArt {
+	margin: 0px 0px 30px -500px
 }
-#porpositionArt{
-	
-}
-#MakeAnEnchereButton{
-	
+
+#vendeurArt {
+	margin: 0px 20px 30px -500px
 }
 
 
+#bestOfferArt {
+	margin: 0px 0px 30px -500px
+}
 
+#infoVendeurButton {
+	margin: 0px 0px 30px 80px
+}
+
+#porpositionArt {
+	margin: 50px 10px 30px -203px
+}
+
+#MakeAnEnchereButton {
+	margin: 20px 20px 30px 70px
+}
