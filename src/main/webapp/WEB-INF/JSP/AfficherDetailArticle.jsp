@@ -14,9 +14,6 @@
 <body>
 	<header>
 		<%@ include file="Entete.html"%>
-		<%
-		Utilisateur Utilisateur = (Utilisateur) session.getAttribute("Utilisateur");
-		%>
 		<c:choose>
 			<c:when test="${empty Utilisateur }">
 				<div class="d-flex flex-row-reverse">
@@ -74,8 +71,7 @@
 			<h2 id="AfficherDétailTitle" style="text-align: center;">Détail
 				Vente</h2>
 			<div class="row justify-content-md-center">
-				<!-- Comme pas de boucle ou pas d'article que l'on peut créer avec des cheverons,
- on utilise l'attribut de l'article pour obtenir ses infos -->
+				<!-- Comme pas de boucle ou pas d'article que l'on peut créer avec des cheverons, on utilise l'attribut de l'article pour obtenir ses infos -->
 				<h4 id="NomArt" style="text-align: center;">${ArticleAAfficher.nom}</h4>
 				<br>
 				<div id="detailsArticle">
@@ -110,8 +106,7 @@
 			method="post">
 			<label id="porpositionArt">Ma proposition : </label> <input
 				type="hidden" name="idArticle" value="${ArticleAAfficher.idArticle}">
-			<input type="hidden" name="bestOffer">
-
+			<input type="hidden" name="bestOffer"
 				value="${ArticleAAfficher.enchere.montantEnchere}"> <input
 				type="number" min="1" max="1000" name="enchere"> <input
 				id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
