@@ -40,15 +40,20 @@ public class ServletFaireUneEnchere extends HttpServlet {
 		String myOfferTemp = request.getParameter("enchere");
 		int myOffer = Integer.parseInt(myOfferTemp);
 		System.out.println("Proposition d'enchère : " + myOffer);
+		
+		int newCredits = u.getCredit() - myOffer;
+		System.out.println("Nouveau solde de crédit : " + newCredits);
 
 		if (bestOffer == 0) {
 			System.out.println("Vous êtes le premier à enchérir");
-			em.enchereInsert(idSession, myOffer, idArticle);
+			em.enchereInsert(idSession, myOffer, idArticle, newCredits);
 		} else if (myOffer <= bestOffer) {
 			System.out.println("Vous êtes trop radin !");
+		} else if (newCredits < 0) {
+			System.out.println("Vous n'avez pas les moyens pour ça. . .");
 		} else {
 			System.out.println("Vous l'emportez !");
-			em.enchereUpdate(idSession, myOffer, idArticle);
+			em.enchereUpdate(idSession, myOffer, idArticle, newCredits);
 		}
 		
 		request.setAttribute("idArticle", idArticle);
