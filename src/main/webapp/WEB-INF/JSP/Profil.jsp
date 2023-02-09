@@ -36,7 +36,7 @@
 		<ol class="breadcrumb">
 			<li id="bread" class="breadcrumb-item"><a
 				href="<%=request.getContextPath()%>/accueil">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Profil</li>
+			<li class="breadcrumb-item active" aria-current="page" >Profil</li>
 		</ol>
 	</nav>
 	<div class="container">

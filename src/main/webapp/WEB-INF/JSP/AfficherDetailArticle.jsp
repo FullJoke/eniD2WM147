@@ -128,7 +128,7 @@
 			
 			<div>
 				<form method="post" action="${pageContext.request.contextPath}/deleteArticle" >
-					<c:if test="${!empty Utilisateur }">
+					<c:if test="${ArticleAAfficher.utilisateur.idUtilisateur==Utilisateur.idUtilisateur }">
 						<button class="btn btn-danger" id="supressionArtButton" value="${ArticleAAfficher.idArticle }"
 							type="submit" name="articleASupprimer"
 							onclick="window.location.href ='${pageContext.request.contextPath}/deleteArticle';">Supprimer
