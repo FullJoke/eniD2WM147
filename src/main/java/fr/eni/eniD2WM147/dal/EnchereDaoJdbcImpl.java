@@ -2,32 +2,41 @@ package fr.eni.eniD2WM147.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-
-import fr.eni.eniD2WM147.bll.EnchereManager;
-import fr.eni.eniD2WM147.bo.ArticleVendu;
-import fr.eni.eniD2WM147.bo.Enchere;
-import fr.eni.eniD2WM147.bo.Utilisateur;
-import fr.eni.eniD2WM147.businessException.BusinessException;
 
 public class EnchereDaoJdbcImpl implements EnchereDAO {
 
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERES "
 			+ "SET no_utilisateur=?, date_enchere=GETDATE(), montant_enchere=? " + "WHERE no_article = ?";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERES VALUES (?, ?, GETDATE(), ?);";
+	private static final String UPDATE_CREDITS = "UPDATE UTILISATEURS SET credit=? WHERE no_utilisateur=?";
 
 	@Override
-	public void enchereUpdate(int idSession, int myOffer, int idArticle) {
+	public void enchereUpdate(int idSession, int myOffer, int idArticle, int newCredits) {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_ENCHERE);
-			pstmt.setInt(1, idSession);
-			pstmt.setInt(2, myOffer);
-			pstmt.setInt(3, idArticle);
 
-			pstmt.executeUpdate();
+			try {
+				cnx.setAutoCommit(false);
+
+				PreparedStatement pstmt = cnx.prepareStatement(UPDATE_ENCHERE);
+				pstmt.setInt(1, idSession);
+				pstmt.setInt(2, myOffer);
+				pstmt.setInt(3, idArticle);
+
+				pstmt.executeUpdate();
+				pstmt.close();
+
+				editCredit(idSession, newCredits);
+
+				pstmt.close();
+				cnx.commit();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				cnx.rollback();
+
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -35,15 +44,44 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 	}
 
 	@Override
-	public void enchereInsert(int idSession, int myOffer, int idArticle) {
+	public void enchereInsert(int idSession, int myOffer, int idArticle, int newCredits) {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
-			PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE);
-			pstmt.setInt(1, idSession);
-			pstmt.setInt(2, idArticle);
-			pstmt.setInt(3, myOffer);
+			
+			try {
+				cnx.setAutoCommit(false);
+				
+				PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE);
+				pstmt.setInt(1, idSession);
+				pstmt.setInt(2, idArticle);
+				pstmt.setInt(3, myOffer);
 
-			pstmt.executeQuery();
+				pstmt.executeQuery();
+				pstmt.close();
+				
+				editCredit(idSession, newCredits);
+				
+				pstmt.close();
+				cnx.commit();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				cnx.rollback();
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void editCredit(int idSession, int newCredits) {
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_CREDITS);
+			pstmt.setInt(1, newCredits);
+			pstmt.setInt(2, idSession);
+
+			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

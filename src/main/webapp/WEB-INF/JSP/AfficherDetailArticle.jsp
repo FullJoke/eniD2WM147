@@ -89,26 +89,32 @@
 				</div>
 
 				<div id="detailsArticle">
-					<label id="descriptionArt">Description : </label>
+					<label id="descriptionArt" style="font-weight: bold">Description
+						: </label>
 					<textarea readonly style="vertical-align: top">${ArticleAAfficher.description}</textarea>
-					<br> <br> <label id="cateArt">Categorie : <span>${ArticleAAfficher.categorie.libelle}</span>
-					</label> <br> <label id="bestOfferArt">Meilleure offre : <span>${ArticleAAfficher.enchere.montantEnchere}
-							crédits</span> <c:if
-							test="${ArticleAAfficher.enchere.montantEnchere > 0}">                            par ${ArticleAAfficher.enchere.utilisateur.pseudo}
-                        </c:if>
-					</label> <br> <label id="misePrixArt">Mise à prix : <span>${ArticleAAfficher.prixInitial}
-							pts</span></label> <br>
+					<br> <br> <label id="cateArt" style="font-weight: bold">Categorie
+						: </label> <span>${ArticleAAfficher.categorie.libelle}</span> <br> <label
+						id="bestOfferArt" style="font-weight: bold">Meilleure
+						offre : </label> Par <span style="text-decoration: underline"><c:if
+							test="${ArticleAAfficher.enchere.montantEnchere > 0}">
+						 ${ArticleAAfficher.enchere.utilisateur.pseudo}
+                        </c:if></span> pour<span style="text-decoration: underline">
+						${ArticleAAfficher.enchere.montantEnchere} </span>crédits <br> <label
+						id="misePrixArt" style="font-weight: bold">Mise à prix : </label>
+					<span>${ArticleAAfficher.prixInitial} pts</span> <br>
+
 					<fmt:parseDate value="${ArticleAAfficher.finEnchere}"
 						pattern="yyyy-MM-dd'T'HH:mm" var="date_fin_enchere" />
 					<fmt:formatDate value="${date_fin_enchere}"
 						pattern="dd MMMM yyyy HH:mm" var="dateFin" />
-					<label id="finEncArt">Fin de l'enchère : <span>${dateFin}</span>
-					</label> <br> <label id="retraitArt">Retrait : <span>${ArticleAAfficher.retrait.rue },
-					</span> <span>${ArticleAAfficher.retrait.codePostal}
-							${ArticleAAfficher.retrait.ville}</span>
-					</label> <br> <label id="vendeurArt">Vendeur : <span
-						id="idVendeur">${ArticleAAfficher.utilisateur.pseudo}</span>
-					</label> <input type="hidden" name="vendeur"
+					<label id="finEncArt" style="font-weight: bold">Fin de
+						l'enchère : </label> <span>${dateFin}</span> <br> <label
+						id="retraitArt" style="font-weight: bold">Retrait : </label><span>
+						${ArticleAAfficher.retrait.rue }, </span> <span>
+						${ArticleAAfficher.retrait.codePostal}
+						${ArticleAAfficher.retrait.ville}</span> <br> <label id="vendeurArt"
+						style="font-weight: bold">Vendeur : </label><span id="idVendeur">${ArticleAAfficher.utilisateur.pseudo}</span>
+					<input type="hidden" name="vendeur"
 						value="${ArticleAAfficher.utilisateur.idUtilisateur}"> <input
 						id="infoVendeurButton" type="submit" value="Détails Vendeur"
 						class="btn btn-primary"> <br>
@@ -120,8 +126,8 @@
 		<div id="myOffer">
 			<form action="${pageContext.request.contextPath}/FaireUneEnchere"
 				method="post">
-				<label id="porpositionArt">Ma proposition : </label> <input
-					type="hidden" name="idArticle"
+				<label id="porpositionArt" style="font-weight: bold">Ma
+					proposition : </label> <input type="hidden" name="idArticle"
 					value="${ArticleAAfficher.idArticle}"> <input type="hidden"
 					name="bestOffer" value="${ArticleAAfficher.enchere.montantEnchere}">
 				<input type="number" min="1" max="1000" name="enchere"> <input

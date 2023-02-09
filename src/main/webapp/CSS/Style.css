@@ -56,7 +56,7 @@ label {
 }
 
 #loginId {
-	margin-left: 6px;
+	margin-left: 4px;
 	margin-bottom: 15px;
 }
 
@@ -78,27 +78,27 @@ label {
 }
 
 #signUpNomLabel {
-	padding-left: 20px;
+	padding-left: 22px;
 }
 
 #signUpPrenomLabel {
-	margin-left: -4px;
+	margin-left: -5px;
 }
 
 #signUpEmailLabel {
-	margin-left: 16px;
+	margin-left: 17px;
 }
 
 #signUpTelephoneLabel {
-	margin-left: -26px;
+	margin-left: -27px;
 }
 
 #signUpRueLabel {
-	margin-left: 30px;
+	margin-left: 32px;
 }
 
 #signUpCodePostalLabel {
-	margin-left: -38px;
+	margin-left: -40px;
 }
 
 #signUpVilleLabel {
@@ -106,7 +106,7 @@ label {
 }
 
 #signUpMdpLabel {
-	margin-left: -52px;
+	margin-left: -55px;
 }
 
 #signUpMdpNLabel {
@@ -118,7 +118,7 @@ label {
 }
 
 #signUpConfirmationLabel {
-	margin-left: -49px;
+	margin-left: -56px;
 }
 
 #profilNomLabel {
@@ -199,8 +199,7 @@ label {
 }
 
 #DetailArticleButton {
-	margin-top: 15px;
-	margin-left: 55px;
+	margin: 0px 20px 0px 30px;
 }
 
 #detailsArticle {
@@ -271,7 +270,7 @@ label {
 }
 
 #CreaVenteDesc {
-	margin: 0px 47px 0px -41px;
+	margin: 0px 55px 0px -41px;
 }
 
 #CreaVenteCat {
@@ -283,15 +282,15 @@ label {
 }
 
 #CreaVentePrixInit {
-	margin: 15px 50px 0px -40px;
+	margin: 15px 53px 0px -40px;
 }
 
 #CreaVenteDebEnchere {
-	margin: 15px 52px 0px -110px;
+	margin: 15px 47px 0px -110px;
 }
 
 #CreaVenteFinEnchere {
-	margin: 15px 52px 0px -82px;
+	margin: 15px 47px 0px -82px;
 }
 
 #CreaVenteRue {
@@ -299,11 +298,11 @@ label {
 }
 
 #CreaVenteCodeP {
-	margin: 15px 54px 0px -49px;
+	margin: 15px 50px 0px -49px;
 }
 
 #CreaVenteVille {
-	margin: 15px 53px 0px 17px;
+	margin: 15px 51px 0px 17px;
 }
 
 #CreaVenteBtn {
@@ -351,37 +350,36 @@ label {
 }
 
 #NomArt {
-	
+	font-weight: bold;
 	margin: 0px 500px 30px 150px;
 }
 
 #descriptionArt {
-	margin: 0px 25px 30px -500px
+	margin: 0px 50px 30px -500px
 }
 
 #cateArt {
-	margin: 0px 0px 30px -500px
+	margin: 0px 67px 30px -500px
 }
 
 #misePrixArt {
-	margin: 0px 0px 30px -500px
+	margin: 0px 55px 30px -500px
 }
 
 #finEncArt {
-	margin: 0px 0px 30px -500px
+	margin: 0px 10px 30px -500px
 }
 
 #retraitArt {
-	margin: 0px 0px 30px -500px
+	margin: 0px 95px 30px -500px
 }
 
 #vendeurArt {
-	margin: 0px 20px 30px -500px
+	margin: 0px 86px 30px -500px
 }
 
-
 #bestOfferArt {
-	margin: 0px 0px 30px -500px
+	margin: 0px 20px 30px -500px
 }
 
 #infoVendeurButton {
@@ -389,9 +387,13 @@ label {
 }
 
 #porpositionArt {
-	margin: 50px 10px 30px -203px
+	margin: 0px 19px 0px -205px
 }
 
 #MakeAnEnchereButton {
-	margin: 20px 20px 30px 70px
+	margin: 20px 0px 33px 120px
+}
+
+#supressionArtButton {
+	margin: 10px 0px -50px -100px
 }

@@ -40,8 +40,8 @@
 		</div>
 		<div class="row justify-content-center">
 			<form action="${pageContext.request.contextPath}/login" method="post">
-				<label id="loginIdLabel">Identifiant : </label> <input id="loginId"
-					type="text" name="id"> <br> <label>Mot de
+				<label id="loginIdLabel" style="font-weight: bold">Identifiant : </label> <input id="loginId"
+					type="text" name="id"> <br> <label style="font-weight: bold">Mot de
 					Passe : </label> <input id="loginPassword" type="password" name="mdp">
 
 				<br>
