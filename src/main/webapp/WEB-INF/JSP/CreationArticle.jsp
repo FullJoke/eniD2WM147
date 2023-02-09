@@ -21,7 +21,7 @@
 		<c:if test="${!empty listeErreur }">
 			<c:forEach var="erreur" items="${listeErreur }">
 				<div id="loginError" class="alert alert-danger" role="alert">
-					${$erreur }</div>
+					${listeErreur }</div>
 			</c:forEach>
 
 		</c:if>

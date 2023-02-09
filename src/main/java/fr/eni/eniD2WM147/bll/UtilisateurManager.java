@@ -1,6 +1,5 @@
 package fr.eni.eniD2WM147.bll;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.eni.eniD2WM147.bo.Utilisateur;
@@ -20,7 +19,7 @@ public class UtilisateurManager {
 
 	private UtilisateurDAO utilisateurDAO;
 	private static UtilisateurManager instance;
-	//Matcher m;
+
 
 	private UtilisateurManager() {
 		this.utilisateurDAO = EnchereDAOFactory.getUtilisateurDAO();
@@ -46,7 +45,8 @@ public class UtilisateurManager {
 	}
 
 	public Utilisateur insertUtilisateur(String pseudo, String nom, String prenom, String email, String tel, String rue,
-			String codePostal, String ville, int i, boolean b, String mdp) throws BusinessException {
+			String codePostal, String ville, int i, boolean b, String mdp)
+			throws BusinessException {
 
 		BusinessException bE = new BusinessException();
 		validerInsert(pseudo, nom, prenom, email, tel, rue, ville, codePostal, mdp, bE);
@@ -115,6 +115,7 @@ public class UtilisateurManager {
 		if (mdp.length() != 8) {
 			businessException.addMessage("Le mot de passe doit contenir 8 caractères");
 		}
+	
 	}
 
 	public Utilisateur updateUserProfil(String pseudo, String nom, String prenom, String email, String tel, String rue,
