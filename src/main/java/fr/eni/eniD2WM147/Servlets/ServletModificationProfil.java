@@ -29,6 +29,17 @@ public class ServletModificationProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("doGet");
+		HttpSession session = request.getSession();
+		Utilisateur u = (Utilisateur) session.getAttribute("Utilisateur");
+		
+		try {
+			u = UtilisateurManager.getInstance().getUtilisateurById(u.getIdUtilisateur());
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		
+		session.setAttribute("Utilisateur", u);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/ModificationProfil.jsp");
 		rd.forward(request, response);
 	}

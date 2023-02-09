@@ -46,7 +46,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public static final String ACHATS = "av.no_utilisateur<>?";
 	public static final String ENCHERES_OUVERTES = "av.etat_vente='EC'";
 	public static final String MES_ENCHERES = "e.no_utilisateur=?";
-	public static final String MES_ENCHERES_REMPORTEES = MES_ENCHERES + " AND av.etat_vente='VD'";
+	public static final String MES_ENCHERES_REMPORTEES = "av.etat_vente='VD'";
 	public static final String VENTES = "av.no_utilisateur= ?";
 	public static final String MES_VENTES_EN_COURS = "av.etat_vente='EC'";
 	public static final String MES_VENTES_NON_DEBUTEES = "av.etat_vente='CR'";
@@ -318,17 +318,19 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? 
 				(preparedStatement.toString().contains(ENCHERES_OUVERTES)?" OR ":" AND "):
 				" WHERE ");
-				preparedStatement.append(preparedStatement.toString().contains(ACHATS)?"( ":"");
+				preparedStatement.append(preparedStatement.toString().contains(ENCHERES_OUVERTES)?"":"( ");
 				preparedStatement.append(MES_ENCHERES);
 				parametres.add(String.valueOf(idSession));
 				compteur++;
 			}
 			if (encheresRemportees != null) {
 				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? 
-				(preparedStatement.toString().contains(ENCHERES_OUVERTES)||
-				 preparedStatement.toString().contains(MES_ENCHERES)?" OR ":" AND ")
+				((preparedStatement.toString().contains(ENCHERES_OUVERTES)&&
+				  !preparedStatement.toString().contains(MES_ENCHERES))?" OR ":"")
 				: " WHERE ");
-				preparedStatement.append(preparedStatement.toString().contains(ACHATS)?"( ":"");
+				preparedStatement.append(preparedStatement.toString().contains(MES_ENCHERES)?" AND ":"( ");
+				preparedStatement.append(preparedStatement.toString().contains(MES_ENCHERES)?
+						"":MES_ENCHERES+" AND ");
 				preparedStatement.append(MES_ENCHERES_REMPORTEES);
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
