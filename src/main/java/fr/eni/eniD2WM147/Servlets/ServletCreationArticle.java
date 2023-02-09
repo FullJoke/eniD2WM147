@@ -158,8 +158,8 @@ public class ServletCreationArticle extends HttpServlet {
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			request.setAttribute("listeErreur", e.getListeMessage());
-			// response.sendRedirect(request.getContextPath()+"/WEB-INF/JSP/CreationArticle.jsp");
-			doGet(request, response);
+			response.sendRedirect(request.getContextPath()+"/WEB-INF/JSP/CreationArticle.jsp");
+			//doGet(request, response);
 		}
 
 	}
