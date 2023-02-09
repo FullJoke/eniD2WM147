@@ -72,7 +72,7 @@
 			method="post">
 			<label id="selectArticle" style="font-weight: bold">Filtres :</label> <input type="text"
 				name="rechercheClavier" placeholder="Le nom de l'article contient">
-			<br> <label style="font-weight: bold">Categories :</label> <select id="categorieSelect"
+			<br> <label id="catAccueil" style="font-weight: bold">Categories :</label> <select id="categorieSelect"
 				name="categorieChoisie">
 				<option value="0">Toutes</option>
 				<c:forEach var="c" items="${categories}">
@@ -80,7 +80,7 @@
 				</c:forEach>
 			</select> <input class="btn btn-primary" id="categorieSelectButton"
 				type="submit" name="categorieSelectButton" value="Filtrer">
-			<!-- </form> -->
+			
 			<c:if test="${!empty Utilisateur }">
 				<div id="AccueilAchatsRadio">
 					<div>

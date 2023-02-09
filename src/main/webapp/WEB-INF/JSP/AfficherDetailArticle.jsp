@@ -15,6 +15,18 @@
 	<header>
 		<%@ include file="Entete.html"%>
 
+		<div id="logErrorMessages">
+
+			<c:if test="${!empty listeErreur }">
+				<c:forEach var="erreur" items="${listeErreur }">
+					<div id="loginError" class="alert alert-danger" role="alert">
+						${listeErreur }</div>
+				</c:forEach>
+
+			</c:if>
+		</div>
+
+
 		<c:choose>
 			<c:when test="${empty Utilisateur }">
 				<div class="d-flex flex-row-reverse">
