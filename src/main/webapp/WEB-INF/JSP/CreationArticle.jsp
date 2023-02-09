@@ -71,37 +71,38 @@
 			<form method="Post"
 				action="${pageContext.request.contextPath}/CreationArticle">
 
-				<label>Article :</label> <input type="text" name="nomArticle"
+				<label style="font-weight: bold">Article :</label> <input type="text" name="nomArticle"
 					required value="${nomArticle}"> <br> <label
-					id="CreaVenteDesc">Description :</label> <br> <label
-					id="CreaVenteDesc">Description :</label>
+					id="CreaVenteDesc" style="font-weight: bold">Description :</label> <br> <label
+					id="CreaVenteDesc" style="color: white">Description :</label>
 
 				<textarea id="descritpion" name="descritpion" rows="5" cols="33"
 					maxlength="300" >${descritpion}</textarea>
 
-				<br> <br> <label id="CreaVenteCat">Catégories :</label> <select
+				<br> <br> <label id="CreaVenteCat" style="font-weight: bold">Catégories :</label> <select
 					name="listcate">
 					<c:forEach var="c" items="${categories }">
 						<option value="${c.numCategorie}">${c.libelle }</option>
 					</c:forEach>
 
-				</select> <br> <label id="CreaVenteImage">Photo de l'article :</label> <input
+				</select> <br> <label id="CreaVenteImage" style="font-weight: bold">Photo de l'article :</label> <input
 					type="image" name="photoArticle"> <br> <label
-					id="CreaVentePrixInit">Mise à prix :</label><input type="number"
+					id="CreaVentePrixInit" style="font-weight: bold">Mise à prix :</label><input type="number"
 					name="miseAprix" min="1" max="1000" value="${miseAprix}"> <br>
-				<label id="CreaVenteDebEnchere">Début de l'enchère :</label> <input
+				<label id="CreaVenteDebEnchere" style="font-weight: bold">Début de l'enchère :</label> <input
 					required type="datetime-local" name="debutEnchere"
 					value="${debutEnchere}"> <br> <label
-					id="CreaVenteFinEnchere">Fin de l'enchère :</label> <input required
+					id="CreaVenteFinEnchere" style="font-weight: bold">Fin de l'enchère :</label> <input required
 					name="finEnchere" value="${finEnchere}" type="datetime-local">
 				<br>
+				<br>
 				<fieldset>
-					<legend>Retrait</legend>
-					<label id="CreaVenteRue">Rue :</label> <input required type="text"
+					<legend style="font-weight: bold; text-decoration: underline"  >Retrait</legend>
+					<label id="CreaVenteRue" style="font-weight: bold">Rue :</label> <input required type="text"
 						name="rue" value="${ Utilisateur.rue}"> <br> <label
-						id="CreaVenteCodeP">Code Postal :</label> <input required
+						id="CreaVenteCodeP" style="font-weight: bold">Code Postal :</label> <input required
 						type="text" name="codePostal" value="${Utilisateur.codePostal}">
-					<br> <label id="CreaVenteVille">Ville :</label> <input
+					<br> <label id="CreaVenteVille" style="font-weight: bold">Ville :</label> <input
 						required type="text" name="ville" value="${Utilisateur.ville}">
 
 				</fieldset>

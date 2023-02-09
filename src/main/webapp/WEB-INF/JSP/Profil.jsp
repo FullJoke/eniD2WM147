@@ -45,14 +45,14 @@
 		<div class="row justify-content-md-center">
 			<div>
 
-				<label id="profilPseudoLabel">Pseudo : </label> <span>${vendeur.pseudo}</span>
-				<br> <label id="profilNomLabel">Nom : </label> <span>${vendeur.nom}</span>
-				<br> <label id="profilPrenomLabel">Prenom : </label> <span>${vendeur.prenom}</span>
-				<br> <label id="profilEmailLabel">Email : </label> <span>${vendeur.email}</span>
-				<br> <label id="profilTelephoneLabel">Telephone : </label> <span>${vendeur.telephone}</span>
-				<br> <label id="profilRueLabel">Rue : </label> <span>${vendeur.rue}</span>
-				<br> <label id="profilCodePostalLabel">Code Postal : </label> <span>${vendeur.codePostal}</span>
-				<br> <label id="profilVilleLabel">Ville : </label> <span>${vendeur.ville}</span>
+				<label id="profilPseudoLabel" style="font-weight: bold">Pseudo : </label> <span>${vendeur.pseudo}</span>
+				<br> <label id="profilNomLabel" style="font-weight: bold">Nom : </label> <span>${vendeur.nom}</span>
+				<br> <label id="profilPrenomLabel" style="font-weight: bold">Prenom : </label> <span>${vendeur.prenom}</span>
+				<br> <label id="profilEmailLabel" style="font-weight: bold">Email : </label> <span>${vendeur.email}</span>
+				<br> <label id="profilTelephoneLabel" style="font-weight: bold">Telephone : </label> <span>${vendeur.telephone}</span>
+				<br> <label id="profilRueLabel" style="font-weight: bold">Rue : </label> <span>${vendeur.rue}</span>
+				<br> <label id="profilCodePostalLabel" style="font-weight: bold">Code Postal : </label> <span>${vendeur.codePostal}</span>
+				<br> <label id="profilVilleLabel" style="font-weight: bold">Ville : </label> <span>${vendeur.ville}</span>
 				<br>
 				
 				<c:if test="${vendeur.idUtilisateur==Utilisateur.idUtilisateur}">
