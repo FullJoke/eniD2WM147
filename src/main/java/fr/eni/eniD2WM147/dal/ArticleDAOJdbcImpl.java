@@ -309,16 +309,24 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 			if (enchereOuv != null) {
 				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
+				preparedStatement.append(preparedStatement.toString().contains(ACHATS)?"( ":"");
 				preparedStatement.append(ENCHERES_OUVERTES);
 			}
 			if (mesEncheres != null) {
-				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
+				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? 
+				(preparedStatement.toString().contains(ENCHERES_OUVERTES)?" OR ":" AND "):
+				" WHERE ");
+				preparedStatement.append(preparedStatement.toString().contains(ACHATS)?"( ":"");
 				preparedStatement.append(MES_ENCHERES);
 				parametres.add(String.valueOf(idSession));
 				compteur++;
 			}
 			if (encheresRemportees != null) {
-				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? " AND " : " WHERE ");
+				preparedStatement.append(preparedStatement.toString().contains(" WHERE ") ? 
+				(preparedStatement.toString().contains(ENCHERES_OUVERTES)||
+				 preparedStatement.toString().contains(MES_ENCHERES)?" OR ":" AND ")
+				: " WHERE ");
+				preparedStatement.append(preparedStatement.toString().contains(ACHATS)?"( ":"");
 				preparedStatement.append(MES_ENCHERES_REMPORTEES);
 			}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
