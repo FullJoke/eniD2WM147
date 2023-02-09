@@ -70,9 +70,9 @@
 
 		<form action="${pageContext.request.contextPath}/accueil"
 			method="post">
-			<label id="selectArticle">Filtres :</label> <input type="text"
+			<label id="selectArticle" style="font-weight: bold">Filtres :</label> <input type="text"
 				name="rechercheClavier" placeholder="Le nom de l'article contient">
-			<br> <label>Categories :</label> <select id="categorieSelect"
+			<br> <label style="font-weight: bold">Categories :</label> <select id="categorieSelect"
 				name="categorieChoisie">
 				<option value="0">Toutes</option>
 				<c:forEach var="c" items="${categories}">
@@ -119,18 +119,18 @@
 							<img class="card-img-left" src="..." alt="Image Produit">
 							<div class="card-body">
 								<h5 class="card-title">${a.nom}</h5>
-								<p class="card-text">Prix : ${a.enchere.montantEnchere==0? a.prixInitial : a.enchere.montantEnchere}
-									crédits</p>
+								<p class="card-text" style="font-weight: bold">Prix : 
+									</p> <span>${a.enchere.montantEnchere==0? a.prixInitial : a.enchere.montantEnchere} </span> crédits
 								<fmt:parseDate value="${a.finEnchere}"
 									pattern="yyyy-MM-dd'T'HH:mm" var="date_fin_enchere" />
 								<fmt:formatDate value="${date_fin_enchere}"
 									pattern="dd MMMM yyyy HH:mm" var="dateFin" />
 								<p class="card-text">
-									<b>Fin de l'enchère : </b><br> ${dateFin}
+									<b style="font-weight: bold">Fin de l'enchère : </b><br><span>${dateFin}</span>
 								</p>
 
 
-								<p class="card-text">Vendeur : ${a.utilisateur.pseudo}</p>
+								<p class="card-text" style="font-weight: bold">Vendeur : </p><span> ${a.utilisateur.pseudo}</span>
 
 								<c:if test="${!empty Utilisateur }">
 									<input id="DetailArticleButton" class="btn btn-primary"

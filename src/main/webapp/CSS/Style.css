@@ -199,8 +199,7 @@ label {
 }
 
 #DetailArticleButton {
-	margin-top: 15px;
-	margin-left: 55px;
+	margin: 0px 20px 0px 30px;
 }
 
 #detailsArticle {
@@ -379,7 +378,6 @@ label {
 	margin: 0px 86px 30px -500px
 }
 
-
 #bestOfferArt {
 	margin: 0px 20px 30px -500px
 }
@@ -396,6 +394,6 @@ label {
 	margin: 20px 0px 33px 120px
 }
 
-#supressionArtButton{
+#supressionArtButton {
 	margin: 10px 0px -50px -100px
 }
