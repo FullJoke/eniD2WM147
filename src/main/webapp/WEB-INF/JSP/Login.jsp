@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,7 @@
 		<%@ include file="Entete.html"%>
 		<div class="d-flex flex-row-reverse">
 			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/inscription">S'inscrire
+				<a id="topMenu" href="${pageContext.request.contextPath}/inscription">S'inscrire
 				</a>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li id="bread" class="breadcrumb-item"><a
-				href="<%=request.getContextPath()%>/accueil">Home</a></li>
+				href="${pageContext.request.contextPath}/accueil">Home</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Login</li>
 		</ol>
 	</nav>
@@ -39,7 +39,7 @@
 			<h2>Login</h2>
 		</div>
 		<div class="row justify-content-center">
-			<form action="<%=request.getContextPath()%>/login" method="post">
+			<form action="${pageContext.request.contextPath}/login" method="post">
 				<label id="loginIdLabel">Identifiant : </label> <input id="loginId"
 					type="text" name="id"> <br> <label>Mot de
 					Passe : </label> <input id="loginPassword" type="password" name="mdp">
@@ -50,32 +50,19 @@
 					<input id="inscriptionButton" class="btn btn-primary"
 						id="signUpOKButton" type="submit" value="Valider"> <a
 						id="inscriptionButton" class="btn btn-secondary"
-						href="<%=request.getContextPath()%>/accueil">Annuler</a>
+						href="${pageContext.request.contextPath}accueil">Annuler</a>
 				</div>
 			</form>
 		</div>
 
 		<div id="logErrorMessages">
-			<!-- Gestion des erreurs -->
-			<%
-			List<String> listeErreur = (List<String>) request.getAttribute("listeErreur");
-			if (listeErreur != null) {
-			%>
-			<%
-			for (String erreur : listeErreur) {
-			%>
- 			<div id="loginError" class="alert alert-danger" role="alert">
-				<%=erreur%></div>
-<%--  			<div class="d-flex justify-content-center">
-				<p style="color: red"><%=erreur%></p>
-			</div> --%>
 
-			<%
-			}
-			%>
-			<%
-			}
-			%>
+					<c:if test="${!empty listeErreur }">
+			<c:forEach var="erreur" items="${listeErreur }">
+				<div id="loginError" class="alert alert-danger" role="alert">
+					${listeErreur }</div>
+			</c:forEach>
+		</c:if>
 		</div>
 	</div>
 

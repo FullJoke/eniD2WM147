@@ -39,10 +39,9 @@
 					.
 					<div class="p-2">
 						<form action="${pageContext.request.contextPath}/Profil"
-							  method="post">
-							<button id="topMenu" name="vendeur" value="${Utilisateur.idUtilisateur}">
-
-							Mon Profil</button>
+							method="post">
+							<button id="topMenu" name="vendeur"
+								value="${Utilisateur.idUtilisateur}">Mon Profil</button>
 						</form>
 					</div>
 					.
@@ -129,12 +128,15 @@
 
 
 			</form>
-			
+
 			<div>
-				<form method="post" action="${pageContext.request.contextPath}/deleteArticle" >
-					<c:if test="${ArticleAAfficher.utilisateur.idUtilisateur==Utilisateur.idUtilisateur }">
-						<button class="btn btn-danger" id="supressionArtButton" value="${ArticleAAfficher.idArticle }"
-							type="submit" name="articleASupprimer"
+				<form method="post"
+					action="${pageContext.request.contextPath}/deleteArticle">
+					<c:if
+						test="${ArticleAAfficher.utilisateur.idUtilisateur==Utilisateur.idUtilisateur }">
+						<button class="btn btn-danger" id="supressionArtButton"
+							value="${ArticleAAfficher.idArticle }" type="submit"
+							name="articleASupprimer"
 							onclick="window.location.href ='${pageContext.request.contextPath}/deleteArticle';">Supprimer
 							Vente</button>
 					</c:if>

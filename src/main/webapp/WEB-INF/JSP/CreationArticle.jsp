@@ -69,7 +69,6 @@
 		<div class="row justify-content-md-center">
 
 			<form method="Post"
-
 				action="${pageContext.request.contextPath}/CreationArticle">
 
 				<label>Article :</label> <input type="text" name="nomArticle"
@@ -80,11 +79,7 @@
 				<textarea id="descritpion" name="descritpion" rows="5" cols="33"
 					maxlength="300"></textarea>
 
-				<br> 
-
-				<br>
-
-				<label id="CreaVenteCat">Catégories :</label> <select
+				<br> <br> <label id="CreaVenteCat">Catégories :</label> <select
 					name="listcate">
 					<c:forEach var="c" items="${categories }">
 						<option value="${c.numCategorie}">${c.libelle }</option>
@@ -101,7 +96,6 @@
 				<fieldset>
 					<legend>Retrait</legend>
 					<label id="CreaVenteRue">Rue :</label> <input required type="text"
-
 						name="rue" value="${ Utilisateur.rue}"> <br> <label
 						id="CreaVenteCodeP">Code Postal :</label> <input required
 						type="text" name="codePostal" value="${Utilisateur.codePostal}">
