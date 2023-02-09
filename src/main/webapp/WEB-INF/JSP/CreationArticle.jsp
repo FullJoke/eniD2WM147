@@ -36,8 +36,13 @@
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu" href="${pageContext.request.contextPath}/Profil">Mon
-					Profil</a>
+
+				<form action="${pageContext.request.contextPath}/Profil"
+					method="post">
+					<button id="topMenu" name="vendeur"
+						value="${Utilisateur.idUtilisateur}">Mon Profil</button>
+				</form>
+
 			</div>
 			.
 			<div class="p-2">
@@ -64,7 +69,9 @@
 		<div class="row justify-content-md-center">
 
 			<form method="Post"
+
 				action="${pageContext.request.contextPath}/CreationArticle">
+
 				<label>Article :</label> <input type="text" name="nomArticle"
 					required value="${nomArticle}"> <br> <label
 					id="CreaVenteDesc">Description :</label> <br> <label
@@ -72,7 +79,11 @@
 
 				<textarea id="descritpion" name="descritpion" rows="5" cols="33"
 					maxlength="300"></textarea>
+
 				<br> 
+
+				<br>
+
 				<label id="CreaVenteCat">Catégories :</label> <select
 					name="listcate">
 					<c:forEach var="c" items="${categories }">
@@ -90,11 +101,13 @@
 				<fieldset>
 					<legend>Retrait</legend>
 					<label id="CreaVenteRue">Rue :</label> <input required type="text"
+
 						name="rue" value="${ Utilisateur.rue}"> <br> <label
 						id="CreaVenteCodeP">Code Postal :</label> <input required
 						type="text" name="codePostal" value="${Utilisateur.codePostal}">
 					<br> <label id="CreaVenteVille">Ville :</label> <input
 						required type="text" name="ville" value="${Utilisateur.ville}">
+
 				</fieldset>
 				<div id="CreaVenteBtn">
 					<input class="btn btn-primary" type="submit" name="saveNewArt"

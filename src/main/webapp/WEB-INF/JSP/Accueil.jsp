@@ -39,7 +39,6 @@
 					</div>
 					.
 					<div class="p-2">
-
 						<form action="${pageContext.request.contextPath}/Profil"
 							method="post">
 							<button id="topMenu" name="vendeur"
