@@ -49,7 +49,7 @@ public class UtilisateurManager {
 			throws BusinessException {
 
 		BusinessException bE = new BusinessException();
-		validerInsert(pseudo, nom, prenom, email, tel, rue, ville, codePostal, mdp, bE);
+		validerUtilisateur(pseudo, nom, prenom, email, tel, rue, ville, codePostal, mdp, bE);
 
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
@@ -61,7 +61,7 @@ public class UtilisateurManager {
 		return user;
 	}
 
-	public void validerInsert(String pseudo, String nom, String prenom, String mail, String telephone, String rue,
+	public void validerUtilisateur(String pseudo, String nom, String prenom, String mail, String telephone, String rue,
 			String ville, String codePostal, String mdp, BusinessException businessException) {
 		if (pseudo == null || !pseudo.chars().allMatch(Character::isLetterOrDigit)) {
 			businessException.addMessage(
@@ -125,7 +125,7 @@ public class UtilisateurManager {
 		if (!bE.getListeMessage().isEmpty()) {
 			throw bE;
 		}
-
+		validerUtilisateur(pseudo, nom, prenom, email, tel, rue, ville, codePostal, mdp, bE);
 		Utilisateur user = utilisateurDAO.updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville, mdp,
 				credit, idUtilisateur);
 

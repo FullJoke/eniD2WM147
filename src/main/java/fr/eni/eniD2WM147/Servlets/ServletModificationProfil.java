@@ -97,6 +97,7 @@ public class ServletModificationProfil extends HttpServlet {
 			session.setAttribute("Utilisateur", user);
 			System.out.println("MODIFICATION - SUCCESS");
 			response.sendRedirect(request.getContextPath()+"/Profil");
+			
 		} catch (
 				
 		BusinessException e) {
