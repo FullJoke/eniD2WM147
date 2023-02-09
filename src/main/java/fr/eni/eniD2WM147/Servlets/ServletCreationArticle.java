@@ -70,33 +70,28 @@ public class ServletCreationArticle extends HttpServlet {
 		request.setAttribute("nomArticle", nomArticle);
 
 		String description = request.getParameter("descritpion");
-		// request.setAttribute("descritpion", description);
+		request.setAttribute("descritpion", description);
 
 		String image = request.getParameter("photoArticle");
-		// request.setAttribute("photoArticle", image);
+		request.setAttribute("photoArticle", image);
 
 		String categorie = request.getParameter("listcate");
-		// request.setAttribute("listcate", categorie);
+		request.setAttribute("listcate", categorie);
 
 		String prix = request.getParameter("miseAprix");
-		// request.setAttribute("miseAprix", prix);
+		request.setAttribute("miseAprix", prix);
 
 		String debutVente = request.getParameter("debutEnchere");
-		// request.setAttribute("debutEnchere", debutVente);
+		request.setAttribute("debutEnchere", debutVente);
 
 		String finVente = request.getParameter("finEnchere");
-		// request.setAttribute("finEnchere", finVente);
+		request.setAttribute("finEnchere", finVente);
 
 		String rue = request.getParameter("rue");
-		// request.setAttribute("rue",
-		// ((Utilisateur)session.getAttribute("Utilisateur")).getRue());
 
 		String codePostal = request.getParameter("codePostal");
-		// request.setAttribute("codePostal",
-		// ((Utilisateur)session.getAttribute("Utilisateur")).getCodePostal());
 
 		String ville = request.getParameter("ville");
-		// request.setAttribute("ville", ville);
 
 		LocalDateTime dateDebut = null;
 		LocalDateTime dateFin = null;

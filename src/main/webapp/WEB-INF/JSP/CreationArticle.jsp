@@ -77,7 +77,7 @@
 					id="CreaVenteDesc">Description :</label>
 
 				<textarea id="descritpion" name="descritpion" rows="5" cols="33"
-					maxlength="300"></textarea>
+					maxlength="300" >${descritpion}</textarea>
 
 				<br> <br> <label id="CreaVenteCat">Catégories :</label> <select
 					name="listcate">
@@ -87,12 +87,14 @@
 
 				</select> <br> <label id="CreaVenteImage">Photo de l'article :</label> <input
 					type="image" name="photoArticle"> <br> <label
-					id="CreaVentePrixInit">Mise à prix :</label> <input type="number"
-					name="miseAprix" min="1" max="1000"> <br> <label
-					id="CreaVenteDebEnchere">Début de l'enchère :</label> <input
-					required type="datetime-local" name="debutEnchere"> <br>
-				<label id="CreaVenteFinEnchere">Fin de l'enchère :</label> <input
-					required type="datetime-local" name="finEnchere"> <br>
+					id="CreaVentePrixInit">Mise à prix :</label><input type="number"
+					name="miseAprix" min="1" max="1000" value="${miseAprix}"> <br>
+				<label id="CreaVenteDebEnchere">Début de l'enchère :</label> <input
+					required type="datetime-local" name="debutEnchere"
+					value="${debutEnchere}"> <br> <label
+					id="CreaVenteFinEnchere">Fin de l'enchère :</label> <input required
+					name="finEnchere" value="${finEnchere}" type="datetime-local">
+				<br>
 				<fieldset>
 					<legend>Retrait</legend>
 					<label id="CreaVenteRue">Rue :</label> <input required type="text"
