@@ -41,7 +41,11 @@
 			</div>
 			.
 			<div class="p-2">
-				<p id="topMenuUnusable">Mon Profil</p>
+				<form action="${pageContext.request.contextPath}/Profil"
+					method="post">
+					<button id="topMenu" name="vendeur"
+						value="${Utilisateur.idUtilisateur}">Mon Profil</button>
+				</form>
 			</div>
 			.
 			<div class="p-2">
@@ -58,8 +62,7 @@
 		<ol class="breadcrumb">
 			<li id="bread" class="breadcrumb-item"><a
 				href="<%=request.getContextPath()%>/accueil">Home</a></li>
-			<li class="breadcrumb-item"><a
-				href="<%=request.getContextPath()%>/Profil">Profil</a></li>
+			<li class="breadcrumb-item"><a href="#" onclick="history.go(-1)">Profil</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Modification
 				du Profil</li>
 		</ol>
@@ -71,7 +74,8 @@
 		<div class="row justify-content-md-center">
 
 
-			<form action="<%=request.getContextPath()%>/ModificationProfil" method="post">
+			<form action="<%=request.getContextPath()%>/ModificationProfil"
+				method="post">
 
 				<%
 				Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur");
@@ -112,9 +116,9 @@
 					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
 				<br> <label id="signUpConfirmationLabel">Confirmation :
 				</label> <input id="ModifConfirmation" type="password" name="confirmation"
-					placeholder="********"> <br>
-				<label id="signUpCreditLabel">Crédit : </label>
-				<input id="ModifCrédit" value="<%=user.getCredit()%>" readonly="readonly">
+					placeholder="********"> <br> <label
+					id="signUpCreditLabel">Crédit : </label> <input id="ModifCrédit"
+					value="<%=user.getCredit()%>" readonly="readonly">
 				<div class="ModifProfilButtons">
 					<input id="inscriptionButton" class="btn btn-primary"
 						id="ModifSaveButton" type="submit" value="Enregistrer"> <a

@@ -44,8 +44,11 @@
 			</div>
 			.
 			<div class="p-2">
-				<a id="topMenu" href="<%=request.getContextPath()%>/Profil">Mon
-					Profil</a>
+				<form action="${pageContext.request.contextPath}/Profil"
+					method="post">
+					<button id="topMenu" name="vendeur"
+						value="${Utilisateur.idUtilisateur}">Mon Profil</button>
+				</form>
 			</div>
 			.
 			<div class="p-2">
@@ -73,12 +76,13 @@
 
 			<form method="Post"
 				action="<%=request.getContextPath()%>/CreationArticle">
-				<label>Article :</label> <input type="text" name="nomArticle" required value="${nomArticle}">
-				<br> <label id="CreaVenteDesc">Description :</label> <br>
+				<label>Article :</label> <input type="text" name="nomArticle"
+					required value="${nomArticle}"> <br> <label
+					id="CreaVenteDesc">Description :</label> <br> <label
+					id="CreaVenteDesc">Description :</label>
 
-				<label id="CreaVenteDesc">Description :</label>
-
-				<textarea id="descritpion" name="descritpion" rows="5" cols="33" maxlength="300" ></textarea>
+				<textarea id="descritpion" name="descritpion" rows="5" cols="33"
+					maxlength="300"></textarea>
 				<br>
 				<%
 				Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur");
@@ -94,27 +98,21 @@
 					}
 					%>
 				</select> <br> <label id="CreaVenteImage">Photo de l'article :</label> <input
-					type="image" name="photoArticle"> <br> 
-					<label
+					type="image" name="photoArticle"> <br> <label
 					id="CreaVentePrixInit">Mise à prix :</label> <input type="number"
-					name="miseAprix" min="1" max="1000"> <br> 
-					
-					<label
-					id="CreaVenteDebEnchere" >Début de l'enchère :</label> <input required
-					type="datetime-local" name="debutEnchere"> <br> <label
-					id="CreaVenteFinEnchere">Fin de l'enchère :</label> <input required
-					type="datetime-local" name="finEnchere"> <br>
+					name="miseAprix" min="1" max="1000"> <br> <label
+					id="CreaVenteDebEnchere">Début de l'enchère :</label> <input
+					required type="datetime-local" name="debutEnchere"> <br>
+				<label id="CreaVenteFinEnchere">Fin de l'enchère :</label> <input
+					required type="datetime-local" name="finEnchere"> <br>
 				<fieldset>
 					<legend>Retrait</legend>
 					<label id="CreaVenteRue">Rue :</label> <input required type="text"
-						name="rue" value="<%=user.getRue()%>"> <br> 
-						
-						<label
-						id="CreaVenteCodeP">Code Postal :</label> <input required type="text"
-						name="codePostal" value="<%=user.getCodePostal()%>"> <br>
-						
-					<label id="CreaVenteVille">Ville :</label> <input required type="text"
-						name="ville" value="<%=user.getVille()%>">
+						name="rue" value="<%=user.getRue()%>"> <br> <label
+						id="CreaVenteCodeP">Code Postal :</label> <input required
+						type="text" name="codePostal" value="<%=user.getCodePostal()%>">
+					<br> <label id="CreaVenteVille">Ville :</label> <input
+						required type="text" name="ville" value="<%=user.getVille()%>">
 				</fieldset>
 				<div id="CreaVenteBtn">
 					<input class="btn btn-primary" type="submit" name="saveNewArt"
