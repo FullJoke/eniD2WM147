@@ -132,7 +132,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			pstmt.setString(9, String.valueOf(article.getEtatVente()));
 			pstmt.setString(10, article.getImage());
 
-			pstmt.executeUpdate();
+			pstmt.executeQuery();
 
 			ResultSet rs = pstmt.getGeneratedKeys();
 
@@ -140,6 +140,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 				int idArticle = rs.getInt(1);
 				article.setIdArticle(idArticle);
+				article.setImage(rs.getString("image"));
 
 			}
 			System.out.println(article);

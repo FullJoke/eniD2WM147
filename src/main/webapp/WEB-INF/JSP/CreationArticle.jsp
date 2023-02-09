@@ -96,7 +96,7 @@
 				</select> <br> 
 		
 				<label id="CreaVenteImage">Photo de l'article :</label> 
-				<a	href="<%=request.getContextPath()%>/WEB-INF/JSP/UploadImageArticle.jsp"
+				<a	href="<%=request.getContextPath()%>/TelechargerImage"
 						class="btn btn-primary"> Télécharger une image</a> <br> 
 					
 					<label

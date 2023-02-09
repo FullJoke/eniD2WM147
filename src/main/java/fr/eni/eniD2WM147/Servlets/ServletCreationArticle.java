@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,10 +34,6 @@ public class ServletCreationArticle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Creation Vente - doGet");
-		
-	
-		
-		
 
 		ArticleManager am = ArticleManager.getInstance();
 		request.setCharacterEncoding("UTF-8");
@@ -45,14 +42,13 @@ public class ServletCreationArticle extends HttpServlet {
 		try {
 			categories = ArticleManager.getInstance().selectAllCat();
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		request.setAttribute("categories", categories);
-		response.sendRedirect("/WEB-INF/JSP/CreationArticle.jsp");
 
-		//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/CreationArticle.jsp");
-		//rd.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/CreationArticle.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -74,33 +70,33 @@ public class ServletCreationArticle extends HttpServlet {
 		request.setAttribute("nomArticle", nomArticle);
 
 		String description = request.getParameter("descritpion");
-		// request.setAttribute("descritpion", description);
+		request.setAttribute("descritpion", description);
 
-		String image = request.getParameter("photoArticle");
-		// request.setAttribute("photoArticle", image);
+		String image = request.getParameter("telechargerImage");
+		request.setAttribute("Utilisateur", image);
 
 		String categorie = request.getParameter("listcate");
-		// request.setAttribute("listcate", categorie);
+		request.setAttribute("listcate", categorie);
 
 		String prix = request.getParameter("miseAprix");
-		// request.setAttribute("miseAprix", prix);
+		request.setAttribute("miseAprix", prix);
 
 		String debutVente = request.getParameter("debutEnchere");
-		// request.setAttribute("debutEnchere", debutVente);
+		request.setAttribute("debutEnchere", debutVente);
 
 		String finVente = request.getParameter("finEnchere");
-		// request.setAttribute("finEnchere", finVente);
+		request.setAttribute("finEnchere", finVente);
 
 		String rue = request.getParameter("rue");
-		// request.setAttribute("rue",
-		// ((Utilisateur)session.getAttribute("Utilisateur")).getRue());
+		request.setAttribute("rue", ((Utilisateur) session.getAttribute("Utilisateur")).getRue());
 
 		String codePostal = request.getParameter("codePostal");
-		// request.setAttribute("codePostal",
-		// ((Utilisateur)session.getAttribute("Utilisateur")).getCodePostal());
+		request.setAttribute("codePostal", ((Utilisateur) session.getAttribute("Utilisateur")).getCodePostal());
 
 		String ville = request.getParameter("ville");
-		// request.setAttribute("ville", ville);
+		request.setAttribute("ville", ville);
+		
+		
 
 		LocalDateTime dateDebut = null;
 		LocalDateTime dateFin = null;
@@ -112,7 +108,7 @@ public class ServletCreationArticle extends HttpServlet {
 		int prixEntier = Integer.parseInt(prix);
 		Utilisateur vendeur = (Utilisateur) session.getAttribute("Utilisateur");
 
-		Categorie cat = new Categorie(numCat);
+		Categorie cat = new Categorie();
 
 		try {
 

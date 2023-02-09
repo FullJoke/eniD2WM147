@@ -5,12 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import fr.eni.eniD2WM147.bo.ArticleVendu;
 import fr.eni.eniD2WM147.bo.Image;
 
 public class ImageDaoJdbcImpl {
 
 	private final static String SELECTBYID_QUERY = "SELECT image,no_article FROM ARTICLES_VENDUS Where no_article = ?;";
-	private final static String INSERT_QUERY = "INSERT INTO ARTICLE_VENDUS(image)VALUES (?);";
+	private final static String INSERT_QUERY = "INSERT INTO ARTICLES_VENDUS(image)VALUES (?);";
 
 	public Image SelectImageById(int id) {
 
@@ -32,22 +33,5 @@ public class ImageDaoJdbcImpl {
 		return image;
 
 	}
-
-	public void insertPicture(Image image) {
-
-		try (Connection cnx = ConnectionProvider.getConnection()) {
-			PreparedStatement pstmt = cnx.prepareStatement(INSERT_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
-			pstmt.setString(1, image.getPicture());
-			pstmt.executeUpdate();
-			ResultSet rs = pstmt.getGeneratedKeys();
-
-			if (rs.next()) {
-				image.setPicture(rs.getString("image"));
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }
+

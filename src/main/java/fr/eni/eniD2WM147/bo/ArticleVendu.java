@@ -2,6 +2,8 @@ package fr.eni.eniD2WM147.bo;
 
 import java.time.LocalDateTime;
 
+import fr.eni.eniD2WM147.businessException.BusinessException;
+
 public class ArticleVendu {
 	private int idArticle;
 	private String nom;
@@ -48,6 +50,13 @@ public class ArticleVendu {
 	
 		this.categorie = categorie;
 		this.enchere = enchere;
+	}
+	
+	public ArticleVendu(LocalDateTime debutEnchere, LocalDateTime finEnchere, int prixInitial) {
+		super();
+		this.debutEnchere = debutEnchere;
+		this.finEnchere = finEnchere;
+		this.prixInitial = prixInitial;
 	}
 
 	// Getters & Setters

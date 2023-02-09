@@ -3,17 +3,22 @@ package fr.eni.eniD2WM147.bo;
 public class Image {
 
 	private String picture;
-	private int id;
+	private int noArt;
 
+	
+	
 	public Image(String picture) {
 		super();
 		this.picture = picture;
 	}
 
-	public Image(String picture, int id) {
+	public Image(String picture, int noArt) {
 		super();
 		this.picture = picture;
-		this.setId(id);
+		this.setId(noArt);
+	}
+	public Image() {
+		
 	}
 
 	public String getPicture() {
@@ -25,11 +30,20 @@ public class Image {
 	}
 
 	public int getId() {
-		return id;
+		return noArt;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.noArt = id;
 	}
+
+	@Override
+	public String toString() {
+		return "Image [picture=" + picture + ", noArt=" + noArt + "]";
+	}
+	
+	
+	
+	
 
 }

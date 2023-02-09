@@ -24,6 +24,7 @@ public class ServletAfficherDetailArticle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("AfficherArticle - doGet");
+		
 		String idArtTemp = request.getParameter("Article");
 		System.out.println(idArtTemp);
 		int idArt = Integer.parseInt(idArtTemp);
