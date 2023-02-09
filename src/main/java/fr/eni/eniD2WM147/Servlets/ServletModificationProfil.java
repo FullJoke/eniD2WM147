@@ -87,7 +87,7 @@ public class ServletModificationProfil extends HttpServlet {
 			if (mdp.isBlank()) {
 				bE.addMessage("Le mot de passe est obligatoire.");
 			}
-			if (confirmation.isBlank() || !confirmation.equals(mdp)) {
+			if ((confirmation.isBlank() && !newMdp.isBlank()) || !confirmation.equals(newMdp)) {
 				bE.addMessage("Veuillez confirmer votre mot de passe");
 			}
 			if (!bE.getListeMessage().isEmpty()) {
@@ -96,7 +96,8 @@ public class ServletModificationProfil extends HttpServlet {
 			user =UtilisateurManager.getInstance().updateUserProfil(pseudo, nom, prenom, email, tel, rue, codePostal, ville,newMdp.isBlank()?mdp:newMdp , ((Utilisateur)session.getAttribute("Utilisateur")).getCredit(), ((Utilisateur)session.getAttribute("Utilisateur")).getIdUtilisateur());
 			session.setAttribute("Utilisateur", user);
 			System.out.println("MODIFICATION - SUCCESS");
-			response.sendRedirect(request.getContextPath()+"/Profil");
+			response.sendRedirect(request.getContextPath()+"/accueil");
+			
 		} catch (
 				
 		BusinessException e) {

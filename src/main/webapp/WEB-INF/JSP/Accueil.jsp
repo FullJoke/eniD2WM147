@@ -1,10 +1,12 @@
-<%@page import="fr.eni.eniD2WM147.bo.Categorie"%><%@page
-	import="fr.eni.eniD2WM147.bo.ArticleVendu"%><%@page
-	import="java.util.List"%><%@page
-	import="fr.eni.eniD2WM147.bo.Utilisateur"%><%@taglib prefix="fmt"
-	uri="http://java.sun.com/jsp/jstl/fmt"%><%@taglib prefix="c"
-	uri="http://java.sun.com/jsp/jstl/core"%><%@ page language="java"
-	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><!DOCTYPE html>
+<%@page import="fr.eni.eniD2WM147.bo.Categorie"%>
+<%@page import="fr.eni.eniD2WM147.bo.ArticleVendu"%>
+<%@page import="java.util.List"%>
+<%@page import="fr.eni.eniD2WM147.bo.Utilisateur"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -38,11 +40,11 @@
 					</div>
 					.
 					<div class="p-2">
-                        <form action="${pageContext.request.contextPath}/Profil"
-							  method="post">
-							<button id="topMenu" name="vendeur" value="${Utilisateur.idUtilisateur}">
 
-							Mon Profil</button>
+						<form action="${pageContext.request.contextPath}/Profil"
+							method="post">
+							<button id="topMenu" name="vendeur"
+								value="${Utilisateur.idUtilisateur}">Mon Profil</button>
 						</form>
 					</div>
 					.

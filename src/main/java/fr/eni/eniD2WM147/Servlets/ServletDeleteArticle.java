@@ -39,7 +39,7 @@ public class ServletDeleteArticle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doPost- deleteArticle");
+		System.out.println("\n*****doPost- deleteArticle*****");
 		
 		String idArtTemp = request.getParameter("articleASupprimer");
 		System.out.println(idArtTemp);

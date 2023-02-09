@@ -42,7 +42,7 @@ public class ServletCreationArticle extends HttpServlet {
 		try {
 			categories = ArticleManager.getInstance().selectAllCat();
 		} catch (BusinessException e) {
-		
+
 			e.printStackTrace();
 		}
 		request.setAttribute("categories", categories);
@@ -88,15 +88,16 @@ public class ServletCreationArticle extends HttpServlet {
 		request.setAttribute("finEnchere", finVente);
 
 		String rue = request.getParameter("rue");
+
 		request.setAttribute("rue", ((Utilisateur) session.getAttribute("Utilisateur")).getRue());
 
 		String codePostal = request.getParameter("codePostal");
+
 		request.setAttribute("codePostal", ((Utilisateur) session.getAttribute("Utilisateur")).getCodePostal());
 
 		String ville = request.getParameter("ville");
+
 		request.setAttribute("ville", ville);
-		
-		
 
 		LocalDateTime dateDebut = null;
 		LocalDateTime dateFin = null;

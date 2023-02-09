@@ -75,9 +75,10 @@ public class ArticleManager {
 		if (description == null || description.length() > 300) {
 			businessException.addMessage("La description est obligatoire et ne peut pas dépasser 300 caractères.");
 		}
-		if (prix < 0) {
-			businessException.addMessage("Le prix doit être positif.");
+		if (prix < 0 || prix>1000) {
+			businessException.addMessage("Le prix doit être positif et ne doit pas dépasser 1000.");
 		}
+		
 		
 	}
 

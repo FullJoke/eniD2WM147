@@ -86,8 +86,6 @@ public class ServletInscription extends HttpServlet {
 			if (email.isBlank()) {
 				bE.addMessage("Adresse mail non valide.");
 			}
-			// || !email.contains(MOTIF)
-			// mettre limitation en chiffre et 10
 			if (tel.isBlank()) {
 				bE.addMessage("Le numéro de téléphone est obligatoire.");
 			}
