@@ -1,136 +1,116 @@
-<%@page import="fr.eni.eniD2WM147.bo.Categorie"%><%@page
-	import="fr.eni.eniD2WM147.bo.ArticleVendu"%><%@page
-	import="fr.eni.eniD2WM147.bo.Utilisateur"%><%@taglib prefix="fmt"
-	uri="http://java.sun.com/jsp/jstl/fmt"%><%@taglib prefix="c"
-	uri="http://java.sun.com/jsp/jstl/core"%><%@ page language="java"
-	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><!DOCTYPE html>
+<%@page import="fr.eni.eniD2WM147.bo.ArticleVendu"%><%@page
+	import="fr.eni.eniD2WM147.bo.Retrait"%><%@page import="java.util.List"%><%@page
+	import="fr.eni.eniD2WM147.bo.Categorie"%><%@page
+	import="fr.eni.eniD2WM147.bo.Utilisateur"%><%@ page language="java"
+	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><%@taglib
+	prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Affichage du détail de l'article</title>
+<title>Creation de l'article</title>
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="CSS/Style.css" rel="stylesheet">
 </head>
 <body>
+	<div id="logErrorMessages">
+		<c:if test="${!empty listeErreur }">
+			<c:forEach var="erreur" items="${listeErreur }">
+				<div id="loginError" class="alert alert-danger" role="alert">
+					${listeErreur }</div>
+			</c:forEach>
+		</c:if>
+	</div>
 	<header>
 		<%@ include file="Entete.html"%>
-		<c:choose>
-			<c:when test="${empty Utilisateur }">
-				<div class="d-flex flex-row-reverse">
-					<div class="p-2">
-						<a id="topMenu"
-							href="${pageContext.request.contextPath}/inscription">S'inscrire
-						</a>
-					</div>
-					.
-					<div class="p-2">
-						<a id="topMenu" href="${pageContext.request.contextPath}/login">
-							Se Connecter</a>
-					</div>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="d-flex flex-row-reverse">
-					<div class="p-2">
-						<a id="topMenu"
-							href="${pageContext.request.contextPath}/deconnexion">Déconnexion</a>
-					</div>
-					.
-					<div class="p-2">
-						<form action="${pageContext.request.contextPath}/Profil"
-							method="post">
-							<button id="topMenu" name="vendeur"
-								value="${Utilisateur.idUtilisateur}">Mon Profil</button>
-						</form>
-					</div>
-					.
-					<div class="p-2">
-						<a id="topMenu"
-							href="${pageContext.request.contextPath}/CreationArticle">Vendre
-							un article</a>
-					</div>
-					.
-					<div class="p-2">
-						<a id="topMenu" href="${pageContext.request.contextPath}/accueil">Enchères</a>
-					</div>
-				</div>
-			</c:otherwise>
-		</c:choose>
+		<div class="d-flex flex-row-reverse">
+			<div class="p-2">
+				<a id="topMenu"
+					href="${pageContext.request.contextPath}/deconnexion">Déconnexion</a>
+			</div>
+			.
+			<div class="p-2">
+				<form action="${pageContext.request.contextPath}/Profil"
+					method="post">
+					<button id="topMenu" name="vendeur"
+						value="${Utilisateur.idUtilisateur}">Mon Profil</button>
+				</form>
+			</div>
+			.
+			<div class="p-2">
+				<p id="topMenuUnusable">Vendre un article</p>
+			</div>
+			.
+			<div class="p-2">
+				<a id="topMenu" href="${pageContext.request.contextPath}/accueil">Enchères</a>
+			</div>
+		</div>
 	</header>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li id="bread" class="breadcrumb-item"><a
 				href="${pageContext.request.contextPath}/accueil">Home</a></li>
-			<li id="detailVente" class="breadcrumb-item active"
-				aria-current="page">Détails Vente</li>
+			<li class="breadcrumb-item active" aria-current="page">Création
+				de vente</li>
 		</ol>
 	</nav>
 	<div class="container">
-		<form id="detailsVendeurBtn"
-			action="${pageContext.request.contextPath}/Profil" method="post">
-			<div class="row justify-content-md-center">
-				<h2 id="AfficherDétailTitle" style="text-align: center;">Détail
-					Vente</h2>
-			</div>
-			<div class="row justify-content-md-center">
-				<!-- Comme pas de boucle ou pas d'article que l'on peut créer avec des cheverons, on utilise l'attribut de l'article pour obtenir ses infos -->
-				<div class="row justify-content-md-center">
-					<h4 id="NomArt" style="text-align: center;">${ArticleAAfficher.nom}</h4>
-					<br>
+		<div class="row justify-content-md-center">
+			<h2 id="profilTitle">Création de vente</h2>
+		</div>
+		<div class="row justify-content-md-center">
+			<form method="Post"
+				action="${pageContext.request.contextPath}/CreationArticle" enctype="multipart/form-data">
+				<label>Article :</label> <input type="text" name="nomArticle"
+					required value="${nomArticle}"> <br> <label
+					id="CreaVenteDesc">Description :</label> <br> <label
+					id="CreaVenteDesc">Description :</label>
+				<textarea id="descritpion" name="descritpion" rows="5" cols="33"
+					maxlength="300">${descritpion}</textarea>
+				<br> <br> <label id="CreaVenteCat">Catégories :</label> <select
+					name="listcate">
+					<c:forEach var="c" items="${categories }">
+						<option value="${c.numCategorie}">${c.libelle }</option>
+					</c:forEach>
+				</select> <br> <label id="CreaVenteImage">Photo de l'article :</label> <input
+					type="file" id="pictureFile" name="pictureFile"
+					accept="image/png, image/jpeg" onchange="PreviewImage();">
+				<img id="uploadPreview" style="width: 100px; height: 100px;" />
+				<script type="text/javascript">
+					function PreviewImage() {
+						var oFReader = new FileReader();
+						oFReader.readAsDataURL(document
+								.getElementById("pictureFile").files[0]);
+
+						oFReader.onload = function(oFREvent) {
+							document.getElementById("uploadPreview").src = oFREvent.target.result;
+						};
+					};
+				</script>
+				<br> <label id="CreaVentePrixInit">Mise à prix :</label><input
+					type="number" name="miseAprix" min="1" max="1000"
+					value="${miseAprix}"> <br> <label
+					id="CreaVenteDebEnchere">Début de l'enchère :</label> <input
+					required type="datetime-local" name="debutEnchere"
+					value="${debutEnchere}"> <br> <label
+					id="CreaVenteFinEnchere">Fin de l'enchère :</label> <input required
+					name="finEnchere" value="${finEnchere}" type="datetime-local">
+				<br>
+				<fieldset>
+					<legend>Retrait</legend>
+					<label id="CreaVenteRue">Rue :</label> <input required type="text"
+						name="rue" value="${ Utilisateur.rue}"> <br> <label
+						id="CreaVenteCodeP">Code Postal :</label> <input required
+						type="text" name="codePostal" value="${Utilisateur.codePostal}">
+					<br> <label id="CreaVenteVille">Ville :</label> <input
+						required type="text" name="ville" value="${Utilisateur.ville}">
+				</fieldset>
+				<div id="CreaVenteBtn">
+					<input class="btn btn-primary" type="submit" name="saveNewArt"
+						value="Enregistrer"> <a
+						href="${pageContext.request.contextPath}/accueil"
+						class="btn btn-secondary"> Annuler</a>
 				</div>
-				<div id="detailsArticle">
-					<label id="descriptionArt">Description : </label>
-					<textarea readonly style="vertical-align: top">${ArticleAAfficher.description}</textarea>
-					<br>
-					<br> <label id="cateArt">Categorie : <span>${ArticleAAfficher.categorie.libelle}</span>
-					</label> <br> <label id="bestOfferArt">Meilleure offre : <span>${ArticleAAfficher.enchere.montantEnchere}
-							crédits</span> <c:if
-							test="${ArticleAAfficher.enchere.montantEnchere > 0}">                            par ${ArticleAAfficher.enchere.utilisateur.pseudo}
-                        </c:if>
-					</label><br> <label id="misePrixArt">Mise à prix : <span>${ArticleAAfficher.prixInitial}
-							pts</span>
-					</label> <br>
-					<fmt:parseDate value="${ArticleAAfficher.finEnchere}"
-						pattern="yyyy-MM-dd'T'HH:mm" var="date_fin_enchere" />
-					<fmt:formatDate value="${date_fin_enchere}"
-						pattern="dd MMMM yyyy HH:mm" var="dateFin" />
-					<label id="finEncArt">Fin de l'enchère : <span>${dateFin}</span>
-					</label> <br> <label id="retraitArt">Retrait : <span>${ArticleAAfficher.retrait.rue },
-					</span> <span>${ArticleAAfficher.retrait.codePostal}
-							${ArticleAAfficher.retrait.ville}</span>
-					</label> <br> <label id="vendeurArt">Vendeur : <span
-						id="idVendeur">${ArticleAAfficher.utilisateur.pseudo}</span>
-					</label> <input type="hidden" name="vendeur"
-						value="${ArticleAAfficher.utilisateur.idUtilisateur}"> <input
-						id="infoVendeurButton" type="submit" value="Détails Vendeur"
-						class="btn btn-primary"> <br>
-				</div>
-			</div>
-		</form>
-		<div id="myOffer">
-			<form action="${pageContext.request.contextPath}/FaireUneEnchere"
-				method="post">
-				<label id="porpositionArt">Ma proposition : </label> <input
-					type="hidden" name="idArticle"
-					value="${ArticleAAfficher.idArticle}"> <input type="hidden"
-					name="bestOffer" value="${ArticleAAfficher.enchere.montantEnchere}">
-				<input type="number" min="1" max="1000" name="enchere"> <input
-					id="MakeAnEnchereButton" class="btn btn-primary" type="submit"
-					name="encherirAff" value="Encherir">
 			</form>
-			<div>
-				<form method="post"
-					action="${pageContext.request.contextPath}/deleteArticle">
-					<c:if
-						test="${ArticleAAfficher.utilisateur.idUtilisateur==Utilisateur.idUtilisateur }">
-						<button class="btn btn-danger" id="supressionArtButton"
-							value="${ArticleAAfficher.idArticle }" type="submit"
-							name="articleASupprimer"
-							onclick="window.location.href ='${pageContext.request.contextPath}/deleteArticle';">Supprimer
-							Vente</button>
-					</c:if>
-				</form>
-			</div>
 		</div>
 	</div>
 	<footer id="footer">
