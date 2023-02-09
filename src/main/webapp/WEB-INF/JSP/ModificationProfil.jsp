@@ -112,7 +112,7 @@
 				
 				<br>
 
-				<label id="signUpMdpNewLabel">Mot de passe : </label>
+				<label id="signUpMdpLabel">Mot de passe : </label>
 				<input id="ModifNewMdp" type="password" name="mdp" placeholder="********"
 					required
 					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
