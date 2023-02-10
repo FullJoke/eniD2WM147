@@ -1,5 +1,5 @@
-package fr.eni.eniD2WM147.dal;
 
+package fr.eni.eniD2WM147.dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -129,6 +129,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			pstmt.setInt(6, article.getPrixVente());
 			pstmt.setString(7, String.valueOf(article.getUtilisateur().getIdUtilisateur()));
 			pstmt.setString(8, String.valueOf(article.getCategorie().getNumCategorie()));
+			System.out.println(article.getCategorie().getNumCategorie());
 			pstmt.setString(9, String.valueOf(article.getEtatVente()));
 			pstmt.setString(10, article.getImage());
 
@@ -140,6 +141,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 				int idArticle = rs.getInt(1);
 				article.setIdArticle(idArticle);
+				//article.setImage(rs.getString("image"));
+				
 
 			}
 			System.out.println(article);
@@ -443,3 +446,4 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 }
+

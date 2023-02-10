@@ -8,6 +8,7 @@ public class Enchere {
 	Utilisateur utilisateur;
 	ArticleVendu article;
 
+
 	public Enchere(LocalDateTime dateEnchere, int montantEnchere) {
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
@@ -22,6 +23,8 @@ public class Enchere {
 	public Enchere() {
 
 	}
+
+
 
 	public LocalDateTime getDateEnchere() {
 		return dateEnchere;

@@ -15,6 +15,7 @@
 	<header>
 		<%@ include file="Entete.html"%>
 
+
 		<div id="logErrorMessages">
 
 			<c:if test="${!empty listeErreur }">
@@ -25,7 +26,6 @@
 
 			</c:if>
 		</div>
-
 
 		<c:choose>
 			<c:when test="${empty Utilisateur }">
@@ -92,6 +92,7 @@
 
 
 			<div class="row justify-content-md-center">
+
 				<!-- Comme pas de boucle ou pas d'article que l'on peut créer avec des cheverons,
  on utilise l'attribut de l'article pour obtenir ses infos -->
 				<div class="row justify-content-md-center">
@@ -133,6 +134,7 @@
 			</div>
 		</form>
 
+
 		<div id="myOffer">
 			<form action="${pageContext.request.contextPath}/FaireUneEnchere"
 				method="post">
@@ -161,6 +163,7 @@
 				</form>
 			</div>
 		</div>
+
 	</div>
 	<footer id="footer">
 		<%@ include file="footer.html"%>

@@ -53,6 +53,7 @@ public class ServletAccueil extends HttpServlet {
 				articles = articlesDoPost;
 			} else {
 				articles = ArticleManager.getInstance().selectAllArticles();
+
 			}
 			System.out.println("Liste des articles à afficher : "+articles);
 

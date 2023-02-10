@@ -40,6 +40,7 @@
 					</div>
 					.
 					<div class="p-2">
+
 						<form action="${pageContext.request.contextPath}/Profil"
 							method="post">
 							<button id="topMenu" name="vendeur"
@@ -114,7 +115,7 @@
 				<c:forEach var="a" items="${articles}">
 					<div class="card" style="width: 15rem">
 						<form
-							action="${pageContext.request.contextPath}/AfficherDetailArticle">
+							action="${pageContext.request.contextPath}/AfficherDetailArticle" method="get">
 							<input type="hidden" name="Article" value="${a.idArticle}">
 							<img class="card-img-left" src="..." alt="Image Produit">
 							<div class="card-body">

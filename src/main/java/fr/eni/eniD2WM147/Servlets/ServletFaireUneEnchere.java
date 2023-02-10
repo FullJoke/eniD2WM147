@@ -17,6 +17,7 @@ public class ServletFaireUneEnchere extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		System.out.println("/nServlet FaireUneEnchere : doPost");
 		EnchereManager em = EnchereManager.getInstance();
 		HttpSession session = request.getSession();
@@ -46,6 +47,9 @@ public class ServletFaireUneEnchere extends HttpServlet {
 			em.enchereUpdate(idSession, myOffer, idArticle, newCredits);
 		}
 		request.setAttribute("idArticle", idArticle);
-		response.sendRedirect(request.getContextPath() + "/accueil");
+
+		response.sendRedirect(request.getContextPath()+"/accueil");
+
+
 	}
 }

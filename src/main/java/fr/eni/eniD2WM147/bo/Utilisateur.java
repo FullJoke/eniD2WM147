@@ -17,6 +17,7 @@ public class Utilisateur {
 	private boolean administrateur;
 	private List<ArticleVendu> listeArticle;
 
+
 	// Constructeurs
 	public Utilisateur(int idUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, int credit, boolean administrateur) {
@@ -154,6 +155,7 @@ public class Utilisateur {
 	public void setListeArticles(List<ArticleVendu> listeArticles) {
 		this.listeArticle = listeArticles;
 	}
+
 
 	// Methodes
 	@Override
