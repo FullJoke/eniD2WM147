@@ -56,7 +56,7 @@ public class EnchereDaoJdbcImpl implements EnchereDAO {
 				pstmt.setInt(2, idArticle);
 				pstmt.setInt(3, myOffer);
 
-				pstmt.executeQuery();
+				pstmt.executeUpdate();
 				pstmt.close();
 				
 				editCredit(idSession, newCredits);

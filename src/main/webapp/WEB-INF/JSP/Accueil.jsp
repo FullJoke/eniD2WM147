@@ -101,7 +101,7 @@
 						<input type="radio" id="ventes" name="RButton" value="Ventes">
 						<label for="Mes Ventes">Mes Ventes</label>
 					</div>
-					<br> <label for="mes ventes en cours">Mes ventes en
+					<br> <label id="mesVentesEnCours" for="mes ventes en cours">Mes ventes en
 						cours</label> <input type="checkbox" name="ventesEnCoursCheck"> <br>
 					<label for="ventes non debutées">Ventes non debutées</label> <input
 						type="checkbox" name="ventesNonDébutéesCheck"> <br> <label
