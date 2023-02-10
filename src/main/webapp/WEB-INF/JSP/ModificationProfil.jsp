@@ -102,7 +102,7 @@
 					<input id="inscriptionButton" class="btn btn-primary"
 						id="ModifSaveButton" type="submit" value="Enregistrer"> <a
 						id="inscriptionButton" class="btn btn-secondary"
-						href="${pageContext.request.contextPath}/Profil">Annuler</a>
+						href="#" onclick="history.go(-1)">Annuler</a>
 				</div>
 			</form>
 			<form action="${pageContext.request.contextPath}/delete"

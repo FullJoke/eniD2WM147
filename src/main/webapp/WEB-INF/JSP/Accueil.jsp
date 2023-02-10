@@ -88,11 +88,11 @@
 						<input type="radio" name="RButton" value="Achats"> <label
 							id="achat" for="Achats">Achats</label>
 					</div>
-					<br> <label id="EnchereOuvCheck" for="enchères ouvertes">enchères
+					<br> <label id="EnchereOuvCheck" for="enchères ouvertes">Enchères
 						ouvertes</label> <input type="checkbox" name="enchereOuvCheck"> <br>
-					<label id="MesEncheresCheck" for="mes enchères"> mes
+					<label id="MesEncheresCheck" for="mes enchères"> Mes
 						enchères</label> <input type="checkbox" name="mesEncheresCheck"> <br>
-					<label id="EnchereWinCheck" for=" mes enchères remportées">mes
+					<label id="EnchereWinCheck" for=" mes enchères remportées">Mes
 						enchères remportées</label> <input type="checkbox"
 						name="enchereRemporteesCheck">
 				</div>
@@ -101,11 +101,11 @@
 						<input type="radio" id="ventes" name="RButton" value="Ventes">
 						<label for="Mes Ventes">Mes Ventes</label>
 					</div>
-					<br> <label for="mes ventes en cours">mes ventes en
+					<br> <label for="mes ventes en cours">Mes ventes en
 						cours</label> <input type="checkbox" name="ventesEnCoursCheck"> <br>
-					<label for="ventes non debutées">ventes non debutées</label> <input
+					<label for="ventes non debutées">Ventes non debutées</label> <input
 						type="checkbox" name="ventesNonDébutéesCheck"> <br> <label
-						for="ventes terminées">ventes terminées</label> <input
+						for="ventes terminées">Ventes terminées</label> <input
 						type="checkbox" name=ventesTermineesCheck>
 				</div>
 			</c:if>
