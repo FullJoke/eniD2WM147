@@ -61,26 +61,26 @@
 		<div class="row justify-content-md-center">
 			<form action="${pageContext.request.contextPath}/ModificationProfil"
 				method="post">
-				<label id="signUpPseudoLabel">Pseudo : </label> <input
+				<label id="signUpPseudoLabel"style="font-weight: bold">Pseudo : </label> <input
 					id="ModifPseudo" pattern="[a-zA-Z0-9]{3,20}"
 					value="${Utilisateur.pseudo}" name="pseudo"> <br> <label
-					id="signUpNomLabel">Nom : </label> <input id="ModifNom" type="text"
+					id="signUpNomLabel"style="font-weight: bold">Nom : </label> <input id="ModifNom" type="text"
 					name="nom" value="${Utilisateur.nom}"> <br> <label
-					id="signUpPrenomLabel">Prenom : </label> <input id="ModifPrenom"
+					id="signUpPrenomLabel"style="font-weight: bold">Prenom : </label> <input id="ModifPrenom"
 					type="text" name="prenom" value="${Utilisateur.prenom}"> <br>
-				<label id="signUpEmailLabel">Email : </label> <input id="ModifEmail"
+				<label id="signUpEmailLabel"style="font-weight: bold">Email : </label> <input id="ModifEmail"
 					type="email" name="email" value="${Utilisateur.email}"> <br>
-				<label id="signUpTelephoneLabel">Telephone : </label> <input
+				<label id="signUpTelephoneLabel"style="font-weight: bold">Telephone : </label> <input
 					id="ModifTelephone" pattern="^0[0-9]{9}" type="tel" name="tel"
 					value="${Utilisateur.telephone}"> <br> <label
-					id="signUpRueLabel">Rue : </label> <input id="ModifRue" type="text"
+					id="signUpRueLabel"style="font-weight: bold">Rue : </label> <input id="ModifRue" type="text"
 					name="rue" value="${Utilisateur.rue}"> <br> <label
-					id="signUpCodePostalLabel">Code Postal : </label> <input
+					id="signUpCodePostalLabel"style="font-weight: bold">Code Postal : </label> <input
 					id="ModifCodePostal" type="text" name="codePostal"
 					value="${Utilisateur.codePostal}"> <br> <label
-					id="signUpVilleLabel">Ville : </label> <input id="ModifVille"
+					id="signUpVilleLabel"style="font-weight: bold">Ville : </label> <input id="ModifVille"
 					type="text" name="ville" value="${Utilisateur.ville}"> <br>
-				<label id="signUpMdpLabel">Mot de passe : </label> <input
+				<label id="signUpMdpLabel"style="font-weight: bold">Mot de passe : </label> <input
 					id="ModifNewMdp" type="password" name="mdp" placeholder="********"
 					required
 					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
@@ -89,14 +89,14 @@
 					Le mot de passe doit avoir au moins 8 caractères (max15),<br>
 					un chiffre, une lettre majuscule et une minuscule
 				</h6>
-				<label id="signUpMdpNewLabel">Nouveau mot de passe : </label> <input
+				<label id="signUpMdpNewLabel"style="font-weight: bold">Nouveau mot de passe : </label> <input
 					id="ModifNewMdp" type="password" name="newMdp"
 					placeholder="********"
 					pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$">
-				<br> <label id="signUpConfirmationLabel">Confirmation :
+				<br> <label id="signUpConfirmationLabel"style="font-weight: bold">Confirmation :
 				</label> <input id="ModifConfirmation" type="password" name="confirmation"
 					placeholder="********"> <br> <label
-					id="signUpCreditLabel">Crédit : </label> <input id="ModifCrédit"
+					id="signUpCreditLabel"style="font-weight: bold">Crédit : </label> <input id="ModifCrédit"
 					value="${Utilisateur.credit}" readonly="readonly">
 				<div class="ModifProfilButtons">
 					<input id="inscriptionButton" class="btn btn-primary"

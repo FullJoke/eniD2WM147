@@ -50,7 +50,7 @@
 					<input id="inscriptionButton" class="btn btn-primary"
 						id="signUpOKButton" type="submit" value="Valider"> <a
 						id="inscriptionButton" class="btn btn-secondary"
-						href="${pageContext.request.contextPath}accueil">Annuler</a>
+						href="${pageContext.request.contextPath}/accueil">Annuler</a>
 				</div>
 			</form>
 		</div>
