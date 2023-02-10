@@ -129,19 +129,17 @@ public class ServletCreationArticle extends HttpServlet {
 
 		try {
 
-//			BusinessException bE = new BusinessException();
-//			if (nomArticle.isBlank()) {
-//				bE.addMessage("L'article doit avoir un nom");
-//			}
-//			if (description.isBlank()) {
-//				bE.addMessage("L'article doit avoir une description. ");
-//			}
-//			if (debutVente.isBlank()) {
-//				bE.addMessage("La date de début de vente doit être précisée.");
-//			}
-//			if (rue.isBlank() || ville.isBlank() || codePostal.isBlank()) {
-//				bE.addMessage("L'un des éléments de l'adresse est manquant.");
-//			}
+			BusinessException bE = new BusinessException();
+			if (nomArticle.isBlank()) {
+				bE.addMessage("L'article doit avoir un nom");
+			}
+			if (description.isBlank()) {
+				bE.addMessage("L'article doit avoir une description. ");
+			}
+			if (debutVente.isBlank()) {
+				bE.addMessage("La date de début de vente doit être précisée.");
+			}
+
 			retrait = new Retrait(rue, codePostal, ville);
 			article = new ArticleVendu(nomArticle, description, dateDebut, dateFin, prixEntier, 0, appPath, "CR", vendeur,
 					retrait, cat, null);

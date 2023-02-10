@@ -97,7 +97,7 @@
 					};
 				</script>
 				<br> <label id="CreaVentePrixInit" style="font-weight: bold">Mise
-					à prix :</label><input type="number" name="miseAprix" min="1" max="1000"
+					à prix :</label><input type="number" name="miseAprix" min="1"
 					value="${miseAprix}"> <br> <label
 					id="CreaVenteDebEnchere" style="font-weight: bold">Début de
 					l'enchère :</label> <input required type="datetime-local"
